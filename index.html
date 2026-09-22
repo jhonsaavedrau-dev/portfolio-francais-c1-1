@@ -805,6 +805,13 @@
   @media (max-width:560px){ .cn-u{ grid-template-columns:34px minmax(0,1fr); } .cn-u .c{ grid-column:2; } }
   .cn-note{ margin:0; font-size:.86rem; line-height:1.7; color:var(--stone); max-width:64ch; }
 
+
+  .cn-pair{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(12px,1.6vw,18px); }
+  .cn-pair .cn-card{ grid-template-columns:1fr; align-content:space-between; }
+  .cn-pair .cn-go{ justify-self:start; }
+  .cn-card.alt{ background:linear-gradient(135deg,var(--teal) 0%, #0B7C74 45%, var(--brand) 140%); }
+  .cn-card.alt .cn-go{ color:#0B5F59; }
+  @media (max-width:820px){ .cn-pair{ grid-template-columns:1fr; } }
   /* ---------- ressources ---------- */
   .res-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.8vw,18px); }
   .res-col{
@@ -1538,19 +1545,29 @@
       <h2 class="h-sec reveal">L'entraînement,<br><em>tous les jours.</em></h2>
     </div>
     <div class="sec-intro-col reveal">
-      <p class="lede">Le diagnostic a donné une liste d'erreurs ; le programme du cours, une liste d'unités. Les deux sont réunies dans un carnet interactif : chaque leçon explique, fait pratiquer, corrige, puis fait reformuler. Il s'ouvre dans le navigateur, sur ordinateur comme sur téléphone.</p>
+      <p class="lede">Le diagnostic a donné une liste d'erreurs ; le programme du cours, une liste d'unités. Les deux sont réunies dans un carnet interactif : chaque leçon explique, fait pratiquer, corrige, puis fait reformuler. Il existe en deux versions : la mienne, construite sur mon diagnostic, et une version ouverte à tout le cours. Les deux s'ouvrent dans le navigateur, sur ordinateur comme sur téléphone.</p>
     </div>
   </div>
   <div class="sec-body">
 
-      <a class="cn-card reveal" href="https://jhonsaavedrau-dev.github.io/carnet-de-remediation/" target="_blank" rel="noopener">
-        <div>
-          <span class="micro">Application d'entraînement — s'ouvre dans le navigateur</span>
-          <h3 class="cn-t">Carnet de<br><em>remédiation</em></h3>
-          <p class="cn-d">Six sections, cinquante-sept leçons et plus de quatre cents exercices corrigés : de la morphosyntaxe au texte académique, avec dictées, atelier d'écriture et examens blancs. La progression est enregistrée d'une session à l'autre.</p>
-        </div>
-        <span class="cn-go">Entrer dans le carnet ↗</span>
-      </a>
+      <div class="cn-pair">
+        <a class="cn-card reveal" href="https://claude.ai/artifact/FQnPQQpb4mT77Xfn517Eur" target="_blank" rel="noopener">
+          <div>
+            <span class="micro">Mon carnet — construit sur mon diagnostic</span>
+            <h3 class="cn-t">Carnet de<br><em>remédiation</em></h3>
+            <p class="cn-d">Mes huit types d'erreurs du DELF B2 blanc, repris un par un, puis tout le programme C1.1 : leçons, dictées, atelier d'écriture corrigé et examens blancs. Ma progression est enregistrée d'une session à l'autre.</p>
+          </div>
+          <span class="cn-go">Ouvrir mon carnet ↗</span>
+        </a>
+        <a class="cn-card alt reveal" href="https://claude.ai/artifact/Tv3Mv8PAjc7TBvWCiQnYvv" target="_blank" rel="noopener">
+          <div>
+            <span class="micro">Pour tout le cours — chacun garde sa progression</span>
+            <h3 class="cn-t">Carnet<br><em>d'études C1.1</em></h3>
+            <p class="cn-d">La même application, ouverte à tous les étudiants : les erreurs les plus fréquentes chez les hispanophones, le programme du semestre, les dictées et l'atelier. Chaque étudiant a son propre carnet d'erreurs.</p>
+          </div>
+          <span class="cn-go">Ouvrir le carnet du cours ↗</span>
+        </a>
+      </div>
       <div class="cn-stats reveal">
         <div><b>57</b><span class="micro">Leçons</span></div>
         <div><b>453</b><span class="micro">Exercices corrigés</span></div>
