@@ -1,6 +1,6 @@
-# PetitChat — paquete para publicar la app
+# PLEX PLAY — paquete para publicar la app
 
-Esta carpeta es PetitChat como **aplicación web instalable (PWA)**: funciona sin conexión, se instala en el móvil desde el navegador y está lista para convertirse en app de Google Play.
+Esta carpeta es PLEX PLAY como **aplicación web instalable (PWA)**: funciona sin conexión, se instala en el móvil desde el navegador y está lista para convertirse en app de Google Play.
 
 ## Qué hay dentro
 

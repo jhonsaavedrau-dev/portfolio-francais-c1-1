@@ -1,7 +1,7 @@
 {
- "id": "/petitchat/",
- "name": "PetitChat — Francés B2→C1",
- "short_name": "PetitChat",
+ "id": "/plexplay/",
+ "name": "PLEX PLAY — Francés B2→C1",
+ "short_name": "PLEX PLAY",
  "description": "Curso de francés B2→C1 para hispanohablantes: gramática, texto académico (résumé, synthèse, essai) y repaso espaciado, en sesiones cortas.",
  "lang": "es",
  "dir": "ltr",
@@ -10,7 +10,7 @@
  "display": "standalone",
  "orientation": "portrait-primary",
  "background_color": "#F7F7F5",
- "theme_color": "#4F46E5",
+ "theme_color": "#0F2A5C",
  "categories": [
   "education",
   "books"

@@ -1,0 +1,1 @@
+window.PC_CONFIG={"url": "https://arjajiyotulnuzxkrddw.supabase.co", "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFyamFqaXlvdHVsbnV6eGtyZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxOTkyODQsImV4cCI6MjEwNTc3NTI4NH0.EWbXBm6F_5BFjzMAWecotetA-7SE3tyi3HFCvkW4px0"};

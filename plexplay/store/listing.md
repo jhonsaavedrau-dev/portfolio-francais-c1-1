@@ -1,13 +1,13 @@
-# Ficha de tienda — PetitChat
+# Ficha de tienda — PLEX PLAY
 
-**Nombre (30):** PetitChat: francés B2 a C1
+**Nombre (30):** PLEX PLAY: francés B2 a C1
 **Categoría:** Educación · **Público:** mayores de 18 años · **Idioma de la ficha:** español
 
 **Descripción corta (80):**
 Francés B2→C1 para hispanohablantes: gramática, texto académico y repaso diario.
 
 **Descripción larga:**
-PetitChat te prepara para escribir y hablar en francés a nivel universitario (DELF B2 y DALF C1), pensado para hispanohablantes.
+PLEX PLAY te prepara para escribir y hablar en francés a nivel universitario (DELF B2 y DALF C1), pensado para hispanohablantes.
 
 • Lecciones cortas con teoría clara, ejemplos y ejercicios: elegir, completar, encontrar el error, ordenar, clasificar, relacionar y dictado.
 • Cada ejercicio dice qué hacer, en qué contexto, y explica la respuesta, comparando con el español cuando ayuda.
