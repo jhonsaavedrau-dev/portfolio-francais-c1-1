@@ -117,6 +117,9 @@
   PCB.verifyCode=async(email,code)=>{ const {data,error}=await sb.auth.verifyOtp({email,token:code,type:"email"}); if(error) throw error; try{ localStorage.setItem("pc-owner",data.user.id); }catch(e){} PCB.uid=data.user.id; PCB.email=data.user.email; PCB.hasPw=!!((data.user.user_metadata||{}).pw); return data; };
   PCB.signOut=async()=>{ try{ await sb.auth.signOut(); }catch(e){} try{ Object.keys(localStorage).filter(k=>/^(carnet-etudes-c11|pc-|cr-draft)/.test(k)).forEach(k=>localStorage.removeItem(k)); }catch(e){} };
   PCB.deleteAccount=async()=>{ const {error}=await sb.rpc("delete_me"); if(error) throw error; await PCB.signOut(); };
+  PCB.report=async r=>{ const {error}=await sb.from("reports").insert({user_id:PCB.uid,item_key:r.key,lesson_id:r.lesson||null,reason:r.reason||"otro",message:(r.message||"").slice(0,1000),prompt:(r.prompt||"").slice(0,600)}); if(error) throw error; };
+  PCB.reports=async()=>{ const {data,error}=await sb.from("reports").select("id,item_key,lesson_id,reason,message,prompt,status,created_at").eq("status","open").order("created_at",{ascending:false}).limit(200); if(error) throw error; return data||[]; };
+  PCB.closeReports=async ids=>{ const {error}=await sb.from("reports").update({status:"done"}).in("id",ids); if(error) throw error; };
   PCB.roster=async grp=>{ const {data,error}=await sb.rpc("teacher_roster",{p_grp:grp||null}); if(error) throw error; return data||[]; };
   PCB.states=async ids=>{ if(!ids.length) return []; const {data,error}=await sb.from("progress").select("user_id,state,updated_at").in("user_id",ids); if(error) throw error; return data||[]; };
   PCB.profile=async id=>{ const {data}=await sb.from("profiles").select(PROFILE_COLS).eq("id",id).maybeSingle(); return data; };
