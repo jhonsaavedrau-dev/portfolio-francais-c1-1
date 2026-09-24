@@ -31,7 +31,7 @@
   }catch(e){}
 
   let session=null;
-  PCB.ready=sb.auth.getSession().then(r=>{ session=r.data.session||null; if(session){ PCB.uid=session.user.id; PCB.email=session.user.email; } return session; }).catch(()=>null);
+  PCB.ready=sb.auth.getSession().then(r=>{ session=r.data.session||null; if(session){ PCB.uid=session.user.id; PCB.email=session.user.email; PCB.hasPw=!!((session.user.user_metadata||{}).pw); } return session; }).catch(()=>null);
   sb.auth.onAuthStateChange((_ev,s)=>{ session=s||null; });
   const token=async()=>{ const s=(await sb.auth.getSession()).data.session; return s&&s.access_token; };
 
@@ -111,8 +111,10 @@
   }};
 
   /* ---------- acceso ---------- */
-  PCB.sendCode=async email=>{ const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true}}); if(error) throw error; };
-  PCB.verifyCode=async(email,code)=>{ const {data,error}=await sb.auth.verifyOtp({email,token:code,type:"email"}); if(error) throw error; try{ localStorage.setItem("pc-owner",data.user.id); }catch(e){} return data; };
+  PCB.sendCode=async(email,create=true)=>{ const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:create}}); if(error) throw error; };
+  PCB.signIn=async(email,password)=>{ const {data,error}=await sb.auth.signInWithPassword({email,password}); if(error) throw error; try{ localStorage.setItem("plx-known",email); }catch(e){} return data; };
+  PCB.setPassword=async password=>{ const {data,error}=await sb.auth.updateUser({password,data:{pw:true}}); if(error) throw error; PCB.hasPw=true; try{ localStorage.setItem("plx-known",PCB.email||""); }catch(e){} return data; };
+  PCB.verifyCode=async(email,code)=>{ const {data,error}=await sb.auth.verifyOtp({email,token:code,type:"email"}); if(error) throw error; try{ localStorage.setItem("pc-owner",data.user.id); }catch(e){} PCB.uid=data.user.id; PCB.email=data.user.email; PCB.hasPw=!!((data.user.user_metadata||{}).pw); return data; };
   PCB.signOut=async()=>{ try{ await sb.auth.signOut(); }catch(e){} try{ Object.keys(localStorage).filter(k=>/^(carnet-etudes-c11|pc-|cr-draft)/.test(k)).forEach(k=>localStorage.removeItem(k)); }catch(e){} };
   PCB.deleteAccount=async()=>{ const {error}=await sb.rpc("delete_me"); if(error) throw error; await PCB.signOut(); };
   PCB.roster=async grp=>{ const {data,error}=await sb.rpc("teacher_roster",{p_grp:grp||null}); if(error) throw error; return data||[]; };

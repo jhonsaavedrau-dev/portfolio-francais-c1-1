@@ -1888,6 +1888,16 @@ html.pc-rm .pl-cat svg{ animation:none !important; }
 .pl-chips.pl-chips-b{ margin:16px 0 0; }
 .pl-stage{ margin-bottom:-6px; } .pl-cat{ bottom:-26px; }
 .pl-chips.pl-chips-b span{ color:#fff; }
+
+/* acceso: contraseña, enlaces y cambio de modo */
+.pl-pwb{ position:relative; display:block; } .pl-pwb input{ width:100%; padding-right:48px !important; }
+.pl-eye{ position:absolute; right:6px; top:50%; transform:translateY(-50%); width:38px; height:38px; display:grid; place-items:center; border:0; background:none; color:var(--stone); cursor:pointer; border-radius:8px; }
+.pl-eye:hover{ color:var(--ink); background:var(--wash); }
+.pl-switch{ text-align:center; margin:14px 0 0; font-size:.92rem; color:var(--ink-2,var(--ink)); }
+.pl-switch .onb-link{ font-weight:700; }
+.pl-ok{ color:var(--pc-green,#2E9E6A); font-weight:600; margin:4px 0 0; }
+.pl-links{ justify-content:center; }
+.pl-switch .onb-link{ color:var(--accent) !important; padding:6px 4px; background:none; border:0; cursor:pointer; font-size:inherit; text-decoration:underline; text-underline-offset:3px; } .pl-links .onb-link{ color:var(--accent) !important; }
 </style>
 
 <div class="scroll-progress" id="sprog" aria-hidden="true"></div>
@@ -5468,7 +5478,7 @@ render=function(){
   _gRender.apply(this,arguments);
   if(["dictee","carnet","atelier","journal"].includes(view)){ const v=$("#view"); if(!v.querySelector(".gback")) v.insertAdjacentHTML("afterbegin",`<button class="gback" data-view="retos">${IC.back} Retos</button>`); }
   if(!gEnsure().name&&!P) gOnboard();
-  else { const o=document.querySelector(".gonb"); if(o&&gEnsure().name){ o.remove(); } }
+  else { const o=document.querySelector(".gonb:not(.pclogin)"); if(o&&gEnsure().name){ o.remove(); } }
 };
 document.title="PLEX PLAY";
 setTimeout(gCloudInit,50);
@@ -5946,58 +5956,112 @@ const CLOUD=!!(window.PCB&&PCB.enabled);
 const SEMS=["1","2","3","4","5","6","7","8","9","10"];
 const grpLabel=g=>g?("Semestre "+g):"Sin semestre";
 
-/* ---------- pantalla de acceso ---------- */
-let pcLogin={step:0,email:"",busy:false,err:"",sent:0};
+/* ---------- pantalla de acceso: entrar · crear cuenta · recuperar contraseña ---------- */
+const knownEmail=()=>{ try{ return localStorage.getItem("plx-known")||""; }catch(e){ return ""; } };
+let pcLogin={mode:knownEmail()?"login":"signup",step:0,email:knownEmail(),busy:false,err:"",ok:""};
+const PL_BUB={login:["Re-bonjour !","Salut ! On joue ?"],signup:["Salut ! On joue ?","Presque ! Et le code ?"],reset:["Pas de panique !","Presque ! Et le code ?"],setpw:["Dernière étape !","Dernière étape !"]};
+function plField(id,label,type,extra){ return `<label class="gfield"><span>${label}</span><input id="${id}" type="${type}" ${extra||""}></label>`; }
+function plPw(id,label,auto){ return `<label class="gfield pl-pw"><span>${label}</span><span class="pl-pwb"><input id="${id}" type="password" autocomplete="${auto}" minlength="8" placeholder="Mínimo 8 caracteres"><button type="button" class="pl-eye" data-pl="eye" data-arg="${id}" aria-label="Mostrar contraseña"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></span></label>`; }
 function pcLoginRender(){
   let el=document.querySelector(".pclogin");
-  if(!el){ el=document.createElement("div"); el.className="pclogin gonb"; el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true"); el.setAttribute("aria-label","Iniciar sesión"); document.body.appendChild(el); }
-  const L=pcLogin, D=PCB.domain;
-  const cat=catSVG({coat:"naranja",acc:{hat:"boina"}},{mood:L.step===0?"wink":"excited",sparkle:L.step===1});
+  if(!el){ el=document.createElement("div"); el.className="pclogin gonb"; el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true"); el.setAttribute("aria-label","Acceso a PLEX PLAY"); document.body.appendChild(el); }
+  const L=pcLogin, D=PCB.domain, busy=L.busy?"disabled":"";
+  const cat=catSVG({coat:"naranja",acc:{hat:"boina"}},{mood:L.step===1||L.mode==="setpw"?"excited":"wink",sparkle:L.mode==="setpw"});
+  const err=L.err?`<p class="gm-err" role="alert">${gh(L.err)}</p>`:"", ok=L.ok?`<p class="pl-ok" role="status">${gh(L.ok)}</p>`:"";
+  const mail=plField("plEmail",`Correo @${D}`,"email",`inputmode="email" autocomplete="username" placeholder="nombre.apellido@${D}" value="${gh(L.email)}"`);
+  const code=`<label class="gfield"><span>Código del correo</span><input type="text" id="plCode" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]*" placeholder="12345678"></label>`;
+  let body="";
+  if(L.mode==="login") body=`<h2>¡Qué bueno verte!</h2>
+      <p class="onb-p">Entra con tu correo y tu contraseña para seguir con tu racha.</p>
+      ${mail}${plPw("plPass","Contraseña","current-password")}${err}${ok}
+      <button class="gbtn wide" data-pl="login" ${busy}>${L.busy?"Entrando…":"Entrar"}</button>
+      <div class="pl-links"><button class="onb-link" data-pl="to-reset">¿Olvidaste tu contraseña?</button></div>
+      <p class="pl-switch">¿Primera vez? <button class="onb-link" data-pl="to-signup">Crea tu cuenta</button></p>`;
+  else if(L.mode==="signup"&&L.step===0) body=`<h2>El francés, en modo juego.</h2>
+      <p class="onb-p">De A1 a C1 en partidas cortas: retos, rachas y un gato que sube de nivel contigo. Para crear tu cuenta, confirma tu correo de la U con un código.</p>
+      ${mail}${err}
+      <button class="gbtn wide" data-pl="send" ${busy}>${L.busy?"Enviando…":"¡Vamos! Envíame el código"}</button>
+      <p class="pl-switch">¿Ya tienes cuenta? <button class="onb-link" data-pl="to-login">Entrar</button></p>`;
+  else if(L.mode==="reset"&&L.step===0) body=`<h2>Recupera tu cuenta</h2>
+      <p class="onb-p">Te enviamos un código a tu correo y luego eliges una contraseña nueva.</p>
+      ${mail}${err}
+      <button class="gbtn wide" data-pl="send" ${busy}>${L.busy?"Enviando…":"Enviarme el código"}</button>
+      <p class="pl-switch"><button class="onb-link" data-pl="to-login">Volver a entrar</button></p>`;
+  else if(L.step===1) body=`<h2>Mira tu correo</h2>
+      <p class="onb-p">Te mandamos un código a <b>${gh(L.email)}</b>. Si no aparece en un minuto, revisa «Spam» o «Correo no deseado».</p>
+      ${code}${err}
+      <button class="gbtn wide" data-pl="verify" ${busy}>${L.busy?"Comprobando…":"Confirmar código"}</button>
+      <div class="pl-links"><button class="onb-link" data-pl="resend">Reenviar código</button><button class="onb-link" data-pl="back">Cambiar de correo</button></div>`;
+  else if(L.mode==="setpw") body=`<h2>${L.reset?"Tu nueva contraseña":"Crea tu contraseña"}</h2>
+      <p class="onb-p">${L.reset?"Elige una contraseña nueva para":"Tu correo quedó confirmado. Desde ahora entrarás con"} <b>${gh(L.email||PCB.email||"")}</b>${L.reset?".":" y esta contraseña."}</p>
+      ${plPw("plNew","Contraseña","new-password")}${plPw("plNew2","Repite la contraseña","new-password")}${err}
+      <button class="gbtn wide" data-pl="setpw" ${busy}>${L.busy?"Guardando…":"Guardar y empezar"}</button>
+      <p class="pl-switch">${PCB.hasPw?`<button class="onb-link" data-pl="close">Cancelar</button>`:`<button class="onb-link" data-pl="logout">Usar otra cuenta</button>`}</p>`;
   el.innerHTML=`<div class="pl-wrap">
     <div class="pl-hero" aria-hidden="true">
       <div class="pl-top"><span class="pl-logo">${IC.paw}</span><b>PLEX <em>PLAY</em></b></div>
-      <div class="pl-stage"><div class="pl-cat">${cat}</div><div class="pl-bub">${L.step===0?"Salut ! On joue ?":"Presque ! Et le code ?"}</div></div>
+      <div class="pl-stage"><div class="pl-cat">${cat}</div><div class="pl-bub">${(PL_BUB[L.mode]||PL_BUB.login)[L.step===1?1:0]}</div></div>
     </div>
-    <div class="onb-step pl-box">
-    ${L.step===0?`<h2>El francés, en modo juego.</h2>
-      <p class="onb-p">De A1 a C1 en partidas cortas: retos, rachas y un gato que sube de nivel contigo. Entra con tu correo de la U y te mandamos un código, sin contraseñas.</p>
-      <label class="gfield"><span>Tu correo @${D}</span><input type="email" id="plEmail" inputmode="email" autocomplete="email" placeholder="nombre.apellido@${D}" value="${gh(L.email)}"></label>
-      ${L.err?`<p class="gm-err" role="alert">${gh(L.err)}</p>`:""}
-      <button class="gbtn wide" data-pl="send" ${L.busy?"disabled":""}>${L.busy?"Enviando…":"¡Vamos! Envíame el código"}</button>`
-    :`<h2>Mira tu correo</h2>
-      <p class="onb-p">Te mandamos un código a <b>${gh(L.email)}</b>. Si no aparece en un minuto, revisa «Spam» o «Correo no deseado».</p>
-      <label class="gfield"><span>Código</span><input type="text" id="plCode" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]*" placeholder="12345678"></label>
-      ${L.err?`<p class="gm-err" role="alert">${gh(L.err)}</p>`:""}
-      <button class="gbtn wide" data-pl="verify" ${L.busy?"disabled":""}>${L.busy?"Comprobando…":"Entrar a jugar"}</button>
-      <div class="pl-links"><button class="onb-link" data-pl="resend">Reenviar código</button><button class="onb-link" data-pl="back">Cambiar de correo</button></div>`}
-    <p class="pl-foot">Tu sesión queda guardada en este dispositivo. Al entrar aceptas la <a href="privacy.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+    <div class="onb-step pl-box">${body}
+    <p class="pl-foot">Tu sesión queda guardada en este dispositivo hasta que cierres sesión. Al usar PLEX PLAY aceptas la <a href="privacy.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
   </div><div class="pl-chips pl-chips-b"><span>${IC.flame||""}Rachas</span><span>${IC.paw}Tu gato</span><span>${IC.trophy||IC.crown||""}Ranking</span></div>
   </div>`;
-  const f=el.querySelector(L.step===0?"#plEmail":"#plCode"); if(f) setTimeout(()=>f.focus(),30);
+  const first=el.querySelector(L.mode==="setpw"?"#plNew":L.step===1?"#plCode":L.mode==="login"&&L.email?"#plPass":"#plEmail"); if(first) setTimeout(()=>first.focus(),30);
 }
-async function pcLoginAct(a){
+const plVal=id=>(($("#"+id)||{}).value||"");
+function plMail(){ const L=pcLogin; L.email=plVal("plEmail").trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+$/.test(L.email)){ L.err="Escribe tu correo completo."; return false; }
+  if(!L.email.endsWith("@"+PCB.domain)){ L.err="Usa tu correo institucional @"+PCB.domain+"."; return false; }
+  return true; }
+async function pcLoginAct(a,arg){
   const L=pcLogin;
+  if(a==="eye"){ const i=$("#"+arg); if(i) i.type=i.type==="password"?"text":"password"; return; }
+  if(a.startsWith("to-")){ L.mode=a.slice(3); L.step=0; L.err=""; L.ok=""; if(L.mode==="setpw"){ L.reset=true; L.email=PCB.email||L.email; } return pcLoginRender(); }
+  if(a==="back"){ L.step=0; L.err=""; return pcLoginRender(); }
+  if(a==="close"){ const o=document.querySelector(".pclogin"); if(o) o.remove(); L.err=""; return; }
+  if(a==="logout"){ await PCB.signOut(); location.reload(); return; }
+  if(a==="login"){
+    if(!plMail()) return pcLoginRender();
+    const pw=plVal("plPass"); if(!pw){ L.err="Escribe tu contraseña."; return pcLoginRender(); }
+    L.busy=true; L.err=""; L.ok=""; pcLoginRender();
+    try{ await PCB.signIn(L.email,pw); location.reload(); }
+    catch(e){ L.busy=false; const m=String(e&&e.message||"");
+      L.err=/invalid login|credentials/i.test(m)?"Correo o contraseña incorrectos. Si creaste tu cuenta solo con un código, toca «¿Olvidaste tu contraseña?» para crear una.":/confirm/i.test(m)?"Confirma primero tu correo con el código.":"No se pudo entrar. Revisa tu conexión e inténtalo de nuevo.";
+      pcLoginRender(); }
+    return;
+  }
   if(a==="send"||a==="resend"){
-    if(a==="send") L.email=(($("#plEmail")||{}).value||"").trim().toLowerCase();
-    if(!/^[^@\s]+@[^@\s]+$/.test(L.email)){ L.err="Escribe tu correo completo."; return pcLoginRender(); }
-    if(!L.email.endsWith("@"+PCB.domain)){ L.err="Usa tu correo institucional @"+PCB.domain+"."; return pcLoginRender(); }
+    if(a==="send"&&!plMail()) return pcLoginRender();
     L.busy=true; L.err=""; pcLoginRender();
-    try{ await PCB.sendCode(L.email); L.step=1; L.sent=Date.now(); if(a==="resend") toast("Código reenviado"); }
-    catch(e){ const m=String(e&&e.message||""); L.err=/rate|seconds|60/i.test(m)?"Espera un minuto antes de pedir otro código.":/Solo se admiten|Database error/i.test(m)?"Ese correo no está autorizado. Usa tu correo @"+PCB.domain+".":"No se pudo enviar el código. Revisa tu conexión e inténtalo de nuevo."; }
+    try{ await PCB.sendCode(L.email,L.mode==="signup"); L.step=1; if(a==="resend") toast("Código reenviado"); }
+    catch(e){ const m=String(e&&e.message||"");
+      L.err=/signups? not allowed|not found|otp_disabled/i.test(m)?"No hay ninguna cuenta con ese correo. Crea una con «Crea tu cuenta».":/rate|seconds|60/i.test(m)?"Espera un minuto antes de pedir otro código.":/Solo se admiten|Database error/i.test(m)?"Ese correo no está autorizado. Usa tu correo @"+PCB.domain+".":"No se pudo enviar el código. Revisa tu conexión e inténtalo de nuevo."; }
     L.busy=false; return pcLoginRender();
   }
   if(a==="verify"){
-    const code=(($("#plCode")||{}).value||"").replace(/\D/g,"");
-    if(code.length<6){ L.err="Escribe el código completo que llegó a tu correo."; return pcLoginRender(); }
+    const c=plVal("plCode").replace(/\D/g,"");
+    if(c.length<6){ L.err="Escribe el código completo que llegó a tu correo."; return pcLoginRender(); }
     L.busy=true; L.err=""; pcLoginRender();
-    try{ await PCB.verifyCode(L.email,code); location.reload(); }
-    catch(e){ L.busy=false; L.err="Código incorrecto o vencido. Pide uno nuevo si pasaron más de 10 minutos."; pcLoginRender(); }
-    return;
+    try{ await PCB.verifyCode(L.email,c); L.busy=false;
+      if(L.mode==="signup"&&PCB.hasPw){ location.reload(); return; }   // ya tenía cuenta con contraseña
+      L.reset=L.mode==="reset"; L.mode="setpw"; L.step=0; return pcLoginRender(); }
+    catch(e){ L.busy=false; L.err="Código incorrecto o vencido. Pide uno nuevo si pasaron más de 10 minutos."; return pcLoginRender(); }
   }
-  if(a==="back"){ L.step=0; L.err=""; return pcLoginRender(); }
+  if(a==="setpw"){
+    const p1=plVal("plNew"), p2=plVal("plNew2");
+    if(p1.length<8){ L.err="La contraseña debe tener al menos 8 caracteres."; return pcLoginRender(); }
+    if(p1!==p2){ L.err="Las dos contraseñas no coinciden."; return pcLoginRender(); }
+    L.busy=true; L.err=""; pcLoginRender();
+    try{ await PCB.setPassword(p1); location.reload(); }
+    catch(e){ L.busy=false; const m=String(e&&e.message||"");
+      L.err=/reauth|recent/i.test(m)?"Por seguridad, confirma otra vez tu correo: toca «Usar otra cuenta» y luego «¿Olvidaste tu contraseña?».":/weak|short|characters/i.test(m)?"Esa contraseña es muy débil: usa letras y números.":/same/i.test(m)?"Es la misma contraseña de antes: elige una nueva.":"No se pudo guardar la contraseña. Inténtalo de nuevo.";
+      pcLoginRender(); }
+  }
 }
-document.addEventListener("click",e=>{ const b=e.target.closest("[data-pl]"); if(b){ e.preventDefault(); pcLoginAct(b.dataset.pl); } });
-document.addEventListener("keydown",e=>{ if(e.key==="Enter"&&e.target&&(e.target.id==="plEmail"||e.target.id==="plCode")){ e.preventDefault(); pcLoginAct(e.target.id==="plEmail"?"send":"verify"); } });
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-pl]"); if(b){ e.preventDefault(); pcLoginAct(b.dataset.pl,b.dataset.arg); } });
+document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!e.target||!e.target.closest||!e.target.closest(".pclogin")) return;
+  const id=e.target.id; const L=pcLogin; e.preventDefault();
+  pcLoginAct(id==="plCode"?"verify":/plNew/.test(id)?"setpw":L.mode==="login"?"login":"send"); });
 
 if(CLOUD){
   /* sin sesión: primero el acceso, después la bienvenida */
@@ -6006,6 +6070,7 @@ if(CLOUD){
   if(!PCB.loggedHint) setTimeout(()=>{ if(!document.querySelector(".pclogin")) pcLoginRender(); },0);
   PCB.ready.then(async s=>{
     if(!s){ if(PCB.loggedHint){ PCB.loggedHint=false; pcLoginRender(); } return; }
+    if(!PCB.hasPw){ pcLogin.mode="setpw"; pcLogin.step=0; pcLogin.email=PCB.email||""; pcLoginRender(); }
     await PCB.loadMe();
     const G=gEnsure();
     if(PCB.me){ if(!G.grp&&PCB.me.grp) G.grp=PCB.me.grp; if(!G.name&&PCB.me.nick) G.name=PCB.me.nick; if(!G.cat.coat&&PCB.me.cat) G.cat=Object.assign(G.cat,PCB.me.cat); }
@@ -6112,7 +6177,7 @@ function cloudDecorate(){
     if(sets&&!sets.querySelector(".acct")){
       sets.insertAdjacentHTML("afterbegin",`<div class="acct"><h3>Tu cuenta</h3><p class="set-note">${gh(PCB.email||"")}${PCB.me&&PCB.me.is_teacher?" · docente":""}</p>
         <label class="gfield"><span>Semestre</span><select id="pGrp"><option value="">Sin semestre</option>${SEMS.map(s=>`<option value="${s}" ${G.grp===s?"selected":""}>Semestre ${s}</option>`).join("")}</select></label>
-        <div class="set-row"><button class="gbtn ghost sm" data-acct="out">Cerrar sesión</button><button class="gbtn ghost sm danger" data-acct="del">Borrar mi cuenta</button></div></div>`);
+        <div class="set-row"><button class="gbtn ghost sm" data-pl="to-setpw">Cambiar contraseña</button><button class="gbtn ghost sm" data-acct="out">Cerrar sesión</button><button class="gbtn ghost sm danger" data-acct="del">Borrar mi cuenta</button></div></div>`);
     }
   }
 }
