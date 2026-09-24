@@ -98,6 +98,14 @@
     PCB.aiLeft=d.left;
     return d.result;
   }
+  PCB.transcribe=async(b64,mime)=>{
+    const t=await token(); if(!t) throw {code:"session_expired"};
+    let r; try{ r=await fetch(CFG.url+"/functions/v1/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t,apikey:CFG.key},body:JSON.stringify({kind:"speak",audio:b64,mime:mime||"audio/wav"})}); }
+    catch(e){ throw {code:navigator.onLine?"provider_error":"offline"}; }
+    let d={}; try{ d=await r.json(); }catch(e){}
+    if(!r.ok) throw {code:d.code||("http-"+r.status)};
+    return String(d.result||"");
+  };
   const SAMPLE=async function(prompt,opts){ const text=String(await callAI("text",prompt,opts)||""); if(opts&&opts.onText) opts.onText({text}); return text; };
   SAMPLE.json=(prompt,opts)=>callAI("json",prompt,opts);
 
