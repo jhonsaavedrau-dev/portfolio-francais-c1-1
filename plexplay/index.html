@@ -68,7 +68,8 @@
 "f-sans":["facile|esp. fácil", "difficile|esp. difícil", "politique|esp. política", "musique|esp. música", "action|esp. acción", "public|esp. público", "utile|esp. útil", "exemple", "exercice", "examen", "effet", "technique|esp. técnica", "pratique|esp. práctica", "fragile|esp. frágil", "critique|esp. crítica", "logique|esp. lógica", "unique|esp. único", "possible", "mobile|esp. móvil", "texte", "espace", "message", "rapide|esp. rápido", "page|esp. página", "typique|esp. típico", "jardin|esp. jardín", "chanson|esp. canción", "nation|esp. nación", "attention|esp. atención", "information|esp. información", "opinion|esp. opinión", "religion|esp. religión", "habile|esp. hábil", "agile|esp. ágil", "docile|esp. dócil", "fertile|esp. fértil", "chimique|esp. química", "physique|esp. física", "analyse|esp. análisis", "crise|esp. crisis", "ultime|esp. último", "esprit|esp. espíritu", "direction|esp. dirección", "syllabe|esp. sílaba", "article|esp. artículo", "chapitre|esp. capítulo", "titre|esp. título", "cercle|esp. círculo", "facilement|esp. fácilmente", "ennemi", "effort", "erreur", "essai", "excellent", "exact", "exister", "respect", "intellectuel"]
 }</script>
 
-<script src="cursos.js?v=a79c9a2a"></script>
+<script src="cursos.js?v=19a"></script>
+<script src="explica.js?v=19a"></script>
 <script>const TYPES={accord:{l:"Accords en genre et en nombre",d:1},prep:{l:"Prépositions",d:1},synt:{l:"Ce que / qu'est-ce que",d:1},conj:{l:"Conjugaison",d:1},ortho:{l:"Orthographe",d:1},ponct:{l:"Ponctuation",d:1},rep:{l:"Répétitions",d:1},polit:{l:"Formules de politesse",d:1},consigne:{l:"Réponse à la consigne",d:1},registre:{l:"Registre et vouvoiement",d:1},struct:{l:"Structure et conclusion",d:1},phono:{l:"Phonologie",d:1},co:{l:"Compréhension orale",d:1},coh:{l:"Connecteurs logiques",d:0},autre:{l:"Autres",d:0}},C=(q,o,a,why,x)=>({k:"choice",q,o,a,why,...x}),F=(q,acc,why,x)=>({k:"fill",q,acc,why,...x}),SP=(s,fix,why,x)=>({k:"spot",s,fix,why,...x}),O=(tokens,why,x)=>({k:"order",tokens,why,...x}),LI=(say,acc,why,x)=>({k:"listen",say,acc,why,num:!0,...x}),SO=(q,cats,items,why,x)=>({k:"sort",q,cats,items,why,...x}),MA=(q,pairs,why,x)=>({k:"match",q,pairs,why,...x}),COURSE=[{id:"I",title:"Morphosyntaxe",sub:"Genre, accords, prépositions, subjonctif : les fautes les plus fréquentes chez les hispanophones, à l'écrit comme à l'oral. C'est ici que l'on gagne le plus de points, le plus vite.",units:[{title:"Genre et accords",lessons:[{id:"genre",title:"Le genre des noms",t:"accord",rel:"« article intéressante »",theory:`<div class="relv"><p>Erreur fréquente : <span class="rel">« article intéressante »</span>. Avant d'accorder l'adjectif, il faut connaître le genre du nom — et l'espagnol trompe souvent.</p></div>
       <div class="tw"><table><tr><th>Terminaison</th><th>Genre</th><th>Exemples</th><th>Exceptions</th></tr>
       <tr><td>-tion, -sion, -té, -ure, -ance, -ence</td><td>f.</td><td>la situation, la société, la culture</td><td>le côté, l'été, le silence</td></tr>
@@ -3064,7 +3065,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
 <li>Heures : <i>onze heures dix</i> = 11 h 10 ; <i>midi et demi</i> = 12 h 30.</li>
 <li>Proportions : <i>trente pour cent d'entre eux, plus de la moitié, un sur trois</i>.</li>
 <li><i>X contre Y l'année précédente</i> : passage de Y à X.</li>
-<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.8.0",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
+<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.9.0",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
     <p class="gm-sub">Usaste ${missed.length===1?"un protector":missed.length+" protectores"} para cubrir ${missed.length===1?"el día que faltaste":"los días que faltaste"}. Te ${G.freeze===1?"queda 1":"quedan "+G.freeze}.</p>
     <button class="gbtn wide" data-g="close" data-autofocus>Continuar</button>`,"m-freeze"),600))}const _pAfter=gAfterProgress;gAfterProgress=function(){const G=gEnsure(),st=streak();return st>0&&st%7===0&&G.freezeAwardAt!==st&&(G.freeze||0)<2&&(G.freeze=(G.freeze||0)+1,G.freezeAwardAt=st,setTimeout(()=>toast("¡"+st+" días seguidos! Ganaste un protector de racha."),900)),_pAfter.apply(this,arguments)};const _pWeekDots=weekDots;weekDots=function(){const r=_pWeekDots(),fz=new Set(gEnsure().frozen||[]),now=new Date,dow=(now.getDay()+6)%7,mon=new Date(now);return mon.setDate(now.getDate()-dow),r.map((x,i)=>{const d=new Date(mon);return d.setDate(mon.getDate()+i),fz.has(dkey(d))?Object.assign({},x,{st:"frz"}):x})};const _pRecord=record;record=function(st,it,ok){const before=P?P.newCarnet:0,plc=P&&P.mode==="placement";_pRecord.apply(this,arguments);try{if(plc){const last=P.steps[P.steps.length-1];last&&last.retry&&last.key===st.key&&P.steps.pop(),P.newCarnet>before&&(delete S.carnet[st.key],P.newCarnet=before),(P.plc||(P.plc={}))[P.i]=ok,save()}else!st.retry&&isLessonKey(st.key)&&getItem(st.key)&&(srsUpd(st.key,ok),save())}catch{}};const PLC_ORDER=["a1","a2","b11","b12","b21","rem","prog","c12","lit"];function startPlacement(){const steps=[];PLC_ORDER.forEach(tr=>{const pool=[];LESSONS.filter(l=>l.track===tr&&!l.special&&!l.project&&l.items).forEach(l=>l.items.forEach((it,i)=>{it.k==="choice"&&it.o&&it.o.length>=3&&pool.push({key:l.id+":"+i,u:tr})})),shuffle(pool).slice(0,tr==="rem"||tr==="prog"?3:2).forEach(p=>steps.push({kind:"item",key:p.key,u:p.u}))}),steps.length&&start({mode:"placement",title:"Prueba de nivel",eyebrow:"Prueba de nivel · de A1 a C1 · sin vidas: responde lo que sepas",steps})}function placementResult(){const byU={};P.steps.forEach((s,i)=>{if(!s.u)return;const b=byU[s.u]||(byU[s.u]={n:0,ok:0});b.n++,P.plc&&P.plc[i]&&b.ok++});const tracks=PLC_ORDER.filter(t=>byU[t]);let course=tracks.find(t=>byU[t].ok/byU[t].n<.75)||tracks[tracks.length-1];const weak=tracks.filter(t=>byU[t].ok<byU[t].n),nl=LESSONS.find(x=>x.track===course&&!x.special&&!(S.lessons[x.id]&&S.lessons[x.id].done)),tot=Object.values(byU).reduce((a,v)=>a+v.n,0),ok=Object.values(byU).reduce((a,v)=>a+v.ok,0);return{at:dkey(),pct:tot?Math.round(ok/tot*100):0,weak,course,byU,rec:nl?[nl.id]:[],units:tracks.length}}function guideData(){const out=[];return LESSONS.filter(l=>COURSE_IDS.has(l.track)&&!l.special&&l.theory).forEach(l=>{const m=/<p><b>(?:À retenir|Para recordar)<\/b><\/p>\s*<ul>([\s\S]*?)<\/ul>/.exec(l.theory);m&&out.push({l,html:"<ul>"+m[1]+"</ul>",txt:(l.title+" "+l.unit+" "+m[1].replace(/<[^>]+>/g," ")).toLowerCase()})}),out}let guideQ="";function gGuia(){const data=guideData(),q=guideQ.trim().toLowerCase(),list=data.filter(d=>!q||d.txt.includes(q));let lastU="";const items=list.map(d=>{const u=((TRACKS.find(t=>t.id===d.l.track)||{}).label||d.l.sec)+" · "+d.l.unit,head=u!==lastU?`<h3 class="gd-u">${gh(u)}</h3>`:"";lastU=u;const m=lessonMastery(d.l);return head+`<article class="gcard gd-card" lang="fr"><div class="gd-h"><b>${gh(d.l.title)}</b>${m&&m.seen?`<span class="mst-t">${mLabel(m.pct)} · ${m.pct} %</span>`:""}</div>${d.html}
       <div class="gd-a" lang="es"><button class="gbtn ghost sm" data-open="${d.l.id}">Repasar la lección</button></div></article>`}).join("");return`<section class="gview gguia"><h1>Guía rápida</h1>
@@ -3276,6 +3277,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
       ${nx?`<button class="m-btn navy" data-open="${nx.id}">Continuar</button>`:'<button class="m-btn navy" data-view="retos">Repasar</button>'}</div>`;const greet=root.querySelector(".greet");greet&&greet.after(card);const hs=root.querySelector(".hsum"),sk=root.querySelector(".streak-card");if(hs&&sk&&!hs.nextElementSibling?.classList.contains("streak-card")&&hs.after(sk),sk&&!sk.querySelector(".m-skt")){const t=document.createElement("b");t.className="m-skt",t.textContent="Racha diaria",sk.prepend(t)}if(hs){const av=hs.querySelector(".hs-av");av&&!av.querySelector("img")&&av.insertAdjacentHTML("beforeend","");const b=hs.querySelector(".gbtn");b&&b.classList.add("m-soft")}}function mkPath(root){root.querySelectorAll(".crs").forEach(b=>{if(b.querySelector(".crs-th"))return;const id=b.dataset.track;b.insertAdjacentHTML("afterbegin",`<span class="crs-th" style="background-image:url(img/${MK_BG[id]||"bg-paris"}.webp)"></span>`),b.insertAdjacentHTML("beforeend",`<span class="crs-chev">${MK_CHEV}</span>`)});const head=root.querySelector(".gp-head h1");if(head&&head.textContent==="Lecciones"&&(head.textContent="Mis cursos"),mkPath.jump){mkPath.jump=0;const ci=root.querySelector(".crs-info");ci&&setTimeout(()=>ci.scrollIntoView({behavior:"smooth",block:"start"}),40)}}document.addEventListener("click",e=>{e.target.closest&&e.target.closest(".crs")&&(mkPath.jump=1)},!0);function mkRetos(root){root.querySelectorAll(".rcard").forEach(b=>{b.querySelector(".r-chev")||b.insertAdjacentHTML("beforeend",`<span class="r-chev">${MK_CHEV}</span>`)})}function mkGuia(root){const c=root.querySelector(".gcard");c&&!root.querySelector(".m-peek")&&c.insertAdjacentHTML("beforeend",mkImg("mz-duerme","m-peek"))}function mkPlayer(pl){if(typeof P>"u"||!P)return;const ph=pl.querySelector(".ph .wrap");if(ph){let tt=ph.querySelector(".m-ptitle");const l=P.lesson,T2=l?mkTrack(l.track):null,txt=l&&!l.special&&l.n!=null?`${mkShort(T2)} · ${l.project?"Proyecto":"Lección "+mkPad(l.n)}`:P.title||"PLEX PLAY";tt||(tt=document.createElement("b"),tt.className="m-ptitle",ph.prepend(tt)),tt.textContent!==txt&&(tt.textContent=txt);const q=ph.querySelector("button.quit");q&&!q.classList.contains("m-q0")&&q.classList.add("m-q0")}const body=pl.querySelector(".pbody .wrap");if(!body)return;const st=P.steps&&P.steps[P.i];pl.classList.toggle("m-theory",!!body.querySelector(".gtheory-cat")),pl.classList.toggle("m-end",!!body.querySelector(".pxr"));const tc=body.querySelector(".gtheory-cat");if(tc&&!body.querySelector(".m-hero")){const l=P.lesson;body.insertAdjacentHTML("afterbegin",`<div class="m-hero" style="background-image:url(img/${l&&MK_BG[l.track]||MK_TH[(l&&l.n||1)%MK_TH.length]}.webp)"></div>`);const h2=body.querySelector("h2.disp");h2&&h2.insertAdjacentHTML("afterend",'<div class="m-chips"><span class="c1">Gramática</span><span class="c2">Vocabulario</span><span class="c3">Ejercicios</span></div>'),tc.querySelector(".m-tcat")||tc.insertAdjacentHTML("afterbegin",mkImg("mz-gafas","m-tcat"));const f=pl.querySelector(".pf .pfa .btn");f&&f.classList.add("m-coral")}if(st&&st.kind==="item"&&!body.querySelector(".pxr")){const n=P.steps.slice(0,P.i+1).filter(s=>s.kind==="item").length,ask=body.querySelector("p.ask");ask&&!ask.querySelector(".m-n")&&ask.insertAdjacentHTML("afterbegin",`<span class="m-n">${n}.</span> `);const hasOpts=body.querySelector(".opts,.toks,.dnd,.sp-box,.chipsrow")||body.querySelector("input[type=text]"),big=body.querySelector(".mcols,.bins");if(hasOpts&&!big&&!body.querySelector(".m-ill")&&(n===1||n%5===0||body.querySelector(".sp-box"))){const k=MK_MZ[(n-1)%MK_MZ.length],sp=body.querySelector(".sp-box"),ill=`<div class="m-ill${sp?" m-ill-sp":""}">${mkImg(sp?"mz-juega":k)}${sp?"":`<span class="m-bub">${MK_BUB[(n-1)%MK_BUB.length]}</span>`}</div>`;if(sp)sp.insertAdjacentHTML("afterbegin",ill);else{const anchor=body.querySelector(".ctx")||ask||body.querySelector(".eyebrow");anchor?anchor.insertAdjacentHTML("afterend",ill):body.insertAdjacentHTML("afterbegin",ill)}}}const px=body.querySelector(".pxr");if(px&&!px.querySelector(".m-conf")){const hero=px.querySelector(".pxr-hero");if(hero){hero.insertAdjacentHTML("afterbegin",`<div class="m-conf" aria-hidden="true">${Array.from({length:14},(_,i)=>`<i style="--i:${i};--t:${i*37%34}"></i>`).join("")}</div>`);const c=hero.querySelector(".pxr-cat");c&&(c.innerHTML=mkImg("mz-feliz"))}const ic={"t-xp":IC.flame||"","t-ac":IC.target||IC.check||"","t-tm":IC.timer||""};px.querySelectorAll(".pxr-t").forEach(t=>{const k=[...t.classList].find(c=>ic[c]!=null);k&&!t.querySelector(".m-ti")&&t.insertAdjacentHTML("afterbegin",`<span class="m-ti">${ic[k]}</span>`)});const tm=px.querySelector(".t-tm small");tm&&(tm.textContent="Tiempo");const ac=px.querySelector(".t-ac small");ac&&(ac.textContent="Precisión"),px.insertAdjacentHTML("beforeend",'<p class="m-quote">« Chaque petit pas compte ! »</p>');const bl=pl.querySelector(".pf .btn.line");bl&&bl.classList.add("m-pink")}}let mkQ=0;function mkApply(){mkQ=0;try{const v=document.querySelector("#view");if(v){const h2=v.querySelector(".ghome");h2&&mkHome(h2);const p=v.querySelector(".gpath");p&&mkPath(p);const r=v.querySelector(".gretos");r&&mkRetos(r);const g=v.querySelector(".gguia");g&&mkGuia(g)}const pl=document.querySelector("#player");pl&&!pl.hidden&&mkPlayer(pl)}catch(e){console.warn("mock",e)}}function mkSched(){mkQ||(mkQ=1,(window.queueMicrotask||setTimeout)(mkApply))}new MutationObserver(mkSched).observe(document.body,{childList:!0,subtree:!0}),document.documentElement.classList.add("mk"),mkSched()}(),render();
 </script>
 
+<script src="audio2.js?v=19a"></script>
 <script id="plx18js">
 /* PLEX PLAY 1.8 — ordenar con toques, pantalla estable, explicaciones visuales, lecturas en la práctica, cerrar sesión */
 (function(){
@@ -3508,6 +3510,317 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     }catch(e){}
     return r;
   };
+})();
+
+</script>
+
+<script id="plx19js">
+/* PLEX PLAY 1.9 — profesores, explicación sencilla, dictado claro, logo → Inicio */
+(function(){
+  "use strict";
+  var q=function(s,r){return (r||document).querySelector(s)};
+  var esc=function(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+
+  /* ================= PROFESORES ================= */
+  var PROFS={
+    antoine:{name:"Prof. Antoine",lang:"Francés",tag:"FR",tone:"serio",color:"#dcfce7",ink:"#14532d",
+      bio:"Exigente y preciso. No deja pasar un acento, pero cuando algo sale bien te lo dice.",
+      exp:{serio:1,enojo:2,piensa:3,esceptico:4,desaprueba:5,molesto:6},ges:{explica:1,lee:2,duda:3,cafe:4,libro:5,piensa:6},
+      ok:["Correct. Continuons.","Bien. C'est exactement ça.","Voilà. Rigoureux, comme il faut."],ko:["Non, non… Revisa la regla.","Mmm. Eso no es correcto.","Otra vez. Con atención."],mid:"Más o menos… puedes hacerlo mejor.",
+      tip:["Lee la regla con calma. Los detalles importan.","Primero la regla, después los ejercicios.","Fíjate bien en los ejemplos."],hi:"Bonjour. Aquí se trabaja con rigor."},
+    sofia:{name:"Prof. Sofia",lang:"Inglés",tag:"EN",tone:"alegre",color:"#ffe4e6",ink:"#9f1239",
+      bio:"Alegre y paciente. Explica con ejemplos de la vida diaria y celebra cada avance.",
+      exp:{sonrie:1,guino:2,feliz:3,sorpresa:4,risa:5,asombro:6},ges:{explica:1,libro:2,idea:3,celebra:4,portatil:5,senala:6},
+      ok:["Excellent ! ¡Lo lograste!","¡Muy bien! Sigue así.","Parfait ! Me encanta."],ko:["¡Casi! Mira la explicación.","No pasa nada, vuelve a intentarlo.","Ups, uno más y lo tienes."],mid:"¡Vas bien! Repasa lo que fallaste.",
+      tip:["¡Vamos paso a paso, tú puedes!","Mira los ejemplos: ahí está el truco.","Lee en voz alta los ejemplos."],hi:"¡Hola! Aprender idiomas es un juego."},
+    marcus:{name:"Prof. Marcus",lang:"Alemán",tag:"DE",tone:"tranquilo",color:"#dbeafe",ink:"#1e3a8a",
+      bio:"Tranquilo y elegante. Te ayuda a pensar antes de responder y a entender el porqué.",
+      exp:{sonrie:1,neutral:2,piensa:3,feliz:4,risa:5,esceptico:6},ges:{presenta:1,senala:2,piensa:3,tablet:4,pulgar:5,idea:6},
+      ok:["Très bien. Bien pensado.","Correcto. Buen razonamiento.","Exacto. Así se hace."],ko:["Tranquilo, piénsalo otra vez.","Casi. Revisa el contexto.","Mira de nuevo la regla, sin prisa."],mid:"Buen trabajo, pero se puede pulir.",
+      tip:["Observa los ejemplos antes de empezar.","Pregúntate siempre: ¿por qué es así?","Piensa, luego responde."],hi:"Bienvenido. Vamos a entender, no a memorizar."},
+    dante:{name:"Prof. Dante",lang:"Italiano",tag:"IT",tone:"rockero",color:"#ede9fe",ink:"#5b21b6",
+      bio:"Rockero de corazón. Cree que los idiomas se aprenden con ritmo y un poco de actitud.",
+      exp:{cool:1,sonrie:2,molesto:3,risa:4,rock:5,aburrido:6},ges:{hombros:1,brazos:2,cuernos:3,pulgar:4,piensa:5,libro:6},
+      ok:["¡Eso es rock! Bien hecho.","¡Brutal! Siguiente.","Suena perfecto."],ko:["Mmm… desafinaste. Otra vez.","Esa nota no era. Revisa.","Nada grave, repite el riff."],mid:"No está mal… pero le falta ritmo.",
+      tip:["Esto va a sonar increíble. ¡Dale!","Repite los ejemplos como una canción.","Ritmo y práctica: así se aprende."],hi:"¡Hey! Aquí los idiomas suenan fuerte."}
+  };
+  var PID=["antoine","sofia","marcus","dante"];
+  var HAPPY={antoine:["g",1],sofia:["e",3],marcus:["g",5],dante:["g",4]};
+  var SAD={antoine:["e",5],sofia:["e",6],marcus:["e",6],dante:["e",3]};
+  var EXPL={antoine:["g",1],sofia:["g",1],marcus:["g",1],dante:["g",5]};
+  function pImg(id,k,n,cls,alt){return '<img class="pf-img '+(cls||"")+'" src="img/prof/pf-'+id+"-"+k+n+'.webp" alt="'+esc(alt||"")+'" loading="lazy" decoding="async">'}
+  function pFull(id,cls){return '<img class="pf-img '+(cls||"")+'" src="img/prof/pf-'+id+'-full.webp" alt="'+esc(PROFS[id].name)+'" loading="lazy" decoding="async">'}
+  function profFor(key){ key=String(key||"x"); var s=0; for(var i=0;i<key.length;i++) s=(s+key.charCodeAt(i)*(i+1))%9973; return PID[s%4]; }
+  var pick=function(a){return a[Math.floor(Math.random()*a.length)]};
+  window.PROF={list:PROFS,ids:PID,img:pImg,full:pFull,forKey:profFor};
+
+  /* gesto «más o menos» de Prof. Antoine: busto serio + mano que se balancea */
+  var HAND='<svg class="mm-hand" viewBox="0 0 64 64" aria-hidden="true"><g fill="#f3b894" stroke="#2b1d16" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 36c-2-6 1-10 5-10h26c4 0 7 3 6 7l-2 9c-1 5-5 8-10 8H24c-5 0-8-3-10-8z"/><path d="M19 26v-6c0-2 2-3 3.5-3S26 18 26 20v6"/><path d="M26 25v-8c0-2 1.6-3 3.4-3S33 15 33 17v8"/><path d="M33 25v-7c0-2 1.6-3 3.4-3S40 16 40 18v8"/><path d="M40 27v-4c0-2 1.6-3 3.2-3S46.5 21 46.5 23v6"/><path d="M14 36c-4-1-6-4-5-7 1-2 4-2 6 0l5 4"/></g><g fill="none" stroke="#f59e0b" stroke-width="2.6" stroke-linecap="round"><path d="M6 14c2-3 5-3 7 0"/><path d="M51 14c2-3 5-3 7 0"/></g></svg>';
+  function masOMenos(){return '<div class="mm-wrap" role="img" aria-label="Prof. Antoine hace el gesto de más o menos">'+pImg("antoine","e",4,"mm-face")+HAND+"</div>"}
+
+  var css=`
+  .pf-img{display:block;object-fit:contain}
+  .pf-home{padding:16px 14px 12px}
+  .pf-home h3{margin:0 0 4px;font-size:1.05rem}
+  .pf-home p{margin:0 0 10px;font-size:.86rem;color:var(--stone)}
+  .pf-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .pf-card{all:unset;box-sizing:border-box;cursor:pointer;border-radius:16px;padding:8px 4px 8px;text-align:center;display:grid;justify-items:center;gap:2px;border:2px solid transparent;transition:transform .15s ease}
+  .pf-card:active{transform:scale(.97)}
+  .pf-card .pf-img{height:118px;width:auto}
+  .pf-card b{font-size:.78rem;line-height:1.15}
+  .pf-card small{font-size:.68rem;font-weight:800;letter-spacing:.04em;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,.7)}
+  .m-pf .gm-card{text-align:left;justify-items:stretch}
+  .pf-modal{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
+  .pf-modal .pf-img{height:200px;width:auto;justify-self:center}
+  .pf-exps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px}
+  .pf-exps .pf-img{width:100%;height:auto;border-radius:10px;background:var(--surf3)}
+  .gtheory-cat.pf-th{display:flex;align-items:center;gap:10px}
+  .gtheory-cat.pf-th>.pf-img{height:96px;width:auto;flex:none}
+  .gtheory-cat.pf-th>svg.cat{display:none}
+  .pf-say{background:#fff;border:2px solid var(--line);border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:.92rem;line-height:1.4;color:var(--ink)}
+  [data-theme=dark] .pf-say{background:var(--raise)}
+  .pf-say b{display:block;font-size:.78rem;color:var(--m-navy,#1e3a8a)}
+  .pf-fbp{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+  .pf-fbp .pf-img{height:56px;width:56px;border-radius:50%;object-fit:cover;object-position:50% 20%;background:#fff;border:2.5px solid #58cc02;flex:none}
+  .pf-fbp.ko .pf-img{border-color:#ff4b4b}
+  .pf-fbp span{font-size:.92rem;line-height:1.35}
+  .pf-fbp b{display:block;font-size:.78rem;opacity:.8}
+  .fb-cat.pf-fb .pf-img{height:52px;width:52px;border-radius:50%;object-fit:cover;object-position:top;background:#fff;border:2px solid currentColor;flex:none}
+  .pf-end{display:flex;align-items:center;gap:12px;margin:14px 0 4px;padding:12px;border-radius:18px;border:2px solid var(--line);background:var(--raise)}
+  .pf-end .pf-img{height:92px;width:auto;flex:none}
+  .pf-end p{margin:0;font-size:.95rem}
+  .pf-end b{display:block;font-size:.8rem;color:var(--stone)}
+  .mm-wrap{position:relative;width:96px;height:92px;flex:none}
+  .mm-wrap .mm-face{height:92px;width:auto}
+  .mm-hand{position:absolute;right:-14px;bottom:-4px;width:52px;height:52px;transform-origin:50% 80%;animation:mmRock 1.1s ease-in-out infinite}
+  @keyframes mmRock{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
+  @media (prefers-reduced-motion:reduce){.mm-hand{animation:none}}
+  .m-ill.pf-ill img{height:92px}
+  /* explicación sencilla */
+  .plx-simple{border-radius:20px;padding:14px 14px 12px;margin:0 0 14px;background:linear-gradient(180deg,#fff7ed,#fff);border:2px solid #fed7aa}
+  [data-theme=dark] .plx-simple{background:#2a1a0d;border-color:#6b3d12}
+  .ps-top{display:flex;gap:10px;align-items:flex-start}
+  .ps-top .pf-img{height:84px;width:auto;flex:none;margin-top:-4px}
+  .ps-top h4{margin:0 0 4px;font-size:1rem;color:#9a3412}
+  [data-theme=dark] .ps-top h4{color:#fdba74}
+  .ps-top p{margin:0;font-size:.98rem;line-height:1.5}
+  .ps-steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;counter-reset:ps}
+  .ps-steps li{counter-increment:ps;display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;line-height:1.45;font-size:.95rem}
+  .ps-steps li::before{content:counter(ps);width:26px;height:26px;border-radius:50%;background:#f97316;color:#fff;font-weight:900;font-size:.85rem;display:grid;place-items:center}
+  .ps-ex{margin:12px 0 0;display:grid;gap:7px}
+  .ps-ex div{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;background:var(--raise);border:1.5px solid var(--line);border-radius:14px;padding:7px 10px}
+  .ps-ex button{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#e0e7ff;color:#1e3a8a;font-size:14px}
+  .ps-ex b{display:block;font-size:.95rem}
+  .ps-ex small{display:block;color:var(--stone);font-size:.85rem}
+  .ps-ojo{margin:12px 0 0;border-radius:14px;padding:9px 12px;background:#fff1f2;border:1.5px solid #fecdd3;font-size:.92rem;line-height:1.5}
+  [data-theme=dark] .ps-ojo{background:#2e1515;border-color:#7f1d1d}
+  .ps-ojo s{color:#b91c1c;text-decoration-thickness:2px}
+  .ps-ojo em{color:#15803d;font-style:normal;font-weight:800}
+  .ps-listen{all:unset;cursor:pointer;margin-top:10px;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.85rem;color:#9a3412;padding:6px 12px;border-radius:999px;background:#ffedd5}
+  [data-theme=dark] .ps-listen{background:#431407;color:#fdba74}
+  .pc-mark{cursor:pointer}
+  /* dictado */
+  .dz-how{border-radius:18px;border:2px solid #cfdcff;background:#eef3ff;padding:12px 14px;margin:0 0 14px}
+  [data-theme=dark] .dz-how{background:#141c36;border-color:#26335e}
+  .dz-how h3{margin:0 0 6px;font-size:1rem}
+  .dz-how ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.92rem;line-height:1.45}
+  .dz-legend{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+  .dz-legend span{font-size:.8rem;background:var(--raise);border:1.5px solid var(--line);border-radius:10px;padding:3px 8px}
+  .dz-legend b{font-family:var(--mono);margin-left:4px}
+  .dz-note{font-size:.82rem;color:var(--stone);margin:4px 0 0}
+  .dz-live{margin:8px 0 0;padding:9px 12px;border-radius:14px;font-size:.9rem;line-height:1.45;border:1.5px solid var(--line);background:var(--raise)}
+  .dz-live.ok{border-color:#86efac;background:#f0fdf4} .dz-live.bad{border-color:#fecaca;background:#fff1f2}
+  [data-theme=dark] .dz-live.ok{background:#12280f} [data-theme=dark] .dz-live.bad{background:#2e1515}
+  .deck-set[open] summary,.deck-set summary{font-weight:800}
+  `;
+  var st=document.createElement("style"); st.id="plx19"; st.textContent=css; document.head.appendChild(st);
+
+  /* ---------- Logo → Inicio ---------- */
+  document.addEventListener("click",function(e){
+    var m=e.target.closest&&e.target.closest(".pc-mark"); if(!m) return;
+    e.preventDefault();
+    try{ if(typeof gOpen!=="undefined"&&gOpen) gCloseModal(); }catch(x){}
+    try{ if(typeof P!=="undefined"&&P) closePlayer(); }catch(x){}
+    try{ go("parcours"); }catch(x){}
+    scrollTo({top:0,behavior:"smooth"});
+  },true);
+  (function(){ var m=q(".pc-mark"); if(m){ m.setAttribute("role","link"); m.setAttribute("tabindex","0"); m.setAttribute("aria-label","Ir al inicio"); m.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); m.click(); } }); } })();
+
+  /* ---------- explicación sencilla ---------- */
+  function simpleHTML(l){
+    var X=window.__EXPLICA&&window.__EXPLICA[l.id]; if(!X) return "";
+    var pid=profFor(l.id), P0=PROFS[pid], g=EXPL[pid];
+    var hasA=typeof AUDIO!=="undefined"&&AUDIO["e:"+l.id];
+    return '<div class="plx-simple" data-pf="'+pid+'"><div class="ps-top">'+pImg(pid,g[0],g[1],"",P0.name)+'<div><h4>'+esc(P0.name)+' te lo explica fácil</h4><p>'+esc(X.idea)+"</p>"+
+      (hasA?'<button type="button" class="ps-listen" data-pxa="'+esc(l.id)+'">🔊 Escuchar esta explicación</button>':"")+"</div></div>"+
+      '<ol class="ps-steps">'+X.pasos.map(function(s){return "<li><span>"+esc(s)+"</span></li>"}).join("")+"</ol>"+
+      '<div class="ps-ex">'+X.ej.map(function(e){return '<div><button type="button" data-psay="'+esc(sayOf(e[0]))+'" aria-label="Escuchar">🔊</button><span><b lang="fr">'+esc(e[0])+"</b><small>"+esc(e[1])+"</small></span></div>"}).join("")+"</div>"+
+      '<div class="ps-ojo">⚠️ No digas <s lang="fr">'+esc(X.ojo[0])+'</s> → di <em lang="fr">'+esc(X.ojo[1])+"</em>. "+esc(X.ojo[2])+"</div></div>";
+  }
+  function sayOf(t){return String(t).replace(/\[[^\]]*\]/g,"").replace(/\s*(→|=|≠)\s*/g,", ").replace(/\s+/g," ").replace(/(,\s*)+/g,", ").replace(/^[,\s]+|[,\s]+$/g,"").trim()}
+  window.plxSayOf=sayOf;
+  window.plxSimpleHTML=simpleHTML;
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-psay]"); if(!b) return;
+    e.preventDefault(); e.stopPropagation(); speak(b.dataset.psay);
+  },true);
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-pxa]"); if(!b) return;
+    e.preventDefault(); e.stopPropagation();
+    var k="e:"+b.dataset.pxa;
+    if(typeof curKey!=="undefined"&&curKey===k){ stopAudio(); b.innerHTML="🔊 Escuchar esta explicación"; return; }
+    if(AUDIO[k]){ playSpec(AUDIO[k],function(){ b.innerHTML="🔊 Escuchar esta explicación"; }); try{ curKey=k; }catch(x){} b.innerHTML="⏹ Detener"; }
+  },true);
+
+  /* ---------- renderStep: profesores + explicación ---------- */
+  var _rs=renderStep;
+  renderStep=function(){
+    var r=_rs.apply(this,arguments);
+    try{ profDecorate(); }catch(e){ console.warn("plx19",e); }
+    requestAnimationFrame(function(){ try{ profDecorate(true); }catch(e){} });
+    return r;
+  };
+  function lessonOfStep(s){ if(!s||!s.key) return P&&P.lesson; var x=typeof ITEMS!=="undefined"&&ITEMS[s.key]; return x&&x.l||P&&P.lesson; }
+  function profDecorate(late){
+    if(!P) return;
+    var box=q("#player"); if(!box) return;
+    var s=P.steps[P.i], l=lessonOfStep(s)||P.lesson, pid=profFor(l?l.id:(P.title||P.mode)), P0=PROFS[pid];
+    if(s&&s.kind==="theory"&&P.phase!=="end"){
+      var th=q("#theory",box);
+      if(th&&!q(".plx-simple",th)&&l){ var h=simpleHTML(l); if(h) th.insertAdjacentHTML("afterbegin",h); }
+      if(l&&typeof AUDIO!=="undefined"&&!AUDIO["t:"+l.id]){ box.querySelectorAll(".listen").forEach(function(x){ if(x.querySelector("[data-read]")) x.remove(); }); }
+      var tc=q(".gtheory-cat",box);
+      if(tc&&!tc.classList.contains("pf-th")){
+        tc.classList.add("pf-th");
+        tc.innerHTML=pImg(pid,EXPL[pid][0],EXPL[pid][1],"m-tcat",P0.name)+'<div class="pf-say"><b>'+esc(P0.name)+" · "+esc(P0.lang)+"</b>"+esc(pick(P0.tip))+"</div>";
+      }
+    }
+    if(P.phase==="feedback"){
+      var fbx=q(".pf .fb",box);
+      if(fbx&&!q(".pf-fbp",fbx)&&s&&s.kind==="item"){
+        var ok=(P.res[P.i]||{}).ok, e=ok?HAPPY[pid]:SAD[pid];
+        fbx.insertAdjacentHTML("afterbegin",'<div class="pf-fbp '+(ok?"ok":"ko")+'">'+pImg(pid,e[0],e[1],"",P0.name)+"<span><b>"+esc(P0.name)+"</b>"+esc(pick(ok?P0.ok:P0.ko))+"</span></div>");
+      }
+    }
+    if(late&&s&&s.kind==="item"&&P.phase!=="end"){
+      var ill=q(".pbody .m-ill:not(.m-ill-sp)",box);
+      if(ill&&!ill.classList.contains("pf-ill")){
+        var n=P.steps.slice(0,P.i+1).filter(function(x){return x.kind==="item"}).length;
+        if(n%5===0){ ill.classList.add("pf-ill"); var im=ill.querySelector("img"); if(im){ var g=PROFS[pid].ges; var keys=Object.keys(g); im.src="img/prof/pf-"+pid+"-g"+g[keys[n%keys.length]]+".webp"; } var bb=ill.querySelector(".m-bub"); if(bb) bb.textContent=pick(P0.tip).split(".")[0]; }
+      }
+    }
+    var px=q(".pxr",box);
+    if(px&&!q(".pf-end",px)&&P.phase==="end"){
+      var tot=P.firstTotal||0, acc=tot?Math.round((P.first||0)/tot*100):100, fig, msg, who=pid;
+      if(P.mode==="blanc"||P.mode==="chrono"||P.mode==="placement"||P.mode==="speak") { /* también */ }
+      if(acc>=80){ fig=pImg(pid,HAPPY[pid][0],HAPPY[pid][1]); msg=pick(PROFS[pid].ok); }
+      else if(acc>=50){ who="antoine"; fig=masOMenos(); msg=PROFS.antoine.mid; }
+      else { who="antoine"; fig=pImg("antoine","e",5); msg="Hay que repasar. Vuelve a la explicación y repite la lección."; }
+      var stats=q(".pxr-stats",px);
+      var html='<div class="pf-end">'+fig+"<p><b>"+esc(PROFS[who].name)+" · "+acc+" % al primer intento</b>"+esc(msg)+"</p></div>";
+      stats?stats.insertAdjacentHTML("afterend",html):px.insertAdjacentHTML("beforeend",html);
+    }
+  }
+
+  if(typeof finish==="function"){ var _fin=finish; finish=function(){ var r=_fin.apply(this,arguments); try{ profDecorate(); }catch(e){} setTimeout(function(){ try{ profDecorate(true); }catch(e){} },60); return r; }; }
+  /* ---------- «Ver explicación» también con la versión sencilla ---------- */
+  var _gm=gModal;
+  gModal=function(html,cls){
+    if(cls==="m-theo"&&typeof P!=="undefined"&&P){
+      var s=P.steps[P.i], l=lessonOfStep(s);
+      if(l){ var sh=simpleHTML(l); if(sh) html=html.replace('<div class="plx-theo">','<div class="plx-theo">'+sh); }
+    }
+    return _gm.call(this,html,cls);
+  };
+
+  /* ---------- Inicio: tarjeta «Tus profesores» ---------- */
+  function profModal(id){
+    var P0=PROFS[id], ex=Object.keys(P0.exp).map(function(k){return pImg(id,"e",P0.exp[k],"",k)}).join("");
+    gModal('<small class="gm-k">'+esc(P0.lang)+'</small><div class="pf-modal">'+pFull(id)+'<div><h2 class="gm-t" style="text-align:left">'+esc(P0.name)+'</h2><p class="gm-sub" style="text-align:left">'+esc(P0.bio)+'</p><p style="margin:8px 0 0"><i>«'+esc(P0.hi)+'»</i></p></div></div><div class="pf-exps">'+ex+'</div><div class="set-row c"><button class="gbtn" data-g="close" data-autofocus>¡Vamos!</button></div>',"m-pf");
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-pf-open]"); if(!b) return;
+    e.preventDefault(); profModal(b.dataset.pfOpen);
+  });
+  var _rd=render;
+  render=function(){
+    var r=_rd.apply(this,arguments);
+    try{
+      if(view==="parcours"&&(typeof P==="undefined"||!P)){
+        var m=q("#view .ghome .gmain");
+        if(m&&!q(".pf-home",m)){
+          var anchor=q(".streak-card",m)||q(".hsum",m);
+          var html='<div class="gcard pf-home"><h3>Tus profesores</h3><p>Te acompañan en las lecciones. Toca uno para conocerlo.</p><div class="pf-row">'+PID.map(function(id){var P0=PROFS[id];return '<button type="button" class="pf-card" data-pf-open="'+id+'" style="background:'+P0.color+';color:'+P0.ink+'">'+pFull(id)+"<b>"+esc(P0.name.replace("Prof. ",""))+"</b><small>"+P0.tag+"</small></button>"}).join("")+"</div></div>";
+          anchor?anchor.insertAdjacentHTML("beforebegin",html):m.insertAdjacentHTML("beforeend",html);
+        }
+      }
+      if(view==="dictee") dzEnhance();
+    }catch(e){ console.warn("plx19 render",e); }
+    return r;
+  };
+
+  /* ================= DICTADO ================= */
+  var PWORDS=[[/\bpoint[- ]virgule\b/gi,";"],[/\bdeux[- ]points\b/gi,":"],[/\bpoints? de suspension\b/gi,"…"],[/\bpoint d'interrogation\b/gi,"?"],[/\bpoint d'exclamation\b/gi,"!"],[/\bouvre[zr]? les guillemets\b/gi,"«"],[/\bferme[zr]? les guillemets\b/gi,"»"],[/\bouvre[zr]? la parenthèse\b/gi,"("],[/\bferme[zr]? la parenthèse\b/gi,")"],[/\bà la ligne\b/gi,"\n"],[/\bvirgule\b/gi,","],[/\bpoint\b/gi,"."]];
+  function spelled(hyp,ref){
+    var out=hyp, changed=false, refL=(ref||"").toLowerCase();
+    PWORDS.forEach(function(p){
+      var word=p[0].source.replace(/\\b/g,"").replace(/\[- \]/g," ").toLowerCase();
+      if(/^point$/.test(word)&&/\bpoint\b/.test(refL)) return;
+      if(/virgule/.test(word)&&/virgule/.test(refL)) return;
+      var nx=out.replace(p[0],function(){ changed=true; return p[1]; }); out=nx;
+    });
+    if(changed) out=out.replace(/\s+([,.…)])/g,"$1").replace(/\s*([;:?!»])/g," $1").replace(/«\s*/g,"« ").replace(/[ \t]{2,}/g," ");
+    return {text:out,changed:changed};
+  }
+  if(typeof dEval==="function"){
+    var _dEval=dEval;
+    dEval=function(ref,hyp,alts){
+      var s=spelled(hyp||"",ref); if(s.changed) dEval.lastSpelled=true;
+      return _dEval.call(this,ref,s.text,alts);
+    };
+  }
+  if(typeof dzCheck==="function"){
+    var _dzCheck=dzCheck;
+    dzCheck=function(){ dEval.lastSpelled=false; var r=_dzCheck.apply(this,arguments); if(dEval.lastSpelled) setTimeout(function(){ toast("Convertimos «virgule», «point»… en signos de puntuación."); },400); return r; };
+  }
+  function dzUpTo(){
+    var d=dz(), ta=q("#dtx"), hyp=ta?ta.value:""; if(!hyp.trim()){ return {msg:"Todavía no has escrito nada.",cls:""}; }
+    var hyp2=spelled(hyp,d.segs.join(" ")).text, n=words(hyp2), acc=0, upto=0;
+    for(var i=0;i<d.segs.length;i++){ acc+=words(d.segs[i]); if(acc<=n+1) upto=i; else break; }
+    var ref=d.segs.slice(0,upto+1).join(" "), r=dEval(ref,hyp,d.alts);
+    if(!r.errs.length) return {msg:"✓ Vas muy bien: sin errores hasta el grupo "+(upto+1)+".",cls:"ok"};
+    var e=r.errs[0], o=r.ops[e.k];
+    return {msg:"Hasta el grupo "+(upto+1)+" hay "+r.errs.length+" posible(s) error(es). El primero: «"+(o.h||"—")+"» ("+(DCAT[e.c]?DCAT[e.c][0]:e.c)+"). Revisa antes de seguir.",cls:"bad"};
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-dzx]"); if(!b) return;
+    e.preventDefault();
+    if(b.dataset.dzx==="upto"){ var r=dzUpTo(), live=q("#dzlive"); if(live){ live.className="dz-live "+r.cls; live.textContent=r.msg; live.hidden=false; } }
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-dzset]"); if(!b) return;
+    var v=b.dataset.dzset, msg={"punct:1":"Puntuación dictada: la voz dirá «virgule», «point»…","punct:0":"Puntuación no dictada: tendrás que deducirla por la entonación.","twice:1":"Cada grupo se leerá dos veces.","twice:0":"Cada grupo se leerá una sola vez."}[v];
+    if(msg) setTimeout(function(){ toast(msg); },60);
+  },true);
+  function dzEnhance(){
+    var dtx=q("#dtx"); if(!dtx||q(".dz-how")) return;
+    var deck=q(".deck"); if(!deck) return;
+    deck.insertAdjacentHTML("beforebegin",'<div class="dz-how"><h3>Cómo funciona</h3><ol><li><b>Escucha</b> la lectura completa sin escribir (botón «Lectura completa»).</li><li><b>Escribe grupo por grupo</b> con ▶. '+(DZ.punct?"La voz dicta la puntuación en francés:":"La puntuación no se dicta: dedúcela por las pausas.")+'</li><li><b>Revisa</b> con «¿Voy bien?» cuando quieras y, al final, pulsa «Corregir mi dictado».</li></ol>'+(DZ.punct?'<div class="dz-legend"><span>virgule<b>,</b></span><span>point<b>.</b></span><span>point-virgule<b>;</b></span><span>deux-points<b>:</b></span><span>point d\'interrogation<b>?</b></span><span>point d\'exclamation<b>!</b></span><span>ouvrez / fermez les guillemets<b>« »</b></span><span>à la ligne<b>↵</b></span></div><p class="dz-note">Si escribes la palabra («virgule»), la app la convierte en el signo al corregir.</p>':"")+"</div>");
+    var set=q("#dzset"); if(set){ set.open=true; var rows=set.querySelectorAll(".setrow"); if(rows[1]) rows[1].insertAdjacentHTML("beforeend",'<p class="dz-note">'+(DZ.punct?"Ahora: la voz dice los signos («virgule»…).":"Ahora: la voz no dice los signos.")+"</p>"); if(rows[2]) rows[2].insertAdjacentHTML("beforeend",'<p class="dz-note">'+(DZ.twice?"Ahora: cada grupo suena dos veces.":"Ahora: cada grupo suena una vez.")+"</p>"); }
+    var bar=dtx.parentNode.querySelector(".bar-row span:last-child");
+    if(bar&&!q("[data-dzx=upto]")) bar.insertAdjacentHTML("afterbegin",'<button class="btn line" data-dzx="upto">¿Voy bien?</button>');
+    var br=dtx.parentNode.querySelector(".bar-row"); if(br&&!q("#dzlive")) br.insertAdjacentHTML("afterend",'<div class="dz-live" id="dzlive" hidden aria-live="polite"></div>');
+  }
+
+  /* ---------- audio: mensaje claro si falta ---------- */
+  if(typeof deviceSpeak==="function"){
+    var _ds=deviceSpeak;
+    deviceSpeak=function(text,slow){
+      try{ if(typeof synth!=="undefined"&&synth&&!frVoice&&speechSynthesis.getVoices().length){ var v=speechSynthesis.getVoices().find(function(x){return /^fr/i.test(x.lang)}); if(v) frVoice=v; } }catch(e){}
+      if(typeof synth==="undefined"||!synth||!frVoice){ toast("Este audio aún no está en la app. Avísanos con «Reportar un error»."); return false; }
+      return _ds.apply(this,arguments);
+    };
+  }
 })();
 
 </script>
