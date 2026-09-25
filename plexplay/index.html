@@ -3065,7 +3065,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
 <li>Heures : <i>onze heures dix</i> = 11 h 10 ; <i>midi et demi</i> = 12 h 30.</li>
 <li>Proportions : <i>trente pour cent d'entre eux, plus de la moitié, un sur trois</i>.</li>
 <li><i>X contre Y l'année précédente</i> : passage de Y à X.</li>
-<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.12.0",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
+<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.12.1",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
     <p class="gm-sub">Usaste ${missed.length===1?"un protector":missed.length+" protectores"} para cubrir ${missed.length===1?"el día que faltaste":"los días que faltaste"}. Te ${G.freeze===1?"queda 1":"quedan "+G.freeze}.</p>
     <button class="gbtn wide" data-g="close" data-autofocus>Continuar</button>`,"m-freeze"),600))}const _pAfter=gAfterProgress;gAfterProgress=function(){const G=gEnsure(),st=streak();return st>0&&st%7===0&&G.freezeAwardAt!==st&&(G.freeze||0)<2&&(G.freeze=(G.freeze||0)+1,G.freezeAwardAt=st,setTimeout(()=>toast("¡"+st+" días seguidos! Ganaste un protector de racha."),900)),_pAfter.apply(this,arguments)};const _pWeekDots=weekDots;weekDots=function(){const r=_pWeekDots(),fz=new Set(gEnsure().frozen||[]),now=new Date,dow=(now.getDay()+6)%7,mon=new Date(now);return mon.setDate(now.getDate()-dow),r.map((x,i)=>{const d=new Date(mon);return d.setDate(mon.getDate()+i),fz.has(dkey(d))?Object.assign({},x,{st:"frz"}):x})};const _pRecord=record;record=function(st,it,ok){const before=P?P.newCarnet:0,plc=P&&P.mode==="placement";_pRecord.apply(this,arguments);try{if(plc){const last=P.steps[P.steps.length-1];last&&last.retry&&last.key===st.key&&P.steps.pop(),P.newCarnet>before&&(delete S.carnet[st.key],P.newCarnet=before),(P.plc||(P.plc={}))[P.i]=ok,save()}else!st.retry&&isLessonKey(st.key)&&getItem(st.key)&&(srsUpd(st.key,ok),save())}catch{}};const PLC_ORDER=["a1","a2","b11","b12","b21","rem","prog","c12","lit"];function startPlacement(){const steps=[];PLC_ORDER.forEach(tr=>{const pool=[];LESSONS.filter(l=>l.track===tr&&!l.special&&!l.project&&l.items).forEach(l=>l.items.forEach((it,i)=>{it.k==="choice"&&it.o&&it.o.length>=3&&pool.push({key:l.id+":"+i,u:tr})})),shuffle(pool).slice(0,tr==="rem"||tr==="prog"?3:2).forEach(p=>steps.push({kind:"item",key:p.key,u:p.u}))}),steps.length&&start({mode:"placement",title:"Prueba de nivel",eyebrow:"Prueba de nivel · de A1 a C1 · sin vidas: responde lo que sepas",steps})}function placementResult(){const byU={};P.steps.forEach((s,i)=>{if(!s.u)return;const b=byU[s.u]||(byU[s.u]={n:0,ok:0});b.n++,P.plc&&P.plc[i]&&b.ok++});const tracks=PLC_ORDER.filter(t=>byU[t]);let course=tracks.find(t=>byU[t].ok/byU[t].n<.75)||tracks[tracks.length-1];const weak=tracks.filter(t=>byU[t].ok<byU[t].n),nl=LESSONS.find(x=>x.track===course&&!x.special&&!(S.lessons[x.id]&&S.lessons[x.id].done)),tot=Object.values(byU).reduce((a,v)=>a+v.n,0),ok=Object.values(byU).reduce((a,v)=>a+v.ok,0);return{at:dkey(),pct:tot?Math.round(ok/tot*100):0,weak,course,byU,rec:nl?[nl.id]:[],units:tracks.length}}function guideData(){const out=[];return LESSONS.filter(l=>COURSE_IDS.has(l.track)&&!l.special&&l.theory).forEach(l=>{const m=/<p><b>(?:À retenir|Para recordar)<\/b><\/p>\s*<ul>([\s\S]*?)<\/ul>/.exec(l.theory);m&&out.push({l,html:"<ul>"+m[1]+"</ul>",txt:(l.title+" "+l.unit+" "+m[1].replace(/<[^>]+>/g," ")).toLowerCase()})}),out}let guideQ="";function gGuia(){const data=guideData(),q=guideQ.trim().toLowerCase(),list=data.filter(d=>!q||d.txt.includes(q));let lastU="";const items=list.map(d=>{const u=((TRACKS.find(t=>t.id===d.l.track)||{}).label||d.l.sec)+" · "+d.l.unit,head=u!==lastU?`<h3 class="gd-u">${gh(u)}</h3>`:"";lastU=u;const m=lessonMastery(d.l);return head+`<article class="gcard gd-card" lang="fr"><div class="gd-h"><b>${gh(d.l.title)}</b>${m&&m.seen?`<span class="mst-t">${mLabel(m.pct)} · ${m.pct} %</span>`:""}</div>${d.html}
       <div class="gd-a" lang="es"><button class="gbtn ghost sm" data-open="${d.l.id}">Repasar la lección</button></div></article>`}).join("");return`<section class="gview gguia"><h1>Guía rápida</h1>
@@ -4156,17 +4156,17 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
 
 </script>
 
-<script id="plx22js">
-/* PLEX PLAY 1.11 — PLEX 1V1: duelos de francés en tiempo real */
+<script id="plx22js">/* PLEX PLAY 1.11 — PLEX 1V1: duelos de francés en tiempo real */
 (function(){
   "use strict";
   var q=function(s,r){return (r||document).querySelector(s)};
   var esc=function(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
-  var ROUNDS=8, ROUND_MS=12000, REVEAL_MS=1900, COUNT_MS=3200, GRACE_MS=12000;
+  var rich=function(x){ return esc(x).replace(/&lt;(\/?)(i|b|em|strong)&gt;/g,"<$1$2>"); };
+  var ROUNDS=8, ROUND_MS=12000, REVEAL_MS=1900, COUNT_MS=5400, GRACE_MS=12000;
   var BUCKETS={A:{label:"A1–A2",tracks:["a1","a2","fon"]},B1:{label:"B1",tracks:["b11","b12"]},B2:{label:"B2",tracks:["b21","rem"]},C1:{label:"C1",tracks:["prog","c12","lit"]}};
   var CATS={voc:["Vocabulario","#0e9384"],gram:["Gramática","#2563eb"],comp:["Comprensión","#7c3aed"],trad:["Traducción","#ea580c"]};
   var PLAN=["voc","gram","comp","trad","gram","voc","trad","comp"];
-  var sfx=function(k){ try{ typeof SFX!=="undefined"&&SFX[k]&&SFX[k](); }catch(e){} };
+  var sfx=function(k,x){ try{ if(window.V1AUD&&V1AUD.fx(k,x)) return; typeof SFX!=="undefined"&&SFX[k]&&SFX[k](); }catch(e){} };
   var myCatSVG=function(o){ try{ return catSVG(gEnsure().cat,o); }catch(e){ return ""; } };
   var catOf=function(c,o){ try{ return c?catSVG(c,o):catSVG(gEnsure().cat,o); }catch(e){ return ""; } };
   function myLevel(){ try{ var l=cefr().lvl; return l==="A1"||l==="A2"?"A":l; }catch(e){ return "A"; } }
@@ -4184,7 +4184,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
   }
   function buildQuestions(bucket){
     var rnd=mulberry(Math.floor(Math.random()*1e9)), tr=BUCKETS[bucket].tracks, pools={voc:[],gram:[],comp:[],trad:[]};
-    Object.keys(ITEMS).forEach(function(k){ var x=ITEMS[k], it=x.it, l=x.l; if(!l||tr.indexOf(l.track)<0||it.k!=="choice"||it.say||!it.o||it.o.length<2||it.o.length>4) return; if(/<img|<audio/.test(it.q||"")) return; pools[catOfItem(it,l)].push(k); });
+    Object.keys(ITEMS).forEach(function(k){ var x=ITEMS[k], it=x.it, l=x.l; if(!l||tr.indexOf(l.track)<0||it.k!=="choice"||!it.o||it.o.length<2||it.o.length>4) return; if(/<img|<audio/.test(it.q||"")) return; pools[catOfItem(it,l)].push(k); });
     var EX=window.__EXPLICA||{}, frs=[];
     LESSONS.forEach(function(l){ if(tr.indexOf(l.track)<0||!EX[l.id]) return; EX[l.id].ej.forEach(function(e){ if(/[→≠=\[]/.test(e[0])||e[0].length>60||e[1].length<6) return; frs.push({fr:e[0],es:e[1]}); }); });
     frs.forEach(function(x,i){ pools.trad.push("t:"+i); });
@@ -4223,7 +4223,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
       if(ids.length){
         var m=st[ids[0]][0]||{};
         var wasGone=S0.oppGone;
-        S0.opp={id:ids[0],nick:m.nick||"Rival",cat:m.cat||null,lvl:m.lvl||""};
+        S0.opp={id:ids[0],nick:m.nick||"Rival",cat:m.cat||null,lvl:m.lvl||"",tr:m.tr||0};
         if(wasGone){ S0.oppGone=0; clearTimeout(S0.graceT); toast(S0.opp.nick+" volvió"); if(S0.host&&S0.stage!=="end") send("sync",{qs:S0.qs,t0:S0.t0,now:Date.now(),scores:S0.score,round:S0.round,bucket:S0.bucket}); }
         if(S0.host&&(S0.stage==="wait"||S0.stage==="connecting")&&!S0.qs) startMatch();
         else if(!S0.host&&S0.stage==="connecting") { S0.stage="wait"; paint(); }
@@ -4233,11 +4233,12 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     });
     ch.on("broadcast",{event:"start"},function(m){ var p=m.payload; beginFrom(p); });
     ch.on("broadcast",{event:"sync"},function(m){ var p=m.payload; if(S0.stage==="match"||S0.stage==="count") return; beginFrom(p); });
-    ch.on("broadcast",{event:"ans"},function(m){ var p=m.payload; if(!S0.oppAns) S0.oppAns={}; S0.oppAns[p.r]=p; S0.score.opp=p.total; S0.oppStreak=p.streak; paintLive(); });
+    ch.on("broadcast",{event:"ans"},function(m){ var p=m.payload; if(!S0.oppAns) S0.oppAns={}; S0.oppAns[p.r]=p; S0.score.opp=p.total; S0.oppStreak=p.streak; if(S0.stage==="match"&&p.r===S0.round&&S0.phase==="q") sfx("opp"); paintLive(); checkBoth(); });
+    ch.on("broadcast",{event:"skip"},function(m){ var p=m.payload; applySkip(p.r,p.t0-p.now+Date.now()); });
     ch.on("broadcast",{event:"rematch"},function(){ S0.oppRematch=true; if(S0.myRematch&&S0.host) startMatch(); paint(); });
     ch.on("broadcast",{event:"bye"},function(){ if(S0.stage!=="end") finish("forfeit"); });
     ch.subscribe(function(status){
-      if(status==="SUBSCRIBED"){ ch.track({nick:ME.nick,cat:ME.cat,lvl:S0.bucket,ts:Date.now()}); }
+      if(status==="SUBSCRIBED"){ ch.track({nick:ME.nick,cat:ME.cat,lvl:S0.bucket,tr:trophies(),ts:Date.now()}); }
       else if(status==="CHANNEL_ERROR"||status==="TIMED_OUT"){ toast("Conexión inestable: reintentando…"); }
     });
   }
@@ -4246,12 +4247,26 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     send("start",{qs:S0.qs,t0:S0.t0,now:Date.now(),bucket:S0.bucket});
     beginFrom({qs:S0.qs,t0:S0.t0,now:Date.now(),bucket:S0.bucket},true);
   }
+  /* ---------- fin anticipado: si ambos respondieron, la ronda termina ya ---------- */
+  function checkBoth(){
+    if(!S0||!S0.host||S0.stage!=="match"||S0.phase!=="q") return;
+    var r=S0.round; if(S0.ans[r]==null||!(S0.oppAns||{})[r]) return;
+    var st=roundAt(Date.now()); if(st.r!==r||st.phase!=="q"||st.left<700) return;
+    var nt0=S0.t0-(st.left-450);
+    send("skip",{r:r,t0:nt0,now:Date.now()});
+    applySkip(r,nt0);
+  }
+  function applySkip(r,nt0){
+    if(!S0||S0.stage!=="match"||S0.round!==r||nt0>=S0.t0) return;
+    S0.t0=nt0; S0.skipped=(S0.skipped||0)+1;
+    var f=q("#v1opp")||q("#plx1v1 .v1-foot"); if(f) f.insertAdjacentHTML("beforeend",'<b class="v1-both">⚡ ¡Ambos respondieron!</b>');
+  }
   function beginFrom(p,local){
     var off=local?0:(p.now-Date.now());
     S0.qs=p.qs; S0.t0=p.t0-off; S0.bucket=p.bucket||S0.bucket;
     S0.ans={}; S0.oppAns={}; S0.score={me:0,opp:p.scores?p.scores.opp||0:0}; if(p.scores&&!local){ S0.score={me:p.scores.opp||0,opp:p.scores.me||0}; }
     S0.streak=0; S0.best=0; S0.oppStreak=0; S0.myRematch=S0.oppRematch=false; S0.result=null;
-    S0.stage="count"; paint(); loop();
+    S0.stage="count"; S0.cd=0; S0.skipped=0; paint(); loop(); try{ V1AUD.music(true); V1AUD.fx("slam"); }catch(e){}
   }
 
   /* ---------- reloj de la partida ---------- */
@@ -4261,11 +4276,13 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     S0.tick=setInterval(function(){
       if(!S0) return;
       var now=Date.now(), st=roundAt(now);
-      if(st.r<0){ var n=Math.ceil(st.left/1000); if(S0.cd!==n){ S0.cd=n; sfx("tick"); paint(); } return; }
+      if(st.r<0){ var n=Math.ceil(st.left/1000); if(S0.cd!==n){ S0.cd=n; var cd=q("#plx1v1 .v1-cd"); if(n<=3){ sfx("cd",n); if(cd){ cd.textContent=n; cd.classList.remove("go"); void cd.offsetWidth; cd.classList.add("go"); } } else if(!cd) paint(); } return; }
       if(st.r>=S0.qs.length){ clearInterval(S0.tick); finish(); return; }
       if(S0.stage!=="match"||S0.round!==st.r||S0.phase!==st.phase){
         var prevPhase=S0.phase, prevRound=S0.round;
+        if(S0.stage==="count") sfx("go"); else if(st.phase==="q") sfx("round");
         S0.stage="match"; S0.round=st.r; S0.phase=st.phase;
+        try{ V1AUD.intensity(st.r>=S0.qs.length-2?2:st.r>=3?1:0); }catch(e){}
         if(st.phase==="rev"&&S0.ans[st.r]==null){ S0.ans[st.r]={i:-1,ok:false,pts:0,ms:ROUND_MS}; S0.streak=0; send("ans",{r:st.r,ok:false,pts:0,total:S0.score.me,streak:0}); }
         if(st.phase==="q"&&S0.bot) botPlay(st.r);
         paint();
@@ -4279,9 +4296,10 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     if(ok){ S0.streak++; S0.best=Math.max(S0.best,S0.streak); pts=100+Math.round(50*(ROUND_MS-ms)/ROUND_MS)+Math.min(60,20*(S0.streak-1)); }
     else S0.streak=0;
     S0.score.me+=pts; S0.ans[st.r]={i:i,ok:ok,pts:pts,ms:ms};
-    sfx(ok?"ok":"ko"); try{ navigator.vibrate&&navigator.vibrate(ok?12:[20,30,20]); }catch(e){}
+    sfx(ok?"ok":"ko"); if(ok&&S0.streak>=2) setTimeout(function(){ sfx("combo",S0.streak); },160); try{ navigator.vibrate&&navigator.vibrate(ok?12:[20,30,20]); }catch(e){}
     send("ans",{r:st.r,ok:ok,pts:pts,total:S0.score.me,streak:S0.streak,ms:ms});
-    paint();
+    paint(); if(ok) pop(pts,S0.streak);
+    checkBoth();
   }
   function botPlay(r){
     clearTimeout(S0.botT);
@@ -4291,7 +4309,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
       var ok=Math.random()<acc, pts=0;
       if(ok){ S0.oppStreak=(S0.oppStreak||0)+1; pts=100+Math.round(50*(ROUND_MS-delay)/ROUND_MS)+Math.min(60,20*(S0.oppStreak-1)); } else S0.oppStreak=0;
       S0.score.opp+=pts; S0.oppAns[r]={r:r,ok:ok,pts:pts};
-      paintLive();
+      sfx("opp"); paintLive(); checkBoth();
     },delay);
   }
   function finish(reason){
@@ -4303,8 +4321,19 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     var xp=(res==="win"?40:res==="draw"?25:15)+okN*2;
     S0.result={res:res,forfeit:reason==="forfeit",okN:okN,avg:avg,xp:xp,oppOk:Object.keys(S0.oppAns||{}).filter(function(k){return S0.oppAns[k].ok}).length};
     S0.stage="end";
-    try{ addXP(xp); var G=gEnsure(); G.duels=G.duels||{w:0,l:0,d:0}; G.duels[res==="win"?"w":res==="lose"?"l":"d"]++; save(!0); typeof gAfterProgress==="function"&&gAfterProgress(); }catch(e){}
-    sfx(res==="win"?"done":"ko");
+    try{
+      addXP(xp); var G=gEnsure(); G.duels=G.duels||{w:0,l:0,d:0}; G.duels[res==="win"?"w":res==="lose"?"l":"d"]++;
+      if(!S0.bot){
+        var before=trophies(), unlockedBefore=V1ITEMS.filter(function(it){return reqOk(it.req)}).map(function(it){return it.id});
+        var dt=res==="win"?(S0.result.forfeit?15:25+Math.min(10,Math.round(Math.max(0,(S0.opp&&S0.opp.tr||0)-before)/20))):res==="draw"?5:-10;
+        G.duels.tr=Math.max(0,before+dt); G.duels.ow=(G.duels.ow||0)+(res==="win"?1:0); G.duels.best=Math.max(G.duels.best||0,S0.best);
+        S0.result.dt=G.duels.tr-before; S0.result.rankUp=rankOf(G.duels.tr).n!==rankOf(before).n&&dt>0;
+        S0.result.newItems=V1ITEMS.filter(function(it){return reqOk(it.req)&&unlockedBefore.indexOf(it.id)<0});
+      }
+      save(!0); typeof gAfterProgress==="function"&&gAfterProgress();
+    }catch(e){}
+    try{ V1AUD.music(false); }catch(e){}
+    sfx(res==="win"?"win":res==="draw"?"draw":"lose");
     paint();
   }
 
@@ -4329,22 +4358,126 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     S0.t2=setTimeout(function(){ if(S0&&S0.stage==="search"){ S0.noOne=true; paint(); } },40000);
   }
 
+  /* ---------- rangos, copas y premios exclusivos 1V1 ---------- */
+  var RANKS=[[0,"Bronce","🥉","#b7793e"],[100,"Plata","🥈","#94a3b8"],[250,"Oro","🥇","#f59e0b"],[450,"Platino","💠","#14b8a6"],[700,"Diamante","💎","#3b82f6"],[1000,"Leyenda","👑","#a855f7"]];
+  function trophies(){ try{ return (gEnsure().duels||{}).tr||0; }catch(e){ return 0; } }
+  function rankOf(t){ var r=RANKS[0], nx=null; for(var i=0;i<RANKS.length;i++){ if(t>=RANKS[i][0]){ r=RANKS[i]; nx=RANKS[i+1]||null; } } return {min:r[0],n:r[1],i:r[2],c:r[3],next:nx}; }
+  var V1ITEMS=[
+    {id:"medalla1v1",slot:"medal",n:"Medalla 1V1",req:{duel:1}},
+    {id:"cinta1v1",slot:"hat",n:"Cinta de duelista",req:{duel:5}},
+    {id:"laurel1v1",slot:"hat",n:"Laurel de campeón",req:{duelTr:250}},
+    {id:"rayo1v1",slot:"aura",n:"Aura relámpago",req:{duelTr:700}}
+  ];
+  try{
+    V1ITEMS.forEach(function(it){ if(!GITEMS.some(function(x){return x.id===it.id})) GITEMS.push(it); });
+    var _ro=reqOk; reqOk=function(r,f){ if(r&&(r.duel||r.duelTr)){ var d=(gEnsure().duels||{}); return r.duel?(d.ow||0)>=r.duel:(d.tr||0)>=r.duelTr; } return _ro(r,f); };
+    var _rt=reqTxt; reqTxt=function(r){ if(r&&r.duel) return r.duel===1?"1 victoria en 1V1":r.duel+" victorias en 1V1"; if(r&&r.duelTr) return "Rango "+rankOf(r.duelTr).n+" en 1V1"; return _rt(r); };
+    var _cs=catSVG; catSVG=function(g,o){
+      var out=_cs(g,o), a=(g&&g.acc)||{}, x="";
+      if(a.aura==="rayo1v1") x+='<g fill="#FACC15" stroke="#CA8A04" stroke-width="2" stroke-linejoin="round"><path d="M24 44 l12 -2 -6 12 10 -1 -18 22 5 -16 -9 1 z"/><path d="M168 36 l10 -1 -5 10 9 0 -16 19 4 -14 -8 0 z"/><path d="M16 132 l9 -1 -4 9 8 0 -14 16 3 -12 -7 0 z"/><path d="M178 128 l9 -1 -4 9 8 0 -14 16 3 -12 -7 0 z"/></g><g fill="#FDE68A"><circle cx="46" cy="30" r="3"/><circle cx="156" cy="70" r="2.5"/><circle cx="30" cy="104" r="2.5"/><circle cx="182" cy="104" r="3"/></g>';
+      if(a.hat==="cinta1v1") x+='<path d="M54 70 Q100 46 146 70 L146 83 Q100 60 54 83 Z" fill="#E0463A" stroke="#B42318" stroke-width="2"/><path d="M144 72 l24 -10 -3 15 z M144 79 l21 9 -12 7 z" fill="#E0463A" stroke="#B42318" stroke-width="2" stroke-linejoin="round"/><path d="M103 53 l-8 12 h7 l-5 10 12 -14 h-7 l5 -8 z" fill="#FACC15" stroke="#A16207" stroke-width="1.5" stroke-linejoin="round"/>';
+      if(a.hat==="laurel1v1"){ var lv=function(cx,cy,r){ return '<ellipse cx="'+cx+'" cy="'+cy+'" rx="9" ry="4.5" transform="rotate('+r+' '+cx+' '+cy+')"/>'; };
+        x+='<g fill="#F2B72F" stroke="#B7791F" stroke-width="1.6"><path d="M62 78 Q66 44 96 34" fill="none" stroke-width="3"/><path d="M138 78 Q134 44 104 34" fill="none" stroke-width="3"/>'+lv(64,70,-70)+lv(67,58,-55)+lv(74,47,-40)+lv(84,39,-25)+lv(94,35,-10)+lv(136,70,70)+lv(133,58,55)+lv(126,47,40)+lv(116,39,25)+lv(106,35,10)+'</g><circle cx="100" cy="34" r="4" fill="#EF4444"/>'; }
+      if(a.medal==="medalla1v1") x+='<path d="M86 134 L100 164 L114 134 L106 134 L100 150 L94 134 Z" fill="#2563EB"/><path d="M94 134 L100 150 L106 134 Z" fill="#E0463A"/><circle cx="100" cy="170" r="13" fill="#FACC15" stroke="#CA8A04" stroke-width="3"/><path d="M100 162 l2.6 5.4 5.9 .8 -4.3 4.1 1 5.8 -5.2 -2.8 -5.2 2.8 1 -5.8 -4.3 -4.1 5.9 -.8 z" fill="#FFF7D6"/>';
+      if(!x) return out; var k=out.lastIndexOf("</svg>"); return k<0?out:out.slice(0,k)+x+out.slice(k);
+    };
+  }catch(e){}
+  function rankCard(){
+    var t=trophies(), r=rankOf(t), d={}; try{ d=gEnsure().duels||{}; }catch(e){}
+    var pc=r.next?Math.round(100*(t-r.min)/(r.next[0]-r.min)):100;
+    var items=V1ITEMS.map(function(it){ var ok=false; try{ ok=reqOk(it.req); }catch(e){} var a={}; a[it.slot]=it.id; return '<div class="v1-rw '+(ok?"ok":"")+'" title="'+esc(it.n)+'"><span>'+catOf({coat:"blanco",acc:a},{mood:"happy"})+'</span><small>'+(ok?esc(it.n):"🔒 "+esc(reqTxt(it.req)))+"</small></div>"; }).join("");
+    return '<div class="v1-rank" style="--rk:'+r.c+'"><div class="v1-rh"><span class="v1-ri">'+r.i+'</span><div><b>'+r.n+'</b><small>'+t+" copas"+(r.next?" · "+(r.next[0]-t)+" para "+r.next[1]:" · rango máximo")+'</small><div class="v1-rb"><i style="width:'+pc+'%"></i></div></div><em>'+(d.ow||0)+' victorias<br>en línea</em></div><p class="v1-rt">Premios exclusivos 1V1</p><div class="v1-rws">'+items+"</div></div>";
+  }
+  function introCard(side){
+    var me=side==="me", o=S0.opp||{}, nick=me?ME.nick:(o.nick||"Rival"), rk=rankOf(me?trophies():(o.tr||0));
+    var cat=me?myCatSVG({mood:"excited"}):catOf(o.cat,{mood:"excited"});
+    var sub=(me||o.id!=="bot")?'<i class="v1-rk" style="--rk:'+rk.c+'">'+rk.i+" "+rk.n+"</i>":'<i class="v1-rk">🤖 Práctica</i>';
+    return '<div class="v1-ic '+(me?"me":"op")+'"><div class="v1-icat">'+cat+'</div><b>'+esc(nick)+"</b>"+sub+"</div>";
+  }
+  function pop(pts,streak){
+    var el=q("#plx1v1"); if(!el) return;
+    var d=document.createElement("div"); d.className="v1-pop"; d.innerHTML="+"+pts+(streak>=2?"<small>🔥 Combo x"+streak+"</small>":"");
+    el.appendChild(d); setTimeout(function(){ d.remove(); },1000);
+  }
+
+  /* ---------- música y efectos exclusivos del duelo (Web Audio, sin archivos) ---------- */
+  window.V1AUD=(function(){
+    var ctx=null, mus=null, fxg=null, noiseBuf=null, timer=null, nextT=0, step=0, lvl=0, heldMain=false;
+    var on=(function(){ try{ return localStorage.getItem("plx-v1-mus")!=="0"; }catch(e){ return true; } })();
+    function sfxOn(){ try{ return localStorage.getItem("cr-sfx")!=="0"; }catch(e){ return true; } }
+    function ac(){
+      try{
+        if(!ctx){ var C=window.AudioContext||window.webkitAudioContext; if(!C) return null; ctx=new C();
+          var comp=ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+          mus=ctx.createGain(); mus.gain.value=0.0001; mus.connect(comp);
+          fxg=ctx.createGain(); fxg.gain.value=0.5; fxg.connect(comp);
+          noiseBuf=ctx.createBuffer(1,ctx.sampleRate*0.5,ctx.sampleRate); var d=noiseBuf.getChannelData(0); for(var i=0;i<d.length;i++) d[i]=Math.random()*2-1; }
+        if(ctx.state==="suspended") ctx.resume();
+        return ctx;
+      }catch(e){ return null; }
+    }
+    function tone(f,t,dur,vol,type,dest,f2){ var o=ctx.createOscillator(), g=ctx.createGain(); o.type=type||"sine"; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+dur); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.008); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); o.connect(g); g.connect(dest||fxg); o.start(t); o.stop(t+dur+0.02); }
+    function noise(t,dur,vol,type,freq,dest,f2){ var s=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g=ctx.createGain(); s.buffer=noiseBuf; f.type=type||"highpass"; f.frequency.setValueAtTime(freq||6000,t); if(f2) f.frequency.exponentialRampToValueAtTime(f2,t+dur); g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); s.connect(f); f.connect(g); g.connect(dest||fxg); s.start(t); s.stop(t+dur+0.02); }
+    var m2f=function(m){ return 440*Math.pow(2,(m-69)/12); };
+    var CH=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]], BASS=[33,29,36,31];
+    function sched(t,i){
+      var bar=Math.floor(i/16)%4, s=i%16, ch=CH[bar];
+      if(s%4===0) tone(150,t,0.22,0.9,"sine",mus,40);
+      if(s===4||s===12) noise(t,0.14,0.35,"bandpass",1800,mus);
+      if(s%2===1||lvl>=1) noise(t,0.035,s%2?0.12:0.06,"highpass",7000,mus);
+      if(s%4===2||(lvl>=2&&s%4===3)){ var b=ctx.createOscillator(), lp=ctx.createBiquadFilter(), g=ctx.createGain(); b.type="sawtooth"; b.frequency.value=m2f(BASS[bar]+12); lp.type="lowpass"; lp.frequency.value=lvl>=2?900:520; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.01); g.gain.exponentialRampToValueAtTime(0.0001,t+0.2); b.connect(lp); lp.connect(g); g.connect(mus); b.start(t); b.stop(t+0.22); }
+      var every=lvl>=2?1:lvl>=1?2:4;
+      if(s%every===0){ var n=ch[(s/every)%3]+12+(lvl>=2&&s%2?12:0); tone(m2f(n),t,0.12,0.13,"triangle",mus); }
+      if(lvl>=2&&s===14) noise(t,0.12,0.2,"bandpass",2400,mus);
+    }
+    function loop(){ if(!ctx) return; var spb=60/(lvl>=2?140:132)/4; while(nextT<ctx.currentTime+0.15){ sched(nextT,step); nextT+=spb; step++; } }
+    function music(v){
+      if(v&&on){ if(!ac()) return; if(timer) return; nextT=ctx.currentTime+0.06; step=0; mus.gain.cancelScheduledValues(ctx.currentTime); mus.gain.setValueAtTime(0.0001,ctx.currentTime); mus.gain.exponentialRampToValueAtTime(0.22,ctx.currentTime+0.8); timer=setInterval(loop,25); }
+      else if(ctx&&timer){ var t=ctx.currentTime, tm=timer; timer=null; mus.gain.cancelScheduledValues(t); mus.gain.setValueAtTime(Math.max(mus.gain.value,0.0001),t); mus.gain.exponentialRampToValueAtTime(0.0001,t+0.45); setTimeout(function(){ clearInterval(tm); },500); lvl=0; }
+    }
+    var FX={
+      cd:function(t,n){ tone(n===1?988:740,t,0.16,0.5,"square"); tone(n===1?1976:1480,t,0.08,0.12,"sine"); },
+      go:function(t){ [880,1109,1319].forEach(function(f){ tone(f,t,0.4,0.22,"sawtooth"); }); tone(110,t,0.35,0.8,"sine",null,40); noise(t,0.25,0.3,"lowpass",3000); },
+      slam:function(t){ tone(95,t+0.55,0.6,1,"sine",null,32); noise(t+0.55,0.35,0.5,"lowpass",2500,null,200); noise(t+0.05,0.5,0.12,"bandpass",800,null,5000); },
+      round:function(t){ noise(t,0.25,0.18,"bandpass",600,null,4000); },
+      ok:function(t){ tone(988,t,0.13,0.35,"sine"); tone(1319,t+0.08,0.2,0.35,"sine"); },
+      ko:function(t){ tone(220,t,0.3,0.3,"sawtooth",null,98); },
+      opp:function(t){ tone(520,t,0.08,0.12,"triangle",null,640); },
+      combo:function(t,n){ var k=Math.min(n||2,5), base=[660,784,988,1175,1319]; for(var i=0;i<k;i++) tone(base[i],t+i*0.055,0.1,0.22,"triangle"); if(n>=3) noise(t,0.35,0.2,"bandpass",500,null,6000); },
+      tick:function(t){ tone(1250,t,0.035,0.18,"square"); },
+      win:function(t){ [523,659,784,1047].forEach(function(f,i){ tone(f,t+i*0.12,0.16,0.3,"square"); }); [523,659,784,1047].forEach(function(f){ tone(f,t+0.5,0.8,0.14,"sawtooth"); }); },
+      lose:function(t){ [523,440,349].forEach(function(f,i){ tone(f,t+i*0.16,0.2,0.26,"triangle"); }); },
+      draw:function(t){ tone(659,t,0.18,0.25,"triangle"); tone(659,t+0.2,0.25,0.25,"triangle"); }
+    };
+    return {
+      get on(){ return on; },
+      toggle:function(){ on=!on; try{ localStorage.setItem("plx-v1-mus",on?"1":"0"); }catch(e){} var S=window.PLX1V1&&PLX1V1.stage&&PLX1V1.stage(); if(!on) music(false); else if(S==="match"||S==="count") music(true); return on; },
+      music:music,
+      intensity:function(n){ lvl=n; },
+      hold:function(){ try{ if(typeof MUSIC!=="undefined"&&MUSIC.on){ heldMain=true; MUSIC.set(false); } }catch(e){} },
+      release:function(){ try{ if(heldMain){ heldMain=false; MUSIC.set(true); } }catch(e){} },
+      fx:function(k,x){ if(!FX[k]) return false; if(!sfxOn()) return true; if(!ac()) return true; try{ FX[k](ctx.currentTime+0.01,x); }catch(e){} return true; }
+    };
+  })();
+
   /* ---------- UI ---------- */
   function box(){ var el=q("#plx1v1"); if(!el){ el=document.createElement("div"); el.id="plx1v1"; el.className="v1"; el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true"); el.setAttribute("aria-label","PLEX 1V1"); document.body.appendChild(el); } return el; }
-  function open(){ leaveAll(); S0={stage:"lobby",bucket:myLevel(),score:{me:0,opp:0}}; document.body.style.overflow="hidden"; paint(); sfx("open"); }
-  function close(){ if(S0&&S0.room&&S0.stage!=="end"&&S0.opp) send("bye",{}); leaveAll(); S0=null; var el=q("#plx1v1"); if(el) el.remove(); document.body.style.overflow=""; try{ render(); }catch(e){} }
-  function head(t){ return '<div class="v1-h"><button class="v1-x" data-v1="close" aria-label="Salir">✕</button><b>PLEX <em>1V1</em></b><span>'+(t||"")+"</span></div>"; }
+  function open(){ leaveAll(); S0={stage:"lobby",bucket:myLevel(),score:{me:0,opp:0}}; document.body.style.overflow="hidden"; try{ V1AUD.hold(); }catch(e){} paint(); sfx("open"); }
+  function close(){ try{ V1AUD.music(false); V1AUD.release(); }catch(e){} if(S0&&S0.room&&S0.stage!=="end"&&S0.opp) send("bye",{}); leaveAll(); S0=null; var el=q("#plx1v1"); if(el) el.remove(); document.body.style.overflow=""; try{ render(); }catch(e){} }
+  function head(t){ var on=window.V1AUD?V1AUD.on:true; return '<div class="v1-h"><button class="v1-x" data-v1="close" aria-label="Salir">✕</button><b>PLEX <em>1V1</em></b><span>'+(t||"")+'</span><button class="v1-x v1-mus" data-v1="mus" aria-pressed="'+on+'" aria-label="Música del duelo">'+(on?"🎵":"🔇")+"</button></div>"; }
   function player(side){
     var me=side==="me", sc=me?S0.score.me:S0.score.opp, nick=me?ME.nick:(S0.opp?S0.opp.nick:"Rival"), cat=me?myCatSVG({mood:"happy"}):catOf(S0.opp&&S0.opp.cat,{mood:"happy"});
     var dots=(S0.qs||[]).map(function(_,i){ var a=me?S0.ans[i]:(S0.oppAns||{})[i]; return '<i class="'+(a?a.ok?"ok":"ko":i===S0.round?"cur":"")+'"></i>'; }).join("");
     var stt=me?S0.streak:S0.oppStreak;
-    return '<div class="v1-p '+(me?"me":"op")+'"><div class="v1-cat">'+cat+'</div><div class="v1-pi"><b>'+esc(nick)+'</b><span class="v1-sc" data-sc="'+side+'">'+sc+'</span>'+(stt>=2?'<small class="v1-st">🔥 '+stt+"</small>":"")+'<div class="v1-dots">'+dots+"</div></div></div>";
+    var rk=rankOf(me?trophies():(S0.opp&&S0.opp.tr)||0), badge=(me||(S0.opp&&S0.opp.id!=="bot"))?'<i class="v1-rk" style="--rk:'+rk.c+'" title="'+rk.n+'">'+rk.i+"</i>":"";
+    return '<div class="v1-p '+(me?"me":"op")+'"><div class="v1-cat">'+cat+'</div><div class="v1-pi"><b>'+badge+esc(nick)+'</b><span class="v1-sc" data-sc="'+side+'">'+sc+'</span>'+(stt>=2?'<small class="v1-st'+(stt>=3?" hot":"")+'">🔥 '+stt+"</small>":"")+'<div class="v1-dots">'+dots+"</div></div></div>";
   }
   function paint(){
     if(!S0) return; var el=box(), s=S0.stage, html="";
     if(s==="lobby"){
       html=head("Duelos de francés")+'<div class="v1-b"><div class="v1-hero"><div class="v1-vs"><span class="v1-c1">'+myCatSVG({mood:"happy"})+'</span><b>VS</b><span class="v1-c2">'+catOf(null,{mood:"excited"})+'</span></div><h2>Reta a otro estudiante</h2><p>8 rondas de vocabulario, gramática, comprensión y traducción. 12 segundos por pregunta; más rápido y en racha, más puntos.</p></div>'+
         '<div class="v1-lv" role="group" aria-label="Nivel">'+Object.keys(BUCKETS).map(function(k){return '<button data-v1="lvl" data-a="'+k+'" aria-pressed="'+(S0.bucket===k)+'">'+BUCKETS[k].label+"</button>"}).join("")+"</div>"+
+        rankCard()+
         '<button class="gbtn wide v1-main" data-v1="search">⚡ Buscar rival</button>'+
         '<div class="v1-row"><button class="gbtn ghost" data-v1="create">Crear sala con código</button><button class="gbtn ghost" data-v1="bot">Practicar con Manzana</button></div>'+
         '<form class="v1-join" data-v1f="join"><input id="v1code" maxlength="5" autocomplete="off" autocapitalize="characters" placeholder="Código de sala" aria-label="Código de sala"><button class="gbtn" type="submit">Unirme</button></form>'+
@@ -4356,18 +4489,20 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     } else if(s==="wait"){
       html=head("Sala privada")+'<div class="v1-b v1-center">'+(S0.host?'<p>Comparte este código con tu rival:</p><div class="v1-code">'+esc(S0.code)+'</div><div class="v1-row"><button class="gbtn ghost" data-v1="copy">Copiar</button><button class="gbtn ghost" data-v1="share">Compartir</button></div>':'<div class="v1-code sm">'+esc(S0.code)+"</div>")+'<div class="v1-radar">'+myCatSVG({mood:"curious"})+'</div><p class="v1-note">'+(S0.opp?"¡"+esc(S0.opp.nick)+" está aquí! Empezando…":"Esperando a tu rival…")+'</p><button class="gbtn ghost" data-v1="back">Cancelar</button></div>';
     } else if(s==="count"){
-      html=head("Nivel "+BUCKETS[S0.bucket].label)+'<div class="v1-b v1-center"><div class="v1-duo">'+player("me")+'<b class="v1-vsb">VS</b>'+player("op")+'</div><div class="v1-cd" aria-live="assertive">'+(S0.cd||3)+"</div><p>¡Prepárate!</p></div>";
+      html=head("Nivel "+BUCKETS[S0.bucket].label)+'<div class="v1-intro"><div class="v1-bolt"></div>'+introCard("me")+'<div class="v1-bigvs"><b>VS</b></div>'+introCard("op")+'<p class="v1-rules">8 rondas · 12 s · ⚡ velocidad y 🔥 racha dan más puntos</p><div class="v1-cd" aria-live="assertive"></div></div>';
     } else if(s==="match"){
       var r=S0.round, qq=S0.qs[r], my=S0.ans[r], rev=S0.phase==="rev", op=(S0.oppAns||{})[r], C=CATS[qq.c]||CATS.gram;
       var opts=qq.o.map(function(o,i){ var cls=""; if(rev){ cls=i===qq.a?"ok":my&&my.i===i?"ko":"dim"; } else if(my&&my.i===i) cls="sel"; return '<button class="v1-o '+cls+'" data-v1="ans" data-a="'+i+'" '+(my||rev?"disabled":"")+'><span>'+"ABCD"[i]+"</span>"+(typeof qHTML==="function"?qHTML(o):esc(o))+"</button>"; }).join("");
       html='<div class="v1-top">'+player("me")+'<div class="v1-mid"><small>Ronda '+(r+1)+"/"+S0.qs.length+'</small><div class="v1-timer"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="fg" id="v1arc"/></svg><b id="v1sec">12</b></div></div>'+player("op")+"</div>"+
         (S0.oppGone?'<div class="v1-warn">'+esc(S0.opp?S0.opp.nick:"Tu rival")+" se desconectó. Si no vuelve en unos segundos, ganas por abandono.</div>":"")+
-        '<div class="v1-b v1-q"><span class="v1-chip" style="--c:'+C[1]+'">'+C[0]+"</span>"+(qq.ask?'<p class="v1-ask">'+esc(qq.ask)+"</p>":"")+(qq.ctx?'<p class="v1-ctx">'+esc(qq.ctx)+"</p>":"")+'<h3 class="v1-qt">'+(typeof qHTML==="function"?qHTML(qq.q):esc(qq.q))+'</h3><div class="v1-opts">'+opts+"</div>"+
-        '<div class="v1-foot">'+(rev?(my&&my.ok?'<b class="good">+'+my.pts+" puntos</b>":'<b class="bad">'+(my&&my.i>=0?"Incorrecto":"Se acabó el tiempo")+"</b>")+' · '+esc(S0.opp?S0.opp.nick:"Rival")+(op?op.ok?" acertó":" falló":" no respondió"):my?(my.ok?'<b class="good">¡Correcto! +'+my.pts+"</b>":'<b class="bad">Incorrecto</b>')+' · esperando el final de la ronda…':'<span id="v1opp">'+(op?esc(S0.opp?S0.opp.nick:"Rival")+" ya respondió":"")+"</span>")+"</div></div>";
+        '<div class="v1-b v1-q"><span class="v1-chip" style="--c:'+C[1]+'">'+C[0]+"</span>"+(qq.ask?'<p class="v1-ask">'+rich(qq.ask)+"</p>":"")+(qq.ctx?'<p class="v1-ctx">'+rich(qq.ctx)+"</p>":"")+'<h3 class="v1-qt">'+(typeof qHTML==="function"?qHTML(qq.q):esc(qq.q))+'</h3><div class="v1-opts">'+opts+"</div>"+
+        '<div class="v1-foot">'+(rev?(my&&my.ok?'<b class="good">+'+my.pts+" puntos</b>":'<b class="bad">'+(my&&my.i>=0?"Incorrecto":"Se acabó el tiempo")+"</b>")+' · '+esc(S0.opp?S0.opp.nick:"Rival")+(op?op.ok?" acertó":" falló":" no respondió"):my?(my.ok?'<b class="good">¡Correcto! +'+my.pts+"</b>":'<b class="bad">Incorrecto</b>')+' · esperando a '+esc(S0.opp?S0.opp.nick:"tu rival")+'…':'<span id="v1opp">'+(op?esc(S0.opp?S0.opp.nick:"Rival")+" ya respondió":"")+"</span>")+"</div></div>";
     } else if(s==="end"){
       var R=S0.result, win=R.res==="win", draw=R.res==="draw";
       html=head("Resultado")+'<div class="v1-b v1-center v1-end"><div class="v1-ban '+R.res+'">'+(win?"¡Ganaste!":draw?"¡Empate!":"Ganó "+esc(S0.opp?S0.opp.nick:"tu rival"))+"</div>"+(R.forfeit?'<p class="v1-note">Tu rival abandonó la partida.</p>':"")+
         '<div class="v1-duo end"><div class="v1-p me '+(win?"win":"")+'"><div class="v1-cat">'+(win?'<span class="v1-crown">👑</span>':"")+myCatSVG({mood:win||draw?"excited":"sad"})+'</div><b>'+esc(ME.nick)+'</b><span class="v1-sc">'+S0.score.me+'</span></div><b class="v1-vsb">VS</b><div class="v1-p op '+(R.res==="lose"?"win":"")+'"><div class="v1-cat">'+(R.res==="lose"?'<span class="v1-crown">👑</span>':"")+catOf(S0.opp&&S0.opp.cat,{mood:R.res==="lose"||draw?"excited":"sad"})+'</div><b>'+esc(S0.opp?S0.opp.nick:"Rival")+'</b><span class="v1-sc">'+S0.score.opp+"</span></div></div>"+
+        (R.dt!=null?'<div class="v1-trd '+(R.dt>=0?"up":"down")+'">🏆 '+(R.dt>=0?"+":"")+R.dt+' copas · <b>'+rankOf(trophies()).i+" "+rankOf(trophies()).n+"</b>"+(R.rankUp?' <em>¡Subiste de rango!</em>':"")+"</div>":(S0.bot?'<p class="v1-note">Las partidas con Manzana dan XP, pero las copas y los premios 1V1 solo se ganan contra otros estudiantes.</p>':""))+
+        (R.newItems&&R.newItems.length?'<div class="v1-new">'+R.newItems.map(function(it){ var a={}; a[it.slot]=it.id; return '<div><span>'+catOf({coat:(ME.cat&&ME.cat.coat)||"manzana",acc:a},{mood:"excited"})+'</span><b>¡Nuevo! '+esc(it.n)+'</b><small>Póntelo en Perfil → Accesorios</small></div>'; }).join("")+"</div>":"")+
         '<div class="v1-stats"><div><b>'+R.okN+"/"+S0.qs.length+'</b><span>aciertos</span></div><div><b>'+(R.avg||"–")+' s</b><span>tiempo medio</span></div><div><b>'+S0.best+'</b><span>mejor racha</span></div><div class="xp"><b>+'+R.xp+'</b><span>XP ganada</span></div></div>'+
         '<div class="v1-row"><button class="gbtn" data-v1="rematch">'+(S0.myRematch?"Esperando al rival…":"Revancha")+(S0.oppRematch&&!S0.myRematch?" (¡te la pidió!)":"")+'</button><button class="gbtn ghost" data-v1="close">Salir</button></div></div>';
     }
@@ -4395,10 +4530,11 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     if(!S0) return;
     if(a==="close") return close();
     if(a==="lvl"){ S0.bucket=b.dataset.a; return paint(); }
+    if(a==="mus"){ var on=V1AUD.toggle(); b.setAttribute("aria-pressed",on); b.textContent=on?"🎵":"🔇"; return; }
     if(a==="search") return search();
     if(a==="create"){ if(!netOK()){ toast("Inicia sesión para crear salas en línea."); return; } leaveAll(); S0.mm=false; S0.noOne=false; return joinRoom(rid(5),true); }
-    if(a==="bot"){ leaveAll(); S0.bot=true; S0.opp={id:"bot",nick:"Manzana",cat:{coat:"manzana",acc:{hat:"boina",neck:"marino"}}}; S0.host=true; return startMatch(); }
-    if(a==="back"){ var bk=S0.bucket; leaveAll(); S0={stage:"lobby",bucket:bk,score:{me:0,opp:0}}; return paint(); }
+    if(a==="bot"){ leaveAll(); S0.bot=true; S0.opp={id:"bot",nick:"Manzana",cat:null}; S0.host=true; return startMatch(); }
+    if(a==="back"){ var bk=S0.bucket; leaveAll(); try{ V1AUD.music(false); }catch(e){} S0={stage:"lobby",bucket:bk,score:{me:0,opp:0}}; return paint(); }
     if(a==="copy"){ try{ navigator.clipboard.writeText(S0.code); toast("Código copiado"); }catch(x){} return; }
     if(a==="share"){ var t="¡Te reto a un duelo de francés en PLEX PLAY! Código: "+S0.code+" "+location.href.split("?")[0]; if(navigator.share) navigator.share({text:t}).catch(function(){}); else { try{ navigator.clipboard.writeText(t); toast("Invitación copiada"); }catch(x){} } return; }
     if(a==="ans") return answer(+b.dataset.a);
@@ -4429,12 +4565,12 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     try{
       if(view==="retos"&&!q("#view .v1-card")){
         var h=q("#view .gretos h1")||q("#view h1");
-        var card='<button class="gcard v1-card" data-v1="open"><span class="v1-ci">⚔️</span><span class="v1-ct"><b>PLEX 1V1</b><small>Reta a otro estudiante en tiempo real</small></span><span class="v1-go">Jugar</span></button>';
+        var card='<button class="gcard v1-card" data-v1="open"><span class="v1-ci">⚔️</span><span class="v1-ct"><b>PLEX 1V1</b><small>'+(function(){ var r=rankOf(trophies()); return r.i+' '+r.n+' · '+trophies()+' copas · reta a otro estudiante'; })()+'</small></span><span class="v1-go">Jugar</span></button>';
         if(h) h.insertAdjacentHTML("afterend",card);
       }
       if(view==="parcours"&&!q("#view .v1-card")){
         var m=q("#view .ghome .gmain .pf-home")||q("#view .ghome .gmain .streak-card");
-        if(m) m.insertAdjacentHTML("beforebegin",'<button class="gcard v1-card" data-v1="open"><span class="v1-ci">⚔️</span><span class="v1-ct"><b>PLEX 1V1</b><small>Duelos de francés en tiempo real</small></span><span class="v1-go">Jugar</span></button>');
+        if(m) m.insertAdjacentHTML("beforebegin",'<button class="gcard v1-card" data-v1="open"><span class="v1-ci">⚔️</span><span class="v1-ct"><b>PLEX 1V1</b><small>'+(function(){ var r=rankOf(trophies()); return r.i+' '+r.n+' · duelos de francés en tiempo real'; })()+'</small></span><span class="v1-go">Jugar</span></button>');
       }
     }catch(e){}
     return r;
@@ -4511,11 +4647,58 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
   .v1-stats div{display:grid;gap:2px;padding:10px 4px;border-radius:14px;background:var(--raise);border:1px solid var(--line)}
   .v1-stats b{font-size:1.1rem}.v1-stats span{font-size:.7rem;color:var(--stone)}.v1-stats .xp b{color:#16a34a}
   @media (max-width:380px){.v1-pi b{max-width:70px}.v1-cat{width:38px;height:38px}.v1-stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* 1.12: intro VS, rangos, premios, combos */
+  .v1-h .v1-mus{margin-left:8px}
+  .v1-intro{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;align-content:center;gap:10px;width:min(700px,100%);margin:0 auto;padding:26px 14px 30px;min-height:calc(100vh - 64px);min-height:calc(100dvh - 64px);box-sizing:border-box;overflow:hidden;animation:v1quake .35s .72s both}
+  .v1-bolt{position:absolute;inset:-20%;pointer-events:none;background:linear-gradient(115deg,transparent 46%,rgba(250,204,21,.35) 49.2%,rgba(255,255,255,.85) 50%,rgba(250,204,21,.35) 50.8%,transparent 54%);opacity:0;animation:v1flash 1s .55s ease-out both}
+  .v1-ic{position:relative;z-index:1;display:grid;justify-items:center;gap:6px;padding:16px 8px 14px;border-radius:24px;background:var(--raise);border:3px solid #3b82f6;box-shadow:0 18px 34px -20px rgba(37,99,235,.9);animation:v1inL .6s cubic-bezier(.2,.9,.3,1.25) both;min-width:0}
+  .v1-ic.op{border-color:#ef4444;box-shadow:0 18px 34px -20px rgba(239,68,68,.9);animation-name:v1inR;animation-delay:.12s}
+  .v1-icat{width:118px;height:118px}.v1-icat .cat{width:100%;height:100%}.v1-ic.op .v1-icat .cat{transform:scaleX(-1)}
+  .v1-ic b{font-size:1.05rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .v1-rk{font-style:normal;font-size:.78rem;font-weight:800;color:var(--rk,#64748b)}
+  .v1-pi .v1-rk{margin-right:3px}
+  .v1-bigvs{position:relative;z-index:2}
+  .v1-bigvs b{display:block;font-size:3.8rem;font-weight:900;line-height:1;color:#facc15;-webkit-text-stroke:3px #1e3a8a;text-shadow:0 6px 0 #1e3a8a,0 0 30px rgba(250,204,21,.6);animation:v1slam .55s .5s cubic-bezier(.2,.9,.3,1.4) both}
+  .v1-rules{grid-column:1/-1;margin:6px 0 0;text-align:center;color:var(--stone);font-weight:700;font-size:.9rem;animation:plxUp .4s 1.1s both}
+  .v1-intro .v1-cd{grid-column:1/-1;justify-self:center;min-height:5.2rem;font-size:4.8rem;line-height:1;color:#2563eb;animation:none;opacity:0}
+  .v1-intro .v1-cd.go{animation:v1cd .95s ease both}
+  @keyframes v1inL{from{transform:translateX(-120%) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+  @keyframes v1inR{from{transform:translateX(120%) rotate(8deg);opacity:0}to{transform:none;opacity:1}}
+  @keyframes v1slam{0%{transform:scale(3.2) rotate(-14deg);opacity:0}60%{transform:scale(.88) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(-4deg);opacity:1}}
+  @keyframes v1flash{0%{opacity:0}15%{opacity:1}100%{opacity:.18}}
+  @keyframes v1quake{0%,100%{transform:none}20%{transform:translate(-5px,3px)}40%{transform:translate(5px,-3px)}60%{transform:translate(-3px,2px)}80%{transform:translate(3px,-1px)}}
+  @keyframes v1cd{0%{transform:scale(2.3);opacity:0}25%{transform:scale(1);opacity:1}80%{opacity:1}100%{transform:scale(.7);opacity:0}}
+  @media (max-width:520px){.v1-icat{width:84px;height:84px}.v1-bigvs b{font-size:2.6rem;-webkit-text-stroke:2px #1e3a8a}.v1-ic{padding:12px 6px}}
+  .v1-pop{position:fixed;left:14px;top:84px;z-index:70;font-weight:900;font-size:1.35rem;color:#16a34a;pointer-events:none;text-shadow:0 2px 0 #fff;animation:v1pop 1s ease-out both}
+  .v1-pop small{display:block;font-size:.9rem;color:#ea580c}
+  @keyframes v1pop{0%{transform:translateY(12px) scale(.6);opacity:0}20%{transform:none;opacity:1}100%{transform:translateY(-42px);opacity:0}}
+  .v1-st.hot{display:inline-block;animation:v1flame .6s ease-in-out infinite alternate}
+  @keyframes v1flame{from{transform:scale(1)}to{transform:scale(1.18);filter:drop-shadow(0 0 4px #fb923c)}}
+  .v1-both{display:block;margin-top:4px;color:#7c3aed;font-size:.85rem;animation:plxPopIn .35s both}
+  .v1-rank{margin:14px 0 12px;padding:12px 14px;border-radius:20px;background:var(--raise);border:1.5px solid var(--line);box-shadow:inset 0 3px 0 var(--rk)}
+  .v1-rh{display:flex;align-items:center;gap:12px}.v1-rh>div{flex:1;min-width:0;display:grid;gap:3px}
+  .v1-ri{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:color-mix(in srgb,var(--rk) 18%,transparent);flex:none}
+  .v1-rh b{font-size:1.05rem;color:var(--rk)}.v1-rh small{color:var(--stone);font-size:.8rem}
+  .v1-rh em{font-style:normal;font-size:.75rem;font-weight:800;color:var(--stone);text-align:right}
+  .v1-rb{height:8px;border-radius:99px;background:var(--surf3);overflow:hidden}.v1-rb i{display:block;height:100%;border-radius:99px;background:var(--rk)}
+  .v1-rt{margin:10px 0 6px;font-size:.78rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:var(--stone)}
+  .v1-rws{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .v1-rw{display:grid;justify-items:center;gap:2px;padding:6px 4px;border-radius:14px;background:var(--surf3);text-align:center}
+  .v1-rw span{width:52px;height:52px}.v1-rw .cat{width:100%;height:100%}.v1-rw:not(.ok) span{filter:grayscale(1);opacity:.55}
+  .v1-rw small{font-size:.66rem;line-height:1.2;color:var(--stone);font-weight:700}.v1-rw.ok small{color:#16a34a}
+  .v1-trd{font-weight:800;padding:8px 14px;border-radius:999px;background:#fef9c3;color:#854d0e;animation:plxPopIn .5s .3s both}
+  .v1-trd.down{background:var(--surf3);color:var(--stone)}.v1-trd em{font-style:normal;color:#16a34a;display:block}
+  [data-theme=dark] .v1-trd{background:#3a2f0b;color:#fde68a}
+  .v1-new{display:grid;gap:8px;width:100%}
+  .v1-new>div{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:18px;background:linear-gradient(120deg,#fef3c7,#fde68a);color:#422006;text-align:left;animation:plxPopIn .5s .5s both}
+  .v1-new span{width:60px;height:60px;flex:none}.v1-new .cat{width:100%;height:100%}.v1-new b{display:block}.v1-new small{font-size:.78rem}
+  @media (max-width:380px){.v1-rws{grid-template-columns:repeat(2,1fr)}}
+  @media (prefers-reduced-motion:reduce){.v1-intro,.v1-ic,.v1-bigvs b,.v1-bolt{animation-duration:.01s!important;animation-delay:0s!important}}
   `;
   var st=document.createElement("style"); st.id="plx22"; st.textContent=css; document.head.appendChild(st);
-  window.PLX1V1={open:open};
+  window.PLX1V1={open:open,stage:function(){ return S0&&S0.stage; }};
 })();
-
 </script>
 <script id="plx23js">
 /* PLEX PLAY 1.11 — rendimiento y responsive */
