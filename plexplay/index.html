@@ -3065,7 +3065,7 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
 <li>Heures : <i>onze heures dix</i> = 11 h 10 ; <i>midi et demi</i> = 12 h 30.</li>
 <li>Proportions : <i>trente pour cent d'entre eux, plus de la moitié, un sur trois</i>.</li>
 <li><i>X contre Y l'année précédente</i> : passage de Y à X.</li>
-<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.12.1",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
+<li>Notez toujours en chiffres pendant l'écoute.</li></ul>`,items:{0:{ask:"Écoutez l'annonce, puis choisissez la date exacte. Attention au jour et au nombre.",ctx:"Un secrétariat d'université annonce la date de l'épreuve écrite.",why:"On entend <i>le mercredi trois septembre</i> → <b>mercredi 3 septembre</b>. Ne confondez pas <i>trois</i> avec <i>treize</i> (13) ou <i>vingt-trois</i> (23), ni <i>mercredi</i> avec <i>mardi</i>."},1:{ask:"Écoutez l'annonce, puis choisissez l'heure du rendez-vous.",ctx:"On vous donne rendez-vous pour une séance de préparation à l'oral.",q:"À quelle heure est le rendez-vous ?",why:"<i>Onze heures dix</i> = <b>11 h 10</b> : le premier nombre donne l'heure, le second les minutes. <i>10 h 11</i> inverse l'ordre ; <i>11 h 20</i> serait <i>onze heures vingt</i>."},2:{ask:"Écoutez la phrase, puis écrivez <b>seulement le pourcentage en chiffres</b>, sans le symbole %.",ctx:"Un reportage sur la santé des étudiants présente une statistique sur le stress.",why:"<i>Trente pour cent d'entre eux</i> = <b>30</b> % : près d'un étudiant sur trois. <i>D'entre eux</i> indique une partie d'un groupe (<i>de entre ellos</i> en espagnol : même idée)."},3:{ask:"Écoutez la phrase, puis choisissez l'évolution correcte : quelle est la valeur de départ et quelle est la valeur d'arrivée ?",ctx:"Un journaliste commente le baromètre annuel sur le bonheur au travail.",q:"Quelle évolution du nombre de salariés heureux avez-vous entendue ?",why:"On entend <i>69 % … contre 77 % l'année précédente</i> : l'année précédente, on était à 77 %, aujourd'hui à 69 % → <b>de 77 % à 69 %</b>, une baisse. <i>Contre</i> introduit l'ancienne valeur ; l'erreur typique est de suivre l'ordre d'écoute (69 puis 77)."},4:{ask:"Écoutez la phrase, puis choisissez la proportion de salariés concernés par le télétravail.",ctx:"Un reportage présente le télétravail dans l'entreprise Alcatel.",q:"Quelle proportion des effectifs d'Alcatel télétravaille ?",why:"<i>Vingt-cinq pour cent</i> = <b>25 %</b>, soit un quart des effectifs. Ne confondez pas avec <i>trente-cinq</i> (35) ou <i>soixante-quinze</i> (75)."},5:{ask:"Écoutez la phrase, puis choisissez la fourchette (entre deux valeurs) que vous avez entendue.",ctx:"Un sociologue parle des Français qui refusent d'avoir la télévision chez eux.",why:"<i>Deux à trois pour cent</i> = <b>2 à 3 %</b> : une toute petite minorité. <i>Douze</i> (12) et <i>vingt-deux</i> (22) commencent par un son différent ; écoutez bien le premier mot."},6:{ask:"Écoutez la phrase, puis choisissez la tranche d'âge des réfractaires les plus jeunes.",ctx:"Suite du reportage sur les Français qui refusent la télévision.",q:"Quel âge ont les plus jeunes réfractaires à la télévision ?",why:"<i>Entre vingt-cinq et trente-cinq ans</i> = <b>25-35 ans</b>. La structure <i>entre… et…</i> donne les deux limites de la tranche d'âge ; <i>soixante-cinq</i> (65) serait incohérent avec « les plus jeunes »."}}}};LESSONS.forEach(l=>{const p=LP[l.id];p&&(p.theory&&(l.theory=p.theory),(l.items||[]).forEach((it,i)=>{const x=p.items&&p.items[i];x&&(x.ask&&(it.ask=x.ask),x.ctx&&(it.ctx=x.ctx),x.why&&(it.why=x.why),x.q&&!(it.k==="spot"||it.k==="listen")&&(it.q=x.q))}))})}();const _itemHTMLc=itemHTML;itemHTML=function(it,st){let out=_itemHTMLc(it,st);return!it||!it.ask?out:(it.k==="spot"&&(out=out.replace('<p class="q">Toca la palabra que contiene el error.</p>',"")),it.k==="listen"&&(out=out.replace(/<p class="q">(Escribe en cifras el número que oyes\.|Escribe lo que oyes\.)<\/p>/,"")),it.k==="order"&&!it.q&&(out=out.replace(/<p class="q">Ordena los elementos\.<\/p>/,"")),`<p class="ask">${it.ask}</p>`+(it.ctx?`<div class="ctx"><span>Contexto</span><p>${it.ctx}</p></div>`:"")+out)},window.__UILANG="es";const APP_VERSION="1.12.2",DAY=864e5,dayN=(d=new Date)=>Math.round(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/DAY),dayOfKey=k=>{const[y,m,d]=String(k).split("-").map(Number);return dayN(new Date(y,(m||1)-1,d||1))},SRS_INT=[1,1,3,7,14,30,60],isLessonKey=k=>/^[^:]+:\d+$/.test(k);function srsState(){return(!S.srs||typeof S.srs!="object")&&(S.srs={}),S.srs}function srsSeed(){const R=srsState();LESSONS.forEach(l=>{const r=S.lessons[l.id];if(!r||!r.done||!l.items)return;const base=r.at?dayOfKey(r.at):dayN();l.items.forEach((_,i)=>{const k=l.id+":"+i;R[k]||(R[k]={b:1,d:base+1,n:0})})})}function srsUpd(key,ok){const R=srsState(),v=R[key]||{b:0,d:dayN(),n:0};ok?(v.b=Math.min(v.b+1,SRS_INT.length-1),v.d=dayN()+SRS_INT[v.b]):(v.b=0,v.d=dayN()+1),v.n=(v.n||0)+1,R[key]=v}function srsDue(){const t=dayN(),R=srsState();return Object.keys(R).filter(k=>R[k].d<=t&&getItem(k)).sort((a,b)=>R[a].d-R[b].d||R[a].b-R[b].b)}function practiceKeys(){const due=srsDue().slice(0,12),err=Object.keys(S.carnet).filter(k=>getItem(k)&&!due.includes(k)).slice(0,Math.max(3,15-due.length));return due.concat(err)}function startPractice(){const keys=practiceKeys();if(!keys.length)return toast("No tienes repasos pendientes. ¡Vuelve mañana!");start({mode:"review",title:"Repaso del día",eyebrow:"Repaso espaciado · lo que toca repasar hoy",steps:shuffle(keys).map(k=>({kind:"item",key:k}))})}function lessonMastery(l){const n=(l.items||[]).length;if(!n)return null;const R=srsState(),t=dayN();let s=0,seen=0,due=0;return l.items.forEach((_,i)=>{const v=R[l.id+":"+i];if(!v)return;seen++;let b=Math.min(v.b,4);v.d<t&&(due++,t-v.d>SRS_INT[Math.min(v.b,6)]&&(b=Math.max(v.b>=1?1:0,b-1))),s+=b/4}),{pct:Math.round(s/n*100),seen,due}}const mLabel=p=>p>=80?"Dominada":p>=50?"Bien":p>0?"En progreso":"Por repasar",_pStreakBase=streak;streak=function(){const G=gEnsure(),g=G.goalXP,fz=new Set(G.frozen||[]),ok=d2=>dayXP(d2)>=g||fz.has(dkey(d2));let n=0;const d=new Date;for(ok(d)||d.setDate(d.getDate()-1);ok(d);)dayXP(d)>=g&&n++,d.setDate(d.getDate()-1);return n};function freezeApply(){const G=gEnsure();if(!(G.freeze>0))return;const g=G.goalXP,fz=new Set(G.frozen||[]),y=new Date;y.setDate(y.getDate()-1);const missed=[],d=new Date(y);for(let i=0;i<10&&!(dayXP(d)>=g||fz.has(dkey(d)));i++)missed.push(dkey(d)),d.setDate(d.getDate()-1);!missed.length||missed.length>G.freeze||(dayXP(d)>=g||fz.has(dkey(d)))&&(G.frozen=(G.frozen||[]).concat(missed).slice(-30),G.freeze-=missed.length,save(!0),setTimeout(()=>gModal(`<small class="gm-k">Protector de racha</small><div class="gm-badge" style="--c:#0EA5E9">${PRO_IC.shield}</div><h2 class="gm-t">Tu racha sigue viva</h2>
     <p class="gm-sub">Usaste ${missed.length===1?"un protector":missed.length+" protectores"} para cubrir ${missed.length===1?"el día que faltaste":"los días que faltaste"}. Te ${G.freeze===1?"queda 1":"quedan "+G.freeze}.</p>
     <button class="gbtn wide" data-g="close" data-autofocus>Continuar</button>`,"m-freeze"),600))}const _pAfter=gAfterProgress;gAfterProgress=function(){const G=gEnsure(),st=streak();return st>0&&st%7===0&&G.freezeAwardAt!==st&&(G.freeze||0)<2&&(G.freeze=(G.freeze||0)+1,G.freezeAwardAt=st,setTimeout(()=>toast("¡"+st+" días seguidos! Ganaste un protector de racha."),900)),_pAfter.apply(this,arguments)};const _pWeekDots=weekDots;weekDots=function(){const r=_pWeekDots(),fz=new Set(gEnsure().frozen||[]),now=new Date,dow=(now.getDay()+6)%7,mon=new Date(now);return mon.setDate(now.getDate()-dow),r.map((x,i)=>{const d=new Date(mon);return d.setDate(mon.getDate()+i),fz.has(dkey(d))?Object.assign({},x,{st:"frz"}):x})};const _pRecord=record;record=function(st,it,ok){const before=P?P.newCarnet:0,plc=P&&P.mode==="placement";_pRecord.apply(this,arguments);try{if(plc){const last=P.steps[P.steps.length-1];last&&last.retry&&last.key===st.key&&P.steps.pop(),P.newCarnet>before&&(delete S.carnet[st.key],P.newCarnet=before),(P.plc||(P.plc={}))[P.i]=ok,save()}else!st.retry&&isLessonKey(st.key)&&getItem(st.key)&&(srsUpd(st.key,ok),save())}catch{}};const PLC_ORDER=["a1","a2","b11","b12","b21","rem","prog","c12","lit"];function startPlacement(){const steps=[];PLC_ORDER.forEach(tr=>{const pool=[];LESSONS.filter(l=>l.track===tr&&!l.special&&!l.project&&l.items).forEach(l=>l.items.forEach((it,i)=>{it.k==="choice"&&it.o&&it.o.length>=3&&pool.push({key:l.id+":"+i,u:tr})})),shuffle(pool).slice(0,tr==="rem"||tr==="prog"?3:2).forEach(p=>steps.push({kind:"item",key:p.key,u:p.u}))}),steps.length&&start({mode:"placement",title:"Prueba de nivel",eyebrow:"Prueba de nivel · de A1 a C1 · sin vidas: responde lo que sepas",steps})}function placementResult(){const byU={};P.steps.forEach((s,i)=>{if(!s.u)return;const b=byU[s.u]||(byU[s.u]={n:0,ok:0});b.n++,P.plc&&P.plc[i]&&b.ok++});const tracks=PLC_ORDER.filter(t=>byU[t]);let course=tracks.find(t=>byU[t].ok/byU[t].n<.75)||tracks[tracks.length-1];const weak=tracks.filter(t=>byU[t].ok<byU[t].n),nl=LESSONS.find(x=>x.track===course&&!x.special&&!(S.lessons[x.id]&&S.lessons[x.id].done)),tot=Object.values(byU).reduce((a,v)=>a+v.n,0),ok=Object.values(byU).reduce((a,v)=>a+v.ok,0);return{at:dkey(),pct:tot?Math.round(ok/tot*100):0,weak,course,byU,rec:nl?[nl.id]:[],units:tracks.length}}function guideData(){const out=[];return LESSONS.filter(l=>COURSE_IDS.has(l.track)&&!l.special&&l.theory).forEach(l=>{const m=/<p><b>(?:À retenir|Para recordar)<\/b><\/p>\s*<ul>([\s\S]*?)<\/ul>/.exec(l.theory);m&&out.push({l,html:"<ul>"+m[1]+"</ul>",txt:(l.title+" "+l.unit+" "+m[1].replace(/<[^>]+>/g," ")).toLowerCase()})}),out}let guideQ="";function gGuia(){const data=guideData(),q=guideQ.trim().toLowerCase(),list=data.filter(d=>!q||d.txt.includes(q));let lastU="";const items=list.map(d=>{const u=((TRACKS.find(t=>t.id===d.l.track)||{}).label||d.l.sec)+" · "+d.l.unit,head=u!==lastU?`<h3 class="gd-u">${gh(u)}</h3>`:"";lastU=u;const m=lessonMastery(d.l);return head+`<article class="gcard gd-card" lang="fr"><div class="gd-h"><b>${gh(d.l.title)}</b>${m&&m.seen?`<span class="mst-t">${mLabel(m.pct)} · ${m.pct} %</span>`:""}</div>${d.html}
       <div class="gd-a" lang="es"><button class="gbtn ghost sm" data-open="${d.l.id}">Repasar la lección</button></div></article>`}).join("");return`<section class="gview gguia"><h1>Guía rápida</h1>
@@ -4873,6 +4873,265 @@ Règle du cours : ${stripTags(it.why||"")}`;try{await sample(prompt,{modelTier:"
     return r;
   };
   if(document.querySelector(".pclogin")) try{ pcLoginRender(); }catch(e){}
+})();
+</script><script id="plx25js">/* PLEX PLAY 1.12 — dictado: la puntuación cuenta solo si se dicta; corrección completa o por grupos */
+(function(){
+  "use strict";
+  if(typeof dEval!=="function"||typeof dzCheck!=="function") return;
+  var q=function(s){return document.querySelector(s)};
+  var PREFIX=0, FORCE_FULL=false;
+
+  /* 1) evaluación: prefijo de grupos y puntuación no dictada sin puntos */
+  var _ev=dEval;
+  dEval=function(ref,hyp,alts){
+    var d=dz();
+    if(PREFIX&&d){
+      if(ref===d.segs.join(" ")) ref=d.segs.slice(0,PREFIX).join(" ");
+      else if(d.alt&&ref===d.alt) return {ops:[],errs:[],total:1e9};
+    }
+    var r=_ev.call(this,ref,hyp,alts);
+    if(!DZ.punct&&r&&r.errs){
+      var free=0;
+      r.errs=r.errs.filter(function(e){ if(e.c==="ponct"){ free++; r.ops[e.k].free=1; return false; } return true; });
+      r.total=Math.max(0,r.total-free*DCAT.ponct[1]); r.freePunct=free;
+    }
+    return r;
+  };
+  if(_ev.lastSpelled!==undefined) dEval.lastSpelled=_ev.lastSpelled;
+
+  /* ¿hasta qué grupo llega lo escrito? el prefijo con menos errores (empates → el más largo) */
+  function coverage(hyp){
+    var d=dz(), n=d.segs.length, best=n, bt=Infinity, sv=PREFIX;
+    for(var k=1;k<=n;k++){ PREFIX=k; var t=dEval(d.segs.join(" "),hyp,d.alts).total; if(t<=bt){ bt=t; best=k; } }
+    PREFIX=sv; return best;
+  }
+
+  /* 2) corregir: si solo escribiste una parte, se corrige hasta donde llegaste */
+  var _ck=dzCheck;
+  dzCheck=function(){
+    var d=dz(), ta=q("#dtx"), hyp=ta?ta.value:"", n=d.segs.length;
+    if(!hyp.trim()||words(hyp)<3) return _ck.apply(this,arguments);
+    var k=FORCE_FULL?n:coverage(hyp); FORCE_FULL=false;
+    if(k>=n){ PREFIX=0; var r0=_ck.apply(this,arguments); if(DZ.res) DZ.res.partial=null; return r0; }
+    var prev=S.dictees&&S.dictees[d.id]?JSON.parse(JSON.stringify(S.dictees[d.id])):null, xp=S.xp;
+    PREFIX=k;
+    try{ _ck.apply(this,arguments); } finally{ PREFIX=0; }
+    /* una corrección parcial no cuenta como nota del dictado completo */
+    S.dictees=S.dictees||{}; if(prev) S.dictees[d.id]=prev; else delete S.dictees[d.id];
+    try{ var gain=S.xp-xp; if(gain>3){ S.xp-=gain-3; var t=today(); t.xp-=gain-3; } save(!0); }catch(e){}
+    if(DZ.res){ DZ.res.partial={k:k,n:n}; }
+    render(); var res=q("#dzres"); res&&res.scrollIntoView({behavior:"smooth",block:"start"});
+  };
+
+  /* 3) resultado: aviso de corrección parcial y de puntuación no dictada */
+  var _rh=dzResultHTML;
+  dzResultHTML=function(){
+    var html=_rh.apply(this,arguments), r=DZ.res||{}, add="";
+    if(r.partial) add+='<div class="plx-dzp"><b>Corrección por grupos: del 1 al '+r.partial.k+' de '+r.partial.n+'.</b> La nota es solo de lo que escribiste; no se guarda como nota del dictado. <button class="btn line" data-dzx="fullcheck">Corregir como dictado completo</button></div>';
+    if(r.freePunct) add+='<div class="plx-dzp soft">Puntuación <b>no dictada</b>: te marcamos '+r.freePunct+' signo(s) como guía, pero no restan puntos.</div>';
+    return add+html;
+  };
+
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest('[data-dzx="fullcheck"]');
+    if(b){ e.preventDefault(); FORCE_FULL=true; dzCheck(); return; }
+    /* 4) elegir un grupo tocando su punto */
+    var i=e.target.closest&&e.target.closest("#dzdots i");
+    if(i&&view==="dictee"){ var idx=[].indexOf.call(i.parentNode.children,i); if(idx>=0){ e.preventDefault(); dzSeg(idx); } }
+  },true);
+
+  var css=`
+  #dzdots i{cursor:pointer;position:relative}
+  #dzdots i::after{content:"";position:absolute;inset:-8px}
+  #dzdots i:hover{transform:scale(1.35)}
+  .plx-dzp{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:#eef4ff;border:1px solid #cfe0ff;color:#23324d;font-size:.9rem;line-height:1.45}
+  .plx-dzp.soft{background:#f5f3ff;border-color:#ddd6fe;color:#3b2f6b}
+  .plx-dzp .btn{margin-top:8px;display:inline-flex}
+  .plx-dzhint{grid-column:1/-1;margin:2px 0 0;font-size:.78rem;color:var(--stone)}
+  html[data-theme=dark] .plx-dzp{background:#16233d;border-color:#2b3f66;color:#d6e2ff}
+  html[data-theme=dark] .plx-dzp.soft{background:#221c3d;border-color:#3f3470;color:#e4dcff}
+  `;
+  var st=document.createElement("style"); st.id="plx25"; st.textContent=css; document.head.appendChild(st);
+
+  /* 5) explicación visible junto al ajuste de puntuación */
+  function hint(){
+    if(view!=="dictee") return;
+    var seg=q('#dzset [aria-label="Puntuación"]'); if(!seg) return;
+    var row=seg.closest(".setrow"); if(!row) return;
+    var p=row.querySelector(".plx-dzhint"); if(!p){ p=document.createElement("p"); p.className="plx-dzhint"; row.appendChild(p); }
+    p.textContent=DZ.punct?"Dictada: se leen los signos («virgule», «point»…) y cada signo que falte resta ½ punto.":"No dictada: no se leen los signos y no restan puntos; solo te los mostramos como guía.";
+    var dots=q("#dzdots"); if(dots) dots.title="Toca un punto para escuchar ese grupo";
+  }
+  var _rd=render; render=function(){ var r=_rd.apply(this,arguments); try{ hint(); }catch(e){} return r; };
+  document.addEventListener("click",function(e){ if(e.target.closest&&e.target.closest("[data-dzset]")) setTimeout(hint,0); });
+})();
+</script><script id="plx26js">/* PLEX PLAY 1.12 — Taller de escritura: contexto → lectura → pregunta → respuesta */
+(function(){
+  "use strict";
+  if(typeof TASKS==="undefined"||typeof SOURCES==="undefined"||typeof viewAtelier!=="function") return;
+  var esc=function(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+
+  /* ---------- lecturas nuevas (textos de entrenamiento) ---------- */
+  var NEW={
+    mairie:[{t:"« Un Grand Prix en plein centre-ville ? »",s:"La Gazette de Villeneuve · article d'entraînement",x:
+"Le conseil municipal a voté jeudi soir, par 19 voix contre 14, le principe d'une course automobile dans les rues du centre-ville. L'épreuve aurait lieu du 12 au 14 juin prochain, sur un circuit de 3,2 kilomètres tracé entre la place de la Mairie et les quais.\n\nPour l'adjoint aux sports, « ce Grand Prix attirera près de 40 000 visiteurs et donnera un coup de fouet au commerce local ». La ville financerait l'aménagement à hauteur de 1,2 million d'euros.\n\nMais l'opposition s'organise. Une pétition lancée par l'association Centre-Ville Vivant a déjà recueilli 3 500 signatures. Les riverains redoutent le bruit, la pollution et la fermeture de quatorze rues pendant dix jours, montage compris. Plusieurs commerçants craignent au contraire de perdre leur clientèle habituelle.\n\nCertains proposent une autre solution : organiser l'événement sur l'ancien aérodrome, à cinq kilomètres de la ville, déjà accessible en bus. Le maire recevra les courriers des habitants jusqu'à la fin du mois."}],
+    radio:[{t:"Reportage : « Les jeunes lisent-ils encore ? »",s:"Transcription d'un reportage radio · texte d'entraînement",x:
+"Journaliste : Bonjour à tous. On entend souvent que les jeunes ne lisent plus. Pourtant, selon une enquête publiée en mars 2024 par le Centre national du livre, 81 % des 15-24 ans déclarent avoir lu au moins un livre dans l'année. C'est cinq points de plus qu'en 2019.\n\nLa différence, c'est la manière de lire. Près d'un jeune sur deux lit désormais sur un écran, et les mangas représentent aujourd'hui un livre vendu sur quatre en France. Les réseaux sociaux jouent aussi un rôle : sur TikTok, des lecteurs recommandent des romans à des millions d'abonnés.\n\nÉlodie, bibliothécaire à Lyon : « Depuis deux ans, des adolescents viennent avec une capture d'écran et demandent un titre précis. »\n\nMais l'enquête montre une autre réalité : le temps de lecture diminue. Les jeunes lisent en moyenne 3 heures par semaine, contre 4 h 30 en 2015. Le défi, conclut le sociologue Marc Duval, n'est plus de donner envie de lire, mais de protéger le temps de lecture."}],
+    modele:[{t:"Texte modèle — « Le marché du samedi »",s:"Description d'entraînement · observez les groupes nominaux",x:
+"Chaque samedi, la petite place pavée qui s'étend derrière l'église se transforme en un marché bruyant et coloré. Sous des parasols rayés de rouge et de blanc, des maraîchers aux mains calleuses disposent avec soin leurs légumes encore couverts de terre. Une vieille dame au chapeau de paille, que tout le monde appelle Mamie Rose, y vend depuis quarante ans des confitures dont elle garde jalousement la recette.\n\nL'air sent le pain chaud, le fromage de chèvre et les fraises des bois. On y croise des familles pressées, des étudiants encore endormis et des touristes qui photographient tout. Vers midi, lorsque les cloches sonnent, les voix se font plus douces : les marchands replient lentement leurs étals, et la place retrouve peu à peu son silence tranquille."}]
+  };
+  var DOSSIERS=[
+    {t:"Dossier — Les devoirs à la maison",x:"En France, les devoirs écrits sont en principe interdits à l'école primaire depuis 1956. Dans les faits, une enquête de 2022 montre que 8 parents sur 10 aident leurs enfants chaque soir, en moyenne 40 minutes. Les enseignants expliquent que les devoirs permettent de consolider les apprentissages. Mais des sociologues observent qu'ils creusent les inégalités : tous les parents n'ont ni le temps ni les connaissances pour accompagner leurs enfants. Certaines écoles proposent désormais des « études du soir » gratuites, encadrées par des étudiants, pour que le travail se fasse en classe plutôt qu'à la maison."},
+    {t:"Dossier — Travailler rend-il heureux ?",x:"Selon un baromètre publié en 2023, 62 % des salariés français se disent satisfaits de leur travail, mais 44 % déclarent ressentir une fatigue importante. Pour beaucoup, le travail apporte un revenu, mais aussi des relations sociales, une utilité et une place dans la société. Le psychologue Yves Clot rappelle que « le travail bien fait » est une source de fierté. À l'inverse, de plus en plus de jeunes diplômés quittent un poste bien payé pour un métier qui a plus de sens, et certains pays testent la semaine de quatre jours pour mieux concilier vie professionnelle et vie personnelle."},
+    {t:"Dossier — L'université et l'emploi",x:"En France, 88 % des diplômés de master ont un emploi dix-huit mois après leurs études. Les entreprises réclament des compétences directement utiles : langues, outils numériques, gestion de projet. Beaucoup d'universités développent donc les stages et l'alternance. Mais des enseignants-chercheurs défendent une autre mission : former des esprits critiques, capables de s'adapter à des métiers qui n'existent pas encore. Selon une étude de l'OCDE, un étudiant d'aujourd'hui changera plusieurs fois de métier au cours de sa vie. Pour eux, la culture générale et la réflexion restent la meilleure préparation."},
+    {t:"Dossier — La télévision a-t-elle encore sa place ?",x:"Les Français regardent encore la télévision environ trois heures par jour en moyenne, mais les 15-24 ans y consacrent moins d'une heure. Ils préfèrent les plateformes de vidéo et les réseaux sociaux, qu'ils consultent sur leur téléphone. Pour ses défenseurs, la télévision reste un moment partagé en famille et une source d'information vérifiée, avec des journalistes professionnels. Ses critiques rappellent qu'elle favorise la passivité et la sédentarité. Quelques familles ont choisi de vivre sans téléviseur : elles disent lire davantage et discuter plus, mais regardent parfois les mêmes programmes… sur un ordinateur."},
+    {t:"Dossier — Le télétravail après la crise sanitaire",x:"Avant 2020, environ 4 % des salariés français télétravaillaient régulièrement ; ils sont aujourd'hui près de 25 %, le plus souvent deux jours par semaine. Les salariés apprécient la réduction des trajets et une meilleure concentration. Les entreprises économisent sur les bureaux. Pourtant, une étude de 2023 signale que 30 % des télétravailleurs se sentent isolés, et certains managers craignent une perte d'esprit d'équipe. Par ailleurs, le télétravail ne concerne qu'un tiers des emplois : infirmiers, caissiers ou ouvriers ne peuvent pas travailler depuis chez eux, ce qui crée un sentiment d'injustice."}
+  ];
+  SOURCES.mairie=NEW.mairie; SOURCES.radio=NEW.radio; SOURCES.modele=NEW.modele;
+  DOSSIERS.forEach(function(d,i){ SOURCES["sj"+i]=[{t:d.t,s:"Dossier documentaire · texte d'entraînement",x:d.x}]; });
+
+  if(TASKS.lettre&&!TASKS.lettre.source) TASKS.lettre.source="mairie";
+  if(TASKS.restitution){ TASKS.restitution.source="radio"; TASKS.restitution.consigne="Lisez la transcription de ce reportage radio comme si vous l'écoutiez, puis résumez-le en cinq lignes. Notez précisément les chiffres et les dates."; }
+  if(TASKS.description&&!TASKS.description.source){ TASKS.description.source="modele"; TASKS.description.modelOnly=true; }
+  ["conclusion","paragraphe"].forEach(function(k){ var T=TASKS[k]; if(!T||T.source) return; Object.defineProperty(T,"source",{configurable:true,enumerable:true,get:function(){ return "sj"+(typeof atelier!=="undefined"&&SUJETS[atelier.sujet]?atelier.sujet:0); }}); });
+
+  /* ---------- contexto de cada tarea ---------- */
+  var CTX={
+    lettre:{sit:"Vives en Villeneuve, una ciudad mediana. El concejo municipal acaba de aprobar una carrera de autos en el centro y el alcalde recibe cartas de los habitantes hasta fin de mes.",who:"El alcalde (registro formal: <i>Monsieur le Maire</i>, vouvoiement).",goal:"Mostrar tu desacuerdo con argumentos y proponer una alternativa realista.",tips:["Usa datos del artículo (fechas, cifras, calles cerradas).","Estructura: objeto → presentación → argumentos → propuesta → fórmula de cortesía.","Conectores: <i>tout d'abord, de plus, en revanche, c'est pourquoi</i>."]},
+    conclusion:{sit:"Preparaste una exposición oral sobre el tema elegido y te falta el cierre. El dossier resume las ideas principales del debate.",who:"Tu profesor y tus compañeros de clase.",goal:"Cerrar con una respuesta matizada a la problemática y abrir una nueva pregunta.",tips:["Anuncia el cierre: <i>En définitive…, Au terme de cette réflexion…</i>","Responde con matices: <i>certes… mais…</i>","Termina con una apertura: <i>Reste à savoir si…</i>"]},
+    paragraphe:{sit:"En un foro de la universidad se debate el tema elegido. Tienes que defender una idea en un solo párrafo sólido.",who:"Estudiantes y profesores que participan en el foro.",goal:"Defender una idea directriz con dos argumentos y un ejemplo tomado del dossier.",tips:["Primera frase = tu idea directriz.","Un dato del dossier como ejemplo.","Varía los conectores: <i>en effet, par ailleurs, ainsi, pourtant</i>."]},
+    restitution:{sit:"En clase de comprensión oral, la profesora pone un reportaje de radio. Aquí tienes la transcripción para leerla como si la escucharas.",who:"Tu profesora, que verifica si entendiste lo esencial.",goal:"Resumir el reportaje en cinco líneas, sin olvidar cifras y fechas.",tips:["Anota primero: tema, cifras, fechas, personas citadas.","No copies frases enteras: reformula.","Sin opinión personal."]},
+    resume:{sit:"Tu universidad prepara un boletín con resúmenes de artículos de actualidad para los estudiantes que no tienen tiempo de leerlos completos.",who:"Estudiantes que no leyeron el texto original.",goal:"Reducir el texto a 70 palabras conservando el orden de las ideas y el punto de vista del autor.",tips:["Lee dos veces y subraya la idea de cada párrafo.","Escribe como si fueras el autor (sin nombrarlo).","Reformula: no copies expresiones del texto."]},
+    cr:{sit:"Tu profesor te pide un compte rendu del artículo para el dossier del curso.",who:"Tu profesor.",goal:"Presentar el documento y explicar la posición del autor en tercera persona.",tips:["Empieza presentando el documento: tipo, tema, autor si lo hay.","Verbos introductores: <i>l'auteur souligne, dénonce, nuance, conclut</i>.","Unas 100 palabras, sin tu opinión."]},
+    synthese:{sit:"Participas en una preparación al DALF C1. Te entregan dos documentos con puntos de vista distintos sobre el teletrabajo.",who:"Un lector que no conoce los documentos.",goal:"Confrontar las ideas de los dos documentos en un texto nuevo, con título.",tips:["Busca los puntos en común y las diferencias.","Organiza por ideas, no documento por documento.","Nada de opinión personal ni información externa."]},
+    essaiIA:{sit:"El periódico de tu universidad abre un debate sobre la inteligencia artificial en la educación y publica los mejores artículos de estudiantes.",who:"La comunidad universitaria.",goal:"Defender una tesis matizada apoyándote en el documento y en tus propios ejemplos.",tips:["Título llamativo + introducción con problemática.","Un argumento por párrafo, con ejemplo.","Conclusión con apertura."]},
+    description:{sit:"La revista estudiantil de la facultad publica una sección llamada « Mon lieu préféré ». Lee el texto modelo y fíjate en cómo se enriquecen los grupos nominales.",who:"Los lectores de la revista (estudiantes).",goal:"Describir una persona, un lugar o un objeto con grupos nominales ricos y precisos.",tips:["Adjetivos + complemento del nombre: <i>une place pavée, des mains calleuses</i>.","Relativas: <i>que tout le monde appelle…, dont elle garde…</i>","Los cinco sentidos: lo que se ve, se oye, se huele."]},
+    essai:{sit:"El periódico de la universidad organiza un debate: ¿el teletrabajo debe convertirse en la norma? Tienes dos documentos como punto de partida.",who:"Estudiantes, profesores y personal administrativo.",goal:"Escribir un artículo argumentativo con una tesis clara, apoyándote en los documentos.",tips:["Usa ideas de los dos documentos, pero con tus palabras.","Plan claro: introducción, 2–3 partes, conclusión.","Ejemplos concretos de tu entorno."]}
+  };
+
+  var css=`
+  .plx-at{display:grid;gap:12px}
+  .plx-st{position:relative;padding:14px 16px 14px 56px;border-radius:20px;background:var(--raise);border:1.5px solid var(--line);box-shadow:0 10px 24px -20px rgba(30,58,138,.5)}
+  .plx-st>.n{position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-weight:900;color:#fff;background:linear-gradient(180deg,#3274f2,#1e3a8a);box-shadow:0 3px 0 #172b6b}
+  .plx-st>h3{margin:2px 0 8px;font-size:1.02rem}
+  .plx-st>h3 small{font-weight:700;color:var(--stone);font-size:.78rem;margin-left:6px}
+  .plx-st.ctx{background:linear-gradient(180deg,#f3f7ff,var(--raise))}
+  .plx-st.read .annot{margin-top:8px!important}
+  .plx-st.read details.src>summary{font-weight:800}
+  .plx-st.ask .consigne{margin:0}
+  .plx-st.ans textarea{width:100%;box-sizing:border-box}
+  .plx-ctx dl{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin:0}
+  .plx-ctx dt{font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:#1e3a8a;padding-top:2px}
+  .plx-ctx dd{margin:0;line-height:1.45}
+  .plx-ctx ul{margin:8px 0 0;padding-left:18px}.plx-ctx li{margin:3px 0;line-height:1.4}
+  .plx-ctx .tt{margin-top:10px;font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--stone)}
+  .plx-mark{display:inline-block;margin:6px 0 0;font-size:.8rem;color:var(--stone)}
+  html[data-theme=dark] .plx-st.ctx{background:linear-gradient(180deg,#141d34,var(--raise))}
+  html[data-theme=dark] .plx-ctx dt{color:#93c5fd}
+  @media (max-width:560px){.plx-st{padding:12px 12px 12px 48px}.plx-st>.n{left:10px;width:28px;height:28px}.plx-ctx dl{grid-template-columns:1fr}}
+  `;
+  var st=document.createElement("style"); st.id="plx26"; st.textContent=css; document.head.appendChild(st);
+
+  function step(n,cls,title,sub,inner){ return '<section class="plx-st '+cls+'"><span class="n">'+n+'</span><h3>'+title+(sub?'<small>'+sub+'</small>':"")+'</h3>'+inner+"</section>"; }
+
+  var _va=viewAtelier;
+  viewAtelier=function(){
+    var html=_va.apply(this,arguments);
+    try{
+      var T=TASKS[atelier.task], C=CTX[atelier.task];
+      var w=document.createElement("div"); w.innerHTML=html;
+      var col=w.querySelector(".cols > .stack"); if(!col) return html;
+      var seg=col.querySelector('.seg[aria-label="Tarea"]'), sujet=col.querySelector("#sujet"), sujetL=sujet?sujet.closest("label"):null;
+      var cons=col.querySelector("p.consigne"), src=col.querySelector("details.src"), ta=col.querySelector("#atx");
+      if(!cons||!ta) return html;
+      var rest=[]; var n=ta; while(n){ rest.push(n); n=n.nextElementSibling; }
+      var at=document.createElement("div"); at.className="plx-at";
+      var h="";
+      if(C) h+=step(1,"ctx","Contexto","la situación",'<div class="plx-ctx"><dl><dt>Situación</dt><dd>'+C.sit+'</dd><dt>Quién lee</dt><dd>'+C.who+'</dd><dt>Objetivo</dt><dd>'+C.goal+'</dd></dl><div class="tt">Pistas</div><ul>'+C.tips.map(function(t){return "<li>"+t+"</li>"}).join("")+"</ul></div>");
+      var readInner="";
+      if(src){ src.open=true; var sm=src.querySelector("summary"); if(sm) sm.textContent=T.modelOnly?"Texto modelo":(SOURCES[T.source]&&SOURCES[T.source].length>1?"Documentos":"Documento"); readInner=src.outerHTML+(T.modelOnly?'<span class="plx-mark">Es solo un modelo: tu texto debe describir otra persona, lugar u objeto.</span>':""); }
+      h+=step(2,"read","Lectura",T.modelOnly?"lee el modelo":"lee antes de escribir",readInner||'<p class="note small">Esta tarea no tiene texto de apoyo.</p>');
+      h+=step(3,"ask","Pregunta","la consigna",(sujetL?sujetL.outerHTML:"")+cons.outerHTML);
+      at.innerHTML=h;
+      var ans=document.createElement("section"); ans.className="plx-st ans"; ans.innerHTML='<span class="n">4</span><h3>Respuesta<small>escribe en francés</small></h3>';
+      rest.forEach(function(el){ ans.appendChild(el); });
+      at.appendChild(ans);
+      if(sujetL) sujetL.remove(); cons.remove(); if(src) src.remove();
+      col.innerHTML=""; if(seg) col.appendChild(seg); col.appendChild(at);
+      return w.innerHTML;
+    }catch(e){ return html; }
+  };
+  /* cambiar de tema actualiza el dossier de lectura */
+  document.addEventListener("change",function(e){ if(e.target&&e.target.id==="sujet"&&view==="atelier") setTimeout(function(){ try{ render(); }catch(x){} },0); });
+})();
+</script><script id="plx27js">/* PLEX PLAY 1.12 — Perfil académico: semestre visible y fácil de elegir */
+(function(){
+  "use strict";
+  if(typeof render!=="function"||typeof TRACKS==="undefined") return;
+  var N=10;
+  function courses(n){ return TRACKS.filter(function(t){ return +t.semN===+n; }); }
+  function card(){
+    var G=gEnsure(), g=G.grp||"", cs=g?courses(g):[];
+    var btns=""; for(var i=1;i<=N;i++){ btns+='<button type="button" data-pgrp="'+i+'" aria-pressed="'+(String(i)===String(g))+'">'+i+"</button>"; }
+    return '<div class="gcard plx-acad'+(g?"":" empty")+'"><div class="pa-h"><span class="pa-i">🎓</span><div><h2>Perfil académico</h2><small>Licenciatura en Lenguas Extranjeras</small></div>'+
+      (g?'<span class="pa-now">Semestre '+g+"</span>":'<span class="pa-now none">Sin elegir</span>')+"</div>"+
+      '<p class="pa-q">'+(g?"Tu semestre actual (tócalo para cambiarlo):":"<b>¿En qué semestre estás?</b> Así apareces en la clasificación de tu semestre y tu docente ve tu avance.")+"</p>"+
+      '<div class="pa-grid" role="radiogroup" aria-label="Semestre">'+btns+"</div>"+
+      (g?'<div class="pa-c">'+(cs.length?cs.map(function(t){ return '<button type="button" class="pa-course" data-track="'+t.id+'" data-view="lecciones"><small>Tu curso</small><b>'+gh(t.label)+"</b><em>Ir a las lecciones →</em></button>"; }).join(""):'<p class="pa-note">Este semestre no tiene un curso de francés en PLEX PLAY: puedes practicar cualquier curso desde Lecciones.</p>')+
+        '<button type="button" class="pa-clear" data-pgrp="">Quitar semestre</button></div>':"")+"</div>";
+  }
+  function inject(){
+    if(view!=="perfil") return;
+    var v=document.getElementById("view"), head=v&&v.querySelector(".gperfil .prof-head"); if(!head) return;
+    var old=v.querySelector(".plx-acad"); if(old) old.remove();
+    head.insertAdjacentHTML("afterend",card());
+    var G=gEnsure(), sub=head.querySelector(".ph-sub");
+    if(sub&&G.grp&&!sub.querySelector(".pa-chip")) sub.insertAdjacentHTML("beforeend",' <span class="pa-chip">🎓 Semestre '+G.grp+"</span>");
+  }
+  var _rd=render; render=function(){ var r=_rd.apply(this,arguments); try{ inject(); }catch(e){} return r; };
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-pgrp]"); if(!b) return;
+    e.preventDefault();
+    var G=gEnsure(), v=b.dataset.pgrp;
+    if(String(G.grp||"")===v) return;
+    G.grp=v; save(!0); try{ typeof gPush==="function"&&gPush(!0); }catch(x){}
+    try{ typeof SFX!=="undefined"&&SFX.ok&&SFX.ok(); }catch(x){}
+    toast(v?"Semestre "+v+" guardado":"Semestre quitado"); render();
+  });
+  /* el curso del semestre también abre su pestaña en Lecciones */
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest(".pa-course"); if(!b) return;
+    e.preventDefault(); e.stopPropagation();
+    try{ track=b.dataset.track; lsSet("cr-track",track); }catch(x){}
+    go("lecciones");
+  },true);
+  var css=`
+  .plx-acad{padding:16px!important;margin:0 0 14px!important;display:grid;gap:10px;border:2px solid transparent}
+  .plx-acad.empty{border-color:#facc15;box-shadow:0 0 0 4px rgba(250,204,21,.18),0 14px 30px -22px rgba(30,58,138,.6)!important;animation:paGlow 2.4s ease-in-out infinite}
+  @keyframes paGlow{50%{box-shadow:0 0 0 7px rgba(250,204,21,.10),0 14px 30px -22px rgba(30,58,138,.6)}}
+  .pa-h{display:flex;align-items:center;gap:12px}
+  .pa-i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(180deg,#3274f2,#1e3a8a);box-shadow:0 3px 0 #172b6b;flex:none}
+  .pa-h h2{margin:0;font-size:1.1rem}.pa-h small{color:var(--stone);font-size:.8rem}
+  .pa-now{margin-left:auto;padding:7px 12px;border-radius:999px;background:#facc15;color:#1e3a8a;font-weight:900;font-size:.9rem;box-shadow:0 3px 0 #c9a10c;white-space:nowrap}
+  .pa-now.none{background:var(--surf3);color:var(--stone);box-shadow:none}
+  .pa-q{margin:0;font-size:.9rem;color:var(--stone);line-height:1.4}.pa-q b{color:var(--ink)}
+  .pa-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+  .pa-grid button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:10px 0;border-radius:12px;font-weight:900;font-size:1rem;background:var(--surf3);color:var(--stone);border-bottom:3px solid transparent;transition:transform .12s,background .2s}
+  .pa-grid button:hover{transform:translateY(-2px)}
+  .pa-grid button:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}
+  .pa-grid button[aria-pressed=true]{background:linear-gradient(180deg,#3274f2,#2563eb);color:#fff;border-bottom-color:#1e3a8a;transform:translateY(-2px)}
+  .pa-c{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .pa-course{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 220px;display:grid;gap:1px;padding:10px 14px;border-radius:16px;background:#eef4ff;border:1.5px solid #cfe0ff}
+  .pa-course small{font-size:.72rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#2563eb}.pa-course b{font-size:1rem}.pa-course em{font-style:normal;font-size:.8rem;color:#2563eb;font-weight:700}
+  .pa-clear{all:unset;cursor:pointer;font-size:.8rem;color:var(--stone);text-decoration:underline;padding:4px}
+  .pa-note{margin:0;font-size:.85rem;color:var(--stone)}
+  .pa-chip{display:inline-block;margin-left:4px;padding:2px 9px;border-radius:999px;background:#fef3c7;color:#854d0e;font-weight:800;font-size:.8rem;white-space:nowrap}
+  html[data-theme=dark] .pa-course{background:#16233d;border-color:#2b3f66}
+  html[data-theme=dark] .pa-chip{background:#3a2f0b;color:#fde68a}
+  @media (max-width:560px){.pa-grid{grid-template-columns:repeat(5,1fr)}.pa-h h2{font-size:1rem}}
+  @media (prefers-reduced-motion:reduce){.plx-acad.empty{animation:none}}
+  `;
+  var st=document.createElement("style"); st.id="plx27"; st.textContent=css; document.head.appendChild(st);
 })();
 </script><script>"serviceWorker"in navigator&&location.protocol!=="file:"&&addEventListener("load",()=>navigator.serviceWorker.register("sw.js").then(r=>{r.addEventListener("updatefound",()=>{const w=r.installing;w&&w.addEventListener("statechange",()=>{w.state==="installed"&&navigator.serviceWorker.controller&&typeof toast=="function"&&toast("Hay una versión nueva: recarga la página para usarla.")})})}).catch(()=>{}));
 </script>
