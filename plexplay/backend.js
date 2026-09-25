@@ -38,8 +38,9 @@
   /* ---------- perfil propio ---------- */
   PCB.loadMe=async()=>{
     const s=await PCB.ready; if(!s) return null;
-    const {data}=await sb.from("profiles").select("id,nick,cat,grp,xp,wxp,wk,streak,lvl,done,ach,is_teacher,at").eq("id",s.user.id).maybeSingle();
-    PCB.me=data||null; return PCB.me;
+    let r=await sb.from("profiles").select("id,nick,cat,grp,xp,wxp,wk,streak,lvl,done,ach,is_teacher,is_admin,at").eq("id",s.user.id).maybeSingle();
+    if(r.error) r=await sb.from("profiles").select("id,nick,cat,grp,xp,wxp,wk,streak,lvl,done,ach,is_teacher,at").eq("id",s.user.id).maybeSingle();   // antes de instalar el modo docente
+    PCB.me=r.data||null; PCB.meLoaded=true; return PCB.me;
   };
 
   /* ---------- adaptador de base de datos ---------- */
@@ -98,9 +99,9 @@
     PCB.aiLeft=d.left;
     return d.result;
   }
-  PCB.transcribe=async(b64,mime)=>{
+  PCB.transcribe=async(b64,mime,expected)=>{
     const t=await token(); if(!t) throw {code:"session_expired"};
-    let r; try{ r=await fetch(CFG.url+"/functions/v1/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t,apikey:CFG.key},body:JSON.stringify({kind:"speak",audio:b64,mime:mime||"audio/wav"})}); }
+    let r; try{ r=await fetch(CFG.url+"/functions/v1/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t,apikey:CFG.key},body:JSON.stringify({kind:"speak",audio:b64,mime:mime||"audio/wav",expected:String(expected||"").slice(0,300)})}); }
     catch(e){ throw {code:navigator.onLine?"provider_error":"offline"}; }
     let d={}; try{ d=await r.json(); }catch(e){}
     if(!r.ok) throw {code:d.code||("http-"+r.status)};
@@ -130,5 +131,34 @@
   PCB.closeReports=async ids=>{ const {error}=await sb.from("reports").update({status:"done"}).in("id",ids); if(error) throw error; };
   PCB.roster=async grp=>{ const {data,error}=await sb.rpc("teacher_roster",{p_grp:grp||null}); if(error) throw error; return data||[]; };
   PCB.states=async ids=>{ if(!ids.length) return []; const {data,error}=await sb.from("progress").select("user_id,state,updated_at").in("user_id",ids); if(error) throw error; return data||[]; };
+  /* ---------- modo docente: clases, tareas y avisos ---------- */
+  const ok=r=>{ if(r.error) throw r.error; return r.data; };
+  PCB.claimTeacher=async()=>{ const r=await sb.rpc("claim_teacher"); if(r.error) return !!(PCB.me&&PCB.me.is_teacher); if(PCB.me) PCB.me.is_teacher=!!r.data; return !!r.data; };
+  PCB.myClasses=async()=>ok(await sb.rpc("my_classes"))||[];
+  PCB.createClass=async c=>ok(await sb.from("classes").insert({name:c.name,course:c.course||null,grp:c.grp||null}).select("id,name,course,grp,code,archived,created_at").single());
+  PCB.updateClass=async(id,c)=>ok(await sb.from("classes").update(c).eq("id",id));
+  PCB.deleteClass=async id=>ok(await sb.from("classes").delete().eq("id",id));
+  PCB.classRoster=async id=>ok(await sb.rpc("class_roster",{p_class:id}))||[];
+  PCB.removeMember=async(cls,uid)=>ok(await sb.from("class_members").delete().eq("class_id",cls).eq("user_id",uid));
+  PCB.assignments=async ids=>ids.length?(ok(await sb.from("assignments").select("id,class_id,title,lessons,note,due,created_at").in("class_id",ids).order("created_at",{ascending:false}).limit(200))||[]):[];
+  PCB.addAssignment=async a=>ok(await sb.from("assignments").insert(a).select("id,class_id,title,lessons,note,due,created_at").single());
+  PCB.delAssignment=async id=>ok(await sb.from("assignments").delete().eq("id",id));
+  PCB.announcements=async ids=>ids.length?(ok(await sb.from("announcements").select("id,class_id,body,created_at").in("class_id",ids).order("created_at",{ascending:false}).limit(100))||[]):[];
+  PCB.addAnnouncement=async a=>ok(await sb.from("announcements").insert(a).select("id,class_id,body,created_at").single());
+  PCB.delAnnouncement=async id=>ok(await sb.from("announcements").delete().eq("id",id));
+  PCB.teacherEmails=async()=>ok(await sb.from("teacher_emails").select("email,name,added_at").order("added_at",{ascending:false}))||[];
+  PCB.addTeacherEmail=async(email,name)=>ok(await sb.from("teacher_emails").insert({email:email.toLowerCase().trim(),name:name||null}));
+  PCB.delTeacherEmail=async email=>ok(await sb.from("teacher_emails").delete().eq("email",email));
+  // lado del estudiante
+  PCB.joinClass=async code=>ok(await sb.rpc("join_class",{p_code:code}));
+  PCB.myMemberships=async()=>{
+    const cls=ok(await sb.from("classes").select("id,name,course,teacher_id,archived").eq("archived",false))||[];
+    const mine=cls.filter(c=>c.teacher_id!==PCB.uid);
+    const tids=[...new Set(mine.map(c=>c.teacher_id))];
+    const tp=tids.length?(ok(await sb.from("profiles").select("id,nick").in("id",tids))||[]):[];
+    mine.forEach(c=>{ const t=tp.find(x=>x.id===c.teacher_id); c.teacher=(t&&t.nick)||"Tu docente"; });
+    return mine;
+  };
+  PCB.leaveClass=async id=>ok(await sb.from("class_members").delete().eq("class_id",id).eq("user_id",PCB.uid));
   PCB.profile=async id=>{ const {data}=await sb.from("profiles").select(PROFILE_COLS).eq("id",id).maybeSingle(); return data; };
 })();

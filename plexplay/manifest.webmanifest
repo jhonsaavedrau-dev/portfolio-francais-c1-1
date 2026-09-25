@@ -1,8 +1,8 @@
 {
  "id": "/plexplay/",
- "name": "PLEX PLAY — Francés B2→C1",
+ "name": "PLEX PLAY: francés de A1 a C1",
  "short_name": "PLEX PLAY",
- "description": "Curso de francés B2→C1 para hispanohablantes: gramática, texto académico (résumé, synthèse, essai) y repaso espaciado, en sesiones cortas.",
+ "description": "Juego para aprender francés de A1 a C1 con los cursos de la Licenciatura en Lenguas Extranjeras: lecciones cortas, retos, pronunciación y texto académico.",
  "lang": "es",
  "dir": "ltr",
  "start_url": "./",
