@@ -148,12 +148,30 @@
   var HAVE={g:{},a:{}}, ANY=false;
   function coatFile(k){ return FILE[k]||k; }
   try{ fetch("img/gatos/lista.json",{cache:"no-cache"}).then(function(r){ return r.ok?r.json():null; }).then(function(j){ if(!j) return; (j.gatos||[]).forEach(function(n){ HAVE.g[n]=1; }); (j.accesorios||[]).forEach(function(n){ HAVE.a[n]=1; }); ANY=Object.keys(HAVE.g).length>0; if(ANY) try{ render(); }catch(e){} }).catch(function(){}); }catch(e){}
+  var UNIF=function(){
+    var U="#16171D",UD="#0E0F14";
+    return '<path d="M53 136 Q39 150 42 168 L60 165 Q59 150 66 138 Z" fill="'+U+'"/><path d="M147 136 Q161 150 158 168 L140 165 Q141 150 134 138 Z" fill="'+U+'"/>'+
+      '<path d="M43 160 L60 157" stroke="#FFFFFF" stroke-width="2.6"/><path d="M43 164 L60 161" stroke="#D7263D" stroke-width="2.6"/><path d="M42.5 156 L60.5 153" stroke="#1D3B7A" stroke-width="2.6"/>'+
+      '<path d="M157 160 L140 157" stroke="#FFFFFF" stroke-width="2.6"/><path d="M157 164 L140 161" stroke="#D7263D" stroke-width="2.6"/><path d="M157.5 156 L139.5 153" stroke="#1D3B7A" stroke-width="2.6"/>'+
+      '<path d="M58 134 Q64 124 100 122 Q136 124 142 134 L148 174 Q100 186 52 174 Z" fill="'+U+'"/>'+
+      '<path d="M52 172 Q100 184 148 172 L150 186 Q130 192 112 187 L100 180 L88 187 Q70 192 50 186 Z" fill="'+UD+'"/>'+
+      '<path d="M84 124 L100 144 L116 124" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/><path d="M88 124 L100 139 L112 124" fill="none" stroke="#D7263D" stroke-width="2.4" stroke-linejoin="round"/>'+
+      '<path d="M100 144 V160" stroke="#2A2C36" stroke-width="2"/><circle cx="100" cy="150" r="1.6" fill="#E9E9EE"/><circle cx="100" cy="156" r="1.6" fill="#E9E9EE"/>'+
+      '<image href="img/escudo.webp" x="61" y="153" width="12" height="21" preserveAspectRatio="xMidYMid meet"/>';
+  };
+  /* encuadre de las ilustraciones: ojos en (88.5,85.7) y (130.8,85.7) sobre 200 */
+  var T_ACC='translate(24.6 -1.6) scale(.85)', T_UNI='translate(32.75 -1.25) scale(.8125 .984)';
   function rasterCat(g,o){
     var f=coatFile(g.coat||"gris"), mood=o.mood||"happy"; if(!HAVE.g[f]) return null;
-    var src=HAVE.g[f+"-"+mood]?f+"-"+mood:f, acc=g.acc||{}, over="", svgAcc={};
-    Object.keys(acc).forEach(function(slot){ var v=acc[slot]; if(!v||v==="sin"||slot==="body") return; var af=AFILE[v]||v; if(HAVE.a[af]) over+='<image href="img/gatos/accesorios/'+af+'.webp" x="0" y="0" width="200" height="200"/>'; else svgAcc[slot]=v; });
-    var s='<svg viewBox="0 0 200 200" class="cat raster '+(o.cls||"")+'" role="img" aria-label="'+(o.label||"Gato")+'" xmlns="http://www.w3.org/2000/svg"><image href="img/gatos/'+src+'.webp" x="0" y="0" width="200" height="200"/>'+over;
-    if(Object.keys(svgAcc).length){ var P=accParts(svgAcc,mood,o.sparkle); s+=P.front; }
+    var src=HAVE.g[f+"-"+mood]?f+"-"+mood:f, acc=g.acc||{}, pngOver="", svgAcc={};
+    Object.keys(acc).forEach(function(slot){ var v=acc[slot]; if(!v||v==="sin"||slot==="body") return; var af=AFILE[v]||v; if(HAVE.a[af]) pngOver+='<image href="img/gatos/accesorios/'+af+'.webp" x="0" y="0" width="200" height="200"/>'; else svgAcc[slot]=v; });
+    var P=Object.keys(svgAcc).length||o.sparkle?accParts(svgAcc,mood,o.sparkle):{back:"",front:""};
+    var s='<svg viewBox="0 0 200 200" class="cat raster '+(o.cls||"")+'" role="img" aria-label="'+(o.label||"Gato")+'" xmlns="http://www.w3.org/2000/svg">';
+    s+='<ellipse cx="112" cy="195" rx="54" ry="5" fill="rgba(30,40,80,.13)"/>';
+    if(P.back) s+='<g transform="'+T_ACC+'">'+P.back+'</g>';
+    s+='<image href="img/gatos/'+src+'.webp" x="0" y="0" width="200" height="200"/>';
+    if(acc.body!=="sin") s+='<g transform="'+T_UNI+'">'+UNIF()+'</g>';
+    s+=pngOver+(P.front?'<g transform="'+T_ACC+'">'+P.front+'</g>':"");
     return s+"</svg>";
   }
 
