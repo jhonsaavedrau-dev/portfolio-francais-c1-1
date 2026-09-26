@@ -41,6 +41,7 @@
     return P;
   }
 
+  window.PLXCatPattern=pattern; window.PLXNewCoats=NEW;
   var _cs=catSVG;
   catSVG=function(g,o){
     g=g||{}; var k=COATS[g.coat];
