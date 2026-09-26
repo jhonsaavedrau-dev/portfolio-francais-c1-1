@@ -147,7 +147,7 @@
   var AFILE={gafassol:"gafas-sol"};
   var HAVE={g:{},a:{}}, ANY=false;
   function coatFile(k){ return FILE[k]||k; }
-  try{ fetch("img/gatos/lista.json",{cache:"no-cache"}).then(function(r){ return r.ok?r.json():null; }).then(function(j){ if(!j) return; (j.gatos||[]).forEach(function(n){ HAVE.g[n]=1; }); (j.accesorios||[]).forEach(function(n){ HAVE.a[n]=1; }); ANY=Object.keys(HAVE.g).length>0; if(ANY) try{ render(); }catch(e){} }).catch(function(){}); }catch(e){}
+  try{ fetch("img/gatos/lista.json",{cache:"no-cache"}).then(function(r){ return r.ok?r.json():null; }).then(function(j){ if(!j) return; var G=j.gatos||[]; if(Array.isArray(G)) G.forEach(function(n){ HAVE.g[n]={m:[109.6,83.4,44.2],u:[114,118.8,185.7,78]}; }); else Object.keys(G).forEach(function(n){ HAVE.g[n]=G[n]; }); (j.accesorios||[]).forEach(function(n){ HAVE.a[n]=1; }); ANY=Object.keys(HAVE.g).length>0; if(ANY) try{ render(); }catch(e){} }).catch(function(){}); }catch(e){}
   var UNIF=function(){
     var U="#16171D",UD="#0E0F14";
     return '<path d="M53 136 Q39 150 42 168 L60 165 Q59 150 66 138 Z" fill="'+U+'"/><path d="M147 136 Q161 150 158 168 L140 165 Q141 150 134 138 Z" fill="'+U+'"/>'+
@@ -163,11 +163,13 @@
   var T_ACC='translate(24.6 -1.6) scale(.85)', T_UNI='translate(32.75 -1.25) scale(.8125 .984)';
   function rasterCat(g,o){
     var f=coatFile(g.coat||"gris"), mood=o.mood||"happy"; if(!HAVE.g[f]) return null;
-    var src=HAVE.g[f+"-"+mood]?f+"-"+mood:f, acc=g.acc||{}, pngOver="", svgAcc={};
+    var src=HAVE.g[f+"-"+mood]?f+"-"+mood:f, acc=g.acc||{}, pngOver="", svgAcc={}, C=HAVE.g[f];
+    var k=C.m[2]/52, T_ACC="translate("+(C.m[0]-100*k).toFixed(2)+" "+(C.m[1]-100*k).toFixed(2)+") scale("+k.toFixed(4)+")";
+    var sx=C.u[3]/96, sy=(C.u[2]-C.u[1])/68, T_UNI="translate("+(C.u[0]-100*sx).toFixed(2)+" "+(C.u[1]-122*sy).toFixed(2)+") scale("+sx.toFixed(4)+" "+sy.toFixed(4)+")";
     Object.keys(acc).forEach(function(slot){ var v=acc[slot]; if(!v||v==="sin"||slot==="body") return; var af=AFILE[v]||v; if(HAVE.a[af]) pngOver+='<image href="img/gatos/accesorios/'+af+'.webp" x="0" y="0" width="200" height="200"/>'; else svgAcc[slot]=v; });
     var P=Object.keys(svgAcc).length||o.sparkle?accParts(svgAcc,mood,o.sparkle):{back:"",front:""};
     var s='<svg viewBox="0 0 200 200" class="cat raster '+(o.cls||"")+'" role="img" aria-label="'+(o.label||"Gato")+'" xmlns="http://www.w3.org/2000/svg">';
-    s+='<ellipse cx="112" cy="195" rx="54" ry="5" fill="rgba(30,40,80,.13)"/>';
+    s+='<ellipse cx="'+C.m[0]+'" cy="195" rx="50" ry="5" fill="rgba(30,40,80,.13)"/>';
     if(P.back) s+='<g transform="'+T_ACC+'">'+P.back+'</g>';
     s+='<image href="img/gatos/'+src+'.webp" x="0" y="0" width="200" height="200"/>';
     if(acc.body!=="sin") s+='<g transform="'+T_UNI+'">'+UNIF()+'</g>';
