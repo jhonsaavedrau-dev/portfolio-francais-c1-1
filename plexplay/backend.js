@@ -36,7 +36,7 @@
   }catch(e){}
 
   let session=null;
-  PCB.ready=sb.auth.getSession().then(r=>{ session=r.data.session||null; if(session){ PCB.uid=session.user.id; PCB.email=session.user.email; PCB.hasPw=!!((session.user.user_metadata||{}).pw); } return session; }).catch(()=>null);
+  PCB.ready=sb.auth.getSession().then(r=>{ session=r.data.session||null; if(session){ if(window.PLX_HOLD){ window.PLX_HOLD=false; try{ window.render&&render(); }catch(e){} } PCB.uid=session.user.id; PCB.email=session.user.email; PCB.hasPw=!!((session.user.user_metadata||{}).pw); } return session; }).catch(()=>null);
   sb.auth.onAuthStateChange((_ev,s)=>{ session=s||null; });
   const token=async()=>{ const s=(await sb.auth.getSession()).data.session; return s&&s.access_token; };
 

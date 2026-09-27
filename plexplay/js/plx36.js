@@ -91,6 +91,27 @@
      p:[["lui","Louis"],["nuit","nous"],["suis","sous"]],
      ot:"ou, con los labios como en «tout»",
      s:[["Il est huit heures, il fait nuit.","Son las ocho, es de noche."],["En juillet, je mange des fruits.","En julio como frutas."]]}
+    ,{id:"ee",ipa:"e · ɛ",ti:"[e], la e cerrada",name:"La é cerrada y la è abierta",ex:"été · mère",c:"#0369a1",sp:["é, -er, -ez, -et (cerrada)","è, ê, ai, -ais, -ait (abierta)"],
+     how:"Para [e] (é) sonríe un poco y cierra la boca casi como para decir «i». Para [ɛ] (è) abre más la boca y baja la mandíbula, como una e española bien abierta.",
+     ojo:"Cambia el sentido y el tiempo del verbo: «j'ai mangé» (comí) no es «je mangeais» (comía). Si todo te suena igual, exagera la sonrisa en é.",
+     w:[["été","verano"],["café","café"],["parler","hablar"],["nez","nariz"],["mère","madre"],["fête","fiesta"],["lait","leche"],["j'aimais","yo amaba"]],
+     p:[["été","était"],["fée","fait"],["allé","allait"],["mangé","mangeait"]],
+     ot:"[ɛ], la e abierta",
+     s:[["L'été, ma mère fait la fête.","En verano, mi madre hace fiesta."],["J'ai mangé, puis je parlais.","Comí y luego hablaba."]]},
+    {id:"oo",ipa:"o · ɔ",ti:"[o], la o cerrada",name:"La o cerrada y la o abierta",ex:"beau · porte",c:"#b45309",sp:["au, eau, ô, o al final (cerrada)","o + consonante que suena (abierta)"],
+     how:"Para [o] (beau) redondea mucho los labios, como un pequeño círculo, y cierra la boca. Para [ɔ] (porte) abre más la boca; la o queda más cerca de la «a».",
+     ojo:"«La paume» (la palma) y «la pomme» (la manzana) solo cambian en esto. Truco: au, eau y ô casi siempre son cerradas.",
+     w:[["beau","bello"],["gâteau","pastel"],["photo","foto"],["hôtel","hotel"],["porte","puerta"],["école","escuela"],["pomme","manzana"],["homme","hombre"]],
+     p:[["paume","pomme"],["saule","sol"],["côte","cote"],["hausse","os"]],
+     ot:"[ɔ], la o abierta",
+     s:[["Il y a un beau gâteau à l'hôtel.","Hay un pastel bonito en el hotel."],["L'homme ouvre la porte de l'école.","El hombre abre la puerta de la escuela."]]},
+    {id:"li",ipa:"‿z",ti:"liaison: la s final suena [z] y se une a la vocal",name:"La liaison (unión de palabras)",ex:"les‿amis",c:"#0f766e",sp:["s, x + vocal → [z]: les‿amis","n + vocal → [n]: un‿ami","t, d + vocal → [t]: petit‿ami"],
+     how:"Cuando una palabra termina en una consonante que normalmente no suena (s, x, n, t) y la siguiente empieza por vocal, esa consonante sí suena y se pega a la vocal: «les amis» se dice [le-za-mi].",
+     ojo:"«Ils ont» (tienen) y «ils sont» (son) solo cambian en esto: [il-zɔ̃] con z suave, [il-sɔ̃] con s fuerte. Si dices s fuerte, cambias el verbo.",
+     w:[["les amis","los amigos"],["vous avez","ustedes tienen"],["deux enfants","dos niños"],["un ami","un amigo"],["petit ami","novio"],["ils arrivent","ellos llegan"],["nous aimons","nosotros amamos"],["très utile","muy útil"]],
+     p:[["ils ont","ils sont"],["vous avez","vous savez"],["nous avons","nous savons"],["elles ont","elles sont"]],
+     ot:"una s fuerte, sin unión",
+     s:[["Mes amis ont deux enfants.","Mis amigos tienen dos niños."],["Vous avez un petit ami ?","¿Usted tiene novio?"]]}
   ];
   window.__SND=SND;
   var byId={}; SND.forEach(function(x){ byId[x.id]=x; });
@@ -126,7 +147,7 @@
     reset();
     var done=SND.filter(function(x){ return stars(x.id)>0; }).length;
     return '<section class="gview snd">'+backBtn("retos","Retos")+
-      '<div class="snd-hero"><div><small>Pronunciación · A1</small><h1>Sonidos del francés</h1><p>Los 12 sonidos del francés que no existen en español. Escúchalos, repítelos con el micrófono y entrena el oído con palabras que solo cambian en ese sonido.</p>'+
+      '<div class="snd-hero"><div><small>Pronunciación · A1</small><h1>Sonidos del francés</h1><p>Los '+SND.length+' sonidos del francés que más cuestan a quien habla español. Escúchalos, repítelos con el micrófono y entrena el oído con palabras que solo cambian en ese sonido.</p>'+
       '<div class="snd-pb"><i style="width:'+Math.round(done/SND.length*100)+'%"></i></div><small class="snd-pbt">'+done+" de "+SND.length+" sonidos practicados</small></div>"+
       '<img src="img/mz-gafas.webp" alt="" class="snd-mz"></div>'+
       '<div class="snd-grid">'+SND.map(function(x){ var n=stars(x.id);
@@ -189,7 +210,7 @@
       '<div class="snd-prog"><i style="width:'+(ST.i/ST.list.length*100)+'%"></i></div><p class="snd-n">'+(ST.i+1)+" / "+ST.list.length+" · "+ST.ok+" aciertos</p>"+
       '<div class="snd-q"><small>¿Cuál oíste?</small><div class="snd-rep-a"><button class="snd-ic big" data-sndq="play" aria-label="Escuchar otra vez">'+SPK+'</button><button class="snd-ic" data-sndq="slow" aria-label="Escuchar despacio">🐢</button></div>'+
       '<div class="snd-opts">'+q.opts.map(function(o){ var cls=a==null?"":o===q.say?" ok":o===a?" ko":""; return '<button class="snd-opt'+cls+'" data-sndans="'+esc(o)+'" '+(a!=null?"disabled":"")+">"+esc(o)+"</button>"; }).join("")+"</div>"+
-      (a!=null?'<div class="snd-fb '+(a===q.say?"ok":"ko")+'"><b>'+(a===q.say?"¡Exacto!":"Era «"+esc(q.say)+"».")+'</b><p>«'+esc(q.t)+"» tiene ["+esc(x.ipa)+"]; «"+esc(q.o)+"» tiene "+esc(x.ot)+'.</p><div class="snd-rep-a">'+q.opts.map(function(o){ return '<button class="gbtn ghost sm" data-sndplay="'+esc(o)+'">🔊 '+esc(o)+"</button>"; }).join("")+'</div></div><button class="gbtn wide" data-sndgo="qnext">Continuar</button>':"")+
+      (a!=null?'<div class="snd-fb '+(a===q.say?"ok":"ko")+'"><b>'+(a===q.say?"¡Exacto!":"Era «"+esc(q.say)+"».")+'</b><p>«'+esc(q.t)+"» tiene "+esc(x.ti||("["+x.ipa+"]"))+"; «"+esc(q.o)+"» tiene "+esc(x.ot)+'.</p><div class="snd-rep-a">'+q.opts.map(function(o){ return '<button class="gbtn ghost sm" data-sndplay="'+esc(o)+'">🔊 '+esc(o)+"</button>"; }).join("")+'</div></div><button class="gbtn wide" data-sndgo="qnext">Continuar</button>':"")+
       "</div></section>";
   }
   function startQuiz(x){
@@ -254,14 +275,14 @@
 
   /* ------------------------------ accesos ------------------------------ */
   var BANNER=function(){ var done=SND.filter(function(x){ return stars(x.id)>0; }).length;
-    return '<button class="snd-banner" data-am="sonidos"><span class="sb-ipa">[y] [ɑ̃] [ʁ]</span><span class="sb-t"><b>Sonidos del francés</b><small>Los 12 sonidos que no existen en español · '+done+"/"+SND.length+" practicados</small></span><span class=\"sb-go\">›</span></button>"; };
+    return '<button class="snd-banner" data-am="sonidos"><span class="sb-ipa">[y] [ɑ̃] [ʁ]</span><span class="sb-t"><b>Sonidos del francés</b><small>Los '+SND.length+' sonidos que más cuestan · '+done+"/"+SND.length+" practicados</small></span><span class=\"sb-go\">›</span></button>"; };
   var _rd=render;
   render=function(){
     var r=_rd.apply(this,arguments);
     try{
       if(view==="retos"){
         var f=document.querySelector("#view .am-feat");
-        if(f&&!f.querySelector(".amf.snd")) f.insertAdjacentHTML("afterbegin",'<button class="amf snd" data-am="sonidos"><span class="amf-i">🗣️</span><b>Sonidos del francés</b><small>12 sonidos que no existen en español</small></button>');
+        if(f&&!f.querySelector(".amf.snd")) f.insertAdjacentHTML("afterbegin",'<button class="amf snd" data-am="sonidos"><span class="amf-i">🗣️</span><b>Sonidos del francés</b><small>'+SND.length+' sonidos que más cuestan</small></button>');
       }
       if(view==="lecciones"&&typeof track!=="undefined"&&/^(a1|a2|fon)$/.test(track)){
         var bar=document.querySelector("#view .lx-bar");
