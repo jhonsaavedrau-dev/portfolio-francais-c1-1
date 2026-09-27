@@ -292,6 +292,8 @@
   .plx-errl small{color:var(--stone);font-size:.78rem;word-break:break-all}
   .plx-errn{min-width:30px;height:30px;border-radius:99px;display:grid;place-items:center;background:#fee2e2;color:#991b1b;font-weight:800;font-size:.85rem}
   .lb-scope{flex-wrap:wrap}
+  #tabbar.tabbar:has(>button:nth-child(5)){grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  #tabbar.tabbar:has(>button:nth-child(5)) button{font-size:.66rem!important}
   `;
   var st=document.createElement("style"); st.id="plx34"; st.textContent=css; document.head.appendChild(st);
 })();
