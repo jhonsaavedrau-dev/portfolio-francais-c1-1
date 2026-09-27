@@ -6,13 +6,18 @@
    ===================================================================== */
 (function(){
   const CFG=window.PC_CONFIG||{};
-  const ON=!!(CFG.url&&CFG.key&&window.supabase&&window.supabase.createClient);
-  const PCB=window.PCB={enabled:ON,domain:"unipamplona.edu.co"};
-  if(!ON) return;
+  const CFGOK=!!(CFG.url&&CFG.key&&window.supabase&&window.supabase.createClient);
+  const ON=CFGOK&&!window.PLX_DEMO;   // en modo demo la app funciona sin cuenta ni servidor
+  const PCB=window.PCB={enabled:ON,domain:"unipamplona.edu.co",demo:!!window.PLX_DEMO};
+  if(!ON){
+    // en la demo solo se usa el servidor para reportar errores de la app (sin sesión)
+    if(CFGOK) try{ PCB.logSb=supabase.createClient(CFG.url,CFG.key,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false,storageKey:"pc-auth-demo"}}); }catch(e){}
+    return;
+  }
 
   const AUTH_KEY="pc-auth";
   const sb=supabase.createClient(CFG.url,CFG.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,storageKey:AUTH_KEY}});
-  PCB.sb=sb;
+  PCB.sb=sb; PCB.logSb=sb;
 
   // sesión guardada (lectura síncrona, para decidir antes de que arranque la app)
   let stored=null; try{ stored=JSON.parse(localStorage.getItem(AUTH_KEY)||"null"); }catch(e){}
