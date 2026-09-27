@@ -15,8 +15,8 @@
     try{ clearLocal(); localStorage.setItem("plx-demo","1"); localStorage.removeItem("plx-after-demo"); }catch(e){}
     location.reload();
   }
-  function demoExit(){
-    try{ clearLocal(); localStorage.removeItem("plx-demo"); localStorage.setItem("plx-after-demo","signup"); }catch(e){}
+  function demoExit(to){
+    try{ clearLocal(); localStorage.removeItem("plx-demo"); localStorage.setItem("plx-after-demo",to||"signup"); }catch(e){}
     save=function(){};   // que la demo no vuelva a guardarse al salir
     location.reload();
   }
@@ -49,9 +49,10 @@
     }
     // al salir de la demo se abre directamente «Crear cuenta»
     try{
-      if(localStorage.getItem("plx-after-demo")==="signup"&&typeof pcLogin!=="undefined"&&typeof pcLoginRender==="function"){
+      var after=localStorage.getItem("plx-after-demo");
+      if(after&&typeof pcLogin!=="undefined"&&typeof pcLoginRender==="function"){
         localStorage.removeItem("plx-after-demo");
-        pcLogin.intro=false; pcLogin.mode="signup"; pcLogin.step=0; pcLogin.role="student"; pcLoginRender();
+        pcLogin.intro=false; pcLogin.mode=after==="login"?"login":"signup"; pcLogin.step=0; pcLogin.role="student"; pcLoginRender();
       }
     }catch(e){}
   }
@@ -61,14 +62,14 @@
     if(end&&!end.querySelector(".plx-demo-pill")) end.insertAdjacentHTML("afterbegin",'<button type="button" class="plx-demo-pill" data-plx-demo="info" aria-label="Modo demo: más información">Demo</button>');
     if(typeof view!=="undefined"&&view==="inicio"){
       var v=document.getElementById("view");
-      if(v&&!v.querySelector(".plx-demo-band")) v.insertAdjacentHTML("afterbegin",'<button type="button" class="plx-demo-band" data-plx-demo="info"><span class="pdb-k">Modo demo</span><span>Tu progreso se queda en este dispositivo.</span><b>Crear mi cuenta ›</b></button>');
+      if(v&&!v.querySelector(".plx-demo-band")) v.insertAdjacentHTML("afterbegin",'<button type="button" class="plx-demo-band" data-plx-demo="info"><span class="pdb-k">Modo demo</span><span>Tu progreso se queda en este dispositivo.</span><b>Salir o crear cuenta ›</b></button>');
     }
   }
   function demoInfo(){
     gModal('<img class="mic-mz" src="img/mz-hola.webp" alt=""><small class="gm-k">Modo demo</small><h2 class="gm-t">Estás probando PLEX PLAY</h2>'+
       '<p class="gm-sub">Puedes hacer lecciones, retos y lecturas. En la demo no hay clasificación, duelos en línea ni corrección con IA, y tu progreso se queda solo en este dispositivo.</p>'+
       '<p class="gm-sub">Para guardar tu avance y usar todo, crea tu cuenta con el correo de la U. El progreso de la demo no se pasa a la cuenta.</p>'+
-      '<div class="set-row c"><button class="gbtn ghost" data-g="close" data-autofocus>Seguir probando</button><button class="gbtn" data-plx-demo="exit">Crear mi cuenta</button></div>',"m-demo");
+      '<div class="set-row c"><button class="gbtn ghost" data-g="close" data-autofocus>Seguir probando</button><button class="gbtn ghost" data-plx-demo="leave">Salir de la demo</button><button class="gbtn" data-plx-demo="exit">Crear mi cuenta</button></div>',"m-demo");
   }
   document.addEventListener("click",function(e){
     var b=e.target.closest&&e.target.closest("[data-plx-demo]"); if(!b) return;
@@ -76,7 +77,8 @@
     var a=b.dataset.plxDemo;
     if(a==="start") demoStart();
     else if(a==="info") demoInfo();
-    else if(a==="exit") demoExit();
+    else if(a==="exit") demoExit("signup");
+    else if(a==="leave") demoExit("login");
   },true);
   if(DEMO){
     // en la demo se evita el 1V1 en línea (necesita cuenta); la práctica con Manzana sigue disponible
@@ -243,6 +245,10 @@
           if(ERR.rows==null) loadErrs();
         }
       }
+      if(DEMO&&typeof view!=="undefined"&&view==="perfil"){
+        var vp=document.getElementById("view");
+        if(vp&&!vp.querySelector(".plx-demo-card")) vp.insertAdjacentHTML("afterbegin",'<div class="gcard plx-demo-card"><div><b>Estás en modo demo</b><small>Tu progreso se guarda solo en este dispositivo y se borra al salir.</small></div><div class="pdc-btns"><button class="gbtn ghost sm" data-plx-demo="leave">Salir de la demo</button><button class="gbtn sm" data-plx-demo="exit">Crear mi cuenta</button></div></div>');
+      }
       if(typeof view!=="undefined"&&view==="perfil"){
         var v=document.getElementById("view");
         if(v&&!v.querySelector(".plx-legal")) v.insertAdjacentHTML("beforeend",'<p class="plx-legal"><a href="privacy.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="terminos.html" target="_blank" rel="noopener">Términos de uso</a></p>');
@@ -268,6 +274,12 @@
   .plx-demo-band b{margin-left:auto;color:#1e3a8a}
   html[data-theme=dark] .plx-demo-band{background:#2a2410;border-color:#6b5a12;color:#fef3c7} html[data-theme=dark] .plx-demo-band b{color:#bfdbfe}
   @media (max-width:520px){.plx-demo-pill{padding:3px 7px;font-size:.68rem}}
+  .plx-demo-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:14px 16px;background:#fef9c3!important;border:1.5px solid #fde047!important}
+  .plx-demo-card>div:first-child{display:grid;gap:2px;min-width:0}
+  .plx-demo-card b{color:#422006}.plx-demo-card small{color:#713f12}
+  .pdc-btns{display:flex;gap:8px;flex-wrap:wrap}.pdc-btns .gbtn{width:auto!important}
+  html[data-theme=dark] .plx-demo-card{background:#2a2410!important;border-color:#6b5a12!important} html[data-theme=dark] .plx-demo-card b,html[data-theme=dark] .plx-demo-card small{color:#fef3c7}
+  .m-demo .set-row{flex-wrap:wrap}
   .plx-legal{text-align:center;color:var(--stone);font-size:.85rem;margin:22px 0 8px}
   .plx-legal a{color:inherit}
   .plx-errl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
