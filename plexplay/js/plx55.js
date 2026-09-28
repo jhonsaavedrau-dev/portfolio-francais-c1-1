@@ -22,14 +22,15 @@
   var ADV = function(){ if (!S.adv || typeof S.adv !== "object") S.adv = {}; return S.adv; };
   var av = function(id){ return ADV()[id] || {}; };
   var hecha = function(id){ return !!(S.lessons[id] && S.lessons[id].done); };
+  /* 2.3.1: los puntos de la lista ya no calculan los juegos de cada lección (era lo que hacía lenta la pestaña
+     Aprender): una lección sin ejercicios propios (examen o proyecto) no tiene mini-juegos; las demás sí. */
   var ELIGE = {};
+  var sinJuegos = function(l){ return !l || !!l.special || !(l.items && l.items.length); };
   var pasos = function(id){
-    var a = av(id), h = hecha(id), l = LESSONS.find(function(x){ return x.id === id; });
-    var e = l ? (ELIGE[id] || (ELIGE[id] = elige(l))) : null, sinJ = !!(e && !e.j), sinR = !!(e && !e.r);
-    var j = !!a.j || (sinJ && h), r = !!a.r || (sinR && j);
+    var a = av(id), h = hecha(id), l = LESSONS.find(function(x){ return x.id === id; }), sinJ = sinJuegos(l);
+    var j = !!a.j || (sinJ && h), r = !!a.r || (sinJ && h);
     return [h, h, j, r, !!a.cofre || (sinJ && h)];
   };
-
   /* ---------------- qué juego va con cada habilidad ---------------- */
   var HAB = { voc: "vocab", cult: "vocab", phono: "oido", comp: "oido", gram: "gram", conj: "gram", accord: "gram", synt: "gram", prep: "gram",
     ortho: "escritura", registre: "frases", coh: "frases", lit: "frases" };
@@ -52,6 +53,10 @@
   };
   var elige = function(l){
     if (!G || !G.alc) return null;
+    if (ELIGE[l.id] && Date.now() - ELIGE[l.id].t < 60000) return ELIGE[l.id].v;
+    var v = eligeYa(l); ELIGE[l.id] = { t: Date.now(), v: v }; return v;
+  };
+  var eligeYa = function(l){
     var alc = G.alc.leccion(l), ext = null, h = HAB[l.t] || "vocab";
     var vuelta = Math.max(0, LESSONS.filter(function(x){ return x.track === l.track; }).indexOf(l));
     var busca = function(lista, sin){

@@ -132,15 +132,25 @@
     if (hecho.banco || !window.__BANCO) return; hecho.banco = true;
     LESSONS.forEach(function(l){ if (window.__BANCO[l.id]) ponExtra(l, window.__BANCO[l.id]); });
   };
-  var aplicaExplica = function(){
-    if (hecho.explica || !window.__EXPLICA || Object.keys(window.__EXPLICA).length < 50) return; hecho.explica = true;
-    TRACKS.forEach(function(t){ var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeExplica(ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); });
-  };
-  var aplicaVocab = function(){
-    if (hecho.vocab || !window.__VOCAB) return; hecho.vocab = true;
-    TRACKS.forEach(function(t){ var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeVocab(t.id, ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); });
-  };
+  /* 2.3.1: se genera curso por curso (cada uno en su propio momento libre): de golpe congelaba el celular ~3 s */
+  var hechos = { explica: {}, vocab: {} };
+  var cursoExplica = function(t){ if (hechos.explica[t.id]) return; hechos.explica[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeExplica(ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); };
+  var cursoVocab = function(t){ if (hechos.vocab[t.id]) return; hechos.vocab[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeVocab(t.id, ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); };
+  var listoExplica = function(){ return window.__EXPLICA && Object.keys(window.__EXPLICA).length >= 50; };
+  var aplicaExplica = function(){ if (hecho.explica || !listoExplica()) return; TRACKS.forEach(cursoExplica); hecho.explica = true; };
+  var aplicaVocab = function(){ if (hecho.vocab || !window.__VOCAB) return; TRACKS.forEach(cursoVocab); hecho.vocab = true; };
+  /* aplica(): todo de una vez (se llama al abrir un juego si aún faltaba algo) */
   var aplica = function(){ try { aplicaBanco(); aplicaExplica(); aplicaVocab(); } catch (e) { try { console.warn("plx59", e); } catch (x) {} } };
+  /* en segundo plano: un curso por momento libre, primero el curso actual */
+  var aplicaPocoAPoco = function(){
+    aplicaBanco();
+    var ts = TRACKS.slice(), actual = typeof window.track === "string" ? window.track : null;
+    ts.sort(function(a, b){ return (b.id === actual) - (a.id === actual); });
+    var tareas = [];
+    ts.forEach(function(t){ tareas.push(function(){ if (listoExplica()) cursoExplica(t); }); tareas.push(function(){ if (window.__VOCAB) cursoVocab(t); }); });
+    var sig = function(){ var f = tareas.shift(); if (!f) { if (listoExplica()) hecho.explica = true; if (window.__VOCAB) hecho.vocab = true; return; } try { f(); } catch (e) {} (window.requestIdleCallback || function(g){ setTimeout(g, 50); })(sig, { timeout: 1500 }); };
+    sig();
+  };
   window.PLX_CONTENIDO = { aplica: aplica, hecho: hecho };
 
   var carga = function(src){ return new Promise(function(res){ var s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); }); };
@@ -149,7 +159,7 @@
     if (!window.__BANCO) ps.push(carga("banco-a1.js?v=" + (window.PLX_BANCO_V || "1")));
     try { if (window.plxExplica) ps.push(window.plxExplica().catch(function(){})); } catch (e) {}
     try { if (G && G.vocab && !window.__VOCAB) ps.push(Promise.resolve(G.vocab()).catch(function(){})); } catch (e) {}
-    return Promise.all(ps).then(aplica);
+    return Promise.all(ps).then(aplicaPocoAPoco);
   };
   if ("requestIdleCallback" in window) requestIdleCallback(cargaTodo, { timeout: 5000 }); else setTimeout(cargaTodo, 2500);
 
@@ -160,7 +170,6 @@
     return l.__px;
   };
   if (G && G.alc) {
-    aplica();
     ["unidad", "todo", "leccion"].forEach(function(k){
       var f = G.alc[k]; if (typeof f !== "function") return;
       G.alc[k] = function(){ aplica(); var a = f.apply(this, arguments); if (a && a.lecciones) a.lecciones = a.lecciones.map(copia); return a; };

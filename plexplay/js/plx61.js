@@ -36,10 +36,32 @@
   var juegos = function(){ var cat = CATS.filter(function(c){ return c[0] === (H.cat || "todos"); })[0] || CATS[0]; return G.listaJuegos().filter(function(j){ return !cat[3] || cat[3].indexOf(j.id) >= 0; }); };
   var estrellas = function(n){ n = n || 0; return '<span class="az-est" aria-label="' + n + ' de 3 estrellas">' + [0, 1, 2].map(function(i){ return '<i class="' + (i < n ? "on" : "") + '">★</i>'; }).join("") + "</span>"; };
 
-  var capa = null, volver = false, cache = {};
-  var cuenta = function(j, alc){ try { if (alc.tema && !j.vocab) return -1; return G.nRetos(j, alc); } catch (e) { return 0; } };
+  var capa = null, volver = false, CNT = {}, cola = [], trabajando = false;
+  /* 2.3.1: contar los retos de 20 juegos de golpe tardaba decenas de segundos en el celular. Ahora la pantalla
+     sale al instante y cada juego se cuenta después, de a uno, cuando el teléfono está libre (y queda guardado). */
+  var MULTI = { bb: 1, mc: 1, la: 1 };
+  var clave = function(j, alc){ return j.id + "|" + alc.clave; };
+  var cuenta = function(j, alc){ if (alc.tema && !j.vocab) return -1; if (MULTI[j.id]) return -2; var k = clave(j, alc); return CNT[k] == null ? null : CNT[k]; };
+  var ocioso = window.requestIdleCallback ? function(f){ requestIdleCallback(f, { timeout: 400 }); } : function(f){ setTimeout(f, 30); };
+  var trabaja = function(){
+    if (trabajando) return; trabajando = true;
+    ocioso(function paso(){
+      var x = cola.shift();
+      if (!x) { trabajando = false; return; }
+      if (CNT[x.k] == null) { try { CNT[x.k] = G.nRetos(x.j, x.alc); } catch (e) { CNT[x.k] = 0; } actualiza(x.j, x.alc); }
+      ocioso(paso);
+    });
+  };
+  var etiqueta = function(n){ return n === -1 ? "No usa vocabulario" : n === -2 ? "Varios juegos" : n == null ? "Contando…" : n < G.MIN_RETOS ? "Pocos retos aquí" : n + " retos"; };
+  var actualiza = function(j, alc){
+    if (!capa) return; var b = capa.querySelector('[data-az-j="' + j.id + '"]'); if (!b) return;
+    var n = CNT[clave(j, alc)], off = n != null && n >= 0 && n < G.MIN_RETOS;
+    b.classList.toggle("off", off); var em = b.querySelector("em"); if (em) em.textContent = etiqueta(n);
+    if (j.id === H.jid) { var go = capa.querySelector(".az-go"); if (go) { go.disabled = off; go.textContent = off ? "Elige otro juego o tema" : "Jugar"; } }
+  };
   var pinta = function(){
     var el = capa; if (!el) return;
+    cola = [];
     var tr = track(), o = alcSel(), alc = o.a(), T = TRACKS.filter(function(t){ return t.id === tr; })[0] || {}, lv = H.lv || "todos";
     var cs = cursos().filter(function(t){ return lv === "todos" || String(G.nivel(t.id)) === lv; });
     var js = juegos(); if (!H.jid || !G.juegos[H.jid]) H.jid = (js[0] || G.listaJuegos()[0]).id;
@@ -59,15 +81,18 @@
       '<section class="az-bloque az-jb"><h2><span>3</span>Juego</h2>' +
         '<div class="az-cats" role="tablist" aria-label="Categorías">' + CATS.map(function(c){ return '<button type="button" role="tab" data-az-cat="' + c[0] + '" aria-selected="' + ((H.cat || "todos") === c[0]) + '"><span aria-hidden="true">' + c[2] + "</span>" + c[1] + "</button>"; }).join("") + "</div>" +
         '<div class="az-grid">' + js.map(function(j){
-          var n = cuenta(j, alc), pocos = n >= 0 && n < G.MIN_RETOS, no = n < 0, rec = null; try { rec = G.record(j.id, alc); } catch (e) {}
+          var n = cuenta(j, alc), pocos = n != null && n >= 0 && n < G.MIN_RETOS, no = n === -1, rec = null; try { rec = G.record(j.id, alc); } catch (e) {}
+          if (n === null) cola.push({ k: clave(j, alc), j: j, alc: alc });
           var e2 = alc.unit ? G.estrellasUnidad(j.id, alc.track, alc.unit) : rec ? rec.est : 0;
           return '<button type="button" class="az-j' + (j.id === H.jid ? " on" : "") + (pocos || no ? " off" : "") + '" data-az-j="' + esc(j.id) + '" style="--jc:' + esc(j.color) + '" aria-pressed="' + (j.id === H.jid) + '">' +
             '<span class="az-deco" aria-hidden="true">' + (j.deco ? j.deco() : "") + "</span><b>" + esc(j.nombre) + "</b><small>" + esc(j.verbo) + "</small>" + estrellas(e2) +
-            '<em>' + (no ? "No usa vocabulario" : pocos ? "Pocos retos aquí" : n + " retos") + "</em></button>";
+            '<em>' + etiqueta(n) + "</em></button>";
         }).join("") + "</div></section>" +
       '<div class="az-pie"><div class="az-res"><small>' + esc(T.label || "") + " · " + esc(o.t) + "</small><b>" + esc(J ? J.nombre : "") + '</b></div><button type="button" class="plxg-btn az-go" data-az="jugar">Jugar</button></div>' +
     "</div></div>";
     var c = el.querySelector(".az-c.on"); if (c) c.parentNode.scrollLeft = c.offsetLeft - 16;
+    /* primero el juego elegido, luego los visibles */
+    cola.sort(function(a, b){ return (b.j.id === H.jid) - (a.j.id === H.jid); }); trabaja();
     var jb = el.querySelector(".az-j.on"), go = el.querySelector(".az-go");
     if (jb && jb.classList.contains("off")) { go.disabled = true; go.textContent = "Elige otro juego o tema"; }
   };

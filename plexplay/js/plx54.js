@@ -256,7 +256,11 @@
     todos.forEach(function(t){ t.nodeValue = t.nodeValue.replace("Semestre Inicio de la Licenciatura", "Para empezar de cero, antes de A1").replace(/Semestre Inicio/g, "Antes de A1"); });
   };
   var pend = false;
-  new MutationObserver(function(){ if (pend) return; pend = true; requestAnimationFrame(function(){ pend = false; cambia(); }); }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  /* 2.3.1: solo la vista principal y nunca durante un juego (el marcador cambia en cada cuadro) */
+  new MutationObserver(function(){
+    if (pend || document.documentElement.classList.contains("plxg-on")) return;
+    pend = true; requestAnimationFrame(function(){ pend = false; cambia(document.getElementById("view") || document.body); });
+  }).observe(document.body, { childList: true, subtree: true });
 
   /* juego guiado al final de cada lección del curso: sin reloj y más despacio (plx45 lo lee en alc.guiado) */
   if (window.PLXG && PLXG.alc) {

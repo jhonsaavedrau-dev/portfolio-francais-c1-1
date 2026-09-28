@@ -191,7 +191,7 @@
   st.textContent = `
   .fx-cv{position:absolute;inset:0;pointer-events:none;z-index:6}
   .fx-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-  .fx-bg i{position:absolute;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--jc,#FFD200) 55%,transparent),transparent 70%);opacity:.22;filter:blur(2px);animation:fxFlota 14s ease-in-out infinite alternate}
+  .fx-bg i{position:absolute;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--jc,#FFD200) 55%,transparent),transparent 70%);opacity:.22;animation:fxFlota 14s ease-in-out infinite alternate;will-change:transform}
   .fx-bg i:nth-child(1){width:220px;height:220px;left:-60px;top:12%;animation-duration:16s}
   .fx-bg i:nth-child(2){width:140px;height:140px;right:-30px;top:30%;animation-duration:12s;animation-delay:-4s}
   .fx-bg i:nth-child(3){width:90px;height:90px;left:30%;bottom:8%;animation-duration:10s;animation-delay:-2s}
