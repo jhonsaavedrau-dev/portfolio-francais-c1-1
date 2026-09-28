@@ -80,4 +80,18 @@
   @media (max-width:899px){ .gonb .onb-splash .onb-logo em{color:#FFD200!important} }
   `;
   var st = document.createElement("style"); st.id = "plx43"; st.textContent = css; document.head.appendChild(st);
+
+  /* Tema «automático»: la app dejaba data-theme vacío y seguía al celular solo con algunas reglas.
+     Otras (fondos de burbujas y recuadros) solo cambiaban con data-theme="dark", y en el modo oscuro
+     del sistema quedaban blancas con texto claro. Aquí se marca el tema real según el celular. */
+  var html = document.documentElement, mq = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
+  var automatico = function(){ var p = ""; try { p = localStorage.getItem("cr-theme") || ""; } catch (e) {} return p !== "dark" && p !== "light"; };
+  var sincroniza = function(){
+    if (!automatico() || !mq) return;
+    var t = mq.matches ? "dark" : "light";
+    if (html.getAttribute("data-theme") !== t) html.setAttribute("data-theme", t);
+  };
+  sincroniza();
+  if (mq && mq.addEventListener) mq.addEventListener("change", sincroniza);
+  new MutationObserver(function(){ if (!html.hasAttribute("data-theme")) sincroniza(); }).observe(html, { attributes: true, attributeFilter: ["data-theme"] });
 })();
