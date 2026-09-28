@@ -70,6 +70,8 @@
   };
   var pregunta = function(){
     if (!PCB.uid) return;
+    /* no encima de la pantalla de acceso ni de otro aviso de la app: se espera a que se cierren */
+    if (document.querySelector(".pclogin, .gonb, .gmodal")) { setTimeout(pregunta, 2000); return; }
     try { if (localStorage.getItem("plx53-est-" + PCB.uid)) return; } catch (e) {}
     miAmbito().then(function(a){
       if (a.unipamplona || a.estudiante !== null && a.estudiante !== undefined) return;
@@ -77,6 +79,10 @@
       m.innerHTML = '<div class="plx53-mc"><h2>¿Eres estudiante?</h2><p>Para el ranking de estudiantes (de cualquier institución). Solo se guarda sí o no.</p>' +
         '<div class="plx53-mb"><button data-plx53="est-si">Sí, estudio</button><button data-plx53="est-no" class="no">No</button></div></div>';
       document.body.appendChild(m);
+      /* la app marca con «inert» todo lo que no sea su capa de arriba: aquí se le quita */
+      m.removeAttribute("inert");
+      new MutationObserver(function(){ if (m.hasAttribute("inert")) m.removeAttribute("inert"); }).observe(m, { attributes: true, attributeFilter: ["inert"] });
+      var bt = m.querySelector("button"); if (bt) bt.focus();
       m.addEventListener("click", function(e){
         var b = e.target.closest("[data-plx53]"); if (!b) return;
         var si = b.dataset.plx53 === "est-si";
@@ -86,6 +92,7 @@
       });
     }).catch(function(){ /* el servidor aún no tiene las funciones nuevas */ });
   };
+  PCB._pregunta = pregunta;   /* para las pruebas */
   (PCB.ready || Promise.resolve()).then(function(s){ if (s) setTimeout(pregunta, 2500); });
 
   /* ---------------- rankings ---------------- */
