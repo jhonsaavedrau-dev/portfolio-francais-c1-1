@@ -3,8 +3,8 @@
      @unipamplona). El perfil (gato, XP, nivel, racha y estadísticas) se crea como con cualquier cuenta nueva.
      Al volver de Google, la sesión llega en la dirección (#access_token… o ?code=…): aquí se guarda y se
      recarga la app ya con la sesión puesta (backend.js tiene detectSessionInUrl:false).
-     En la app de Android (WebView) Google no deja iniciar sesión dentro de la app: ahí el botón no aparece
-     hasta que la app de Android abra el acceso en el navegador.
+     En la app de Android (WebView) Google no deja iniciar sesión dentro de la app: desde la versión 4 de la app
+     (PlexPlayAndroid/4) el acceso se abre en el navegador y vuelve con co.plexplay.app://auth; en la vieja, no hay botón.
    - Una sola vez, a quien no es de Unipamplona se le pregunta si es estudiante (para el ranking de estudiantes).
    - Clasificación en el Inicio (reemplaza la de ligas; un solo lugar) y lista completa con «Ver todo»: Universidad de Pamplona, Estudiantes y Global; semana, mes e histórico. Muestra
      posición, gato, apodo, nivel y XP. Los datos salen de la función plx_ranking del servidor
@@ -16,6 +16,9 @@
   var sb = PCB.sb;
   var esc = function(x){ return String(x == null ? "" : x).replace(/[&<>"']/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var EN_WEBVIEW = /; wv\)|PlexPlayAndroid/.test(navigator.userAgent);
+  /* la app de Android desde la versión 4 abre el acceso en el navegador y vuelve con co.plexplay.app://auth */
+  var ANDROID_V = +((navigator.userAgent.match(/PlexPlayAndroid\/(\d+)/) || [])[1] || 0);
+  var SIN_GOOGLE = EN_WEBVIEW && ANDROID_V < 4;
   var limpia = function(){ return location.origin + location.pathname; };
 
   /* ---------------- vuelta desde Google ---------------- */
@@ -34,6 +37,11 @@
   })();
 
   PCB.google = function(){
+    if (EN_WEBVIEW) {
+      /* en la app de Android: la dirección de Google se abre fuera (el WebView la manda al navegador) */
+      return sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: "co.plexplay.app://auth", skipBrowserRedirect: true, queryParams: { prompt: "select_account" } } })
+        .then(function(r){ if (r.error) return r; location.href = r.data.url; setTimeout(function(){ var b = document.querySelector("[data-plx53=google]"); if (b) b.disabled = false; }, 3000); return r; });
+    }
     return sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: limpia(), queryParams: { prompt: "select_account" } } });
   };
 
@@ -43,7 +51,7 @@
     var box = document.querySelector(".pclogin .pl-box") || document.querySelector(".pclogin");
     /* Manzana es el gato (la descripción de la imagen decía «la gata») */
     document.querySelectorAll('.pclogin img[alt*="la gata"]').forEach(function(i){ i.alt = i.alt.replace("la gata", "el gato"); });
-    if (!box || box.querySelector(".plx53-g") || EN_WEBVIEW) return;
+    if (!box || box.querySelector(".plx53-g") || SIN_GOOGLE) return;
     document.querySelectorAll(".pclogin p, .pclogin h2, .pclogin span").forEach(function(p){
       if (p.children.length === 0 && /^Ingresa con tu correo institucional/.test(p.textContent.trim())) p.textContent = "Entra con tu cuenta de Google o con tu correo institucional.";
     });
