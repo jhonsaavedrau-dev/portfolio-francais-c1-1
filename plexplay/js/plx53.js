@@ -167,7 +167,10 @@
     lista.innerHTML = top.map(filaW).join("") + (yo.length ? '<li class="rkw-sep" aria-hidden="true">···</li>' + yo.map(filaW).join("") : "");
   };
   var cargaW = function(w){
-    var k = R.amb + "|" + R.per; pintaW(w);
+    var k = R.amb + "|" + R.per;
+    /* sin sesión (detrás de la pantalla de acceso) no se pide nada al servidor */
+    if (!PCB.uid) { w.querySelector(".rkw-l").innerHTML = '<li class="rkw-v">Entra a tu cuenta para ver la clasificación.</li>'; return; }
+    pintaW(w);
     if (R.cache[k] && !R.cache[k].error && Date.now() - R.cache[k].t < 60000) return;
     sb.rpc("plx_ranking", { ambito: R.amb, periodo: R.per, cuantos: 50 }).then(function(r){ if (r.error) throw r.error; R.cache[k] = { t: Date.now(), filas: r.data || [] }; })
       .catch(function(){ R.cache[k] = { t: Date.now(), error: navigator.onLine === false ? "Sin conexión: la clasificación necesita internet." : "No se pudo cargar la clasificación." }; })
@@ -181,7 +184,7 @@
       '<div class="rkw-s" role="group" aria-label="Periodo">' + PER.map(function(p){ return '<button data-plx53-wper="' + p[0] + '">' + p[1] + "</button>"; }).join("") + "</div>" +
       '<ol class="rkw-l"></ol>';
     cargaW(c);
-    if (!R.eligio) miAmbito().then(function(a){ if (R.eligio) return; R.eligio = 1; R.amb = a.unipamplona ? "unipamplona" : a.estudiante ? "estudiantes" : "global"; if (document.body.contains(c)) cargaW(c); }).catch(function(){});
+    if (!R.eligio && PCB.uid) miAmbito().then(function(a){ if (R.eligio) return; R.eligio = 1; R.amb = a.unipamplona ? "unipamplona" : a.estudiante ? "estudiantes" : "global"; if (document.body.contains(c)) cargaW(c); }).catch(function(){});
   };
   document.addEventListener("click", function(e){
     var b = e.target.closest && e.target.closest("[data-plx53-wamb],[data-plx53-wper]"); if (!b) return;
@@ -192,6 +195,8 @@
   if (typeof render === "function") { var _r = render; render = function(){ var x = _r.apply(this, arguments); try { if (view === "parcours") inicio(); } catch (e) {} return x; }; }
   document.addEventListener("click", function(e){ var b = e.target.closest && e.target.closest("[data-plx53=rankings]"); if (!b) return; e.preventDefault(); e.stopPropagation(); abre(); }, true);
   var repinta = function(){ try { if (view === "parcours") inicio(); } catch (e) {} };
+  /* la sesión puede llegar después de dibujar el Inicio */
+  (PCB.ready || Promise.resolve()).then(function(ses){ if (!ses) return; setTimeout(function(){ var c = document.querySelector(".plx53-w"); if (c) cargaW(c); }, 300); });
   if (document.readyState === "complete") repinta(); else window.addEventListener("load", repinta);
 
   var st = document.createElement("style"); st.id = "plx53";
