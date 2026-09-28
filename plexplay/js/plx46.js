@@ -389,8 +389,8 @@
     var oculta = function(){ if (document.hidden && estado === "juega") pausar(); };
     window.addEventListener("keydown", tecla); document.addEventListener("visibilitychange", oculta); window.addEventListener("resize", tam);
     var clic = function(e){
-      var b = e.target.closest("[data-g],[data-f]"); if (!b) return;
-      if (b.dataset.g === "pausa" && estado === "juega") pausar();
+      var b = e.target.closest("[data-plxg],[data-f]"); if (!b) return;
+      if (b.dataset.plxg === "pausa" && estado === "juega") pausar();
       if (b.dataset.f === "oir" && ola && ola.reto.audio) try { speak(ola.reto.audio); } catch (x) {}
     };
     el.addEventListener("click", clic);

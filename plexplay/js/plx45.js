@@ -1,4 +1,6 @@
 /* PLEX PLAY 1.23.0 — Arcade: los componentes que comparten todos los juegos
+   (1.23.1: la pausa y los botones de resultados funcionan: el atributo data-g chocaba con el manejador
+   de la app que usa data-g, y all:unset le quitaba pointer-events al botón de pausa)
    - Adaptador: convierte los ítems de una lección (o el vocabulario) en «retos» con un formato común.
      Los motores de juego solo reciben retos, nunca ítems.
    - Director de dificultad: tiempo y número de opciones según el nivel (A1 a C1) y según cómo va la partida.
@@ -396,7 +398,7 @@
   G.hud = function(el, o){
     el.insertAdjacentHTML("beforeend",
       '<div class="plxg-hud" style="--ac:' + o.color + '">' +
-        '<button class="plxg-ib" data-g="pausa" aria-label="Pausa"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="4" width="3.4" height="12" rx="1"/><rect x="11.6" y="4" width="3.4" height="12" rx="1"/></svg></button>' +
+        '<button class="plxg-ib" data-plxg="pausa" aria-label="Pausa"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="4" width="3.4" height="12" rx="1"/><rect x="11.6" y="4" width="3.4" height="12" rx="1"/></svg></button>' +
         '<div class="plxg-vidas" aria-label="Vidas"></div>' +
         '<div class="plxg-tiempo" aria-label="Tiempo"><b>0:00</b></div>' +
         '<div class="plxg-pts"><b>0</b><small>puntos</small></div>' +
@@ -456,10 +458,10 @@
 
   /* pausa */
   G.pausa = function(el, seguir, salir){
-    el.insertAdjacentHTML("beforeend", '<div class="plxg-pausa"><div class="plxg-pc"><h2>Pausa</h2><p>El tiempo está detenido.</p><button class="plxg-btn" data-g="seguir">Seguir</button><button class="plxg-btn line" data-g="salir">Salir de la partida</button></div></div>');
+    el.insertAdjacentHTML("beforeend", '<div class="plxg-pausa"><div class="plxg-pc"><h2>Pausa</h2><p>El tiempo está detenido.</p><button class="plxg-btn" data-plxg="seguir">Seguir</button><button class="plxg-btn line" data-plxg="salir">Salir de la partida</button></div></div>');
     var p = el.querySelector(".plxg-pausa");
-    p.addEventListener("click", function(e){ var b = e.target.closest("[data-g]"); if (!b) return; p.remove(); (b.dataset.g === "seguir" ? seguir : salir)(); });
-    p.querySelector("[data-g=seguir]").focus();
+    p.addEventListener("click", function(e){ var b = e.target.closest("[data-plxg]"); if (!b) return; p.remove(); (b.dataset.plxg === "seguir" ? seguir : salir)(); });
+    p.querySelector("[data-plxg=seguir]").focus();
   };
 
   /* estrellas en SVG */
@@ -489,12 +491,12 @@
         '<p class="plxg-como">' + (r.estrellas < 2 ? "2 estrellas: termina con 80 % de precisión." : r.estrellas < 3 ? "3 estrellas: 80 % de precisión y " + (alc.seg * 35).toLocaleString("es-CO") + " puntos." : "Tres estrellas en esta unidad.") + "</p>" +
         (errs ? '<h2 class="plxg-h2">Repaso de tus errores <small>' + r.errores.length + " · " + (r.alCarnet ? r.alCarnet + " nuevos en el carnet" : "ya están en el carnet") + '</small></h2><ol class="plxg-errs">' + errs + "</ol>"
               : r.aciertos ? '<p class="plxg-limpio">Ningún error en toda la partida.</p>' : "") +
-        '<div class="plxg-acc"><button class="plxg-btn" data-g="otra">Otra vez</button>' + (acciones.cambiar ? '<button class="plxg-btn line" data-g="cambiar">Cambiar de unidad</button>' : "") + '<button class="plxg-btn line" data-g="salir">Salir</button></div>' +
+        '<div class="plxg-acc"><button class="plxg-btn" data-plxg="otra">Otra vez</button>' + (acciones.cambiar ? '<button class="plxg-btn line" data-plxg="cambiar">Cambiar de unidad</button>' : "") + '<button class="plxg-btn line" data-plxg="salir">Salir</button></div>' +
       "</div></div>";
     el.scrollTop = 0;
     if (r.estrellas) [0, 1, 2].slice(0, r.estrellas).forEach(function(i){ setTimeout(function(){ G.sfx("estrella", i); }, 350 + i * 220); });
-    el.querySelector(".plxg-acc").addEventListener("click", function(e){ var b = e.target.closest("[data-g]"); if (!b) return; var f = acciones[{ otra: "otra", cambiar: "cambiar", salir: "salir" }[b.dataset.g]]; if (f) f(); });
-    var bt = el.querySelector("[data-g=otra]"); if (bt) bt.focus({ preventScroll: true });
+    el.querySelector(".plxg-acc").addEventListener("click", function(e){ var b = e.target.closest("[data-plxg]"); if (!b) return; var f = acciones[{ otra: "otra", cambiar: "cambiar", salir: "salir" }[b.dataset.plxg]]; if (f) f(); });
+    var bt = el.querySelector("[data-plxg=otra]"); if (bt) bt.focus({ preventScroll: true });
   };
 
   /* ---------------- estilos comunes del arcade ---------------- */
@@ -526,7 +528,7 @@
   /* barra superior */
   .plxg-hud{position:absolute;left:0;right:0;top:env(safe-area-inset-top);z-index:5;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:10px;padding:10px 12px 0;pointer-events:none}
   .plxg-hud>*{pointer-events:auto}
-  .plxg-ib{all:unset;cursor:pointer;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .plxg-ib{all:unset;pointer-events:auto;cursor:pointer;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
   .plxg-ib svg{width:18px;height:18px;fill:#fff}
   .plxg-vidas{display:flex;gap:4px}
   .plxg-vidas i{width:20px;height:18px;background:#E5484D;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.3 10.5 20C5.1 15.1 1.6 12 1.6 8.1 1.6 4.9 4.1 2.4 7.3 2.4c1.8 0 3.5.8 4.7 2.2 1.2-1.4 2.9-2.2 4.7-2.2 3.2 0 5.7 2.5 5.7 5.7 0 3.9-3.5 7-8.9 11.9z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.3 10.5 20C5.1 15.1 1.6 12 1.6 8.1 1.6 4.9 4.1 2.4 7.3 2.4c1.8 0 3.5.8 4.7 2.2 1.2-1.4 2.9-2.2 4.7-2.2 3.2 0 5.7 2.5 5.7 5.7 0 3.9-3.5 7-8.9 11.9z'/%3E%3C/svg%3E") center/contain no-repeat}
