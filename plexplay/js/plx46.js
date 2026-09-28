@@ -401,8 +401,9 @@
     var rec = G.record(j.id, alc), nv = G.DIF[G.nivel(alc.track)], n = G.nRetos(j, alc);
     var reglas = j.reglas ? j.reglas(alc) : [];
     var sw = function(k, t, d){ return '<button class="pt-sw" role="switch" aria-checked="' + !!G.aj[k] + '" data-h="aj" data-a="' + k + '"><span><b>' + t + "</b><small>" + d + "</small></span><i></i></button>"; };
-    el.innerHTML = '<div class="plxg-scroll"><div class="plxg-wrap pt" style="--ac:' + j.color + '">' +
+    el.innerHTML = '<div class="plxg-scroll"><div class="plxg-wrap pt pt-' + esc(j.id) + '" style="--ac:' + j.color + '">' +
       '<div class="hb-top"><button class="plxg-ib" data-h="' + (desdeHub ? "hub" : "salir") + '" aria-label="' + (desdeHub ? "Volver" : "Cerrar") + '">' + (desdeHub ? ATRAS : X) + '</button><span class="plxg-k">' + esc(alc.sub || "") + "</span></div>" +
+      (j.portadaExtra ? j.portadaExtra(alc) || "" : "") +   /* gancho opcional: HTML propio del juego arriba de la portada */
       '<div class="pt-fr" aria-hidden="true">' + (j.decoGrande ? j.decoGrande() : decoDe(j)) + "</div>" +
       '<h1 class="plxg-h pt-h" style="color:' + (j.colorTitulo || "#FFD200") + '">' + esc(j.nombre) + "</h1>" +
       '<p class="pt-verbo">' + esc(j.verbo) + ".</p>" +
@@ -454,7 +455,7 @@
     var est = totalEstrellas(), js = G.listaJuegos();
     return '<h2 class="rg-h">Arcade <span class="am-new">Nuevo</span></h2>' +
       '<button class="plx46-arc" data-arcade="1"><span class="a-fr" aria-hidden="true">' + frutasDeco(5) + "</span>" +
-      '<span class="a-tx"><small>' + js.length + (js.length === 1 ? " juego" : " juegos") + " · A1 a C1</small><b>Arcade</b><span>" + esc(js.map(function(g){ return g.nombre; }).join(" · ")) + "." + (est ? " " + est + " estrellas ganadas." : "") + "</span></span>" +
+      '<span class="a-tx"><small>' + js.length + (js.length === 1 ? " juego" : " juegos") + " · A1 a C1</small><b>Arcade</b><span>" + esc(js.length <= 3 ? js.map(function(g){ return g.nombre; }).join(" · ") : "Corta, arma, escucha, recuerda, investiga y habla. Y un jefe en cada unidad") + "." + (est ? " " + est + " estrellas ganadas." : "") + "</span></span>" +
       '<span class="a-go">Jugar</span></button>';
   };
   var enRetos = function(){

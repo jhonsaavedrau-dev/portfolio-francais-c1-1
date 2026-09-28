@@ -418,20 +418,20 @@
   /* barra superior */
   G.hud = function(el, o){
     el.insertAdjacentHTML("beforeend",
-      '<div class="plxg-hud" style="--ac:' + o.color + '">' +
+      '<div class="plxg-hud' + (o.jefe && o.jefe.clase ? " " + esc(o.jefe.clase) : "") + '" style="--ac:' + o.color + '">' +
         '<button class="plxg-ib" data-plxg="pausa" aria-label="Pausa"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="4" width="3.4" height="12" rx="1"/><rect x="11.6" y="4" width="3.4" height="12" rx="1"/></svg></button>' +
         '<div class="plxg-vidas" aria-label="Vidas"></div>' +
         '<div class="plxg-tiempo" aria-label="Tiempo"><b>0:00</b></div>' +
         '<div class="plxg-pts"><b>0</b><small>puntos</small></div>' +
         '<div class="plxg-barra"><i></i></div>' +
         '<div class="plxg-sub"><span class="plxg-combo" hidden></span><span class="plxg-fan" hidden></span></div>' +
-        (o.jefe ? '<div class="plxg-jefe">' + (o.jefe.img ? '<img src="' + esc(o.jefe.img) + '" alt="">' : "") + '<div><b>' + esc(o.jefe.nombre || "El jefe") + '</b><span class="plxg-jv"><i></i></span></div></div>' : "") +
+        (o.jefe ? o.jefe.html || '<div class="plxg-jefe">' + (o.jefe.img ? '<img src="' + esc(o.jefe.img) + '" alt="">' : "") + '<div><b>' + esc(o.jefe.nombre || "El jefe") + '</b><span class="plxg-jv"><i></i></span></div></div>' : "") +
       "</div>");
     var h = el.querySelector(".plxg-hud"), q = function(s){ return h.querySelector(s); }, ult = {};
     return {
       el: h,
       pinta: function(s){
-        if (ult.v !== s.vidas) { ult.v = s.vidas; q(".plxg-vidas").innerHTML = [0, 1, 2].map(function(i){ return '<i class="' + (i < s.vidas ? "on" : "") + '"></i>'; }).join(""); q(".plxg-vidas").setAttribute("aria-label", s.vidas + " vidas"); }
+        if (ult.v !== s.vidas) { ult.v = s.vidas; h.querySelectorAll(".plxg-vidas").forEach(function(v){ v.innerHTML = [0, 1, 2].map(function(i){ return '<i class="' + (i < s.vidas ? "on" : "") + '"></i>'; }).join(""); v.setAttribute("aria-label", s.vidas + " vidas"); }); }
         var sg = Math.ceil(Math.max(0, s.resta)), tt = s.sinTiempo ? "∞" : Math.floor(sg / 60) + ":" + String(sg % 60).padStart(2, "0");
         if (ult.t !== tt) { ult.t = tt; q(".plxg-tiempo b").textContent = tt; q(".plxg-tiempo").classList.toggle("poco", !s.sinTiempo && s.resta <= 10); }
         if (ult.p !== s.pts) { ult.p = s.pts; q(".plxg-pts b").textContent = s.pts.toLocaleString("es-CO"); }
@@ -439,7 +439,7 @@
         var cb = s.mult > 1 ? "×" + s.mult + " · " + s.racha + " seguidos" : s.racha >= 1 ? s.racha + " seguido" + (s.racha > 1 ? "s" : "") : "";
         if (s.frenesi) cb = "FRENESÍ · puntos dobles";
         if (ult.c !== cb) { ult.c = cb; var c = q(".plxg-combo"); c.textContent = cb; c.hidden = !cb; c.classList.toggle("fr", !!s.frenesi); c.classList.toggle("hot", s.mult > 1); }
-        if (s.jefe && ult.j !== s.jefe.vida) { ult.j = s.jefe.vida; var jb = q(".plxg-jv i"); if (jb) jb.style.transform = "scaleX(" + (s.jefe.vida / s.jefe.max).toFixed(3) + ")"; var jv = q(".plxg-jv"); if (jv) jv.setAttribute("aria-label", "Vida del jefe: " + s.jefe.vida + " de " + s.jefe.max); }
+        if (s.jefe && ult.j !== s.jefe.vida) { ult.j = s.jefe.vida; var jb = q(".plxg-jv i"); if (jb) jb.style.transform = "scaleX(" + (s.jefe.vida / s.jefe.max).toFixed(3) + ")"; var jv = q(".plxg-jv"); if (jv) jv.setAttribute("aria-label", "Vida del jefe: " + s.jefe.vida + " de " + s.jefe.max); var jn = q(".plxg-jn"); if (jn) jn.textContent = s.jefe.vida + "/" + s.jefe.max; }
         var f = q(".plxg-fan");
         if (s.fantasma == null) f.hidden = true;
         else { var d = s.pts - s.fantasma, txt = "Fantasma " + (d >= 0 ? "+" : "−") + Math.abs(d).toLocaleString("es-CO"); if (ult.f !== txt) { ult.f = txt; f.hidden = false; f.textContent = txt; f.classList.toggle("gana", d >= 0); } }
@@ -466,7 +466,7 @@
     var largo = plano(o.why || "").length, ms = Math.min(4000, Math.max(1600, 1400 + largo * 22)), hecho = false;
     el.insertAdjacentHTML("beforeend",
       '<div class="plxg-mom" role="alert"><div class="plxg-momc ' + (o.clase || "") + '">' +
-        (o.mal ? '<p class="m-mal"><span>Cortaste</span><s>' + esc(o.mal) + "</s></p>" : "") +
+        (o.mal ? '<p class="m-mal"><span>' + esc(o.etMal || "Cortaste") + "</span><s>" + esc(o.mal) + "</s></p>" : "") +
         (o.titulo ? '<p class="m-tit">' + esc(o.titulo) + "</p>" : "") +
         '<p class="m-bien"><span>' + esc(o.etiqueta || "Correcta") + "</span><b>" + esc(o.bien) + "</b></p>" +
         (o.why ? '<div class="m-why">' + seguro(o.why) + "</div>" : "") +
@@ -499,14 +499,14 @@
       : dif === 0 ? "Empate exacto con tu fantasma."
       : "Te faltaron " + Math.abs(dif).toLocaleString("es-CO") + " puntos para ganarle a tu fantasma (" + fan.best.toLocaleString("es-CO") + ").";
     var errs = r.errores.map(function(x){
-      return '<li><p class="e-q">' + esc(x.q || x.ask || "") + "</p>" + (x.mal ? '<p class="e-mal"><span>Cortaste</span> <s>' + esc(x.mal) + "</s></p>" : "") +
+      return '<li><p class="e-q">' + esc(x.q || x.ask || "") + "</p>" + (x.mal ? '<p class="e-mal"><span>' + esc(x.etMal || "Cortaste") + "</span> <s>" + esc(x.mal) + "</s></p>" : "") +
         '<p class="e-bien"><span>' + esc(x.etiqueta || "Correcta") + "</span> <b>" + esc(x.bien) + "</b></p>" + (x.why ? '<div class="e-why">' + seguro(x.why) + "</div>" : "") + "</li>";
     }).join("");
     el.innerHTML =
       '<div class="plxg-res" style="--ac:' + juego.color + '"><div class="plxg-wrap">' +
-        '<p class="plxg-k">' + esc(juego.nombre) + " · " + esc(alc.titulo) + "</p>" +
-        '<h1 class="plxg-h">' + (r.jefe ? (r.jefe.vencido ? "¡Victoria!" : r.porVidas ? "El jefe ganó" : "Se acabó el tiempo") : r.porVidas ? "Sin vidas" : "Fin de la partida") + "</h1>" +
-        (r.jefe ? '<p class="plxg-fanl ' + (r.jefe.vencido ? "gana" : "") + '">' + esc(r.jefe.vencido ? "Derrotaste a " + r.jefe.nombre + " con " + r.vidas + " vida" + (r.vidas === 1 ? "" : "s") + "." : r.jefe.nombre + " quedó con " + r.jefe.vida + " de " + r.jefe.max + " de vida.") + "</p>" : "") +
+        '<p class="plxg-k">' + esc(juego.nombre) + " · " + esc(alc.titulo) + "</p>" + (r.cabeza || "") +
+        '<h1 class="plxg-h">' + (r.titulo ? esc(r.titulo) : r.jefe ? (r.jefe.vencido ? "¡Victoria!" : r.porVidas ? "El jefe ganó" : "Se acabó el tiempo") : r.porVidas ? "Sin vidas" : "Fin de la partida") + "</h1>" +
+        (r.jefe ? '<p class="plxg-fanl ' + (r.jefe.vencido ? "gana" : "") + '">' + esc(r.jefe.vencido ? "Derrotaste a " + r.jefe.nombre + " con " + r.vidas + " vida" + (r.vidas === 1 ? "" : "s") + "." : r.jefe.nombre + " quedó con " + r.jefe.vida + " de " + r.jefe.max + " puntos de vida.") + "</p>" : "") +
         '<div class="plxg-big"><b>' + r.puntos.toLocaleString("es-CO") + "</b><span>puntos</span></div>" +
         G.estrellasHTML(r.estrellas, "grande") +
         (r.jefe ? "" : '<p class="plxg-fanl ' + (dif > 0 ? "gana" : "") + '">' + esc(linea) + "</p>") +
@@ -533,11 +533,42 @@
     leccion: function(l){ return { clave: "l:" + l.id, track: l.track, titulo: l.title, sub: "Repaso de la lección · " + etiquetaCurso(l.track), seg: 60, lecciones: [l], repaso: true }; },
     vocab: function(tr, ti){ var t = ((window.__VOCAB || {})[tr] || { themes: [] }).themes[ti]; return t ? { clave: "v:" + tr + ":" + ti, track: tr, titulo: "Vocabulario · " + t.t, sub: etiquetaCurso(tr), seg: 90, tema: t } : null; }
   };
-  /* «Vous ___ quel âge ? (avoir)» + «avez» → «Vous avez quel âge ?» (sin la pista del final) */
+  /* Elisión en los bordes del hueco: «Je ___ propose» + «en» → «J'en propose», «que ___» + «il» → «qu'il»,
+     «si ___» + «il» → «s'il», «ce ___» + «est» → «c'est». Nada ante h aspirada (le haut, le héros) ni ante
+     onze / oui («que oui»). Ante una h que no está en ninguna lista, la frase no se arma (null): mejor un reto
+     menos que enseñar «le hublot» o «l'hublot» sin saberlo. */
+  var ELIDE = /(^|[^\p{L}\p{M}'’\-])(je|me|te|se|le|la|ne|de|que|ce|si|jusque|lorsque|puisque|quoique)(\s*)$/iu;
+  var H_ASP = /^h(?:ach|aie|aill|ain|aï|alte|all(?!uc)|amac|ameau|amburger|amster|anche|andi|angar|ant|app|aras|arc|ardi|areng|argn|aricot|arn|arp|asard|ât|auss|aut|avr|enn|érisson|ernie|éron|éros$|être|eurt|ibou|ideu|iérarch|iss|ippie|it$|obby|och|ockey|old|ollan|omard|ongr|ont|oquet|ors$|ouss|oux|oul|ublot|uée|uer|uit|url|utt)/;
+  var H_MUET = /^h(?:ab|allucin|aleine|ameçon|armoni|ebdo|éberg|ectare|élicopt|émisph|erb|érédit|érit|ermét|éroï|ésit|étéro|eur|exag|ier|ippo|irondel|ispan|isto|iver|omm|omo|omé|onnê|onneur|onor|ôpita|oraire|orizon|orloge|ormone|oroscope|orr|ortic|ospit|ostil|ôte|uile|uissier|uître|umain|umanit|umble|umeur|umid|umili|umour|umor|ybrid|ydr|ygièn|ymne|yper|ypno|ypoth|ypocri|ystér)/;
+  var elide = function(w, sig){
+    if (w === "si") return /^ils?$/.test(sig);
+    if (w === "ce") return /^(est|était|étaient|eût|eut)$/.test(sig);
+    if (sig === "y") return !/^(le|la)$/.test(w);   /* «j'y vais», «d'y aller», «qu'y a-t-il» */
+    if (/^(onze|onzièmes?|oui|ouistitis?)$/.test(sig)) return false;
+    if (/^[aeiouàâäéèêëîïôöûüùœæ]/.test(sig)) return true;
+    if (sig.charAt(0) === "h") return H_ASP.test(sig) ? false : H_MUET.test(sig) ? true : null;
+    return false;
+  };
+  var une = function(izq, der){
+    var a = izq.match(ELIDE), b = der.match(/^(\s*)([\p{L}\p{M}]+)/u);
+    if (!a || !b || !(a[3] + b[1])) return [izq, der];
+    var w = a[2], ok = elide(w.toLowerCase(), b[2].toLowerCase());
+    if (ok === null) return null;
+    if (!ok) return [izq, der];
+    var nueva = w.toLowerCase() === "si" ? w.charAt(0) + "'" : w.slice(0, -1) + "'";
+    return [izq.slice(0, izq.length - a[3].length - w.length) + nueva, der.slice(b[1].length)];
+  };
+  /* «Vous ___ quel âge ? (avoir)» + «avez» → «Vous avez quel âge ?» (sin la pista del final).
+     OJO: úsalo con la respuesta CORRECTA. Con una opción incorrecta la elisión puede borrar justo el error que el
+     ejercicio enseña («à ___ université» + «le» → «à l'université», igual que la correcta). Si un juego necesita
+     mostrar una frase con una opción mala, que la arme sin elisión y compruebe que sigue siendo distinta. */
   G.completa = function(q, palabra){
     var t = plano(q || "").replace(/\s*\([^()]{1,40}\)\s*\.?\s*$/, function(m){ return /\.\s*$/.test(m) ? "." : ""; });
-    if (!/_{2,}/.test(t)) return "";
-    var f = t.replace(/_{2,}/, palabra).replace(/\s+([,.])/g, "$1").replace(/'\s+/g, "'").replace(/\s+-(?=\p{L})/gu, "-").trim();
+    var m = t.match(/_{2,}/); if (!m) return "";
+    var pre = t.slice(0, m.index), w = String(palabra == null ? "" : palabra), post = t.slice(m.index + m[0].length);
+    var L = une(pre, w); if (!L) return "";
+    var R = une(L[0] + L[1], post); if (!R) return "";
+    var f = (R[0] + R[1]).replace(/\s+([,.])/g, "$1").replace(/'\s+/g, "'").replace(/\s+-(?=\p{L})/gu, "-").trim();
     return /^_{2,}/.test(t) ? f.charAt(0).toUpperCase() + f.slice(1) : f;
   };
   /* retos por defecto de un alcance (los de Fruit Frenzy); un juego puede traer los suyos */
@@ -558,9 +589,14 @@
   };
   /* oculto(): un juego puede esconderse mientras no tenga con qué jugarse (Mystery sin motores suficientes) */
   G.listaJuegos = function(){ return Object.keys(G.juegos).map(function(k){ return G.juegos[k]; }).filter(function(j){ return j.montar && !(j.oculto && j.oculto()); }).sort(function(a, b){ return a.orden - b.orden; }); };
-  var cuentas = {};
   G.retosJuego = function(j, alc){ var r = (j.retos ? j.retos(alc) : G.retosDe(alc)) || []; return j.apto ? r.filter(j.apto) : r; };
-  G.nRetos = function(j, alc){ var k = j.id + "|" + alc.clave; return cuentas[k] != null ? cuentas[k] : (cuentas[k] = G.retosJuego(j, alc).length); };
+  /* retos para CONTAR (lista y portada): se calculan una vez por juego y alcance y se comparten, así Boss Battle y
+     Mystery reusan lo que ya contaron los otros juegos. Para jugar se piden de nuevo (G.retosJuego), con su azar.
+     juego.cuenta(alc) → número: atajo opcional de un juego para contarse sin armar sus retos. */
+  var contados = {}, cuentas = {};
+  G.retosCuenta = function(j, alc){ var k = j.id + "|" + alc.clave; return contados[k] || (contados[k] = G.retosJuego(j, alc)); };
+  G.nRetos = function(j, alc){ var k = j.id + "|" + alc.clave; return cuentas[k] != null ? cuentas[k] : (cuentas[k] = j.cuenta ? j.cuenta(alc) : G.retosCuenta(j, alc).length); };
+  G.nRetosListo = function(j, alc){ return cuentas[j.id + "|" + alc.clave] != null; };
   G.MIN_RETOS = 4;
 
   /* ---------------- sesión: el marco de una partida ----------------
@@ -598,7 +634,7 @@
     var apto = juego.apto || function(){ return true; };
     var base = (opc.retos || G.retosJuego(juego, alc)).slice(), cola = opc.ordenFijo ? base.slice() : mezcla(base);
     var oros = alc.tema || juego.oro === false || opc.oro === false ? [] : (juego.retosCarnet ? juego.retosCarnet(alc.track, nivel) : G.retosCarnet(alc.track, nivel)).filter(apto).slice(0, 12);
-    var jefe = opc.jefe ? { max: opc.jefe.vida, vida: opc.jefe.vida, nombre: opc.jefe.nombre, img: opc.jefe.img } : null;
+    var jefe = opc.jefe ? { max: opc.jefe.vida, vida: opc.jefe.vida, nombre: opc.jefe.nombre, img: opc.jefe.img, html: opc.jefe.html, clase: opc.jefe.clase } : null;
     var seg = opc.seg || alc.seg || 90, sinT = !!G.aj.sinTiempo && !jefe, META = alc.repaso ? 10 : 15;
     var fan = jefe ? null : G.record(juego.id, alc), traza = [], errores = [], alCarnet = 0;
     var vidas = opc.vidas || 3, tJ = 0, resueltos = 0, frenesi = 0, olas = 0, ultimoOro = false, espera = .25;
@@ -632,7 +668,7 @@
     };
     var anota = function(r, mal, o){
       var q = o.q != null ? o.q : r.audio && !r.q ? "Sonó: " + r.audio : r.q;
-      var e = { q: q, ask: r.ask, mal: mal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why };
+      var e = { q: q, ask: r.ask, mal: mal, etMal: o.etMal || juego.etMal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why };
       if (!errores.some(function(x){ return x.q === e.q && x.bien === e.bien; })) errores.push(e);
     };
     var repetir = function(r){ var c = Object.assign({}, r); cola.splice(Math.min(3, cola.length), 0, c); };
@@ -652,7 +688,8 @@
       s.pop(o.x, o.y, "+" + g + (m > 1 ? "  ×" + m : ""), r && r.oro ? "#FFE066" : "#FFD200");
       G.sfx("bien", pts.racha); G.vibra(12); dir.acierto();
       if (r && r.oro && o.final !== false) G.carnetBien(r.key);
-      if (jefe) { jefe.vida = Math.max(0, jefe.vida - (o.dano || 1)); if (!jefe.vida) vencido = true; el.classList.remove("plxg-golpe"); void el.offsetWidth; el.classList.add("plxg-golpe"); }
+      var dn = o.dano != null ? o.dano : 1;   /* dano:0 = acierto parcial que no le quita vida al jefe */
+      if (jefe && dn) { jefe.vida = Math.max(0, jefe.vida - dn); if (!jefe.vida) vencido = true; el.classList.remove("plxg-golpe"); void el.offsetWidth; el.classList.add("plxg-golpe"); }
       if (pts.racha % 10 === 0) empiezaFrenesi();
       else if (pts.racha === 3 || pts.racha === 6) s.mz("bien", pts.racha === 3 ? "¡Combo ×2!" : "¡Combo ×3!");
       else if (Math.random() < .25) s.mz("bien", ["¡Bien!", "Parfait !", "Bravo !", "¡Eso!"][Math.floor(Math.random() * 4)]);
@@ -671,7 +708,7 @@
       var key = o.key !== undefined ? o.key : r.key;
       if (key && G.alCarnet(key, o.hab || r.hab)) alCarnet++;
       if (o.repetir !== false) repetir(r);
-      return momento({ mal: o.mal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why }).then(function(){
+      return momento({ mal: o.mal, etMal: o.etMal || juego.etMal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why }).then(function(){
         if (vidas <= 0) { termina(true); return new Promise(function(){}); }
       });
     };
@@ -742,6 +779,7 @@
       r.mejorMult = r.mejor >= 10 ? 4 : r.mejor >= 6 ? 3 : r.mejor >= 3 ? 2 : 1;
       r.estrellas = opc.estrellas ? opc.estrellas(r) : G.estrellas(r, seg);
       r.pista = opc.pista ? opc.pista(r) : "";
+      r.titulo = opc.titulo ? opc.titulo(r) : ""; r.cabeza = opc.cabeza ? opc.cabeza(r) : "";   /* ganchos opcionales de los resultados */
       var premio = G.premiar(juego.id, alc, r);
       s.mz("fin", porVidas ? "¡Otra vez!" : vencido ? "¡Victoria!" : "¡Terminó!");
       setTimeout(function(){ destruye(); G.resultados(el, juego, alc, r, premio, acciones); }, porVidas ? 500 : 900);
@@ -792,7 +830,7 @@
   /* barra superior */
   .plxg-hud{position:absolute;left:0;right:0;top:env(safe-area-inset-top);z-index:5;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:10px;padding:10px 12px 0;pointer-events:none}
   .plxg-hud>*{pointer-events:auto}
-  .plxg-ib{all:unset;pointer-events:auto;cursor:pointer;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .plxg-ib{all:unset;pointer-events:auto;cursor:pointer;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
   .plxg-ib svg{width:18px;height:18px;fill:#fff}
   .plxg-vidas{display:flex;gap:4px}
   .plxg-vidas i{width:20px;height:18px;background:#E5484D;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.3 10.5 20C5.1 15.1 1.6 12 1.6 8.1 1.6 4.9 4.1 2.4 7.3 2.4c1.8 0 3.5.8 4.7 2.2 1.2-1.4 2.9-2.2 4.7-2.2 3.2 0 5.7 2.5 5.7 5.7 0 3.9-3.5 7-8.9 11.9z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.3 10.5 20C5.1 15.1 1.6 12 1.6 8.1 1.6 4.9 4.1 2.4 7.3 2.4c1.8 0 3.5.8 4.7 2.2 1.2-1.4 2.9-2.2 4.7-2.2 3.2 0 5.7 2.5 5.7 5.7 0 3.9-3.5 7-8.9 11.9z'/%3E%3C/svg%3E") center/contain no-repeat}
