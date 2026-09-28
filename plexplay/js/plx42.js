@@ -95,7 +95,8 @@
     html body .pclogin.m-form .pl-chips,html body .pclogin.m-form .pl-chips-b{display:none!important}
 
     /* ---------- bienvenida al entrar: pantalla completa, sin recortes ---------- */
-    .gonb{padding:0!important;place-items:stretch!important;animation:plx42Fade .35s ease both}
+    .gonb:has(> .onb-splash){padding:0!important;place-items:stretch!important}
+    .gonb{animation:plx42Fade .35s ease both}
     .gonb .onb-splash{
       width:100%!important;min-height:100dvh!important;border-radius:0!important;box-shadow:none!important;
       padding:max(26px,calc(env(safe-area-inset-top,0px) + 18px)) 22px max(24px,calc(env(safe-area-inset-bottom,0px) + 16px))!important;
