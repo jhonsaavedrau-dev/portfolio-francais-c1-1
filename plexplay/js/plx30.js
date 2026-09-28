@@ -5,6 +5,7 @@
   var esc=function(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
   var OPEN={};   /* unidades abiertas por curso */
   var ICONS=[
+    [/primeras palabras/i,"👋"],[/cómo suena/i,"🔤"],[/números y colores/i,"🎨"],[/defenderte/i,"🛟"],
     [/salu|premiers|primeros|présent/i,"👋"],[/vida diaria|quotidien|rutina|routine/i,"☕"],[/gusto|loisir|ocio/i,"🎧"],[/ciudad|ville|lugar/i,"🗺️"],
     [/mundo|famil|personnes/i,"👨‍👩‍👧"],[/pasado|passé|relatar|recuerdo|souvenir/i,"⏳"],[/proyecto|futur|projet/i,"🚀"],[/compar|sustitu/i,"⚖️"],
     [/pronom/i,"🔁"],[/viaje|voyage|consejo/i,"✈️"],[/vocal/i,"🗣️"],[/consonant|grafí/i,"🔤"],[/frase hablada|oral|pronunci/i,"🎙️"],
@@ -49,12 +50,14 @@
     var units=sec.querySelectorAll(".psec"), open=OPEN[T.id]||{};
     units.forEach(function(u,i){
       var h=u.querySelector(".psec-h"), title=(h.querySelector("h2")||{}).textContent||"", nn=(h.querySelector(".psec-n")||{}).textContent||"0/0", m=nn.split("/"), p=+m[1]?Math.round(+m[0]/+m[1]*100):0;
-      var img='<span class="lx-ic"><span class="lx-emo">'+iconFor(title)+'</span><img src="img/u/'+T.id+"-"+(i+1)+'.webp" alt="" loading="lazy" onerror="this.remove()"></span>';
+      /* el icono de siempre en la tarjeta; la foto de la unidad va en grande, como portada, al abrirla */
+      var img='<span class="lx-ic"><span class="lx-emo">'+iconFor(title)+'</span></span>';
+      var cover='<figure class="lx-cover"><img src="img/u/'+T.id+"-"+(i+1)+'.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"><figcaption><small>Unidad '+(i+1)+'</small><b>'+esc(title)+'</b></figcaption></figure>';
       var card=document.createElement("button"); card.type="button"; card.className="lx-unit"; card.dataset.lxu=i; card.setAttribute("aria-expanded",!!open[i]);
       card.innerHTML=img+'<span class="lx-n">'+(i+1)+'</span><span class="lx-t"><b>'+esc(title)+'</b><span class="lx-pb"><i style="width:'+p+'%"></i></span></span><span class="lx-c">'+esc(nn)+'</span><span class="lx-ch" aria-hidden="true">›</span>';
       h.replaceWith(card);
       u.classList.add("lx-u"); if(open[i]) u.classList.add("open");
-      var body=document.createElement("div"); body.className="lx-body";
+      var body=document.createElement("div"); body.className="lx-body"; body.innerHTML=cover;
       [].slice.call(u.children).forEach(function(c){ if(c!==card) body.appendChild(c); });
       u.appendChild(body);
       try{ lessonRows(body); }catch(e){}
@@ -126,8 +129,12 @@
   .lx-unit:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}
   .lx-ic{position:relative;width:74px;height:62px;display:grid;place-items:center}
   .lx-emo{font-size:44px;line-height:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.14));transform:rotate(-6deg)}
-  .lx-ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-  .lx-ic img+.lx-emo,.lx-ic:has(img) .lx-emo{visibility:hidden}
+  .lx-cover{position:relative;margin:2px 0 12px;border-radius:22px;overflow:hidden;aspect-ratio:16/7;background:#0B2D74;box-shadow:0 14px 30px -22px rgba(30,58,138,.8)}
+  .lx-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .lx-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,20,52,.82) 0%,rgba(8,20,52,.25) 55%,rgba(8,20,52,0) 100%)}
+  .lx-cover figcaption{position:absolute;left:16px;right:16px;bottom:12px;z-index:1;display:grid;gap:2px;color:#fff}
+  .lx-cover small{font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#FFD200}
+  .lx-cover b{font-size:1.25rem;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.45)}
   .lx-n{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:1.35rem;color:var(--sc,#2563eb);background:color-mix(in srgb,var(--sc,#2563eb) 13%,transparent)}
   .lx-t{display:grid;gap:10px;min-width:0}.lx-t b{font-size:1.05rem;line-height:1.2;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
   .lx-pb{display:block;height:7px;border-radius:99px;background:#e6ebf5;max-width:260px}.lx-pb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#1d4ed8,#3b82f6)}
