@@ -5,8 +5,8 @@
      recarga la app ya con la sesión puesta (backend.js tiene detectSessionInUrl:false).
      En la app de Android (WebView) Google no deja iniciar sesión dentro de la app: desde la versión 4 de la app
      (PlexPlayAndroid/4) el acceso se abre en el navegador y vuelve con co.plexplay.app://auth; en la vieja, no hay botón.
-   - Una sola vez, a quien no es de Unipamplona se le pregunta si es estudiante (para el ranking de estudiantes).
-   - Clasificación en el Inicio (reemplaza la de ligas; un solo lugar) y lista completa con «Ver todo»: Universidad de Pamplona, Estudiantes y Global; semana, mes e histórico. Muestra
+   - (1.26.5) Sin modo demo: solo Google o el correo @unipamplona. Ya no se pregunta si es estudiante.
+   - Clasificación en el Inicio (reemplaza la de ligas; un solo lugar) y lista completa con «Ver todo»: Universidad de Pamplona y Global; semana, mes e histórico. Muestra
      posición, gato, apodo, nivel y XP. Los datos salen de la función plx_ranking del servidor
      (herramientas/supabase/02-rankings.sql), que nunca devuelve correos ni ids.
    - Si el servidor todavía no tiene esas funciones, la app lo dice y sigue funcionando igual. */
@@ -101,10 +101,10 @@
     }).catch(function(){ /* el servidor aún no tiene las funciones nuevas */ });
   };
   PCB._pregunta = pregunta;   /* para las pruebas */
-  (PCB.ready || Promise.resolve()).then(function(s){ if (s) setTimeout(pregunta, 2500); });
+  /* 1.26.5: solo rankings Unipamplona y Global; ya no se pregunta si es estudiante */
 
   /* ---------------- rankings ---------------- */
-  var AMB = [["unipamplona", "Unipamplona"], ["estudiantes", "Estudiantes"], ["global", "Global"]];
+  var AMB = [["unipamplona", "Unipamplona"], ["global", "Global"]];
   var PER = [["semana", "Semana"], ["mes", "Mes"], ["total", "Histórico"]];
   var R = { amb: "global", per: "semana", cache: {} };
   var gato = function(av){ try { if (typeof catSVG === "function") return catSVG(av && typeof av === "object" ? av : {}, { mood: "happy" }); } catch (e) {} return ""; };
@@ -158,7 +158,7 @@
 
   /* ---------------- clasificación en el Inicio (un solo lugar) ----------------
      Reemplaza la tarjeta «Clasificación semanal» (ligas por programa/semestre) por los rankings nuevos:
-     Unipamplona · Estudiantes · Global, y Semana · Mes · Histórico. Top 5 + tu posición; «Ver todo» abre la lista. */
+     Unipamplona · Global, y Semana · Mes · Histórico. Top 5 + tu posición; «Ver todo» abre la lista. */
   var filaW = function(x){
     return '<li class="rkw-f' + (x.soy_yo ? " yo" : "") + '"><span class="rkw-p">' + x.posicion + '</span><span class="rkw-a" aria-hidden="true">' + gato(x.avatar) + "</span>" +
       '<span class="rkw-n"><b>' + esc(x.nick) + (x.soy_yo ? " <em>tú</em>" : "") + "</b><small>Nivel " + esc(x.nivel || "1") + "</small></span>" +
@@ -192,7 +192,7 @@
       '<div class="rkw-s" role="group" aria-label="Periodo">' + PER.map(function(p){ return '<button data-plx53-wper="' + p[0] + '">' + p[1] + "</button>"; }).join("") + "</div>" +
       '<ol class="rkw-l"></ol>';
     cargaW(c);
-    if (!R.eligio && PCB.uid) miAmbito().then(function(a){ if (R.eligio) return; R.eligio = 1; R.amb = a.unipamplona ? "unipamplona" : a.estudiante ? "estudiantes" : "global"; if (document.body.contains(c)) cargaW(c); }).catch(function(){});
+    if (!R.eligio && PCB.uid) miAmbito().then(function(a){ if (R.eligio) return; R.eligio = 1; R.amb = a.unipamplona ? "unipamplona" : "global"; if (document.body.contains(c)) cargaW(c); }).catch(function(){});
   };
   document.addEventListener("click", function(e){
     var b = e.target.closest && e.target.closest("[data-plx53-wamb],[data-plx53-wper]"); if (!b) return;
@@ -210,6 +210,7 @@
   var st = document.createElement("style"); st.id = "plx53";
   st.textContent = `
   .plx53-g{display:grid;gap:8px;margin:0 0 14px}
+  .plx-demo-link,.plx-demo{display:none!important}   /* sin modo demo */
   .plx53-gb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 18px;border-radius:14px;
     background:#fff;color:#1F1F1F;font:600 16px/1 Inter,system-ui,sans-serif;box-shadow:inset 0 0 0 1.5px #D0D7E4}
   .plx53-gb svg{width:22px;height:22px}
@@ -236,7 +237,7 @@
   .plx53-w .rkw-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
   .plx53-w .rkw-h b{font:700 17px/1.2 Poppins,system-ui,sans-serif;color:var(--ink)}
   .plx53-w .rkw-h button{all:unset;cursor:pointer;font:600 14px Inter,system-ui,sans-serif;color:var(--accent,#1E5BD7)}
-  .rkw-t{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:12px;background:var(--surf2,#EEF2FA)}
+  .rkw-t{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:4px;border-radius:12px;background:var(--surf2,#EEF2FA)}
   .rkw-t button,.rkw-s button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;border-radius:9px;font:600 13px/36px Inter,system-ui,sans-serif;min-height:36px;color:var(--stone,#5B6B8C);white-space:nowrap}
   .rkw-t button[aria-selected=true]{background:#1E5BD7;color:#fff}
   .rkw-s{display:flex;gap:6px;margin:8px 0 6px}
@@ -257,7 +258,7 @@
   .rkw-x{font:700 14px/1 Inter,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
   .rkw-v{padding:12px 6px;text-align:center;color:var(--stone,#5B6B8C);font-size:13.5px}
   .rkw-sep{text-align:center;color:var(--stone,#5B6B8C);letter-spacing:.3em;line-height:1}
-  .rk-t{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:16px 0 10px;padding:4px;border-radius:14px;background:rgba(255,255,255,.06)}
+  .rk-t{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:16px 0 10px;padding:4px;border-radius:14px;background:rgba(255,255,255,.06)}
   .rk-t button,.rk-s button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;min-height:44px;border-radius:11px;font:700 14px/44px Inter,system-ui,sans-serif;color:#C9D6F5}
   .rk-t button[aria-selected=true]{background:#FFD200;color:#081F55}
   .rk-s{display:flex;gap:8px}

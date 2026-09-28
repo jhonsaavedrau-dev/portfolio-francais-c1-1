@@ -4,7 +4,10 @@
   /* modo docente visible (Soy estudiante / Soy docente en el ingreso) */
   window.PLX_TEACH = true;
   /* modo demo: la app funciona sin cuenta y sin servidor; el progreso queda en este dispositivo */
-  try{ window.PLX_DEMO = localStorage.getItem("plx-demo") === "1"; }catch(e){ window.PLX_DEMO = false; }
+  /* 1.26.5: sin modo demo. Solo se entra con Google o con el correo @unipamplona.edu.co. Quien estaba en la demo
+     vuelve a la pantalla de acceso (su progreso local no se borra). */
+  window.PLX_DEMO = false;
+  try{ localStorage.removeItem("plx-demo"); localStorage.removeItem("plx-after-demo"); }catch(e){}
   /* sin sesión guardada: no se dibuja la app detrás del ingreso (ahorra datos en la primera carga) */
   try{ var C=window.PC_CONFIG||{}, au=JSON.parse(localStorage.getItem("pc-auth")||"null"); window.PLX_HOLD=!!(C.url&&C.key)&&!window.PLX_DEMO&&!(au&&au.user); }catch(e){ window.PLX_HOLD=false; }
   /* errores tempranos: se guardan hasta que el monitor (plx34) pueda enviarlos */
