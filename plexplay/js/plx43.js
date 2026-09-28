@@ -33,9 +33,9 @@
   var TEXTO_AZUL = [
     "#player .ctx span", "#player .listen .say", "#player .sp-sent", "#player p.ask .m-n", ".bins .binh",
     ".doc-kpis>div b", ".gbtn.ghost", ".btn.line", ".btn.ghost", ".gbtn.m-soft", ".ghome .greet h1 span",
-    ".gpath .crs.on .crs-chev", ".m-course .mc-go", ".m-ill .m-bub", ".m-quote", ".opt[aria-pressed=true] .k",
+    ".gpath .crs.on .crs-chev", ".m-course .mc-go", ".m-quote", ".opt[aria-pressed=true] .k",
     ".streak-card .m-skt", ".tok[aria-pressed=true]", ".chipb[aria-pressed=true]", ".mbtn[aria-pressed=true]", ".dtok.sel",
-    "nav#tabbar button[aria-current=page]", ".lx-pick small", ".lb-n em", ".pf-say b"
+    "nav#tabbar button[aria-current=page]", ".plx-tbtn", ".lx-pick small", ".lb-n em", ".pf-say b"
   ];
   var VERDE = [".ps-ojo em", ".or-err em", ".lxl-m em", ".gretos .r-atel .ri", ".m-chips .c2"];
   var pref = function(sel, antes){ return sel.map(function(s){ return antes + " " + s; }).join(","); };
@@ -49,6 +49,8 @@
     ${r} body{background-color:#06173F!important}
     ${r} body nav#tabbar,html.mk:root[data-theme=dark] body nav#tabbar.tabbar{background:rgba(8,24,70,.94)!important;border-color:#1F3A7A!important}
     ${r} .ps-ojo s,${r} .or-err s{color:#FF9EA2!important}
+    ${r} .m-ill .m-bub{background:#fff!important;color:#0B2D74!important;}
+    ${r} .opt.ok .k{background:#15803D!important;border-color:#15803D!important;color:#fff!important}
     ${r} .plx-liga b{color:color-mix(in srgb,var(--lc) 55%,#fff)!important}
   `; };
 
