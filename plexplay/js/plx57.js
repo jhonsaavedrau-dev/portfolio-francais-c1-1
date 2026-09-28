@@ -22,7 +22,7 @@
   var PISTAS = /^(ash|kü|dubl-ve|i-grek)$/i;
   var pareceEs = function(t){
     if (PISTAS.test(t.trim())) return true;
-    return /[ñ¿¡]/.test(t) || (/\b(el|los|las|una|está|estoy|soy|tengo|hola|gracias|por|favor|qué|cómo|dónde|muy|pero|llamo|sin|haber|cuando|tanto|alegra|verte|llegues|comido|saliendo)\b/i.test(t) &&
+    return /[ñ¿¡]/.test(t) || (/\b(el|los|las|una|está|estoy|soy|tengo|hola|gracias|por|favor|qué|cómo|dónde|muy|pero|llamo|mi|para|con|sin|haber|cuando|tanto|alegra|verte|llegues|comido|saliendo)\b/i.test(t) &&
       !/[çœàèùâêîôûë]|\b(je|tu|il|nous|vous|le|la|les|un|une|des|est|et|de|du|au|aux|ne|pas)\b|'/i.test(t));
   };
   if (typeof deviceSpeak === "function") {
@@ -49,7 +49,15 @@
 
   /* datos: Voice Duel no pide decir frases en español; Memory Rush no «lee» en francés una columna en español */
   var arregla = function(){
-    var vd = G.juegos.vd; if (vd && vd.apto && !vd.__es) { var a0 = vd.apto; vd.apto = function(r){ return a0(r) && !(r.q && pareceEs(String(r.q))); }; vd.__es = 1; }
+    var vd = G.juegos.vd; if (vd && vd.apto && !vd.__es) {
+      var a0 = vd.apto;
+      vd.apto = function(r){
+        if (!a0(r) || (r.q && pareceEs(String(r.q)))) return false;
+        var it = r.key && typeof ITEMS !== "undefined" && ITEMS[r.key] && ITEMS[r.key].it;   /* «¿Qué significa?»: la respuesta está en español */
+        return !(it && it.gen && /significa/i.test(it.ask || ""));
+      };
+      vd.__es = 1;
+    }
     var mr = G.juegos.mr; if (mr && mr.retos && !mr.__es) {
       var r0 = mr.retos;
       mr.retos = function(alc){ var rs = r0.apply(this, arguments) || []; rs.forEach(function(r){ if (r.pares && r.voz) [0, 1].forEach(function(l){ if (r.voz[l] && r.pares.some(function(pp){ return pareceEs(String(pp[l])); })) r.voz[l] = false; }); }); return rs; };

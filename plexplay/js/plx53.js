@@ -201,7 +201,7 @@
     var w = b.closest(".plx53-w"); if (w) cargaW(w);
   }, true);
   if (typeof render === "function") { var _r = render; render = function(){ var x = _r.apply(this, arguments); try { if (view === "parcours") inicio(); } catch (e) {} return x; }; }
-  document.addEventListener("click", function(e){ var b = e.target.closest && e.target.closest("[data-plx53=rankings]"); if (!b) return; e.preventDefault(); e.stopPropagation(); abre(); }, true);
+  document.addEventListener("click", function(e){ var b = e.target.closest && e.target.closest("[data-plx53=rankings]"); if (!b) return; e.preventDefault(); e.stopPropagation(); (window.PLX_RANKING || abre)(); }, true);
   var repinta = function(){ try { if (view === "parcours") inicio(); } catch (e) {} };
   /* la sesión puede llegar después de dibujar el Inicio */
   (PCB.ready || Promise.resolve()).then(function(ses){ if (!ses) return; setTimeout(function(){ var c = document.querySelector(".plx53-w"); if (c) cargaW(c); }, 300); });

@@ -233,6 +233,7 @@
   document.addEventListener("click", function(ev){
     var b = ev.target.closest && ev.target.closest("[data-av-rank]"); if (!b) return;
     ev.preventDefault(); ev.stopPropagation();
+    if (window.PLX_RANKING) { window.PLX_RANKING(); return; }   /* 2.3: pantalla propia del ranking (plx60) */
     var logged = false; try { logged = !!(CLOUD && window.PCB && PCB.uid); } catch (x) {}
     if (logged && window.PCB && typeof PCB.rankings === "function") { PCB.rankings(); return; }
     if (view !== "parcours") { view = "parcours"; render(); }
