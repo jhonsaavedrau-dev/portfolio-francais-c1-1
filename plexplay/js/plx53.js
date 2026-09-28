@@ -6,7 +6,7 @@
      En la app de Android (WebView) Google no deja iniciar sesión dentro de la app: ahí el botón no aparece
      hasta que la app de Android abra el acceso en el navegador.
    - Una sola vez, a quien no es de Unipamplona se le pregunta si es estudiante (para el ranking de estudiantes).
-   - Rankings (pestaña Retos): Universidad de Pamplona, Estudiantes y Global; semana, mes e histórico. Muestra
+   - Clasificación en el Inicio (reemplaza la de ligas; un solo lugar) y lista completa con «Ver todo»: Universidad de Pamplona, Estudiantes y Global; semana, mes e histórico. Muestra
      posición, gato, apodo, nivel y XP. Los datos salen de la función plx_ranking del servidor
      (herramientas/supabase/02-rankings.sql), que nunca devuelve correos ni ids.
    - Si el servidor todavía no tiene esas funciones, la app lo dice y sigue funcionando igual. */
@@ -148,17 +148,50 @@
   };
   PCB.rankings = abre;
 
-  /* tarjeta en Retos, debajo del Arcade */
-  var tarjeta = function(){
-    var v = document.getElementById("view"), sec = v && v.querySelector(".gretos"); if (!sec || sec.querySelector(".plx53-rk")) return;
-    var ar = sec.querySelector(".plx46-arc");
-    var html = '<button class="plx53-rk" data-plx53="rankings"><span class="k-i" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 34h24M12 34V22h6v12M18 34V12h6v22M24 34V17h6v17" stroke="#FFD200" stroke-width="2.4" fill="none" stroke-linejoin="round"/></svg></span>' +
-      '<span class="k-t"><b>Rankings</b><span>Unipamplona · Estudiantes · Global · semana, mes e histórico</span></span><span class="k-go" aria-hidden="true">›</span></button>';
-    if (ar) ar.insertAdjacentHTML("afterend", html);
+  /* ---------------- clasificación en el Inicio (un solo lugar) ----------------
+     Reemplaza la tarjeta «Clasificación semanal» (ligas por programa/semestre) por los rankings nuevos:
+     Unipamplona · Estudiantes · Global, y Semana · Mes · Histórico. Top 5 + tu posición; «Ver todo» abre la lista. */
+  var filaW = function(x){
+    return '<li class="rkw-f' + (x.soy_yo ? " yo" : "") + '"><span class="rkw-p">' + x.posicion + '</span><span class="rkw-a" aria-hidden="true">' + gato(x.avatar) + "</span>" +
+      '<span class="rkw-n"><b>' + esc(x.nick) + (x.soy_yo ? " <em>tú</em>" : "") + "</b><small>Nivel " + esc(x.nivel || "1") + "</small></span>" +
+      '<span class="rkw-x">' + Number(x.xp || 0).toLocaleString("es-CO") + " XP</span></li>";
   };
-  if (typeof render === "function") { var _r = render; render = function(){ var x = _r.apply(this, arguments); try { if (view === "retos") tarjeta(); } catch (e) {} return x; }; }
-  document.addEventListener("click", function(e){ var b = e.target.closest && e.target.closest("[data-plx53=rankings]"); if (!b) return; e.preventDefault(); abre(); });
-  var repinta = function(){ try { if (view === "retos") tarjeta(); } catch (e) {} };
+  var pintaW = function(w){
+    var k = R.amb + "|" + R.per, d = R.cache[k], lista = w.querySelector(".rkw-l");
+    w.querySelectorAll("[data-plx53-wamb]").forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.plx53Wamb === R.amb)); });
+    w.querySelectorAll("[data-plx53-wper]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.plx53Wper === R.per)); });
+    if (!d) { lista.innerHTML = '<li class="rkw-v">Cargando…</li>'; return; }
+    if (d.error) { lista.innerHTML = '<li class="rkw-v">' + esc(d.error) + "</li>"; return; }
+    if (!d.filas.length) { lista.innerHTML = '<li class="rkw-v">Todavía nadie tiene XP aquí en este periodo. ¡Sé el primero!</li>'; return; }
+    var top = d.filas.filter(function(x){ return x.posicion <= 5; }), yo = d.filas.filter(function(x){ return x.soy_yo && x.posicion > 5; });
+    lista.innerHTML = top.map(filaW).join("") + (yo.length ? '<li class="rkw-sep" aria-hidden="true">···</li>' + yo.map(filaW).join("") : "");
+  };
+  var cargaW = function(w){
+    var k = R.amb + "|" + R.per; pintaW(w);
+    if (R.cache[k] && !R.cache[k].error && Date.now() - R.cache[k].t < 60000) return;
+    sb.rpc("plx_ranking", { ambito: R.amb, periodo: R.per, cuantos: 50 }).then(function(r){ if (r.error) throw r.error; R.cache[k] = { t: Date.now(), filas: r.data || [] }; })
+      .catch(function(){ R.cache[k] = { t: Date.now(), error: navigator.onLine === false ? "Sin conexión: la clasificación necesita internet." : "No se pudo cargar la clasificación." }; })
+      .then(function(){ if (document.body.contains(w)) pintaW(w); });
+  };
+  var inicio = function(){
+    var v = document.getElementById("view"), c = v && v.querySelector(".lb-card"); if (!c || c.querySelector(".plx53-w")) return;
+    c.classList.add("plx53-w");
+    c.innerHTML = '<div class="rkw-h"><b>Clasificación</b><button data-plx53="rankings">Ver todo ›</button></div>' +
+      '<div class="rkw-t" role="tablist" aria-label="Ranking">' + AMB.map(function(a){ return '<button role="tab" data-plx53-wamb="' + a[0] + '">' + a[1] + "</button>"; }).join("") + "</div>" +
+      '<div class="rkw-s" role="group" aria-label="Periodo">' + PER.map(function(p){ return '<button data-plx53-wper="' + p[0] + '">' + p[1] + "</button>"; }).join("") + "</div>" +
+      '<ol class="rkw-l"></ol>';
+    cargaW(c);
+    if (!R.eligio) miAmbito().then(function(a){ if (R.eligio) return; R.eligio = 1; R.amb = a.unipamplona ? "unipamplona" : a.estudiante ? "estudiantes" : "global"; if (document.body.contains(c)) cargaW(c); }).catch(function(){});
+  };
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest("[data-plx53-wamb],[data-plx53-wper]"); if (!b) return;
+    e.preventDefault(); e.stopPropagation(); R.eligio = 1;
+    if (b.dataset.plx53Wamb) R.amb = b.dataset.plx53Wamb; else R.per = b.dataset.plx53Wper;
+    var w = b.closest(".plx53-w"); if (w) cargaW(w);
+  }, true);
+  if (typeof render === "function") { var _r = render; render = function(){ var x = _r.apply(this, arguments); try { if (view === "parcours") inicio(); } catch (e) {} return x; }; }
+  document.addEventListener("click", function(e){ var b = e.target.closest && e.target.closest("[data-plx53=rankings]"); if (!b) return; e.preventDefault(); e.stopPropagation(); abre(); }, true);
+  var repinta = function(){ try { if (view === "parcours") inicio(); } catch (e) {} };
   if (document.readyState === "complete") repinta(); else window.addEventListener("load", repinta);
 
   var st = document.createElement("style"); st.id = "plx53";
@@ -187,6 +220,30 @@
   .plx53-rk b{font:800 20px/1 Poppins,system-ui,sans-serif;text-transform:uppercase;color:#fff}
   .plx53-rk .k-t>span{font-size:13px;line-height:1.4;color:#DCE6FF}
   .plx53-rk .k-go{font:800 26px/1 Poppins,system-ui,sans-serif;color:#FFD200}
+  .plx53-w .rkw-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .plx53-w .rkw-h b{font:700 17px/1.2 Poppins,system-ui,sans-serif;color:var(--ink)}
+  .plx53-w .rkw-h button{all:unset;cursor:pointer;font:600 14px Inter,system-ui,sans-serif;color:var(--accent,#1E5BD7)}
+  .rkw-t{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:12px;background:var(--surf2,#EEF2FA)}
+  .rkw-t button,.rkw-s button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;border-radius:9px;font:600 13px/36px Inter,system-ui,sans-serif;min-height:36px;color:var(--stone,#5B6B8C);white-space:nowrap}
+  .rkw-t button[aria-selected=true]{background:#1E5BD7;color:#fff}
+  .rkw-s{display:flex;gap:6px;margin:8px 0 6px}
+  .rkw-s button{flex:1;font-size:12.5px;line-height:30px;min-height:30px;box-shadow:inset 0 0 0 1px var(--line,#D8DFEC)}
+  .rkw-s button[aria-pressed=true]{background:#FFD200;color:#081F55;box-shadow:none}
+  .rkw-t button:focus-visible,.rkw-s button:focus-visible,.plx53-w .rkw-h button:focus-visible{outline:3px solid #93C5FD;outline-offset:2px}
+  .rkw-l{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+  .rkw-f{display:grid;grid-template-columns:24px 40px 1fr auto;align-items:center;gap:10px;padding:6px 8px;border-radius:12px}
+  .rkw-f.yo{background:rgba(255,210,0,.16);box-shadow:inset 0 0 0 1.5px #E0B800}
+  .rkw-p{font:800 16px/1 Poppins,system-ui,sans-serif;text-align:center;color:var(--ink)}
+  .rkw-f:nth-child(1) .rkw-p{color:#C99700}
+  .rkw-a{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--surf2,#EEF2FA);display:block}
+  .rkw-a svg{width:100%;height:100%;display:block}
+  .rkw-n{display:grid;min-width:0}
+  .rkw-n b{font:700 15px/1.25 Poppins,system-ui,sans-serif;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rkw-n em{font-style:normal;font-size:10.5px;color:#081F55;background:#FFD200;border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:2px}
+  .rkw-n small{font-size:12px;color:var(--stone,#5B6B8C)}
+  .rkw-x{font:700 14px/1 Inter,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
+  .rkw-v{padding:12px 6px;text-align:center;color:var(--stone,#5B6B8C);font-size:13.5px}
+  .rkw-sep{text-align:center;color:var(--stone,#5B6B8C);letter-spacing:.3em;line-height:1}
   .rk-t{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:16px 0 10px;padding:4px;border-radius:14px;background:rgba(255,255,255,.06)}
   .rk-t button,.rk-s button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;min-height:44px;border-radius:11px;font:700 14px/44px Inter,system-ui,sans-serif;color:#C9D6F5}
   .rk-t button[aria-selected=true]{background:#FFD200;color:#081F55}
