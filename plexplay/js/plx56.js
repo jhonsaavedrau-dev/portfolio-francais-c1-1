@@ -22,6 +22,8 @@
   var BOCINA = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3l4-3.5v12l-4-3.5H3z" fill="currentColor"/><path d="M13 7a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
   var suena = function(t){ if (!t) return; try { var p = speak(t); if (p && typeof p.catch === "function") p.catch(function(){}); } catch (e) {} };
   var callaVoz = function(){ try { if (typeof stopAudio === "function") stopAudio(); } catch (e) {} try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {} };
+  var fx = function(n, x){ try { if (G.fx) G.fx(n, x); } catch (e) {} };
+  var chispas = function(s, x, y, o){ try { if (s.efectos) s.efectos.estalla(x, y, o); } catch (e) {} };
   var entre = function(a, x, b){ return Math.max(a, Math.min(b, x)); };
   var q = function(r){ return esc(r.q || "").replace(/_{2,}/, '<span class="hueco">___</span>'); };
   /* instrucción + pregunta (con botón para oír si el reto es de audio) */
@@ -30,12 +32,29 @@
       (r.q ? '<p class="plxg-q" lang="fr">' + q(r) + "</p>" : "") +
       (r.audio ? '<button type="button" class="x-oir" data-x-oir aria-label="Escuchar otra vez">' + BOCINA + "<span>Escuchar</span></button>" : "") + (extra || "");
   };
-  /* opciones de un reto «uno»: la correcta y n−1 distractores, mezcladas */
-  var opcs = function(r, n){
-    var ok = r.correcta[0], m = (r.malas || []).filter(function(x){ return norm(x) !== norm(ok); });
+  /* ¿la respuesta está en francés? (solo así tiene sentido una trampa de ortografía) */
+  var enFrances = function(r, w){
+    if (!w || r.modo === "voc" || r.tipo === "orden" || /[ñ¿¡áíóú]|\d|→/.test(w) || w.length < 3) return false;
+    if (/español|en espagnol|significa|traduc/i.test((r.ask || "") + " " + (r.q || ""))) return false;
+    return !/\b(el|los|las|una|es|está|y|con|para|muy|pero|qué|cómo|sí)\b/i.test(w);
+  };
+  /* trampas: la misma palabra mal escrita (tildes, consonantes dobles, letras mudas…), sin palabras reales del curso */
+  var trampas = function(r, w, nivel, cuantas){
+    if (!G.malEscritas || !enFrances(r, w)) return [];
+    try { return G.malEscritas(w, nivel).filter(function(x){ return norm(x) !== norm(w); }).slice(0, cuantas); } catch (e) { return []; }
+  };
+  /* cuántas opciones: más a mayor nivel (A1 3–4, B1 4–5, C1 5), sin pasar del máximo del juego */
+  var cuantas = function(s, max){ return Math.min(max, Math.max(3, s.dir.opciones() + 1 + (s.nivel > 0 ? 1 : 0))); };
+  /* opciones de un reto «uno»: la correcta, trampas de ortografía y distractores del ejercicio, mezcladas */
+  var opcs = function(r, n, s){
+    var ok = r.correcta[0], nv = s ? s.nivel : 0, vistos = {}; vistos[norm(ok)] = 1;
+    var tr = trampas(r, ok, nv, nv === 0 ? 1 : 2);
+    var m = tr.concat(r.malas || []).filter(function(x){ var k = norm(x); if (vistos[k]) return false; vistos[k] = 1; return true; });
     m = m.slice(0, Math.max(1, n - 1));
     return mezcla([{ t: ok, ok: true }].concat(m.map(function(x){ return { t: x, ok: false }; })));
   };
+  /* para el juego en línea (plx58): el anfitrión arma las opciones una vez y las comparte */
+  G.opcionesReto = function(r, n, nivel){ return opcs(r, n, { nivel: nivel || 0 }); };
   var centro = function(el, zona){ var a = el.getBoundingClientRect(), b = zona.getBoundingClientRect(); return { x: a.left - b.left + a.width / 2, y: a.top - b.top }; };
   /* escucha los botones «Escuchar» del banner (el banner está fuera de la zona del motor) */
   var oidoBanner = function(s){
@@ -57,7 +76,8 @@
   /* las palabras de un reto «varios» (o «uno») para juegos de blancos: [correctas, malas] */
   var grupos = function(r, maxOk, maxMal){
     if (r.tipo === "varios") return [mezcla(r.correcta).slice(0, maxOk), mezcla(r.malas).slice(0, maxMal)];
-    return [[r.correcta[0]], mezcla(r.malas.filter(function(x){ return norm(x) !== norm(r.correcta[0]); })).slice(0, maxMal)];
+    var ok = r.correcta[0], tr = trampas(r, ok, 1, 2), vistos = {}; vistos[norm(ok)] = 1;
+    return [[ok], tr.concat(mezcla(r.malas)).filter(function(x){ var k = norm(x); if (vistos[k]) return false; vistos[k] = 1; return true; }).slice(0, maxMal)];
   };
 
   /* ================= 1. Bomb Countdown ================= */
@@ -71,14 +91,16 @@
     var pinta = function(){ opsEl.innerHTML = botones(ops, hecho); };
     var limpia = function(){ reto = null; ops = []; opsEl.innerHTML = ""; nota.textContent = ""; bomba.classList.remove("boom", "ok", "poco"); };
     var explota = function(){
-      hecho = true; bomba.classList.add("boom"); pinta();
+      hecho = true; bomba.classList.add("boom"); pinta(); fx("boom");
+      var bc = centro(bomba, zona); chispas(s, bc.x, bc.y + bomba.offsetHeight / 2, { n: 60, v: 700, cols: ["#FF6B3D", "#FFD200", "#fff", "#3B1D2A"], s: 7, d: 1.2 });
+      raiz.classList.remove("bc-flash"); void raiz.offsetWidth; raiz.classList.add("bc-flash");
       s.fallo(reto, { mal: "La bomba explotó", etMal: "💥", etiqueta: "Era", bien: reto.correcta[0] }).then(function(){ limpia(); s.listo(); });
     };
     var elige = function(i, b){
       if (!reto || hecho || s.estado() !== "juega") return;
       var o = ops[i]; if (!o || o.mal) return;
       var p = b ? centro(b, zona) : { x: zona.clientWidth / 2, y: zona.clientHeight / 2 };
-      if (o.ok) { hecho = true; cierre = .6; bomba.classList.add("ok"); s.acierto(reto, { rapidez: Math.max(0, 1 - t / T), x: p.x, y: p.y }); nota.textContent = "¡Bomba desactivada!"; pinta(); return; }
+      if (o.ok) { hecho = true; cierre = .6; bomba.classList.add("ok"); fx("unido"); s.acierto(reto, { rapidez: Math.max(0, 1 - t / T), x: p.x, y: p.y }); nota.textContent = "¡Bomba desactivada!"; pinta(); return; }
       o.mal = true; t = Math.min(T, t + PEN); s.penaliza(p.x, p.y); nota.textContent = "−" + PEN + " s: la mecha se acorta"; pinta();
       if (!s.mov) { bomba.classList.remove("sacude"); void bomba.offsetWidth; bomba.classList.add("sacude"); }
       if (t >= T) explota();
@@ -89,7 +111,7 @@
       jugar: function(r){
         reto = r; t = 0; hecho = false; cierre = -1;
         T = s.dir.t() * 1.3 + 3.5 + (r.audio ? 1.5 : 0); PEN = Math.max(2, Math.round(T * .28));
-        ops = opcs(r, entre(3, s.dir.opciones() + 1, 4)); s.banner(pregunta(r), { oro: r.oro }); coloca(); pinta(); nota.textContent = "";
+        ops = opcs(r, cuantas(s, 5), s); s.banner(pregunta(r), { oro: r.oro }); coloca(); pinta(); nota.textContent = "";
         bomba.style.setProperty("--m", 1); if (r.audio) suena(r.audio);
       },
       tick: function(dt){
@@ -97,6 +119,7 @@
         if (cierre >= 0) { cierre -= dt; if (cierre < 0) { limpia(); s.listo(); } return; }
         if (hecho || !dt) return;
         t += dt; var r = Math.max(0, T - t);
+        if (num.textContent !== String(Math.ceil(r))) fx("tictac", r < 3);
         num.textContent = Math.ceil(r); bomba.style.setProperty("--m", (r / T).toFixed(3)); bomba.classList.toggle("poco", r < 3);
         if (t >= T) explota();
       },
@@ -119,14 +142,14 @@
     var ponCarril = function(k){
       if (!reto || hecho || s.estado() !== "juega") return;
       k = entre(0, k, n - 1); if (k === carril) return; carril = k; tSel = t;
-      corr.style.left = ((carril + .5) / n * 100) + "%"; G.sfx("tic");
+      corr.style.left = ((carril + .5) / n * 100) + "%"; fx("barrido");
     };
     var lineasHTML = function(){ var h = ""; for (var i = 1; i < n; i++) h += '<i style="left:' + (i / n * 100) + '%"></i>'; lineas.innerHTML = h; };
     var juzga = function(){
       hecho = true; var o = ops[carril];
       puerta.querySelectorAll("span").forEach(function(sp, i){ sp.classList.add(ops[i].ok ? "bien" : "mal"); });
       var p = { x: pista.clientWidth * (carril + .5) / n, y: pista.clientHeight - 120 };
-      if (o.ok) { corr.classList.remove("cae"); corr.classList.add("salta"); cierre = .55; s.acierto(reto, { rapidez: Math.max(0, 1 - tSel / T), x: p.x, y: p.y }); nota.textContent = "¡Pasaste!"; return; }
+      if (o.ok) { corr.classList.remove("cae"); corr.classList.add("salta"); cierre = .55; fx("atrapa"); s.acierto(reto, { rapidez: Math.max(0, 1 - tSel / T), x: p.x, y: p.y }); nota.textContent = "¡Pasaste!"; return; }
       corr.classList.add("cae");
       s.fallo(reto, { mal: o.t, etMal: "Ibas por", etiqueta: "Correcta", bien: reto.correcta[0] }).then(function(){ limpia(); s.listo(); });
     };
@@ -140,7 +163,7 @@
     return {
       jugar: function(r){
         reto = r; hecho = false; cierre = -1; t = 0; tSel = 0;
-        n = entre(2, 1 + r.malas.length, 3); ops = opcs(r, n);
+        ops = opcs(r, 3, s); n = ops.length;
         carril = Math.min(carril, n - 1); corr.style.left = ((carril + .5) / n * 100) + "%";
         T = s.dir.t() * .95 + 2.6 + (r.audio ? 1.5 : 0);
         lineasHTML();
@@ -179,8 +202,11 @@
     var dispara = function(i, el){
       if (!reto || hecho || s.estado() !== "juega") return;
       var b = bl[i]; if (!b || b.fuera) return;
-      var p = centro(el, zona);
+      var p = centro(el, zona); fx("pew");
+      raiz.insertAdjacentHTML("beforeend", '<i class="tw-laser" style="--x:' + p.x.toFixed(0) + 'px;--y:' + (p.y + el.offsetHeight / 2).toFixed(0) + 'px"></i>');
+      var lz = raiz.querySelector(".tw-laser:last-of-type"); setTimeout(function(){ if (lz) lz.remove(); }, 260);
       if (b.ok) {
+        chispas(s, p.x, p.y + el.offsetHeight / 2, { n: 26, v: 480, cols: ["#F43F5E", "#FFD200", "#fff"], s: 5 });
         b.fuera = true; el.classList.add("boom"); el.disabled = true; faltan--;
         s.acierto(reto, { rapidez: Math.max(0, 1 - t / T), x: p.x, y: p.y, final: !faltan });
         nota.textContent = faltan ? "Quedan " + faltan : "¡Todos los blancos!";
@@ -196,7 +222,7 @@
     return {
       jugar: function(r){
         reto = r; hecho = false; cierre = -1; t = 0; malos = 0;
-        var g = grupos(r, 4, r.tipo === "varios" ? 4 : entre(3, s.dir.opciones() + 2, 5)); oks = g[0]; faltan = oks.length;
+        var g = grupos(r, 4, r.tipo === "varios" ? 5 : cuantas(s, 6)); oks = g[0]; faltan = oks.length;
         T = s.dir.t() * 1.2 + 2.4 * oks.length + 3 + (r.audio ? 1.5 : 0);
         s.banner(pregunta(r, '<p class="tw-meta">' + (oks.length > 1 ? "Dispara a las " + oks.length + " correctas" : "Dispara solo a la correcta") + "</p>"), { oro: r.oro }); coloca();
         var W = campo.clientWidth || 320, H = campo.clientHeight || 360, v = (26 + 16 * s.nivel) / (s.dir.factor || 1);
@@ -254,7 +280,7 @@
       c.fuera = true; c.el.classList.add(c.ok ? "bien" : "mal");
       setTimeout(function(){ c.el.remove(); }, 260);
       var p = { x: bx, y: cielo.clientHeight - 60 };
-      if (c.ok) { hechas++; s.acierto(reto, { rapidez: .6, x: p.x, y: p.y, final: hechas >= oks.length }); nota.textContent = hechas < oks.length ? "Faltan " + (oks.length - hechas) : "¡Todas!"; return; }
+      if (c.ok) { fx("atrapa"); hechas++; s.acierto(reto, { rapidez: .6, x: p.x, y: p.y, final: hechas >= oks.length }); nota.textContent = hechas < oks.length ? "Faltan " + (oks.length - hechas) : "¡Todas!"; return; }
       malos++;
       if (malos < 2) { s.penaliza(p.x, p.y); nota.textContent = "«" + c.t + "» no va"; return; }
       cierraCon(s.fallo(reto, { mal: c.t, etMal: "Atrapaste", etiqueta: "Había que atrapar", bien: oks.join(" · ") }));
@@ -262,7 +288,7 @@
     return {
       jugar: function(r){
         reto = r; hecho = false; cierre = -1; hechas = 0; malos = 0; caen = [];
-        var g = grupos(r, 4, r.tipo === "varios" ? 4 : entre(3, s.dir.opciones() + 1, 4)); oks = g[0];
+        var g = grupos(r, 4, r.tipo === "varios" ? 5 : cuantas(s, 5)); oks = g[0];
         cola = mezcla(g[0].map(function(x){ return { t: x, ok: true }; }).concat(g[1].map(function(x){ return { t: x, ok: false }; })));
         gap = Math.max(.8, s.dir.t() * .28); prox = .4; vel = Math.max(60, (cielo.clientHeight || 400) / (s.dir.t() * .6 + 2));
         if (bx < 0) ponCesta(cielo.clientWidth / 2);
@@ -321,7 +347,7 @@
       var p = b ? centro(b, zona) : { x: zona.clientWidth / 2, y: zona.clientHeight / 2 };
       fichas.forEach(function(x){ x.mal = false; });
       if (norm(f.t) === norm(toks[hechas])) {
-        f.usada = true; hechas++; yo = hechas / toks.length; G.sfx("tic");
+        f.usada = true; hechas++; yo = hechas / toks.length; fx("motor");
         if (hechas >= toks.length) {
           var pos = 1 + llegaron; hecho = true; cierre = .9;
           s.acierto(reto, { rapidez: pos === 1 ? 1 : .35, x: p.x, y: p.y }); nota.textContent = pos === 1 ? "🏆 ¡Primer lugar!" : "🥈 Segundo lugar";
@@ -373,7 +399,7 @@
       mano.innerHTML = cartas.map(function(c, i){
         var giro = n > 1 ? (-10 + 20 * i / (n - 1)) : 0;
         return '<button type="button" class="cc-carta' + (c.mal ? " mal" : "") + (c.fuera ? " fuera" : "") + (c.ok && hecho ? " bien" : "") + (extra || "") + '" data-i="' + i + '"' + (c.mal || c.fuera ? " disabled" : "") +
-          ' style="--g:' + giro.toFixed(1) + 'deg;--pc:' + c.palo[1] + '" lang="fr"><i aria-hidden="true">' + c.palo[0] + "</i><span>" + esc(c.t) + '</span><i class="cc-pie" aria-hidden="true">' + c.palo[0] + "</i></button>";
+          ' style="--g:' + giro.toFixed(1) + 'deg;--pc:' + c.palo[1] + ';--i:' + i + '" lang="fr"><i aria-hidden="true">' + c.palo[0] + "</i><span>" + esc(c.t) + '</span><i class="cc-pie" aria-hidden="true">' + c.palo[0] + "</i></button>";
       }).join("");
       com.querySelector("b").textContent = usos; com.disabled = !usos || !reto || hecho;
     };
@@ -384,12 +410,12 @@
       var c = cartas[i]; if (!c || c.mal || c.fuera) return;
       var p = b ? centro(b, zona) : { x: zona.clientWidth / 2, y: zona.clientHeight / 2 };
       if (c.ok) {
-        hecho = true; cierre = .7; mesa.classList.add("gana");
+        hecho = true; cierre = .7; mesa.classList.add("gana"); fx("carta");
         mesa.insertAdjacentHTML("beforeend", '<span class="cc-jugada" style="--pc:' + c.palo[1] + '" lang="fr">' + c.palo[0] + " " + esc(c.t) + "</span>");
         s.acierto(reto, { rapidez: Math.max(0, 1 - t / T), x: p.x, y: p.y }); nota.textContent = "¡Jugada perfecta!"; pintaMano(); return;
       }
-      malos++; c.mal = true; pintaMano();
-      if (malos < 2) { s.penaliza(p.x, p.y); nota.textContent = "Esa carta se quema"; return; }
+      malos++; c.mal = true; pintaMano(); chispas(s, p.x, p.y, { n: 14, cols: ["#FF6B3D", "#FFD200", "#3B1D2A"], v: 260, g: -300, d: .8, f: "c" });
+      if (malos < 2) { s.penaliza(p.x, p.y); nota.textContent = "🔥 Esa carta se quema"; return; }
       cierraCon(s.fallo(reto, { mal: c.t, etMal: "Jugaste", etiqueta: "La carta era", bien: reto.correcta[0] }));
     };
     var comodin = function(){
@@ -409,13 +435,13 @@
         reto = r; malos = 0; t = 0; hecho = false; cierre = -1; ronda++;
         T = s.dir.t() * 1.5 + 3.5 + (r.audio ? 1.5 : 0);
         var pal = mezcla(PALOS);
-        cartas = opcs(r, entre(3, s.dir.opciones() + 1, 5)).map(function(o, i){ o.palo = pal[i % 4]; return o; });
+        cartas = opcs(r, cuantas(s, 5), s).map(function(o, i){ o.palo = pal[i % 4]; return o; });
         caos = ronda % 3 === 0 ? 1.2 : -1;   /* cada tercera mano, las cartas se barajan solas */
         mesa.classList.remove("gana");
         mesa.innerHTML = '<small>Reto</small>' + (r.q ? '<b lang="fr">' + q(r) + "</b>" : '<b>' + esc(r.ask || "") + "</b>") +
           (r.audio ? '<button type="button" class="x-oir" data-x-oir>' + BOCINA + "<span>Escuchar</span></button>" : "");
         s.banner('<p class="plxg-ask">' + esc(r.ask || "Juega la carta correcta") + "</p>" + (caos > 0 ? '<p class="tw-meta">¡Mano del caos! Las cartas se van a barajar</p>' : ""), { oro: r.oro }); coloca();
-        pintaMano(" reparte"); nota.textContent = ""; reloj.style.transform = "scaleX(1)";
+        pintaMano(" reparte"); fx("carta"); nota.textContent = ""; reloj.style.transform = "scaleX(1)";
         if (r.audio) suena(r.audio);
       },
       tick: function(dt){
@@ -489,7 +515,7 @@
         if (r.tipo === "varios") { st = { k: "varios", ops: mezcla(r.correcta.slice(0, 4).map(function(x){ return { t: x, ok: true }; }).concat(r.malas.slice(0, 4).map(function(x){ return { t: x, ok: false }; }))) }; T = s.dir.t() + 1.4 * st.ops.length + 2; }
         else if (r.tipo === "orden") { var ord; do ord = mezcla(r.correcta.map(function(_, i){ return i; })); while (ord.every(function(x, i){ return x === i; })); st = { k: "orden", toks: r.correcta.slice(), n: 0, ops: ord.map(function(i){ return { t: r.correcta[i] }; }) }; T = s.dir.t() * .8 + 1.5 * r.correcta.length + 2; }
         else if (r.tipo === "error") { st = { k: "error", ops: mezcla([{ t: r.correcta[0], ok: true }].concat(r.malas.slice(0, 4).map(function(x){ return { t: x, ok: false }; }))) }; T = s.dir.t() + 4; }
-        else { st = { k: "uno", ops: opcs(r, entre(3, s.dir.opciones() + 1, 4)) }; T = s.dir.t() + 2.5 + (r.audio ? 1.5 : 0); }
+        else { st = { k: "uno", ops: opcs(r, cuantas(s, 5), s) }; T = s.dir.t() + 2.5 + (r.audio ? 1.5 : 0); }
         tipoEl.textContent = TIPO_TXT[st.k];
         s.banner(pregunta(r), { oro: r.oro }); coloca(); pinta(); medidor(); nota.textContent = ""; reloj.style.transform = "scaleX(1)";
         if (r.audio) suena(r.audio);
@@ -554,7 +580,7 @@
     return {
       jugar: function(r){
         reto = r; hecho = false; cierre = -1; t = 0; fuera = { a: false, b: false };
-        var base = opcs(r, entre(3, s.dir.opciones() + 1, 4));
+        var base = opcs(r, cuantas(s, 4), s);
         ops.a = mezcla(base.map(function(o){ return { t: o.t, ok: o.ok }; })); ops.b = mezcla(base.map(function(o){ return { t: o.t, ok: o.ok }; }));
         T = s.dir.t() * 1.5 + 3.5 + (r.audio ? 1.5 : 0);
         tBot = T * (.38 + Math.random() * .4); botOk = Math.random() < [.7, .78, .86][s.nivel] ;
@@ -624,7 +650,7 @@
       jugar: function(r){
         reto = r; t = 0; intentos = 0; hecho = false; cierre = -1;
         T = s.dir.t() * 1.6 + 4 + (r.audio ? 1.5 : 0);
-        ops = opcs(r, entre(3, s.dir.opciones() + 1, 4));
+        ops = opcs(r, cuantas(s, 4), s);
         s.banner(pregunta(r), { oro: r.oro }); coloca(); pinta(); pintaTurno(); nota.textContent = ""; reloj.style.transform = "scaleX(1)";
         if (r.audio) suena(r.audio);
       },
@@ -936,6 +962,56 @@
   .la-ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:18px}
   .la-mapa b{display:block;font:800 14px/1.2 Poppins,system-ui,sans-serif;color:#fff}.la-mapa small{font:600 12px/1.3 Inter,system-ui,sans-serif;color:#A6B6E0}
   @media (prefers-reduced-motion:reduce){.bc-bomba svg,.bc-chispa,.gr-corredor img,.cc-carta,.tw-b.boom,.cm-x.sube{animation:none!important}}
+  /* ===== 2.2: diseño de juego ===== */
+  .bc{background:radial-gradient(circle at 50% 38%,rgba(255,107,61,.22),transparent 58%)}
+  .bc-escena{position:relative}
+  .bc-escena::after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:12px;border-radius:8px;background:repeating-linear-gradient(-45deg,#FFD200 0 14px,#16161A 14px 28px);opacity:.85;animation:bcCinta 1s linear infinite}
+  @keyframes bcCinta{to{background-position:40px 0}}
+  .bc-bomba{filter:drop-shadow(0 22px 26px rgba(0,0,0,.65));animation:bcFlota 2.4s ease-in-out infinite alternate}
+  @keyframes bcFlota{to{translate:0 -8px}}
+  .bc-bomba.poco{filter:drop-shadow(0 0 28px rgba(255,60,60,.95))}
+  .bc-bomba.ok{filter:drop-shadow(0 0 30px rgba(107,229,142,.9))}
+  .bc.bc-flash::before{content:"";position:absolute;inset:-40%;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 40%,#fff 0,#FFB020 18%,rgba(255,80,40,.5) 40%,transparent 65%);animation:bcFlash .7s ease-out forwards}
+  @keyframes bcFlash{from{opacity:1;transform:scale(.4)}to{opacity:0;transform:scale(1.4)}}
+  .bc .x-op{box-shadow:0 4px 0 #FF6B3D,0 12px 24px -12px rgba(0,0,0,.7)}
+  .gr-pista{background:linear-gradient(90deg,#166534 0 5%,#22C55E 5% 6%,#2B2F3A 6% 94%,#22C55E 94% 95%,#166534 95%)}
+  .gr-suelo{background:repeating-linear-gradient(180deg,rgba(255,255,255,.10) 0 38px,rgba(255,255,255,0) 38px 80px);mix-blend-mode:screen}
+  .gr-pista::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,45,116,.65),transparent 30%)}
+  .gr-puerta span{box-shadow:0 5px 0 #34D399,0 0 22px rgba(52,211,153,.55);border:2px solid #34D399}
+  .gr-corredor::after{content:"";position:absolute;left:18%;right:18%;bottom:-6px;height:10px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(2px);z-index:-1}
+  .tw-campo::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,rgba(244,63,94,.28),transparent 22%);animation:twRadar 3.2s linear infinite;pointer-events:none}
+  .tw-campo::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.07) 0 1px,transparent 1px 60px),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/40px 40px}
+  @keyframes twRadar{to{transform:rotate(360deg)}}
+  .tw-b{z-index:1}
+  .tw-b::before{content:"";position:absolute;inset:-9px;border-radius:999px;border:2px dashed rgba(255,255,255,.7);animation:twGira 4s linear infinite;pointer-events:none}
+  @keyframes twGira{to{rotate:360deg}}
+  .tw-laser{position:absolute;left:var(--x);top:var(--y);width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px #F43F5E,0 0 30px 10px rgba(244,63,94,.8);pointer-events:none;z-index:4;animation:twFlash .26s ease-out forwards}
+  @keyframes twFlash{to{transform:scale(3.5);opacity:0}}
+  .wc-cielo{background:linear-gradient(180deg,#1D4ED8 0%,#60A5FA 55%,#BFDBFE 84%,#4ADE80 84%,#15803D 100%)}
+  .wc-cielo::before,.wc-cielo::after{content:"";position:absolute;top:12%;left:-40%;width:120px;height:40px;border-radius:40px;background:rgba(255,255,255,.85);box-shadow:40px -14px 0 6px rgba(255,255,255,.85),80px 0 0 0 rgba(255,255,255,.85);animation:wcNube 22s linear infinite;pointer-events:none}
+  .wc-cielo::after{top:34%;transform:scale(.7);animation-duration:30s;animation-delay:-12s;opacity:.7}
+  @keyframes wcNube{to{left:120%}}
+  .wc-p{border-radius:999px;border:3px solid #FB923C;padding:8px 14px;animation:wcWob .9s ease-in-out infinite alternate;z-index:1}
+  @keyframes wcWob{from{rotate:-5deg}to{rotate:5deg}}
+  .wc-p.bien{animation:wcAtrapa .26s ease-out forwards}.wc-p.mal{animation:wcAtrapa .26s ease-out forwards}
+  @keyframes wcAtrapa{to{scale:.2;opacity:0}}
+  .sr-via{background:linear-gradient(0deg,transparent 46%,#FACC15 46% 54%,transparent 54%) 0 0/32px 100% repeat-x,#1F2937;animation:srVia .5s linear infinite}
+  .sr-c.yo .sr-via{box-shadow:inset 0 0 0 2px #FFD200}
+  @keyframes srVia{to{background-position:-32px 0,0 0}}
+  .sr-auto{animation:srRebote .22s ease-in-out infinite alternate}
+  @keyframes srRebote{to{translate:0 -3px}}
+  .sr .sr-f{box-shadow:0 4px 0 #60A5FA,0 12px 24px -12px rgba(0,0,0,.7)}
+  .cc-mesa{border-radius:28px;padding:14px;background:radial-gradient(ellipse at center,#15803D 0%,#14532D 60%,#052E16 100%);box-shadow:inset 0 0 0 6px #78350F,inset 0 0 0 9px #FBBF24,inset 0 0 70px rgba(0,0,0,.6)}
+  .cc-reto{background:linear-gradient(160deg,#2E1065,#4C1D95);box-shadow:inset 0 0 0 3px #FBBF24,0 18px 30px -16px rgba(0,0,0,.9)}
+  .cc-carta.reparte{animation:ccReparte .5s cubic-bezier(.2,1.3,.4,1) both;animation-delay:calc(var(--i) * 80ms)}
+  @keyframes ccReparte{from{transform:translateY(140px) rotateY(180deg) rotate(0);opacity:0}to{transform:rotate(var(--g))}}
+  .cc-carta.mal{animation:ccQuema .5s ease-out}
+  @keyframes ccQuema{30%{filter:brightness(2) sepia(1) hue-rotate(-30deg)}}
+  .cm{background:radial-gradient(circle at 50% 110%,rgba(250,204,21,calc(var(--calor,0) * .45)),transparent 60%)}
+  .cm-medidor{position:relative}
+  .cm-medidor::after{content:"🔥";position:absolute;right:12px;top:50%;translate:0 -50%;font-size:calc(18px + var(--calor,0) * 34px);filter:drop-shadow(0 0 calc(var(--calor,0) * 18px) #F97316);animation:cmFuego .5s ease-in-out infinite alternate}
+  @keyframes cmFuego{to{scale:1.12 1.2}}
+  @media (prefers-reduced-motion:reduce){.bc-bomba,.bc-escena::after,.tw-campo::before,.tw-b::before,.wc-cielo::before,.wc-cielo::after,.wc-p,.sr-via,.sr-auto,.cm-medidor::after{animation:none!important}}
   `;
   document.head.appendChild(st);
 })();
