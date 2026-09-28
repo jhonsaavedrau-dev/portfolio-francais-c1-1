@@ -1,6 +1,5 @@
-/* PLEX PLAY 1.23.0 — Arcade: los componentes que comparten todos los juegos
-   (1.23.1: la pausa y los botones de resultados funcionan: el atributo data-g chocaba con el manejador
-   de la app que usa data-g, y all:unset le quitaba pointer-events al botón de pausa)
+/* PLEX PLAY 1.24.0 — Arcade: los componentes que comparten todos los juegos
+   (1.24.0: sesión de juego común, registro de juegos, alcances compartidos y estrellas por juego)
    - Adaptador: convierte los ítems de una lección (o el vocabulario) en «retos» con un formato común.
      Los motores de juego solo reciben retos, nunca ítems.
    - Director de dificultad: tiempo y número de opciones según el nivel (A1 a C1) y según cómo va la partida.
@@ -36,7 +35,11 @@
   };
   var norm = G.norm = function(s){ return String(s || "").normalize("NFC").replace(/[’`]/g, "'").replace(/\s+/g, " ").trim().toLowerCase(); };
   var mezcla = G.mezcla = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
-  var cabe = function(s){ s = String(s || ""); return s.length > 0 && s.length <= G.MAX; };
+  /* Límite de largo de una opción. Fruit Frenzy usa 22 (lo que cabe en una fruta); otros juegos pueden
+     pedir más con {max, fichas} (fichas: número máximo de piezas de un order). */
+  var LIM = G.MAX, FICHAS = 6;
+  var cabe = function(s){ s = String(s || ""); return s.length > 0 && s.length <= LIM; };
+  var conOpciones = function(op, f){ var a = LIM, b = FICHAS; LIM = (op && op.max) || G.MAX; FICHAS = (op && op.fichas) || 6; try { return f(); } finally { LIM = a; FICHAS = b; } };
   var ls = { get: function(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function(k, v){ try { localStorage.setItem(k, v); } catch (e) {} } };
   G.movReducido = function(){ try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; } };
 
@@ -180,7 +183,8 @@
     return igualaCaso(correcta, cand.map(function(x){ var t = numFr(x); return guion ? t.replace(/\s/g, "-") : t; }));
   };
   var pregunta = function(it){ return plano(it.q || it.s || ""); };
-  var retosDeItem = G.retosDeItem = function(it, key, l, nivel, pozo){
+  G.retosDeItem = function(it, key, l, nivel, pozo, op){ return conOpciones(op, function(){ return retosDeItem(it, key, l, nivel, pozo || respuestas(l ? l.items || [] : [])); }); };
+  var retosDeItem = function(it, key, l, nivel, pozo){
     var base = { key: key, lessonId: l ? l.id : "", hab: it.t || "autre", ask: plano(it.ask || ""), why: it.why || "" };
     var mk = function(extra){ var r = Object.assign({}, base, extra); return r; };
     /* primero los distractores propios del ítem; si faltan, los de la lección y luego los del curso,
@@ -215,7 +219,7 @@
         malas: cortas.filter(function(x){ return x[1] !== c; }).map(function(x){ return x[0]; }),
         why: it.why || ("Van en «" + esc(plano(it.cats[c])) + "»: " + cortas.filter(function(x){ return x[1] === c; }).map(function(x){ return "<b>" + esc(x[0]) + "</b>"; }).join(", ")) })];
     }
-    if (it.k === "order" && it.tokens && it.tokens.length >= 3 && it.tokens.length <= 6 && it.tokens.every(cabe)) {
+    if (it.k === "order" && it.tokens && it.tokens.length >= 3 && it.tokens.length <= FICHAS && it.tokens.every(cabe)) {
       return [mk({ tipo: "orden", ask: "Corta en orden para armar la frase", q: plano(it.ask || "").replace(/^Ordena[^:]*:\s*/i, ""), correcta: it.tokens.slice(), malas: [],
         why: it.why || "" })];
     }
@@ -230,31 +234,38 @@
     }
     return [];   /* listen (dictado), accent y los demás no entran */
   };
-  /* retos de un conjunto de lecciones */
-  G.retos = function(lecciones, nivel){
-    var out = [];
-    lecciones.forEach(function(l){
-      var its = l.items || [], pozo = respuestas(its);
-      its.forEach(function(it, i){ out.push.apply(out, retosDeItem(it, l.id + ":" + i, l, nivel, pozo)); });
+  /* retos de un conjunto de lecciones (op: {max, fichas}, ver arriba) */
+  G.retos = function(lecciones, nivel, op){
+    return conOpciones(op, function(){
+      var out = [];
+      lecciones.forEach(function(l){
+        var its = l.items || [], pozo = respuestas(its);
+        its.forEach(function(it, i){ out.push.apply(out, retosDeItem(it, l.id + ":" + i, l, nivel, pozo)); });
+      });
+      return out;
     });
-    return out;
   };
   /* retos de un tema del vocabulario: suena la palabra y se corta la que sonó */
-  G.retosVocab = function(tema, nivel){
-    var frs = tema.i.map(function(x){ return x.fr; });
-    return tema.i.filter(function(x){ return cabe(x.fr); }).map(function(x){
-      return { tipo: "uno", audio: x.fr, ask: "Escucha y corta la palabra que suena", q: "", correcta: [x.fr], malas: G.distractores(x.fr, frs, nivel, []).slice(0, 5),
-        why: "<b>" + esc(x.fr) + "</b> = " + esc(x.es) + (x.ex ? "<br><i>" + esc(x.ex) + "</i>" : ""), hab: "vocab", key: null, lessonId: "" };
-    }).filter(function(r){ return r.malas.length; });
+  /* voc: la palabra completa del vocabulario ({fr, es, ex, exes, g}) para los juegos que la necesiten */
+  G.retosVocab = function(tema, nivel, op){
+    return conOpciones(op, function(){
+      var frs = tema.i.map(function(x){ return x.fr; });
+      return tema.i.filter(function(x){ return cabe(x.fr); }).map(function(x){
+        return { tipo: "uno", audio: x.fr, ask: "Escucha y corta la palabra que suena", q: "", correcta: [x.fr], malas: G.distractores(x.fr, frs, nivel, []).slice(0, 5),
+          why: "<b>" + esc(x.fr) + "</b> = " + esc(x.es) + (x.ex ? "<br><i>" + esc(x.ex) + "</i>" : ""), hab: "vocab", key: null, lessonId: "", voc: x };
+      }).filter(function(r){ return r.malas.length; });
+    });
   };
   /* retos del carnet (frutas doradas): solo errores de ítems de lecciones de ese curso */
-  G.retosCarnet = function(track, nivel){
-    var out = [];
-    Object.keys(S.carnet || {}).forEach(function(k){
-      var x = ITEMS[k]; if (!x || (track && x.l.track !== track)) return;
-      retosDeItem(x.it, k, x.l, nivel, respuestas(x.l.items || [])).forEach(function(r){ r.oro = true; out.push(r); });
+  G.retosCarnet = function(track, nivel, op){
+    return conOpciones(op, function(){
+      var out = [];
+      Object.keys(S.carnet || {}).forEach(function(k){
+        var x = ITEMS[k]; if (!x || (track && x.l.track !== track)) return;
+        retosDeItem(x.it, k, x.l, nivel, respuestas(x.l.items || [])).forEach(function(r){ r.oro = true; out.push(r); });
+      });
+      return mezcla(out);
     });
-    return mezcla(out);
   };
 
   /* vocabulario: el mismo archivo que usa la pestaña de vocabulario (plx38) */
@@ -346,7 +357,8 @@
   var L = function(){ var a = S.arcade && typeof S.arcade === "object" ? S.arcade : {}; return { rec: a.rec || {}, est: a.est || {} }; };
   G.claveRec = function(juego, alc){ return juego + "|" + alc.clave + "|" + alc.seg + (G.aj.sinTiempo ? "|st" : ""); };
   G.record = function(juego, alc){ return L().rec[G.claveRec(juego, alc)] || null; };
-  G.estrellasUnidad = function(track, unit){ return L().est[track + "|" + unit] || 0; };
+  /* estrellas por juego y unidad (las de Fruit Frenzy de la 1.23.0 se guardaron sin el juego) */
+  G.estrellasUnidad = function(juego, track, unit){ var e = L().est; return Math.max(e[juego + "|" + track + "|" + unit] || 0, juego === "ff" ? e[track + "|" + unit] || 0 : 0); };
   G.estrellas = function(r, seg){ if (!r.aciertos) return 0; var p = r.precision; return p >= 80 && r.puntos >= seg * 35 ? 3 : p >= 80 ? 2 : 1; };
   /* XP parecida a la de una lección, sin superarla: 5 por acierto + 5 por estrella, máximo 100 */
   G.premiar = function(juego, alc, r){
@@ -356,7 +368,7 @@
     var nuevo = !antes || r.puntos > antes.best;
     if (nuevo && r.puntos > 0) a.rec[k] = { best: r.puntos, est: r.estrellas, acc: r.precision, at: Date.now(), traza: r.traza.slice(0, 200) };
     else if (antes && r.estrellas > (antes.est || 0)) antes.est = r.estrellas;
-    if (alc.track && alc.unit) { var ku = alc.track + "|" + alc.unit; a.est[ku] = Math.max(a.est[ku] || 0, r.estrellas); }
+    if (alc.track && alc.unit) { var ku = juego + "|" + alc.track + "|" + alc.unit; a.est[ku] = Math.max(a.est[ku] || 0, r.estrellas); }
     try { save(true); } catch (e) {}
     try { if (typeof renderStats === "function") renderStats(); } catch (e) {}
     return { xp: xp, antes: antes, nuevo: nuevo && r.puntos > 0 };
@@ -371,6 +383,14 @@
       document.body.appendChild(capa);
     }
     alCerrar = cerrar || null;
+    /* La app marca con «inert» todo lo que no sea la capa de arriba (la lección abierta, un modal).
+       Si el Arcade se abre desde el final de una lección, quedaría visible pero sin responder:
+       mientras esté abierto se le quita el inert cada vez que la app se lo ponga. */
+    if (!capa._vigila) {
+      capa._vigila = new MutationObserver(function(){ if (!capa.hidden && capa.hasAttribute("inert")) capa.removeAttribute("inert"); });
+      capa._vigila.observe(capa, { attributes: true, attributeFilter: ["inert"] });
+    }
+    capa.removeAttribute("inert");
     capa.hidden = false; capa.innerHTML = "";
     document.documentElement.classList.add("plxg-on");
     return capa;
@@ -381,6 +401,7 @@
     if (f) try { f(); } catch (e) {}
     capa.hidden = true; capa.innerHTML = "";
     document.documentElement.classList.remove("plxg-on");
+    try { if (window.__syncInert) window.__syncInert(); } catch (e) {}
   };
   G.capa = function(){ return capa; };
 
@@ -404,6 +425,7 @@
         '<div class="plxg-pts"><b>0</b><small>puntos</small></div>' +
         '<div class="plxg-barra"><i></i></div>' +
         '<div class="plxg-sub"><span class="plxg-combo" hidden></span><span class="plxg-fan" hidden></span></div>' +
+        (o.jefe ? '<div class="plxg-jefe">' + (o.jefe.img ? '<img src="' + esc(o.jefe.img) + '" alt="">' : "") + '<div><b>' + esc(o.jefe.nombre || "El jefe") + '</b><span class="plxg-jv"><i></i></span></div></div>' : "") +
       "</div>");
     var h = el.querySelector(".plxg-hud"), q = function(s){ return h.querySelector(s); }, ult = {};
     return {
@@ -417,6 +439,7 @@
         var cb = s.mult > 1 ? "×" + s.mult + " · " + s.racha + " seguidos" : s.racha >= 1 ? s.racha + " seguido" + (s.racha > 1 ? "s" : "") : "";
         if (s.frenesi) cb = "FRENESÍ · puntos dobles";
         if (ult.c !== cb) { ult.c = cb; var c = q(".plxg-combo"); c.textContent = cb; c.hidden = !cb; c.classList.toggle("fr", !!s.frenesi); c.classList.toggle("hot", s.mult > 1); }
+        if (s.jefe && ult.j !== s.jefe.vida) { ult.j = s.jefe.vida; var jb = q(".plxg-jv i"); if (jb) jb.style.transform = "scaleX(" + (s.jefe.vida / s.jefe.max).toFixed(3) + ")"; var jv = q(".plxg-jv"); if (jv) jv.setAttribute("aria-label", "Vida del jefe: " + s.jefe.vida + " de " + s.jefe.max); }
         var f = q(".plxg-fan");
         if (s.fantasma == null) f.hidden = true;
         else { var d = s.pts - s.fantasma, txt = "Fantasma " + (d >= 0 ? "+" : "−") + Math.abs(d).toLocaleString("es-CO"); if (ult.f !== txt) { ult.f = txt; f.hidden = false; f.textContent = txt; f.classList.toggle("gana", d >= 0); } }
@@ -470,7 +493,7 @@
 
   /* resultados */
   G.resultados = function(el, juego, alc, r, premio, acciones){
-    var fan = premio.antes, dif = fan ? r.puntos - fan.best : null;
+    var fan = r.jefe ? null : premio.antes, dif = fan ? r.puntos - fan.best : null;
     var linea = !fan ? "Primera partida en esta unidad: ahora tu récord es tu fantasma."
       : dif > 0 ? "Le ganaste a tu fantasma por " + dif.toLocaleString("es-CO") + " puntos. Nuevo récord."
       : dif === 0 ? "Empate exacto con tu fantasma."
@@ -482,13 +505,14 @@
     el.innerHTML =
       '<div class="plxg-res" style="--ac:' + juego.color + '"><div class="plxg-wrap">' +
         '<p class="plxg-k">' + esc(juego.nombre) + " · " + esc(alc.titulo) + "</p>" +
-        '<h1 class="plxg-h">' + (r.porVidas ? "Sin vidas" : "Fin de la partida") + "</h1>" +
+        '<h1 class="plxg-h">' + (r.jefe ? (r.jefe.vencido ? "¡Victoria!" : r.porVidas ? "El jefe ganó" : "Se acabó el tiempo") : r.porVidas ? "Sin vidas" : "Fin de la partida") + "</h1>" +
+        (r.jefe ? '<p class="plxg-fanl ' + (r.jefe.vencido ? "gana" : "") + '">' + esc(r.jefe.vencido ? "Derrotaste a " + r.jefe.nombre + " con " + r.vidas + " vida" + (r.vidas === 1 ? "" : "s") + "." : r.jefe.nombre + " quedó con " + r.jefe.vida + " de " + r.jefe.max + " de vida.") + "</p>" : "") +
         '<div class="plxg-big"><b>' + r.puntos.toLocaleString("es-CO") + "</b><span>puntos</span></div>" +
         G.estrellasHTML(r.estrellas, "grande") +
-        '<p class="plxg-fanl ' + (dif > 0 ? "gana" : "") + '">' + esc(linea) + "</p>" +
+        (r.jefe ? "" : '<p class="plxg-fanl ' + (dif > 0 ? "gana" : "") + '">' + esc(linea) + "</p>") +
         '<div class="plxg-kv"><div><b>' + r.precision + '%</b><span>precisión</span></div><div><b>' + r.aciertos + "</b><span>aciertos</span></div>" +
           "<div><b>×" + r.mejorMult + " · " + r.mejor + "</b><span>mejor combo</span></div><div><b>+" + premio.xp + "</b><span>XP</span></div></div>" +
-        '<p class="plxg-como">' + (r.estrellas < 2 ? "2 estrellas: termina con 80 % de precisión." : r.estrellas < 3 ? "3 estrellas: 80 % de precisión y " + (alc.seg * 35).toLocaleString("es-CO") + " puntos." : "Tres estrellas en esta unidad.") + "</p>" +
+        '<p class="plxg-como">' + (r.pista ? esc(r.pista) : r.estrellas < 2 ? "2 estrellas: termina con 80 % de precisión." : r.estrellas < 3 ? "3 estrellas: 80 % de precisión y " + (alc.seg * 35).toLocaleString("es-CO") + " puntos." : "Tres estrellas en esta unidad.") + "</p>" +
         (errs ? '<h2 class="plxg-h2">Repaso de tus errores <small>' + r.errores.length + " · " + (r.alCarnet ? r.alCarnet + " nuevos en el carnet" : "ya están en el carnet") + '</small></h2><ol class="plxg-errs">' + errs + "</ol>"
               : r.aciertos ? '<p class="plxg-limpio">Ningún error en toda la partida.</p>' : "") +
         '<div class="plxg-acc"><button class="plxg-btn" data-plxg="otra">Otra vez</button>' + (acciones.cambiar ? '<button class="plxg-btn line" data-plxg="cambiar">Cambiar de unidad</button>' : "") + '<button class="plxg-btn line" data-plxg="salir">Salir</button></div>' +
@@ -497,6 +521,246 @@
     if (r.estrellas) [0, 1, 2].slice(0, r.estrellas).forEach(function(i){ setTimeout(function(){ G.sfx("estrella", i); }, 350 + i * 220); });
     el.querySelector(".plxg-acc").addEventListener("click", function(e){ var b = e.target.closest("[data-plxg]"); if (!b) return; var f = acciones[{ otra: "otra", cambiar: "cambiar", salir: "salir" }[b.dataset.plxg]]; if (f) f(); });
     var bt = el.querySelector("[data-plxg=otra]"); if (bt) bt.focus({ preventScroll: true });
+  };
+
+  /* ---------------- alcances: unidad, curso, lección o tema de vocabulario ---------------- */
+  var etiquetaCurso = function(tr){ var t = TRACKS.find(function(x){ return x.id === tr; }); return t ? t.label : tr; };
+  G.alc = {
+    curso: etiquetaCurso,
+    unidades: function(tr){ var vistas = {}, out = []; LESSONS.forEach(function(l){ if (l.track !== tr || vistas[l.unit]) return; vistas[l.unit] = 1; out.push(l.unit); }); return out; },
+    unidad: function(tr, u){ return { clave: "u:" + tr + ":" + u, track: tr, unit: u, titulo: u, sub: etiquetaCurso(tr), seg: 90, lecciones: LESSONS.filter(function(l){ return l.track === tr && l.unit === u; }) }; },
+    todo: function(tr){ return { clave: "c:" + tr, track: tr, titulo: "Todo el curso", sub: etiquetaCurso(tr), seg: 90, lecciones: LESSONS.filter(function(l){ return l.track === tr; }) }; },
+    leccion: function(l){ return { clave: "l:" + l.id, track: l.track, titulo: l.title, sub: "Repaso de la lección · " + etiquetaCurso(l.track), seg: 60, lecciones: [l], repaso: true }; },
+    vocab: function(tr, ti){ var t = ((window.__VOCAB || {})[tr] || { themes: [] }).themes[ti]; return t ? { clave: "v:" + tr + ":" + ti, track: tr, titulo: "Vocabulario · " + t.t, sub: etiquetaCurso(tr), seg: 90, tema: t } : null; }
+  };
+  /* «Vous ___ quel âge ? (avoir)» + «avez» → «Vous avez quel âge ?» (sin la pista del final) */
+  G.completa = function(q, palabra){
+    var t = plano(q || "").replace(/\s*\([^()]{1,40}\)\s*\.?\s*$/, function(m){ return /\.\s*$/.test(m) ? "." : ""; });
+    if (!/_{2,}/.test(t)) return "";
+    var f = t.replace(/_{2,}/, palabra).replace(/\s+([,.])/g, "$1").replace(/'\s+/g, "'").replace(/\s+-(?=\p{L})/gu, "-").trim();
+    return /^_{2,}/.test(t) ? f.charAt(0).toUpperCase() + f.slice(1) : f;
+  };
+  /* retos por defecto de un alcance (los de Fruit Frenzy); un juego puede traer los suyos */
+  G.retosDe = function(alc, op){ var n = G.nivel(alc.track); return alc.tema ? G.retosVocab(alc.tema, n, op) : G.retos(alc.lecciones, n, op); };
+
+  /* ---------------- registro de juegos ----------------
+     juego = { id, nombre, verbo, familia, color, orden,
+               retos(alc) → [reto]          (si falta: G.retosDe)
+               apto(reto) → bool            (qué retos sirven a este juego)
+               vocab: bool                  (acepta temas de vocabulario)
+               reglas(alc) → [texto]        (portada)
+               deco() → html                (dibujo de la portada y de la tarjeta)
+               opciones(alc) → opc          (para G.sesion: seg, vidas, jefe…)
+               montar(zona, s) → ctrl       (el motor; ver G.sesion) } */
+  G.registrar = function(j){
+    j.orden = j.orden == null ? 50 : j.orden; j.familia = j.familia || "Arcade"; if (j.vocab == null) j.vocab = true;
+    G.juegos[j.id] = j; return j;
+  };
+  /* oculto(): un juego puede esconderse mientras no tenga con qué jugarse (Mystery sin motores suficientes) */
+  G.listaJuegos = function(){ return Object.keys(G.juegos).map(function(k){ return G.juegos[k]; }).filter(function(j){ return j.montar && !(j.oculto && j.oculto()); }).sort(function(a, b){ return a.orden - b.orden; }); };
+  var cuentas = {};
+  G.retosJuego = function(j, alc){ var r = (j.retos ? j.retos(alc) : G.retosDe(alc)) || []; return j.apto ? r.filter(j.apto) : r; };
+  G.nRetos = function(j, alc){ var k = j.id + "|" + alc.clave; return cuentas[k] != null ? cuentas[k] : (cuentas[k] = G.retosJuego(j, alc).length); };
+  G.MIN_RETOS = 4;
+
+  /* ---------------- sesión: el marco de una partida ----------------
+     Todos los juegos corren dentro de una sesión. La sesión pone la barra de arriba, la instrucción,
+     a Manzana, la cuenta 3-2-1, el reloj, las vidas, los puntos, la pausa, los errores y los resultados,
+     y elige el siguiente reto (con los dorados del carnet). El motor de cada juego solo presenta un reto:
+
+       juego.montar(zona, s) → ctrl
+         ctrl.jugar(reto)            presenta el reto
+         ctrl.tick(dt, d, estado)    cada cuadro (opcional). dt: segundos reales jugando (0 si no se juega);
+                                     d: segundos «de física» (la mitad en frenesí y en el momento de aprendizaje)
+         ctrl.tecla(e)               teclado mientras se juega (opcional)
+         ctrl.pausa() / ctrl.sigue() (opcional)
+         ctrl.destruye()
+         ctrl.depura()               (opcional, para las pruebas)
+       Cuando el reto termina, el motor llama s.listo(). Mientras tanto:
+         s.acierto(reto, {rapidez 0..1, x, y, final, dano}) → {g, mult}
+               puntos (100 + 50·rapidez, ×combo, ×2 dorado, ×2 frenesí), sonido, Manzana, director, frenesí.
+               final:false si el reto sigue (una pieza de varias): el carnet solo cuenta el acierto final.
+         s.extra(n, x, y)                   puntos sueltos que no tocan el combo
+         s.anula([g…])                      deshace aciertos de un mismo gesto (un trazo que también cortó una mala)
+         s.fallo(reto, {mal, etiqueta, bien, why})    → Promise: quita una vida, va al carnet, el reto se repite
+                                            más tarde y se muestra la corrección. Si no quedan vidas, no se resuelve.
+         s.escapa(reto, {titulo, etiqueta, bien, why}) → Promise: rompe el combo y muestra la respuesta
+               (s.fallo y s.escapa aceptan además {q, key, hab, repetir:false}; ver «repetir» abajo)
+         s.penaliza(x, y)                   toque al azar: rompe el combo, sin quitar vida
+         s.banner(html, {oro}) · s.techo() (px libres desde arriba) · s.pop(x, y, texto, color) · s.mz(estado, texto)
+         s.t() (tiempo de juego) · s.estado() · s.frenesi() · s.dir (director) · s.nivel · s.mov (menos movimiento)
+         s.el (la capa) · s.zona (el área del motor) · s.reto (el reto actual) */
+  /* opc: { seg, vidas, retos (lista fija), ordenFijo (no mezclar), oro:false, jefe:{vida, nombre, img},
+            estrellas(r) → 0..3, pista(r) → texto bajo las estrellas } */
+  G.sesion = function(el, alc, juego, acciones, opc){
+    opc = opc || {};
+    var nivel = G.nivel(alc.track), dir = G.director(alc.track), pts = G.Puntos(), mov = G.movReducido();
+    var apto = juego.apto || function(){ return true; };
+    var base = (opc.retos || G.retosJuego(juego, alc)).slice(), cola = opc.ordenFijo ? base.slice() : mezcla(base);
+    var oros = alc.tema || juego.oro === false || opc.oro === false ? [] : (juego.retosCarnet ? juego.retosCarnet(alc.track, nivel) : G.retosCarnet(alc.track, nivel)).filter(apto).slice(0, 12);
+    var jefe = opc.jefe ? { max: opc.jefe.vida, vida: opc.jefe.vida, nombre: opc.jefe.nombre, img: opc.jefe.img } : null;
+    var seg = opc.seg || alc.seg || 90, sinT = !!G.aj.sinTiempo && !jefe, META = alc.repaso ? 10 : 15;
+    var fan = jefe ? null : G.record(juego.id, alc), traza = [], errores = [], alCarnet = 0;
+    var vidas = opc.vidas || 3, tJ = 0, resueltos = 0, frenesi = 0, olas = 0, ultimoOro = false, espera = .25;
+    var reto = null, estado = "cuenta", raf = 0, ult = 0, ctrl = null, vencido = false;
+
+    el.innerHTML = '<div class="plxg-zona"></div><div class="plxg-ban" aria-live="polite" hidden></div><div class="plxg-pops" aria-hidden="true"></div>' +
+      '<div class="plxg-mz"><img src="' + G.mzImg("idle") + '" alt=""><span class="plxg-bub" hidden></span></div>';
+    el.classList.add("plxg-juego");
+    var zona = el.querySelector(".plxg-zona"), ban = el.querySelector(".plxg-ban"), popsEl = el.querySelector(".plxg-pops"), mzEl = el.querySelector(".plxg-mz");
+    var hud = G.hud(el, { color: juego.color, jefe: jefe });
+    /* la instrucción va justo debajo de la barra (que es más alta cuando hay jefe) */
+    var colocaBan = function(){ ban.style.top = Math.round(hud.el.getBoundingClientRect().bottom - el.getBoundingClientRect().top + 6) + "px"; };
+    colocaBan(); window.addEventListener("resize", colocaBan);
+
+    var s = { el: el, zona: zona, alc: alc, juego: juego, nivel: nivel, dir: dir, pts: pts, mov: mov, aj: G.aj, reto: null };
+    s.t = function(){ return tJ; };
+    s.estado = function(){ return estado; };
+    s.frenesi = function(){ return frenesi > 0; };
+    s.mz = function(e, t){ G.mz(mzEl, e, t); };
+    s.banner = function(html, o){
+      o = o || {};
+      ban.hidden = !html;
+      ban.innerHTML = html ? (o.oro ? '<span class="plxg-oro">Del carnet · vale el doble</span>' : "") + html : "";
+      ban.classList.toggle("oro", !!o.oro);
+    };
+    s.techo = function(){ var r = el.getBoundingClientRect(), b = ban.getBoundingClientRect(), h = hud.el.getBoundingClientRect(); return Math.round((ban.hidden || !b.height ? h.bottom : b.bottom) - r.top); };
+    s.pop = function(x, y, t, c){
+      if (x == null) return;
+      var p = document.createElement("span"); p.className = "plxg-pop"; p.textContent = t; p.style.left = x + "px"; p.style.top = y + "px"; if (c) p.style.color = c;
+      popsEl.appendChild(p); setTimeout(function(){ p.remove(); }, 950);
+    };
+    var anota = function(r, mal, o){
+      var q = o.q != null ? o.q : r.audio && !r.q ? "Sonó: " + r.audio : r.q;
+      var e = { q: q, ask: r.ask, mal: mal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why };
+      if (!errores.some(function(x){ return x.q === e.q && x.bien === e.bien; })) errores.push(e);
+    };
+    var repetir = function(r){ var c = Object.assign({}, r); cola.splice(Math.min(3, cola.length), 0, c); };
+    /* o.key / o.hab: qué ejercicio va al carnet (en un tablero con varias parejas, el de la pareja);
+       o.repetir:false si el motor no quiere que el reto vuelva a salir */
+    var momento = function(o){
+      return new Promise(function(res){
+        estado = "momento";
+        G.momento(el, o, function(){ if (estado === "fin") return; estado = "juega"; ult = 0; res(); });
+      });
+    };
+    var empiezaFrenesi = function(){ frenesi = 5; el.classList.add("plxg-fr"); G.sfx("frenesi"); G.vibra([20, 30, 20]); s.mz("frenesi", "¡Frenesí!"); };
+    s.acierto = function(r, o){
+      o = o || {};
+      if (estado === "fin") return { g: 0, mult: 1 };
+      var doble = (r && r.oro ? 2 : 1) * (frenesi > 0 ? 2 : 1), g = pts.acierto(o.rapidez == null ? .5 : o.rapidez, doble), m = pts.mult();
+      s.pop(o.x, o.y, "+" + g + (m > 1 ? "  ×" + m : ""), r && r.oro ? "#FFE066" : "#FFD200");
+      G.sfx("bien", pts.racha); G.vibra(12); dir.acierto();
+      if (r && r.oro && o.final !== false) G.carnetBien(r.key);
+      if (jefe) { jefe.vida = Math.max(0, jefe.vida - (o.dano || 1)); if (!jefe.vida) vencido = true; el.classList.remove("plxg-golpe"); void el.offsetWidth; el.classList.add("plxg-golpe"); }
+      if (pts.racha % 10 === 0) empiezaFrenesi();
+      else if (pts.racha === 3 || pts.racha === 6) s.mz("bien", pts.racha === 3 ? "¡Combo ×2!" : "¡Combo ×3!");
+      else if (Math.random() < .25) s.mz("bien", ["¡Bien!", "Parfait !", "Bravo !", "¡Eso!"][Math.floor(Math.random() * 4)]);
+      return { g: g, mult: m };
+    };
+    /* un toque al azar: rompe el combo y el director lo cuenta como error, pero no quita vida */
+    s.penaliza = function(x, y){ if (estado === "fin") return; pts.corta(); dir.error(); G.sfx("escapa"); G.vibra(30); s.pop(x, y, "✕", "#FF6B78"); };
+    s.extra = function(n, x, y){ if (estado === "fin") return 0; pts.extra(n); s.pop(x, y, "+" + n, "#93C5FD"); return n; };
+    s.anula = function(gs){ (gs || []).forEach(function(g){ pts.pts -= g; pts.aciertos--; }); };
+    s.fallo = function(r, o){
+      o = o || {};
+      if (estado === "fin") return new Promise(function(){});
+      pts.fallo(); vidas--; dir.error(); G.sfx("mal"); G.vibra([40, 40, 70]); s.mz("mal", vidas ? "Casi…" : "¡Ay!");
+      if (!mov) { el.classList.remove("plxg-sh"); void el.offsetWidth; el.classList.add("plxg-sh"); }
+      anota(r, o.mal, o);
+      var key = o.key !== undefined ? o.key : r.key;
+      if (key && G.alCarnet(key, o.hab || r.hab)) alCarnet++;
+      if (o.repetir !== false) repetir(r);
+      return momento({ mal: o.mal, etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why }).then(function(){
+        if (vidas <= 0) { termina(true); return new Promise(function(){}); }
+      });
+    };
+    s.escapa = function(r, o){
+      o = o || {};
+      if (estado === "fin") return new Promise(function(){});
+      pts.corta(); pts.fallos++; dir.error(); G.sfx("escapa");
+      anota(r, null, o); if (o.repetir !== false) repetir(r);
+      return momento({ titulo: o.titulo || "Se te escapó", etiqueta: o.etiqueta, bien: o.bien, why: o.why == null ? r.why : o.why, clase: "escapa" });
+    };
+    s.listo = function(){
+      if (estado === "fin" || !reto) return;
+      reto = null; s.reto = null; resueltos++; espera = .3;
+      if (vencido) termina(false);
+    };
+    var siguiente = function(){
+      olas++;
+      var r = null;
+      if (oros.length && !ultimoOro && olas > 2 && Math.random() < .2) { ultimoOro = true; r = oros.shift(); }
+      else { ultimoOro = false; if (!cola.length) cola = mezcla(base); r = cola.shift(); }
+      reto = r; s.reto = r;
+      if (r) ctrl.jugar(r);
+    };
+
+    /* ---- bucle ---- */
+    var bucle = function(ts){
+      raf = requestAnimationFrame(bucle);
+      var dt = Math.min(.05, ult ? (ts - ult) / 1000 : 0); ult = ts;
+      if (estado === "juega") {
+        tJ += dt;
+        var k = Math.floor(tJ); while (traza.length <= k) traza.push(pts.pts);
+        if (frenesi > 0) { frenesi -= dt; if (frenesi <= 0) { frenesi = 0; el.classList.remove("plxg-fr"); s.mz("idle"); } }
+        if (!reto) { espera -= dt; if (espera <= 0) siguiente(); }
+      }
+      var fis = estado === "juega" ? dt * (frenesi > 0 ? .5 : 1) : estado === "momento" ? dt * .5 : 0;
+      if (ctrl && ctrl.tick) ctrl.tick(estado === "juega" ? dt : 0, fis, estado);
+      if (estado === "juega") {
+        if (!sinT && tJ >= seg) termina(false);
+        else if (sinT && resueltos >= META && !reto) termina(false);
+      }
+      if (estado === "fin") return;
+      var sg = Math.min(traza.length - 1, Math.floor(tJ)), fv = fan && fan.traza && fan.traza.length ? fan.traza[Math.min(fan.traza.length - 1, Math.max(0, sg))] : null;
+      hud.pinta({ vidas: vidas, resta: seg - tJ, sinTiempo: sinT, pts: pts.pts, avance: sinT ? resueltos / META : tJ / seg, mult: pts.mult(), racha: pts.racha,
+        frenesi: frenesi > 0, fantasma: sinT ? null : fv, jefe: jefe });
+    };
+
+    /* ---- pausa, teclado y pestaña oculta ---- */
+    var pausar = function(){
+      if (estado !== "juega") return;
+      estado = "pausa"; if (ctrl && ctrl.pausa) ctrl.pausa();
+      G.pausa(el, function(){ ult = 0; estado = "juega"; if (ctrl && ctrl.sigue) ctrl.sigue(); }, function(){ destruye(); try { save(true); } catch (x) {} acciones.salir(); });
+    };
+    var tecla = function(e){
+      var campo = /INPUT|TEXTAREA/.test((e.target && e.target.tagName) || "");
+      if (e.key === "Escape" || ((e.key === "p" || e.key === "P") && !campo)) { if (estado === "juega") { e.preventDefault(); pausar(); } return; }
+      if (estado === "juega" && ctrl && ctrl.tecla) ctrl.tecla(e);
+    };
+    var oculta = function(){ if (document.hidden) pausar(); };
+    var clic = function(e){ var b = e.target.closest && e.target.closest("[data-plxg=pausa]"); if (b) pausar(); };
+    window.addEventListener("keydown", tecla); document.addEventListener("visibilitychange", oculta); el.addEventListener("click", clic);
+
+    var termina = function(porVidas){
+      if (estado === "fin") return;
+      estado = "fin"; G.sfx("fin"); traza.push(pts.pts);
+      var r = { puntos: pts.pts, aciertos: pts.aciertos, fallos: pts.fallos, precision: pts.precision(), mejor: pts.mejor, porVidas: porVidas,
+        seg: tJ, traza: traza, errores: errores, alCarnet: alCarnet, vidas: Math.max(0, vidas),
+        jefe: jefe ? { vencido: vencido, nombre: jefe.nombre, vida: jefe.vida, max: jefe.max } : null };
+      r.mejorMult = r.mejor >= 10 ? 4 : r.mejor >= 6 ? 3 : r.mejor >= 3 ? 2 : 1;
+      r.estrellas = opc.estrellas ? opc.estrellas(r) : G.estrellas(r, seg);
+      r.pista = opc.pista ? opc.pista(r) : "";
+      var premio = G.premiar(juego.id, alc, r);
+      s.mz("fin", porVidas ? "¡Otra vez!" : vencido ? "¡Victoria!" : "¡Terminó!");
+      setTimeout(function(){ destruye(); G.resultados(el, juego, alc, r, premio, acciones); }, porVidas ? 500 : 900);
+    };
+    var destruye = function(){
+      cancelAnimationFrame(raf); raf = 0; estado = "fin";
+      window.removeEventListener("keydown", tecla); document.removeEventListener("visibilitychange", oculta); el.removeEventListener("click", clic); window.removeEventListener("resize", colocaBan);
+      if (ctrl) { var c = ctrl; ctrl = null; try { c.destruye(); } catch (x) {} }
+      el.classList.remove("plxg-juego", "plxg-fr", "plxg-sh", "plxg-golpe"); el.innerHTML = "";
+      if (G.sesionActual === s) G.sesionActual = null;
+    };
+    s.depura = function(){ return Object.assign({ juego: juego.id, estado: estado, vidas: vidas, pts: pts.pts, racha: pts.racha, aciertos: pts.aciertos, fallos: pts.fallos, tJ: tJ, techo: s.techo(),
+      reto: reto && { tipo: reto.tipo, q: reto.q, oro: !!reto.oro, correcta: reto.correcta }, jefe: jefe && { vida: jefe.vida, max: jefe.max } }, ctrl && ctrl.depura ? ctrl.depura() : {}); };
+
+    ctrl = juego.montar(zona, s);
+    G.sesionActual = s;
+    raf = requestAnimationFrame(bucle);
+    G.cuenta(el, function(){ if (estado !== "cuenta") return; estado = "juega"; ult = 0; });
+    return { destruye: destruye, s: s };
   };
 
   /* ---------------- estilos comunes del arcade ---------------- */
@@ -619,6 +883,41 @@
   .plxg-errs .e-why b{color:#0B2D74}
   .plxg-acc{display:grid;gap:12px;margin-top:26px}
   @media (max-width:380px){.plxg-kv{grid-template-columns:repeat(2,1fr)}.plxg-kv>div:nth-child(3){border-left:0;padding-left:4px;border-top:1px solid #2A4A8E}.plxg-kv>div:nth-child(4){border-top:1px solid #2A4A8E}}
+  /* sesión de juego: zona del motor, instrucción, puntos flotantes, jefe */
+  .plxg-zona{position:absolute;inset:0;z-index:1}
+  .plxg.plxg-sh .plxg-zona{animation:plxgSh .32s}
+  @keyframes plxgSh{0%,100%{transform:none}20%{transform:translate(-7px,2px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,1px)}80%{transform:translate(3px,0)}}
+  .plxg.plxg-juego::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 0 0 0 rgba(255,122,69,0);transition:box-shadow .4s}
+  .plxg.plxg-fr::after{box-shadow:inset 0 0 90px 10px rgba(255,122,69,.55)}
+  .plxg-ban{position:absolute;z-index:3;left:12px;right:12px;top:calc(env(safe-area-inset-top) + 104px);max-width:560px;margin:0 auto;pointer-events:none;
+    background:rgba(4,14,40,.72);border:1px solid rgba(147,197,253,.22);border-radius:16px;padding:10px 14px 12px;text-align:center;
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .plxg-ban[hidden]{display:none}
+  .plxg-ban.oro{border-color:#FFD200;box-shadow:0 0 0 1px #FFD200,0 0 24px -6px rgba(255,210,0,.6)}
+  .plxg-ban p{margin:0}
+  .plxg-ban button,.plxg-ban a{pointer-events:auto}
+  .plxg-ask{font:600 12.5px/1.35 Inter,system-ui,sans-serif;color:#A9C4FF;margin-bottom:4px!important}
+  .plxg-q{font:700 clamp(18px,5.2vw,23px)/1.3 Poppins,system-ui,sans-serif;color:#fff;overflow-wrap:anywhere}
+  .plxg-q .hueco{color:#FFD200;letter-spacing:.04em}
+  .plxg-q s{color:#FF9EA2;text-decoration-thickness:2px}
+  .plxg-q .cat{display:inline-block;background:#FFD200;color:#081F55;padding:2px 12px;border-radius:10px}
+  .plxg-q .tr{display:block;font:600 14px/1.35 Inter,system-ui,sans-serif;color:#C9D6F5;margin-bottom:4px}
+  .plxg-q .arma{display:block;min-height:1.3em}
+  .plxg-oro{display:inline-block;margin-bottom:6px;font:800 10.5px/1 Inter,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#081F55;background:#FFD200;padding:5px 8px;border-radius:999px}
+  .plxg-oir{all:unset;pointer-events:auto;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;background:#FFD200;color:#081F55!important;font:800 15px/1 Poppins,system-ui,sans-serif}
+  .plxg-oir svg{width:20px;height:20px;fill:#081F55}
+  .plxg-oir:focus-visible{outline:3px solid #93C5FD;outline-offset:3px}
+  .plxg-pops{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+  .plxg-pop{position:absolute;transform:translate(-50%,-50%);font:800 20px/1 Poppins,system-ui,sans-serif;color:#FFD200;white-space:nowrap;
+    text-shadow:0 2px 0 #081F55,0 0 6px #081F55,0 0 2px #081F55;animation:plxgSube .95s ease-out forwards}
+  @keyframes plxgSube{from{opacity:1;transform:translate(-50%,-50%)}to{opacity:0;transform:translate(-50%,-130%)}}
+  .plxg-jefe{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:12px;background:rgba(229,72,77,.14);box-shadow:inset 0 0 0 1px rgba(255,138,143,.35)}
+  .plxg-jefe img{width:34px;height:34px;object-fit:contain}
+  .plxg-jefe>div{flex:1;display:grid;gap:4px}
+  .plxg-jefe b{font:800 12px/1 Poppins,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#FFB1B4}
+  .plxg-jv{display:block;height:8px;border-radius:8px;background:rgba(255,255,255,.14);overflow:hidden}
+  .plxg-jv i{display:block;height:100%;background:linear-gradient(90deg,#E5484D,#FF8A3D);transform-origin:left;transition:transform .35s}
+  .plxg.plxg-golpe .plxg-jefe img{animation:plxgNo .35s}
   @media (prefers-reduced-motion:reduce){.plxg *:not(.m-bar i){animation-duration:.01ms!important;animation-iteration-count:1!important}}
   `;
   document.head.appendChild(st);
