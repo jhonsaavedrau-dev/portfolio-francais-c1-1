@@ -54,7 +54,7 @@
     },
     reglas: function(alc){
       var r = [
-        (G.aj.sinTiempo ? "Sin tiempo: " + (alc.repaso ? 10 : 15) + " retos" : alc.seg + " segundos") + " y 3 vidas.",
+        (alc.guiado ? "Sin reloj: juega con calma, " + (alc.repaso ? 10 : 15) + " retos" : G.aj.sinTiempo ? "Sin tiempo: " + (alc.repaso ? 10 : 15) + " retos" : alc.seg + " segundos") + " y 3 vidas.",
         alc.tema ? "Suena una palabra: córtala. Las demás se dejan pasar." : "Corta la fruta con la respuesta correcta y deja pasar las demás.",
         "Cortar una incorrecta quita una vida y te muestra la corrección.",
         "10 aciertos seguidos: frenesí, cámara lenta y puntos dobles."

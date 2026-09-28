@@ -48,7 +48,7 @@
   G.guardaAj = function(){ ls.set("plxg-aj", JSON.stringify(G.aj)); };
 
   /* ---------------- niveles y director de dificultad ---------------- */
-  var NIVEL = { a1: 0, a2: 0, fon: 0, b11: 1, b12: 1, b21: 1, rem: 1, prog: 2, c12: 2, lit: 2 };
+  var NIVEL = { pp: 0, a1: 0, a2: 0, fon: 0, b11: 1, b12: 1, b21: 1, rem: 1, prog: 2, c12: 2, lit: 2 };
   G.DIF = [
     { nombre: "A1–A2", opciones: [2, 3], t: 6 },
     { nombre: "B1–B2", opciones: [3, 4], t: 4.5 },
@@ -687,11 +687,12 @@
   G.sesion = function(el, alc, juego, acciones, opc){
     opc = opc || {};
     var nivel = G.nivel(alc.track), dir = G.director(alc.track), pts = G.Puntos(), mov = G.movReducido();
+    if (alc.guiado) dir.factor = 1.5;   /* juego guiado: todo un 50 % más lento */
     var apto = juego.apto || function(){ return true; };
     var base = (opc.retos || G.retosJuego(juego, alc)).slice(), cola = opc.ordenFijo ? base.slice() : mezcla(base);
     var oros = alc.tema || juego.oro === false || opc.oro === false ? [] : (juego.retosCarnet ? juego.retosCarnet(alc.track, nivel) : G.retosCarnet(alc.track, nivel)).filter(apto).slice(0, 12);
     var jefe = opc.jefe ? { max: opc.jefe.vida, vida: opc.jefe.vida, nombre: opc.jefe.nombre, img: opc.jefe.img, html: opc.jefe.html, clase: opc.jefe.clase } : null;
-    var seg = opc.seg || alc.seg || 90, sinT = !!G.aj.sinTiempo && !jefe, META = alc.repaso ? 10 : 15;
+    var seg = opc.seg || alc.seg || 90, sinT = (!!G.aj.sinTiempo || !!alc.guiado) && !jefe,   /* guiado: «Primeros pasos», sin reloj */ META = alc.repaso ? 10 : 15;
     var fan = jefe ? null : G.record(juego.id, alc), traza = [], errores = [], alCarnet = 0;
     var vidas = opc.vidas || 3, tJ = 0, resueltos = 0, frenesi = 0, olas = 0, ultimoOro = false, espera = .25;
     var reto = null, estado = "cuenta", raf = 0, ult = 0, ctrl = null, vencido = false;
