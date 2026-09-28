@@ -44,6 +44,14 @@
   var FF = G.registrar({
     id: "ff", nombre: "Fruit Frenzy", verbo: "Corta la palabra correcta", familia: "Reflejos", color: "#FF7A45", orden: 10,
     deco: function(){ return frutasDeco(4); },
+    /* retos de las lecciones y, cerca de uno de cada cinco, de audio: suena una palabra y entre las frutas hay
+       versiones mal escritas (tildes, dobles, letras mudas) según el nivel */
+    retos: function(alc){
+      var r = G.retosDe(alc);
+      if (alc.tema) return r;
+      var au = mezcla(G.retosAudioLecciones(alc.lecciones, G.nivel(alc.track)));
+      return r.concat(au.slice(0, Math.max(2, Math.round(r.length / 4))));
+    },
     reglas: function(alc){
       var r = [
         (G.aj.sinTiempo ? "Sin tiempo: " + (alc.repaso ? 10 : 15) + " retos" : alc.seg + " segundos") + " y 3 vidas.",
@@ -51,6 +59,7 @@
         "Cortar una incorrecta quita una vida y te muestra la corrección.",
         "10 aciertos seguidos: frenesí, cámara lenta y puntos dobles."
       ];
+      r.push("En los retos de audio, corta la palabra bien escrita: hay trampas de ortografía.");
       if (!alc.tema) r.push("Frutas doradas: errores de tu carnet. Valen el doble.");
       return r;
     },

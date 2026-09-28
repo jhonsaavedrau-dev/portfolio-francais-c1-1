@@ -247,11 +247,67 @@
   };
   /* retos de un tema del vocabulario: suena la palabra y se corta la que sonó */
   /* voc: la palabra completa del vocabulario ({fr, es, ex, exes, g}) para los juegos que la necesiten */
+  /* ---------------- palabras mal escritas (retos de audio) ----------------
+     Suena una palabra y hay que cortar la bien escrita: entre las frutas hay versiones con errores típicos
+     de ortografía. Nunca se usa una variante que sea otra palabra real del curso (verre ≠ vert): eso no
+     sería un error de ortografía sino otra palabra que suena igual. */
+  var conocidas = null;
+  var palabrasConocidas = function(){
+    if (conocidas) return conocidas;
+    conocidas = {};
+    var mete = function(t){ String(t || "").toLowerCase().split(/[^\p{L}'’-]+/u).forEach(function(w){ if (w) conocidas[w] = 1; }); };
+    LESSONS.forEach(function(l){ (l.items || []).forEach(function(it){ mete(it.q); mete(it.s); mete(it.say); (it.o || []).forEach(mete); (it.acc || []).forEach(mete); (it.tokens || []).forEach(mete); if (it.fix) mete(it.fix); }); });
+    Object.keys(window.__VOCAB || {}).forEach(function(tr){ window.__VOCAB[tr].themes.forEach(function(t){ t.i.forEach(function(x){ mete(x.fr); mete(x.ex); }); }); });
+    return conocidas;
+  };
+  /* reglas de más sutil (C1) a más visible (A1) */
+  var ERRORES = [
+    [2, /é/, "è"], [2, /è/, "é"], [2, /ê/, "è"], [2, /é/, "e"], [2, /à/, "a"], [2, /ç/, "c"], [2, /ô/, "o"], [2, /î/, "i"], [2, /û/, "u"],
+    [2, /(ll|nn|tt|ss|rr|mm|pp|ff)/, function(m){ return m.charAt(0); }],
+    [1, /([aeiou])(l|n|t|r)([aeiouy])/, function(m, a, c, b){ return a + c + c + b; }],
+    [1, /([^aeiouy])e$/, "$1"], [1, /([tlrnd])$/, "$1e"], [1, /([aeiou])(t|d|s|x)$/, "$1"], [1, /ent$/, "ant"], [1, /ant$/, "ent"],
+    [0, /eau/, "au"], [0, /au/, "o"], [0, /ph/, "f"], [0, /ai/, "è"], [0, /qu/, "k"], [0, /ou/, "u"], [0, /in/, "ain"], [0, /an/, "en"], [0, /en/, "an"], [0, /c([aou])/, "k$1"]
+  ];
+  G.malEscritas = function(w, nivel){
+    var k = palabrasConocidas(), base = String(w), low = base.toLowerCase(), out = [], vistos = {};
+    if (/\p{Lu}{2}/u.test(base)) return [];   /* siglas (le CV): no se «escriben mal» así */
+    ERRORES.forEach(function(e){
+      if (!e[1].test(low)) return;
+      var v = low.replace(e[1], e[2]);
+      if (v === low || vistos[v] || k[v] || v.length < 2) return;
+      vistos[v] = 1;
+      out.push({ t: base.charAt(0) === base.charAt(0).toUpperCase() && base.charAt(0) !== base.charAt(0).toLowerCase() ? v.charAt(0).toUpperCase() + v.slice(1) : v, s: e[0] });
+    });
+    /* primero las del nivel del jugador: sutiles en C1, visibles en A1 */
+    out.sort(function(a, b){ return Math.abs(a.s - nivel) - Math.abs(b.s - nivel) || Math.random() - .5; });
+    return out.map(function(x){ return x.t; }).filter(cabe);
+  };
+  /* mezcla según el nivel: A1–A2 una mal escrita, B1–B2 dos, C1 tres; el resto, palabras parecidas de la lección */
+  var mezclaAudio = function(w, otras, nivel){
+    var mal = G.malEscritas(w, nivel).slice(0, nivel + 1), par = G.distractores(w, otras, nivel === 0 ? 0 : 2, mal);
+    var r = nivel === 0 ? [par[0], mal[0], par[1], par[2]] : nivel === 1 ? [mal[0], par[0], mal[1], par[1]] : [mal[0], mal[1], par[0], mal[2], par[1]];
+    return r.filter(function(x, i){ return x && r.indexOf(x) === i; });
+  };
+  /* retos de audio con las palabras de las lecciones (respuestas de «fill» de una sola palabra) */
+  G.retosAudioLecciones = function(lecciones, nivel){
+    var out = [], vistas = {};
+    lecciones.forEach(function(l){
+      var its = l.items || [], ws = its.filter(function(it){ return it.k === "fill" && it.acc && /^[\p{L}'’-]{3,16}$/u.test(it.acc[0]); }).map(function(it){ return it.acc[0]; });
+      its.forEach(function(it, i){
+        if (it.k !== "fill" || !it.acc || !/^[\p{L}'’-]{3,16}$/u.test(it.acc[0]) || vistas[norm(it.acc[0])]) return;
+        vistas[norm(it.acc[0])] = 1;
+        var w = it.acc[0], malas = mezclaAudio(w, ws, nivel);
+        if (malas.length >= 2) out.push({ tipo: "uno", audio: w, ask: "Escucha y corta la palabra bien escrita", q: "", correcta: [w], malas: malas,
+          why: "Sonó <b>" + esc(w) + "</b>. " + (it.why || ""), hab: "vocab", key: l.id + ":" + i, lessonId: l.id });
+      });
+    });
+    return out;
+  };
   G.retosVocab = function(tema, nivel, op){
     return conOpciones(op, function(){
       var frs = tema.i.map(function(x){ return x.fr; });
       return tema.i.filter(function(x){ return cabe(x.fr); }).map(function(x){
-        return { tipo: "uno", audio: x.fr, ask: "Escucha y corta la palabra que suena", q: "", correcta: [x.fr], malas: G.distractores(x.fr, frs, nivel, []).slice(0, 5),
+        return { tipo: "uno", audio: x.fr, ask: "Escucha y corta la palabra bien escrita", q: "", correcta: [x.fr], malas: mezclaAudio(x.fr, frs, nivel),
           why: "<b>" + esc(x.fr) + "</b> = " + esc(x.es) + (x.ex ? "<br><i>" + esc(x.ex) + "</i>" : ""), hab: "vocab", key: null, lessonId: "", voc: x };
       }).filter(function(r){ return r.malas.length; });
     });
