@@ -1,51 +1,33 @@
-/* PLEX PLAY 1.22.0 — Una foto real por unidad
-   - La cabecera de cada lección (la imagen sobre la teoría) mostraba la misma ilustración para
-     todo el curso. Ahora muestra una foto real de lo que trata su unidad: 70 fotos, una por unidad.
-   - Las fotos son de Wikimedia Commons, con licencias libres (CC0, dominio público, CC BY, CC BY-SA).
-     Cada foto lleva su crédito (autor y licencia) con enlace a su página, como piden las licencias.
-   - Se generan con plexplay/fotos-unidades/descargar.py y este archivo con armar_plx44.py. */
+/* PLEX PLAY 1.22.1 — Portadas de los cursos con fotos reales
+   - Las portadas de los cursos (lista de cursos, inicio y encabezado del curso) son ahora fotos
+     reales: img/c-*.webp. Son de Wikimedia Commons, con licencias libres.
+   - La cabecera de cada lección sigue con su ilustración de siempre, que ahora vive en img/ilus/.
+   - Debajo de la lista de cursos hay un enlace a los créditos de las fotos (autor y licencia),
+     como piden las licencias.
+   - Se genera con plexplay/fotos-unidades/armar_plx44.py. */
 (function(){
   "use strict";
-  var CREDITOS = {"a1-1":["zoetnet","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Terrace_cafe,_Rue_de_Buci,_Paris_July_2010.jpg"],"a1-2":["Marie-Lan Nguyen","CC BY 2.5","https://commons.wikimedia.org/wiki/File:Grande_salle_ENC_n1.jpg"],"a1-3":["Benh LIEU SONG","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Paris_75005_Quai_de_Montebello_Bouquinistes_20071014.jpg"],"a1-4":["Eric65170","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Appartement_vue_g%C3%A9n%C3%A9rale.jpg"],"a1-5":["besopha","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Fruit_shop,_Rue_Cler,_Paris_18_August_2016.jpg"],"a2-1":["Ввласенко","CC BY 4.0","https://commons.wikimedia.org/wiki/File:A_view_of_Paris_through_the_clock_face_of_the_Mus%C3%A9e_d%27Orsay.jpg"],"a2-2":["DimiTalen","CC0","https://commons.wikimedia.org/wiki/File:Bakery,_Rue_du_Pasteur-Wagner,_Paris,_2016.jpg"],"a2-3":["PaddyBriggs","Public domain","https://commons.wikimedia.org/wiki/File:Fromagerie_in_Chavignol.jpg"],"a2-4":["Carl Campbell from Querétaro, Mexico","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:Au_Lapin_Agile_II_(34041353174).jpg"],"a2-5":["4300streetcar","CC BY 4.0","https://commons.wikimedia.org/wiki/File:TGV_train_at_M%C3%BCnchen_Hauptbahnhof_May_2025.jpg"],"fon-1":["Khaki from Netherlands","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Showtime._-_Fox_Amoore_at_Abbey_Road_2014_(2014-01-23_10.17.57).jpg"],"fon-2":["Willi Heidelbach","CC BY 2.5","https://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg"],"fon-3":["Staff Sgt. Bernardo Fuller","Public domain","https://commons.wikimedia.org/wiki/File:Picture_Story_Category,_Gospel_Explosion_5_160226-A-AJ780-005.jpg"],"fon-4":["Infrogmation of New Orleans","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Radio_WWOZ_New_Orleans_studio_October_2009_11.jpg"],"fon-5":["Ky","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Shure_520DX_Green_Bullet_-_Dynamic_Harmonica_Microphone,_along_with_microphone_volume_knob_on_Gibson_Kalamazoo_amplifier_model_KEH-....jpg"],"fon-6":["Reinhardhauke","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Paris_9e_Rue_Delayrac_339.JPG"],"b11-1":["Fredericknoronha","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Old-books-on-the-open-access-shelves._Ataide_Municipal_Library,_Mapusa,_Goa,_India.jpg"],"b11-2":["Dietmar Rabich","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Paris,_Pont_des_Arts_--_2014_--_1404.jpg"],"b11-3":["Basile Morin","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Universit%C3%A9_de_Technologie_de_Compi%C3%A8gne_-_amphi_cours_magistral.jpg"],"b11-4":["Lynx1211","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Mont_St_Michel_at_sunrise.jpg"],"b11-5":["Apdency","CC0","https://commons.wikimedia.org/wiki/File:Interview_Telegraaf_TV.jpg"],"b11-6":["Pirate 064","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Open_Foundation_Office_Launch(_Main_space).jpg"],"b12-1":["Jeff Sheldon ugmonk","CC0","https://commons.wikimedia.org/wiki/File:Old_man_reading_newspaper_with_tea_(Unsplash).jpg"],"b12-2":["Ibex73","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Clock_tower_of_Auxerre_PA00113607_(9).jpg"],"b12-3":["English106","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Female_student_writing_and_studying_at_dorm_room_desk.jpg"],"b12-4":["Zairon","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Lyon_Panorama_von_Fourvi%C3%A8re_1.JPG"],"b12-5":["dronepicr","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Lavender_field_in_Provence,_France_(51695613559).jpg"],"b21-1":["Patrick Despoix","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:139_-_Place_de_la_Bourse_et_le_miroir_d%27eau_-_Bordeaux.jpg"],"b21-2":["Guilhem Vellut from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Runners_@_Marathon_de_Paris_@_Seine_@_Paris_(26142179811).jpg"],"b21-3":["FOTO:Fortepan — ID 69842: Adományozó/D…","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Montmartre,_Place_du_Tertre._Fortepan_69842.jpg"],"b21-4":["Florian Plag from Bretten","CC BY 2.0","https://commons.wikimedia.org/wiki/File:An_old_man_in_newsagent%27s_shop,_Paris_September_2011.jpg"],"b21-5":["PanierAvide","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Assembl%C3%A9e_nationale_(visite_septembre_2024)_41.jpg"],"b21-6":["Aaron Burden aaronburden","CC0","https://commons.wikimedia.org/wiki/File:Writing_with_a_fountain_pen_(Unsplash).jpg"],"b21-7":["USDAgov","Public domain","https://commons.wikimedia.org/wiki/File:2022_Foreign_Agricutural_Service_GLOBAL_Attache_Conference_Highlights_(20220711-FAS-LSC-0304).jpg"],"rem-1":["Dalandau","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Larousse_Illustre_first_page_1934.jpg"],"rem-2":["Emily Gould","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Paris_metro_sign_October_21,_2011.jpg"],"rem-3":["Dietmar Rabich","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Stra%C3%9Fburg_(Frankreich),_Petite_France_--_2011_--_1759.jpg"],"rem-4":["Chabe01","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Bo%C3%AEte_lettres_Poste_place_Mairie_St_Cyr_Menthon_1.jpg"],"rem-5":["Benh LIEU SONG (Flickr)","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Louvre_Courtyard,_Looking_West.jpg"],"rem-6":["Europeana staff photographer","Public domain","https://commons.wikimedia.org/wiki/File:Handwritten_instructions_and_drawings_on_the_use_of_a_rifle.jpg"],"rem-7":["President Of Ukraine","CC0","https://commons.wikimedia.org/wiki/File:In_Zaporizhzhia,_the_President_Visited_an_Underground_School_and_Spoke_with_Children_on_December_12,_2024_-_1.jpg"],"rem-8":["Escuela16de17","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:3A_665.jpg"],"rem-9":["David Martín :: Suki_ ::","CC BY-SA 2.0","https://commons.wikimedia.org/wiki/File:RetroActivo_Podcast.jpg"],"rem-10":["Gerbil","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Leucate_Village_(Aude),_farmer%27s_market,_sweet_herbs.jpg"],"prog-1":["WOKANDAPIX","CC0","https://commons.wikimedia.org/wiki/File:Wooden_Block_Letters_Vision.jpg"],"prog-2":["Guilhem Vellut from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Sorbonne_University_@_Paris_(23899763722).jpg"],"prog-3":["Sammlung der Medien und Wissenschaft","CC BY 4.0","https://commons.wikimedia.org/wiki/File:Olympia_Simplex.jpg"],"prog-4":["New editing editor","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Wall_of_sticky_note_are_seen_in_cafe.png"],"prog-5":["Yinan Chen","Public Domain","https://commons.wikimedia.org/wiki/File:Gfp-lecture-hall.jpg"],"prog-6":["Jorge Royan","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Paris_-_Playing_chess_at_the_Jardins_du_Luxembourg_-_2966.jpg"],"prog-7":["Asturio Cantabrio","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Hamamatsu_Municipal_Sakuma_Library_reading_room_ac_(4).jpg"],"prog-8":["Shixart1985","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Desk_with_notebook_pens_and_glasses.jpg"],"prog-9":["Marie-Lan Nguyen","CC BY 2.0 fr","https://commons.wikimedia.org/wiki/File:Salle_de_lecture_Bibliotheque_Sainte-Genevieve_n03.jpg"],"prog-10":["Nillerdk","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:DTU_exam_building_101_photo_2.jpg"],"c12-1":["Nirv75","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Village_d%27Orci%C3%A8res_01.jpg"],"c12-2":["Wilfredor","CC0","https://commons.wikimedia.org/wiki/File:Arc_de_Triomphe_de_l%27%C3%89toile_at_night_vertical_fix.jpg"],"c12-3":["Sumit Surai","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Salon_Carr%C3%A9_Ceiling.jpg"],"c12-4":["Guilhem Vellut from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Maison_des_Provinces_de_France_@_Cit%C3%A9_internationale_universitaire_@_Paris_(32086714060).jpg"],"c12-5":["Diego Delso","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Edificios_en_la_Grand-Place,_Bruselas,_B%C3%A9lgica,_2021-12-15,_DD_184-186_HDR.jpg"],"c12-6":["Guilhem Vellut from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Manifestation_du_Front_National_le_8_mai_2016_%C3%A0_Paris_3.jpg"],"lit-1":["Thomas Quine","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Antique_books_about_the_middle_ages_(40558801591).jpg"],"lit-2":["Thought Catalog thoughtcatalog","CC0","https://commons.wikimedia.org/wiki/File:Young_person_reads_poetry_book_(Unsplash).jpg"],"lit-3":["Myrabella","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Chateau_Versailles_Galerie_des_Glaces.jpg"],"lit-4":["Staroad.fr","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Maison_de_Victor_Hugo,_place_des_Vosges_%C3%A0_Paris.jpg"],"lit-5":["Celette","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Caf%C3%A9_de_Flore,_172_boulevard_Saint-Germain,_Paris_6e.jpg"],"lit-6":["Scott S Bateman","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Fort-de-france-harbor.jpg"],"lit-7":["Scntst0009","CC0","https://commons.wikimedia.org/wiki/File:Reading_room_of_Central_library_iitd.jpg"],"lit-8":["Guilhem Vellut from Paris, France","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Th%C3%A9%C3%A2tre_Montparnasse,_Paris_4_November_2016.jpg"],"lit-9":["Shadowgate from Novara, ITALY","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Shakespeare_and_Company_bookstore,_Paris_13_August_2013.jpg"],"acc-1":["Ggal","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Azerty%2B_LDLC_Keyboard.jpg"]};
-  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
-
-  /* número de unidad (1, 2, 3…) dentro de su curso, en el orden del curso */
-  var num = null;
-  var numeros = function(){
-    if (num) return num;
-    num = {};
-    var vistos = {};
-    try {
-      LESSONS.forEach(function(l){
-        var c = l.track; vistos[c] = vistos[c] || [];
-        if (vistos[c].indexOf(l.unit) < 0) vistos[c].push(l.unit);
-        num[l.id] = c + "-" + (vistos[c].indexOf(l.unit) + 1);
-      });
-    } catch (e) {}
-    return num;
+  /* cabecera de la lección: la ilustración del curso, no la foto */
+  var ilustracion = function(h){
+    h.dataset.plx44 = "1";
+    var bg = h.getAttribute("style") || "";
+    if (/img\/c-[a-z]+\.webp/.test(bg)) h.style.backgroundImage = "url(" + bg.match(/img\/c-[a-z]+\.webp/)[0].replace("img/", "img/ilus/") + ")";
   };
-
-  var viste = function(h){
-    if (h.dataset.plx44) return;
-    var l = null; try { l = P.lesson; } catch (e) {}
-    var clave = l && numeros()[l.id];
-    if (!clave || !CREDITOS[clave]) return;
-    h.dataset.plx44 = clave;
-    var c = CREDITOS[clave];
-    h.style.backgroundImage = "url(img/u/" + clave + ".webp)";
-    h.setAttribute("role", "img"); h.setAttribute("aria-label", l.unit || "");
-    h.insertAdjacentHTML("beforeend", '<a class="plx44-cr" href="' + esc(c[2]) + '" target="_blank" rel="noopener">Foto: ' + esc(c[0]) + " · " + esc(c[1]) + "</a>");
+  /* créditos de las fotos al pie de la lista de cursos */
+  var creditos = function(){
+    document.querySelectorAll(".lxs-i").forEach(function(b){
+      var lista = b.parentElement;
+      if (!lista || lista.querySelector(".plx44-cr")) return;
+      lista.insertAdjacentHTML("beforeend", '<a class="plx44-cr" href="creditos-fotos.html" target="_blank" rel="noopener">Fotos de portada: Wikimedia Commons · ver créditos</a>');
+    });
   };
-  var revisa = function(){ document.querySelectorAll(".m-hero:not([data-plx44])").forEach(viste); };
+  var revisa = function(){ document.querySelectorAll(".m-hero:not([data-plx44])").forEach(ilustracion); creditos(); };
   new MutationObserver(revisa).observe(document.body, { childList: true, subtree: true });
   revisa();
 
   var st = document.createElement("style"); st.id = "plx44";
   st.textContent = `
-  .m-hero{position:relative;overflow:hidden;background-color:#0B2D74;background-position:center;height:clamp(170px,42vw,230px)}
-  .m-hero[data-plx44]::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,31,85,.55));pointer-events:none}
-  .plx44-cr{position:absolute;right:8px;bottom:6px;z-index:1;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    font:500 10px/1.3 Inter,system-ui,sans-serif;color:rgba(255,255,255,.88)!important;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+  .plx44-cr{display:block;text-align:center;margin:10px 0 2px;font:500 11px/1.4 Inter,system-ui,sans-serif;color:var(--stone,#64748b)!important;text-decoration:none}
   .plx44-cr:hover{text-decoration:underline}
   `;
   document.head.appendChild(st);
