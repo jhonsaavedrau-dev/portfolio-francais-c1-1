@@ -33,10 +33,12 @@
   /* ---------------- qué juego va con cada habilidad ---------------- */
   var HAB = { voc: "vocab", cult: "vocab", phono: "oido", comp: "oido", gram: "gram", conj: "gram", accord: "gram", synt: "gram", prep: "gram",
     ortho: "escritura", registre: "frases", coh: "frases", lit: "frases" };
-  var HAB_TXT = { vocab: "Vocabulario", oido: "Escucha", gram: "Gramática", escritura: "Escritura", frases: "Frases", voz: "Voz" };
-  var JUEGO = { vocab: ["mr", "ff", "ah"], oido: ["ah", "ff", "mr"], gram: ["ld", "pb", "ff"], escritura: ["sb", "ld", "ff"], frases: ["pb", "ld", "ff"] };
-  var RETO = { vocab: ["sb", "ah", "vd"], oido: ["vd", "sb", "pb"], gram: ["sb", "ah", "vd"], escritura: ["ah", "vd", "pb"], frases: ["vd", "ah", "sb"] };
-  var FAM_HAB = { Reflejos: "vocab", Construir: "frases", Escucha: "oido", Memoria: "vocab", Detective: "gram", Voz: "voz" };
+  var HAB_TXT = { vocab: "Vocabulario", oido: "Escucha", gram: "Gramática", escritura: "Escritura", frases: "Frases", voz: "Voz", mixto: "Mixto" };
+  /* 2.1: cada habilidad tiene varios juegos; lecciones seguidas alternan entre los que sirven */
+  var JUEGO = { vocab: ["mr", "tw", "wc", "ff", "ah"], oido: ["ah", "bc", "ff", "mr"], gram: ["ld", "gr", "cc", "pb", "ff"], escritura: ["sb", "sr", "ld", "ff"], frases: ["pb", "sr", "cc", "ld", "ff"] };
+  var RETO = { vocab: ["bc", "sb", "ah", "vd", "cm"], oido: ["vd", "bc", "sb", "pb", "cm"], gram: ["bc", "sb", "ah", "vd", "cm"], escritura: ["ah", "vd", "bc", "cm"], frases: ["vd", "ah", "bc", "cm"] };
+  var FAM_HAB = { Reflejos: "vocab", Construir: "frases", Escucha: "oido", Memoria: "vocab", Detective: "gram", Voz: "voz",
+    Contrarreloj: "mixto", Carrera: "gram", "Puntería": "vocab", Cartas: "gram", Combo: "mixto" };
   var sirve = function(jid, alc){
     try {
       var j = G && G.juegos[jid]; if (!j || !j.montar || (j.oculto && j.oculto())) return false;
@@ -51,8 +53,11 @@
   var elige = function(l){
     if (!G || !G.alc) return null;
     var alc = G.alc.leccion(l), ext = null, h = HAB[l.t] || "vocab";
+    var vuelta = Math.max(0, LESSONS.filter(function(x){ return x.track === l.track; }).indexOf(l));
     var busca = function(lista, sin){
-      for (var i = 0; i < lista.length; i++) if (lista[i] !== sin && sirve(lista[i], alc)) return { id: lista[i], alc: alc };
+      /* los que sirven con la lección sola; entre los dos primeros se alterna según la lección */
+      var ok = lista.filter(function(id){ return id !== sin && sirve(id, alc); });
+      if (ok.length) { var top = ok.slice(0, Math.min(2, ok.length)); return { id: top[vuelta % top.length], alc: alc }; }
       ext = ext || ampliado(l);
       for (var k = 0; k < lista.length; k++) if (lista[k] !== sin && sirve(lista[k], ext)) return { id: lista[k], alc: ext };
       return null;
