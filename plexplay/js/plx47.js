@@ -42,6 +42,22 @@
     }
     return out.map(function(p){ return p.replace(/¤/g, " "); });
   };
+  /* esqueleto de la frase: las piezas ya puestas se ven enteras; las demás, solo con su primera letra
+     (b··· q··'·· s···). Así se entiende qué frase hay que armar sin regalar el orden de un vistazo. */
+  var esqueleto = function(toks, hechas){
+    return toks.map(function(p, i){
+      if (i < hechas) return '<b class="esq-ok">' + esc(p) + "</b>";
+      return '<span class="esq">' + esc(p.split(/\s+/).map(function(w){
+        var m = w.match(/^([«"(¿¡]*)(.)(.*?)([.,!?;:»")]*)$/); if (!m) return w;
+        return m[1] + m[2] + m[3].replace(/[^'’\-]/g, "·") + m[4];
+      }).join(" ")) + "</span>";
+    }).join(" ");
+  };
+  G.esqueleto = esqueleto;
+  G.bannerFrase = function(ask, r, hechas){
+    return '<p class="plxg-ask">' + esc(ask) + "</p>" + (r.q ? '<p class="pb-ctx"><span>' + (r.deriv ? "Situación" : "Pista") + "</span>" + esc(r.q) + "</p>" : "") +
+      '<p class="plxg-q pb-esq" lang="fr">' + esqueleto(r.correcta, hechas || 0) + "</p>";
+  };
   /* un reto «uno» de choice o fill → frase completa para armar */
   var aFrase = function(r){
     var it = itemDe(r.key); if (!it || (it.k !== "choice" && it.k !== "fill")) return null;
@@ -104,7 +120,7 @@
         var palabra = '<span class="fx-pal">' + esc(hecha) + '<span class="fx-gu">' + new Array(resto + 1).join("_") + "</span></span>";
         if (reto.voc) q = '<span class="tr">' + esc(reto.q) + "</span>" + palabra + (reto.audio ? ' <button class="plxg-oir" data-fx="oir" aria-label="Escuchar">' + (G.ICONO_OIR || "") + "</button>" : "");
         else q = esc(reto.q).replace(/_{2,}/, palabra);
-      } else q = reto.q ? '<span class="tr">' + esc(reto.q) + "</span>" : "";
+      } else { s.banner(G.bannerFrase(reto.ask || "Arma la frase", reto, paso), { oro: reto.oro }); coloca(); return; }
       s.banner('<p class="plxg-ask">' + esc(reto.ask || "") + "</p>" + (q ? '<p class="plxg-q">' + q + "</p>" : ""), { oro: reto.oro });
       coloca();
     };
@@ -120,6 +136,13 @@
       }).join("");
       numera();
     };
+    /* pasada la mitad del tiempo, la pieza que sigue brilla un poco */
+    var marcaSiguiente = function(){
+      if (!reto || hecho || bandeja.querySelector(".fx-sig")) return;
+      var esperado = letras ? reto.correcta[0].charAt(paso) : reto.correcta[paso];
+      var b = [].filter.call(bandeja.querySelectorAll(".fx-f"), function(x){ var f = fichas[+x.getAttribute("data-fx-i")]; return f && !f.trampa && (letras ? f.t.toLowerCase() === String(esperado).toLowerCase() : norm(f.t) === norm(esperado)); })[0];
+      if (b) b.classList.add("fx-sig");
+    };
     var numera = function(){ bandeja.querySelectorAll(".fx-f small").forEach(function(sm, k){ sm.textContent = k < 9 ? String(k + 1) : ""; }); };
 
     var jugar = function(r){
@@ -130,7 +153,7 @@
       /* que no salga ya ordenada */
       if (fichas.length > 2 && fichas.every(function(f, i){ return f.t === piezas[i]; })) fichas.push(fichas.shift());
       fichas.forEach(function(f){ f.rot = s.mov ? 0 : Math.round((Math.random() - .5) * 6); });
-      T = letras ? s.dir.t() * 1.3 + .75 * piezas.length : s.dir.t() * 1.4 + 1.1 * piezas.length;
+      T = letras ? s.dir.t() * 1.6 + 1.4 * piezas.length : s.dir.t() * 1.7 + 1.6 * piezas.length;
       banner(); pintaLinea(); pintaBandeja();
       if (r.audio && letras) try { speak(r.audio); } catch (e) {}
     };
@@ -153,6 +176,8 @@
           cierre = .55;
         } else {
           G.sfx("paso", paso); s.extra(letras ? 5 : 15, c.x, c.y);
+          /* cada pieza bien puesta devuelve tiempo al reloj del reto */
+          var gana = letras ? 1.5 : 2; t = Math.max(0, t - gana); s.pop(c.x, c.y - 26, "+" + String(gana).replace(".", ",") + " s", "#6BE58E");
           banner(); pintaLinea(); pintaBandeja();
         }
         return;
@@ -203,6 +228,7 @@
         t += dt;
         reloj.style.transform = "scaleX(" + Math.max(0, 1 - t / T).toFixed(3) + ")";
         reloj.parentNode.classList.toggle("poco", t / T > .75);
+        if (t / T > .5) marcaSiguiente();
         if (t >= T) {
           hecho = true;
           s.escapa(reto, { titulo: letras ? "Se acabó el tiempo" : "La frase quedó incompleta", etiqueta: letras ? "Se escribe" : "La frase", bien: letras ? reto.correcta[0] : reto.correcta.join(" ") })
@@ -266,7 +292,8 @@
         (G.aj.sinTiempo ? "Sin tiempo: " + (alc.repaso ? 10 : 15) + " palabras" : alc.seg + " segundos") + " y 3 vidas.",
         alc.tema ? "Lee el significado, escucha la palabra y deletréala en francés." : "Completa la palabra que falta, letra por letra.",
         "Ojo con las tildes: entre las letras hay trampas como é, è y e.",
-        "Una letra equivocada rompe el combo; la segunda en la misma palabra te quita una vida."
+        "Una letra equivocada rompe el combo; la segunda en la misma palabra te quita una vida.",
+        "Cada letra correcta te devuelve 1,5 segundos al reloj."
       ];
     },
     montar: function(zona, s){ return motorFichas(zona, s, "sb"); }

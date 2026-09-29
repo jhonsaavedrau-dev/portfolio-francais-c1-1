@@ -352,7 +352,7 @@
           var pos = 1 + llegaron; hecho = true; cierre = .9;
           s.acierto(reto, { rapidez: pos === 1 ? 1 : .35, x: p.x, y: p.y }); nota.textContent = pos === 1 ? "🏆 ¡Primer lugar!" : "🥈 Segundo lugar";
         }
-        pinta(); pintaPista(); return;
+        pinta(); pintaPista(); if (G.bannerFrase && !hecho) { s.banner(G.bannerFrase("Arma la frase antes que los rivales", reto, hechas), { oro: reto.oro }); coloca(); } return;
       }
       malos++; f.mal = true; pinta();
       if (malos < 2) { s.penaliza(p.x, p.y); nota.textContent = "Esa pieza no va ahí"; return; }
@@ -367,7 +367,7 @@
         fichas = ord.map(function(i){ return { t: toks[i] }; });
         var base = s.dir.t() * .7 * toks.length + 3;
         riv = RIVALES.map(function(x, k){ return { n: x.n, c: x.c, auto: x.auto, x: 0, T: base * (k ? 1.25 : 1.02) * (.95 + Math.random() * .15), fin: false }; });
-        s.banner('<p class="plxg-ask">Arma la frase antes que los rivales</p>' + (r.q ? '<p class="plxg-q">' + esc(r.q) + "</p>" : ""), { oro: r.oro }); coloca();
+        s.banner(G.bannerFrase ? G.bannerFrase("Arma la frase antes que los rivales", r, 0) : '<p class="plxg-ask">Arma la frase antes que los rivales</p>' + (r.q ? '<p class="plxg-q">' + esc(r.q) + "</p>" : ""), { oro: r.oro }); coloca();
         pinta(); pintaPista(); nota.textContent = "";
       },
       tick: function(dt){
