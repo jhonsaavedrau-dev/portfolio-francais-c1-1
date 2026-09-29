@@ -653,6 +653,8 @@
   G.retosCuenta = function(j, alc){ var k = j.id + "|" + alc.clave; return contados[k] || (contados[k] = G.retosJuego(j, alc)); };
   G.nRetos = function(j, alc){ var k = j.id + "|" + alc.clave; return cuentas[k] != null ? cuentas[k] : (cuentas[k] = j.cuenta ? j.cuenta(alc) : G.retosCuenta(j, alc).length); };
   G.nRetosListo = function(j, alc){ return cuentas[j.id + "|" + alc.clave] != null; };
+  /* 2.8.0: cuando llegan lecciones nuevas, las cuentas se vuelven a calcular */
+  G.olvidaCuentas = function(){ contados = {}; cuentas = {}; };
   G.MIN_RETOS = 4;
 
   /* ---------------- sesión: el marco de una partida ----------------

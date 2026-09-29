@@ -37,6 +37,8 @@
   var estrellas = function(n){ n = n || 0; return '<span class="az-est" aria-label="' + n + ' de 3 estrellas">' + [0, 1, 2].map(function(i){ return '<i class="' + (i < n ? "on" : "") + '">★</i>'; }).join("") + "</span>"; };
 
   var capa = null, volver = false, CNT = {}, cola = [], trabajando = false;
+  /* 2.8.0: al llegar lecciones nuevas, los números del Arcade se recalculan */
+  G.arcadeOlvida = function(){ CNT = {}; cola = []; };
   /* 2.3.1: contar los retos de 20 juegos de golpe tardaba decenas de segundos en el celular. Ahora la pantalla
      sale al instante y cada juego se cuenta después, de a uno, cuando el teléfono está libre (y queda guardado). */
   var MULTI = { bb: 1, mc: 1, la: 1 };
