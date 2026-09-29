@@ -250,7 +250,7 @@ L("b12-opposer-deux-idees","Opposer deux idées : alors que, tandis que, en reva
  F("Completa.","D'une part, c'est pratique ; d'___ part, c'est cher.",["autre"],"<b>d'une part… d'autre part</b>."),
  Mt("Une cada conector con su registro o uso.","Conector → uso",[["par contre","oral"],["en revanche","escrito"],["tandis que","+ indicativo"],["contrairement à","+ nombre"]],"Conectores de oposición."),
  S("Clasifica.","¿Qué sigue?",["+ frase (verbo conjugado)","+ nombre o infinitivo"],[["alors que",0],["tandis que",0],["même si",0],["bien que",0],["contrairement à",1],["au lieu de",1],["malgré",1],["à l'inverse de",1]],"Conjunciones frente a preposiciones."),
- P("Encuentra la palabra incorrecta y corrígela.","[Contrairement] de ce qu'on pense , ce restaurant est bon marché .","à","<b>contrairement à</b> ce qu'on pense (sustituye <i>de</i>)."),
+ P("Encuentra la palabra incorrecta y corrígela.","Contrairement [de] ce qu'on pense , ce restaurant est bon marché .","à","<b>contrairement à</b> ce qu'on pense."),
  O("Ordena: «En cambio, el precio es alto».",["En revanche,","le prix","est","élevé"],"<i>En revanche, le prix est élevé.</i>"),
  D("Ma sœur adore la ville, tandis que moi, je préfère la campagne.")]),
 L("b12-rapporter-opinion","Rapporter l'opinion des autres : selon, d'après, pour","coh",{
