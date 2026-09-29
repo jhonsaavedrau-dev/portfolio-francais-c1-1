@@ -134,8 +134,13 @@
   };
   /* 2.3.1: se genera curso por curso (cada uno en su propio momento libre): de golpe congelaba el celular ~3 s */
   var hechos = { explica: {}, vocab: {} };
-  var cursoExplica = function(t){ if (hechos.explica[t.id]) return; hechos.explica[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeExplica(ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); };
-  var cursoVocab = function(t){ if (hechos.vocab[t.id]) return; hechos.vocab[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special; }), g = generaDeVocab(t.id, ls); ls.forEach(function(l){ ponExtra(l, g[l.id]); }); };
+  var cursoExplica = function(t){ if (hechos.explica[t.id]) return; hechos.explica[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special && !l._xe; }), g = generaDeExplica(ls); ls.forEach(function(l){ l._xe = 1; ponExtra(l, g[l.id]); }); };
+  var cursoVocab = function(t){ if (hechos.vocab[t.id]) return; hechos.vocab[t.id] = 1; var ls = LESSONS.filter(function(l){ return l.track === t.id && !l.special && !l._xv; }), g = generaDeVocab(t.id, ls); ls.forEach(function(l){ l._xv = 1; ponExtra(l, g[l.id]); }); };
+  /* 2.9.1: las lecciones que llegan después (mas/<curso>.js, plx66) también reciben sus extra.
+     Solo se procesan las que no tienen marca (_xe / _xv), así nunca se duplican. */
+  G.extraLecciones = function(tid){ try { var t = { id: tid };
+    if (hechos.explica[tid] && listoExplica()) { hechos.explica[tid] = 0; cursoExplica(t); }
+    if (hechos.vocab[tid] && window.__VOCAB) { hechos.vocab[tid] = 0; cursoVocab(t); } } catch (e) {} };
   var listoExplica = function(){ return window.__EXPLICA && Object.keys(window.__EXPLICA).length >= 50; };
   var aplicaExplica = function(){ if (hecho.explica || !listoExplica()) return; TRACKS.forEach(cursoExplica); hecho.explica = true; };
   var aplicaVocab = function(){ if (hecho.vocab || !window.__VOCAB) return; TRACKS.forEach(cursoVocab); hecho.vocab = true; };

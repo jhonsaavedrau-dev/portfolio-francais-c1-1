@@ -6,7 +6,7 @@ L("prog-apposition","L'apposition et le détachement","synt",{
  idea:"La aposición añade información sobre un nombre, separada por comas, sin verbo conjugado: Victor Hugo, écrivain engagé, s'exila à Guernesey. También se anteponen adjetivos o participios: Fatigués, les étudiants sont rentrés. Condensa y da ritmo al texto académico.",
  para:"Para escribir frases densas y elegantes sin acumular relativas.",
  regla:["Nombre en aposición: <i>Marie Curie, <b>physicienne</b> d'origine polonaise, …</i>","Adjetivo / participio antepuesto: <i><b>Convaincu</b> de son erreur, il s'excusa.</i>","El elemento apuesto debe referirse al <b>sujeto</b> de la principal.","Sustituye relativas: <i>Paris, qui est la capitale…</i> → <i>Paris, capitale…</i>","Siempre entre comas."],
- ej:[["Descartes, philosophe du XVIIe siècle, a fondé le rationalisme.","Descartes, filósofo del siglo XVII, fundó el racionalismo."],["Inquiets, les habitants ont quitté le quartier.","Preocupados, los habitantes dejaron el barrio."],["Ce phénomène, longtemps ignoré, suscite aujourd'hui l'intérêt.","Este fenómeno, largo tiempo ignorado, suscita hoy interés."]],
+ ej:[["Descartes, philosophe du XVIIe siècle, a fondé le rationalisme.","Descartes, filósofo del siglo XVII, fundó el racionalismo."],["Inquiets, les habitants ont quitté le quartier.","Preocupados, los habitantes dejaron el barrio."],["Ce phénomène, longtemps ignoré, suscite aujourd'hui l'intérêt.","Este fenómeno, largo tiempo ignorado, suscita hoy interés."],["Rousseau, citoyen de Genève, a marqué la pensée politique.", "Rousseau, ciudadano de Ginebra, marcó el pensamiento político."],["Épuisés par le voyage, les chercheurs ont reporté la réunion.", "Agotados por el viaje, los investigadores aplazaron la reunión."],["Cette réforme, votée en urgence, divise encore l'opinion.", "Esta reforma, votada con urgencia, todavía divide a la opinión."]],
  ojo:["Arrivé à la gare, le train était parti.","Arrivé à la gare, j'ai constaté que le train était parti.","El apuesto debe referirse al <b>sujeto</b>."]},[
  C("Elige la versión con aposición.","Paris, qui est la capitale de la France, attire…",["Paris, capitale de la France, attire…","Paris, la qui capitale, attire…","Paris capitale est de la France, attire…"],0,"Sin verbo: <b>aposición</b>."),
  C("¿Cuál es correcta?","Participio antepuesto",["Épuisée, elle s'est endormie.","Épuisée, le sommeil l'a prise.","Épuisé, elle s'est endormie."],0,"Se refiere al sujeto <i>elle</i>."),
@@ -17,12 +17,14 @@ L("prog-apposition","L'apposition et le détachement","synt",{
  S("Clasifica.","¿Correcta?",["Correcta","Incorrecta (sujeto distinto)"],[["Arrivé tôt, il a attendu.",0],["Surprise, elle n'a rien dit.",0],["Rédigé en 1850, ce texte reste actuel.",0],["Fatigués, nous sommes rentrés.",0],["Arrivé tôt, la porte était fermée.",1],["Surprise, le silence s'installa.",1],["Rédigé en 1850, l'auteur le publia.",1],["Fatigués, la route semblait longue.",1]],"El sujeto debe coincidir."),
  P("Encuentra la palabra incorrecta y corrígela.","[Inquiet] , les chercheuses ont interrompu l'expérience .","Inquiètes","Concuerda con <i>chercheuses</i>: <b>Inquiètes</b>."),
  O("Ordena: «Marie Curie, física polaca, ganó dos Nobel».",["Marie Curie,","physicienne polonaise,","a obtenu","deux prix Nobel"],"<i>Marie Curie, physicienne polonaise, a obtenu deux prix Nobel.</i>"),
+ C("Elige la versión condensada.","Le ministre, qui était surpris, n'a rien dit.",["Surpris, le ministre n'a rien dit.","Surprise, le ministre n'a rien dit.","Le ministre surprenant n'a rien dit."],0,"Participio antepuesto: <b>Surpris</b>."),
+ F("Completa con un nombre en aposición.","Molière, ___ du XVIIe siècle, a créé Tartuffe. (dramaturgo)",["dramaturge"],"<b>dramaturge</b>."),
  D("Longtemps ignoré, ce phénomène suscite aujourd'hui l'intérêt des chercheurs.")]),
 L("prog-participiale","La proposition participiale : le travail terminé, il partit","synt",{
  idea:"La participial tiene su propio sujeto, distinto del de la principal, y expresa tiempo o causa: Le travail terminé, les ouvriers rentrèrent. La nuit tombant, nous avons allumé un feu. Es propia del registro escrito cuidado.",
  para:"Para variar la sintaxis y expresar circunstancias con concisión.",
  regla:["<b>sujeto + participio pasado</b>: anterioridad: <i>Les examens terminés, les étudiants partirent.</i>","<b>sujeto + participio presente</b>: simultaneidad o causa: <i>Le temps pressant, il fallut décider.</i>","Sujeto <b>distinto</b> del de la principal.","Equivalencias: <i>Une fois les examens terminés…, Comme le temps pressait…</i>"],
- ej:[["La réunion terminée, chacun est rentré chez soi.","Terminada la reunión, cada uno volvió a su casa."],["Le budget étant limité, le projet a été réduit.","Siendo limitado el presupuesto, se redujo el proyecto."],["Dieu aidant, tout ira bien.","Con la ayuda de Dios, todo irá bien."]],
+ ej:[["La réunion terminée, chacun est rentré chez soi.","Terminada la reunión, cada uno volvió a su casa."],["Le budget étant limité, le projet a été réduit.","Siendo limitado el presupuesto, se redujo el proyecto."],["Dieu aidant, tout ira bien.","Con la ayuda de Dios, todo irá bien."],["La décision prise, personne ne pouvait plus reculer.", "Tomada la decisión, nadie podía echarse atrás."],["Le soleil se couchant, les promeneurs sont rentrés.", "Poniéndose el sol, los paseantes volvieron."],["Les documents signés, le notaire a clos la séance.", "Firmados los documentos, el notario cerró la sesión."]],
  ojo:["Terminée la réunion, …","La réunion terminée, …","En francés el sujeto va <b>delante</b> del participio."]},[
  C("Elige la participial correcta.","Terminada la clase…",["Le cours terminé, …","Terminé le cours, …","Le cours terminant, … (anterior)"],0,"<b>sujeto + participio</b>."),
  C("¿Qué expresa?","La pluie tombant, le match fut annulé.",["causa","finalidad","concesión"],0,"<b>Causa</b>."),
@@ -33,12 +35,14 @@ L("prog-participiale","La proposition participiale : le travail terminé, il par
  S("Clasifica.","¿Participial o gerundio?",["Participial (sujeto propio)","Gerundio (mismo sujeto)"],[["Le soleil se levant, …",0],["La décision prise, …",0],["Les élèves partis, …",0],["Son travail achevé, …",0],["En partant, il a salué.",1],["En lisant, j'ai compris.",1],["En arrivant, elle a souri.",1],["En travaillant, on progresse.",1]],"¿Quién hace la acción?"),
  P("Encuentra la palabra incorrecta y corrígela.","Les résultats [publié] , le ministre a réagi immédiatement .","publiés","Concuerda con <i>résultats</i>: <b>publiés</b>."),
  O("Ordena: «Terminado el trabajo, se fueron».",["Le travail","terminé,","ils","sont partis"],"<i>Le travail terminé, ils sont partis.</i>"),
+ C("¿Qué expresa la participial?","Le calme revenu, la séance reprit.",["anterioridad","finalidad","oposición"],0,"<b>Anterioridad</b>."),
+ F("Completa.","Les invités ___ , nous avons rangé la salle. (partis)",["partis"],"<b>partis</b>."),
  D("Les examens terminés, les étudiants sont partis en vacances.")]),
 L("prog-infinitif-nom","L'infinitif sujet et nominal : comprendre, c'est pardonner","synt",{
  idea:"El infinitivo puede funcionar como un nombre: sujeto (Voyager forme la jeunesse), atributo (Comprendre, c'est pardonner) o complemento. Da a las frases un tono general y sentencioso, útil en ensayos y conclusiones.",
  para:"Para formular ideas generales con elegancia.",
  regla:["Infinitivo sujeto: <i><b>Lire</b> développe l'imagination.</i>","Estructura de relieve: <i><b>Apprendre une langue</b>, c'est s'ouvrir au monde.</i>","Tras <i>c'est</i>: <i>Le plus difficile, c'est <b>de commencer</b>.</i>","Sin artículo (≠ español «el leer»).","Con negación: <i><b>Ne pas</b> agir serait une erreur.</i>"],
- ej:[["Voyager permet de mieux se connaître.","Viajar permite conocerse mejor."],["Enseigner, c'est apprendre deux fois.","Enseñar es aprender dos veces."],["Ne rien faire serait irresponsable.","No hacer nada sería irresponsable."]],
+ ej:[["Voyager permet de mieux se connaître.","Viajar permite conocerse mejor."],["Enseigner, c'est apprendre deux fois.","Enseñar es aprender dos veces."],["Ne rien faire serait irresponsable.","No hacer nada sería irresponsable."],["Lire, c'est voyager sans quitter sa chambre.", "Leer es viajar sin salir de la habitación."],["Se taire serait une forme de complicité.", "Callarse sería una forma de complicidad."],["Réussir exige de la patience et de la méthode.", "Tener éxito exige paciencia y método."]],
  ojo:["Le lire est important.","Lire est important.","Sin artículo."]},[
  C("Elige.","Leer es un placer.",["Lire est un plaisir.","Le lire est un plaisir.","De lire est un plaisir."],0,"<b>Infinitivo sujeto</b> sin artículo."),
  C("Elige la negación.","No actuar sería un error.",["Ne pas agir serait une erreur.","Ne agir pas serait une erreur.","Pas agir ne serait une erreur."],0,"<b>ne pas</b> delante del infinitivo."),
@@ -49,12 +53,14 @@ L("prog-infinitif-nom","L'infinitif sujet et nominal : comprendre, c'est pardonn
  S("Clasifica.","¿Correcta?",["Correcta","Incorrecta"],[["Lire enrichit l'esprit.",0],["Ne pas répondre est impoli.",0],["Partir, c'est mourir un peu.",0],["Le mieux est d'attendre.",0],["Le lire enrichit l'esprit.",1],["Ne répondre pas est impoli.",1],["Le partir, c'est mourir un peu.",1],["Le mieux est attendre de.",1]],"Sin artículo; negación delante."),
  P("Encuentra la palabra incorrecta y corrígela.","[Le] voyager forme la jeunesse , dit le proverbe .","Voyager","Sin artículo: <b>Voyager</b> forme…"),
  O("Ordena: «Aprender una lengua es abrirse al mundo».",["Apprendre une langue,","c'est","s'ouvrir","au monde"],"<i>Apprendre une langue, c'est s'ouvrir au monde.</i>"),
+ C("Elige.","Enseñar es aprender dos veces.",["Enseigner, c'est apprendre deux fois.","L'enseigner, c'est apprendre deux fois.","Enseigne, c'est apprendre deux fois."],0,"<b>Infinitivo sujeto</b>."),
+ F("Completa.","Le plus dur, c'est ___ commencer.",["de"],"<b>c'est de</b> + infinitivo."),
  D("Apprendre une langue étrangère, c'est accepter de se tromper.")]),
 L("prog-concession-rare","Concession soutenue : quelque… que, si… que, tout… que","synt",{
  idea:"El registro culto tiene estructuras concesivas con subjuntivo: quelque + adjetivo + que (por muy… que), si + adjetivo + que, pour + adjetivo + que; tout + adjetivo + que (con indicativo); quel(le)(s) que soit (sea cual sea); qui que ce soit, quoi que ce soit.",
  para:"Para matizar concesiones en textos académicos y literarios.",
  regla:["<b>si / aussi / quelque / pour + adj. + que + subjuntivo</b>: <i>Si difficile que soit la tâche…</i>","<b>tout + adj. + que + indicativo</b>: <i>Tout riche qu'il est, il reste modeste.</i>","<b>quel(le)(s) que + être en subj.</b>: <i>Quelle que soit ta décision…</i> (concuerda con el sujeto).","<b>qui que / quoi que / où que + subj.</b>: <i>Où que tu ailles…</i>","<i>quelque</i> aquí es adverbio: invariable."],
- ej:[["Si compétent qu'il soit, il ne peut pas tout faire.","Por muy competente que sea, no puede hacerlo todo."],["Quelle que soit la solution, elle aura un coût.","Sea cual sea la solución, tendrá un coste."],["Où que tu ailles, je te suivrai.","Vayas donde vayas, te seguiré."]],
+ ej:[["Si compétent qu'il soit, il ne peut pas tout faire.","Por muy competente que sea, no puede hacerlo todo."],["Quelle que soit la solution, elle aura un coût.","Sea cual sea la solución, tendrá un coste."],["Où que tu ailles, je te suivrai.","Vayas donde vayas, te seguiré."],["Si brillant qu'il soit, il doit encore progresser.", "Por brillante que sea, todavía debe progresar."],["Quels que soient les obstacles, nous irons jusqu'au bout.", "Sean cuales sean los obstáculos, llegaremos hasta el final."],["Tout expérimenté qu'il est, il a commis une erreur.", "Por experimentado que es, cometió un error."]],
  ojo:["Quelque soit la raison…","Quelle que soit la raison…","Concuerda con <i>raison</i>: <b>Quelle que</b>, en dos palabras."]},[
  C("Elige.","Sea cual sea el precio…",["Quel que soit le prix…","Quelque soit le prix…","Quelle que soit le prix…"],0,"<i>Prix</i> masc.: <b>Quel que soit</b>."),
  C("Elige.","Por muy inteligente que sea…",["Si intelligent qu'il soit…","Si intelligent qu'il est…","Si intelligent que il sera…"],0,"<b>si… que + subj.</b>"),
@@ -65,6 +71,8 @@ L("prog-concession-rare","Concession soutenue : quelque… que, si… que, tout�
  S("Clasifica.","¿Forma correcta?",["Correcta","Incorrecta"],[["Quelle que soit l'heure",0],["Quels que soient les risques",0],["Si grand qu'il soit",0],["Quoi que tu dises",0],["Quelque soit l'heure",1],["Quelques soient les risques",1],["Si grand qu'il est",1],["Quoique tu dises (= sea lo que sea)",1]],"Ortografía y modo."),
  P("Encuentra la palabra incorrecta y corrígela.","[Quelque] soit votre décision , nous la respecterons .","Quelle","<i>Décision</i> fem.: <b>Quelle</b> que soit."),
  O("Ordena: «Por difícil que sea, lo lograremos».",["Si difficile","que ce soit,","nous","y arriverons"],"<i>Si difficile que ce soit, nous y arriverons.</i>"),
+ C("Elige.","Sea cual sea la hora…",["Quelle que soit l'heure…","Quelque soit l'heure…","Quel que soit l'heure…"],0,"<i>Heure</i> fem.: <b>Quelle que</b>."),
+ F("Completa con el subjuntivo.","Où que tu ___ , je te suivrai. (aller)",["ailles"],"<b>ailles</b>."),
  D("Quelles que soient les critiques, les chercheurs poursuivront leurs travaux.")])
 ]),
 U("Matizar el razonamiento",[
@@ -72,7 +80,7 @@ L("prog-hypothese-sans-si","L'hypothèse sans si : viendrait-il, pour peu que, �
  idea:"En registro culto la hipótesis se expresa sin si: inversión con condicional (Viendrait-il à échouer, nous l'aiderions), yuxtaposición (Tu me l'aurais dit, je serais venu), pour peu que / à supposer que / en admettant que + subjuntivo, gérondif (En partant tôt, tu arriveras).",
  para:"Para variar la expresión de la hipótesis en textos avanzados.",
  regla:["<b>Inversión + condicional</b>: <i>Serait-il absent, la réunion aurait lieu.</i>","<b>Yuxtaposición</b> de dos condicionales: <i>Il viendrait, je serais ravi.</i>","<b>pour peu que / à supposer que / en admettant que / pourvu que + subj.</b>","<b>à moins de + inf.</b> / <b>à condition de + inf.</b>","<b>Gerundio</b>: <i>En travaillant, tu réussiras.</i>"],
- ej:[["Pour peu qu'il fasse beau, nous sortirons.","Por poco que haga buen tiempo, saldremos."],["À supposer que l'hypothèse soit vraie, que se passerait-il ?","Suponiendo que la hipótesis sea cierta, ¿qué pasaría?"],["Aurait-il accepté, tout aurait été différent.","De haber aceptado, todo habría sido diferente."]],
+ ej:[["Pour peu qu'il fasse beau, nous sortirons.","Por poco que haga buen tiempo, saldremos."],["À supposer que l'hypothèse soit vraie, que se passerait-il ?","Suponiendo que la hipótesis sea cierta, ¿qué pasaría?"],["Aurait-il accepté, tout aurait été différent.","De haber aceptado, todo habría sido diferente."],["En admettant que les chiffres soient exacts, la crise est grave.", "Admitiendo que las cifras sean exactas, la crisis es grave."],["Pour peu qu'on l'écoute, il se confie volontiers.", "Por poco que se le escuche, se sincera de buena gana."],["Il pleuvrait demain, la fête serait reportée.", "Si lloviera mañana, la fiesta se aplazaría."]],
  ojo:["À supposer que l'hypothèse est vraie","À supposer que l'hypothèse soit vraie","<b>+ subjuntivo</b>."]},[
  C("Elige.","Suponiendo que sea verdad…",["À supposer que ce soit vrai…","À supposer que c'est vrai…","À supposer que ce serait vrai…"],0,"<b>+ subjuntivo</b>."),
  C("¿Qué expresa?","Pour peu qu'on l'encourage, il progresse.",["una condición mínima suficiente","una finalidad","una oposición"],0,"<b>Por poco que</b>."),
@@ -83,12 +91,14 @@ L("prog-hypothese-sans-si","L'hypothèse sans si : viendrait-il, pour peu que, �
  S("Clasifica.","Modo",["Subjuntivo","Condicional"],[["pour peu que",0],["à supposer que",0],["en admettant que",0],["pourvu que",0],["au cas où",1],["dans l'hypothèse où",1],["quand bien même",1],["inversion (Serait-il…)",1]],"Qué sigue."),
  P("Encuentra la palabra incorrecta y corrígela.","À supposer que cette théorie [est] exacte , il faudrait revoir le modèle .","soit","<b>soit</b> (subjuntivo)."),
  O("Ordena: «Suponiendo que tenga razón».",["À supposer","qu'il","ait","raison"],"<i>À supposer qu'il ait raison.</i>"),
+ C("Elige.","Suponiendo que llegue tarde…",["À supposer qu'il arrive en retard…","À supposer qu'il arrivera en retard…","À supposer qu'il arrivait en retard…"],0,"<b>+ subjuntivo</b>."),
+ F("Completa.","Pour ___ qu'on l'aide, il réussira. (poco)",["peu"],"<b>pour peu que</b>."),
  D("Pour peu que les conditions soient réunies, l'expérience pourra être reproduite.")]),
 L("prog-ellipse","Ellipse, parallélisme et rythme de la phrase","synt",{
  idea:"La elipsis suprime elementos repetidos (Pierre aime le jazz ; Marie, la musique classique). El paralelismo repite una estructura para dar ritmo y claridad (non seulement…, mais aussi…; plus…, plus…). El texto académico C1 busca frases equilibradas y sin redundancias.",
  para:"Para escribir con concisión y ritmo.",
  regla:["Elipsis del verbo con coma: <i>Les uns votent à gauche ; les autres, à droite.</i>","Paralelismo gramatical: mismas categorías coordinadas: <i>apprendre, comprendre et appliquer</i> (no mezclar nombre + infinitivo).","Estructuras correlativas: <i>plus… plus, autant… autant, soit… soit, ni… ni</i>.","Ternario: tres elementos para cerrar con fuerza."],
- ej:[["Plus on lit, plus on apprend.","Cuanto más se lee, más se aprende."],["Les uns travaillent ; les autres, non.","Unos trabajan; otros, no."],["Il faut informer, former et accompagner.","Hay que informar, formar y acompañar."]],
+ ej:[["Plus on lit, plus on apprend.","Cuanto más se lee, más se aprende."],["Les uns travaillent ; les autres, non.","Unos trabajan; otros, no."],["Il faut informer, former et accompagner.","Hay que informar, formar y acompañar."],["Les uns partent à la mer ; les autres, à la montagne.", "Unos se van al mar; otros, a la montaña."],["Moins on dort, moins on se concentre.", "Cuanto menos se duerme, menos se concentra uno."],["Il faut écouter, comprendre et agir.", "Hay que escuchar, comprender y actuar."]],
  ojo:["Il faut l'information, former et accompagner.","Il faut informer, former et accompagner.","Paralelismo: <b>misma categoría</b>."]},[
  C("Elige la frase con paralelismo correcto.","Enumeración",["Ce projet vise à informer, sensibiliser et agir.","Ce projet vise l'information, sensibiliser et l'action.","Ce projet vise à informer, la sensibilisation et agir."],0,"Tres infinitivos."),
  C("Elige.","Cuanto más trabajo, más aprendo.",["Plus je travaille, plus j'apprends.","Plus je travaille, le plus j'apprends.","Le plus je travaille, plus j'apprends."],0,"<b>plus… plus</b> sin artículo."),
@@ -99,12 +109,14 @@ L("prog-ellipse","Ellipse, parallélisme et rythme de la phrase","synt",{
  S("Clasifica.","¿Paralelismo correcto?",["Correcto","Incorrecto"],[["lire, écrire et compter",0],["la santé, l'éducation et le logement",0],["rapide, efficace et économique",0],["comprendre et agir",0],["lire, l'écriture et compter",1],["la santé, éduquer et le logement",1],["rapide, efficacement et économique",1],["comprendre et l'action",1]],"Misma categoría."),
  P("Encuentra la palabra incorrecta y corrígela.","Ce programme permet de former , d'informer et l'[accompagnement] des jeunes .","accompagner","Paralelismo: <b>d'accompagner</b>."),
  O("Ordena: «Cuanto más se lee, más se aprende».",["Plus","on lit,","plus","on apprend"],"<i>Plus on lit, plus on apprend.</i>"),
+ C("Elige el paralelismo correcto.","Enumeración",["informer, former et accompagner","informer, la formation et accompagner","l'information, former et accompagnement"],0,"Misma categoría."),
+ F("Completa.","Plus on voyage, ___ on apprend.",["plus"],"<b>plus… plus</b>."),
  D("Les uns réclament plus de liberté ; les autres, plus de sécurité.")]),
 L("prog-modalisation-c1","Modaliser son discours académique","registre",{
  idea:"El discurso académico matiza sus afirmaciones según el grado de certeza: force est de constater que (hay que reconocer), il semblerait que, il apparaît que, on peut supposer que, il n'est pas exclu que, selon toute vraisemblance, dans une large mesure.",
  para:"Para escribir con prudencia científica en síntesis y ensayos.",
  regla:["Certeza: <i>force est de constater que, il est indéniable que, il ressort de… que</i> (+ ind.).","Probabilidad: <i>selon toute vraisemblance, il est probable que, il apparaît que</i> (+ ind.).","Posibilidad: <i>il se pourrait que, il n'est pas exclu que, on peut supposer que</i> (subj. en las dos primeras).","Limitación: <i>dans une large mesure, dans une certaine mesure, en partie</i>.","Condicional de prudencia: <i>il semblerait que, on pourrait avancer que</i>."],
- ej:[["Force est de constater que les inégalités se creusent.","Hay que reconocer que las desigualdades se agrandan."],["Il n'est pas exclu que les résultats soient faussés.","No se excluye que los resultados estén falseados."],["Il ressort de cette étude que…","De este estudio se desprende que…"]],
+ ej:[["Force est de constater que les inégalités se creusent.","Hay que reconocer que las desigualdades se agrandan."],["Il n'est pas exclu que les résultats soient faussés.","No se excluye que los resultados estén falseados."],["Il ressort de cette étude que…","De este estudio se desprende que…"],["Il apparaît que les jeunes lisent davantage en ligne.", "Parece que los jóvenes leen más en línea."],["Dans une large mesure, cette politique a échoué.", "En gran medida, esta política ha fracasado."],["Il n'est pas exclu que la tendance s'inverse.", "No se excluye que la tendencia se invierta."]],
  ojo:["Force est de constater qu'il soit…","Force est de constater qu'il est…","Certeza → <b>indicativo</b>."]},[
  C("¿Qué grado expresa «force est de constater»?","Grado",["certeza","duda","deseo"],0,"<b>Certeza</b>."),
  C("Elige.","No se excluye que…",["Il n'est pas exclu que + subj.","Il n'est pas exclu que + ind. futuro siempre","Il est pas exclu de que"],0,"<b>+ subjuntivo</b>."),
@@ -115,12 +127,14 @@ L("prog-modalisation-c1","Modaliser son discours académique","registre",{
  S("Clasifica.","Modo tras la fórmula",["Indicativo","Subjuntivo"],[["force est de constater que",0],["il apparaît que",0],["il ressort que",0],["il est indéniable que",0],["il se pourrait que",1],["il n'est pas exclu que",1],["il est possible que",1],["il semble que",1]],"Certeza frente a posibilidad."),
  P("Encuentra la palabra incorrecta y corrígela.","Force est de constater que la situation [soit] préoccupante .","est","Certeza: <b>est</b>."),
  O("Ordena: «Hay que reconocer que…».",["Force","est","de constater","que…"],"<i>Force est de constater que…</i>"),
+ C("Elige.","Es innegable que…",["Il est indéniable que…","Il est indéniablement que…","Il est niable que…"],0,"<b>Il est indéniable que</b>."),
+ F("Completa con el subjuntivo.","Il n'est pas exclu que la loi ___ modifiée. (être)",["soit"],"<b>soit</b>."),
  D("Il ressort de cette enquête que les jeunes s'informent surtout en ligne.")]),
 L("prog-temps-academique","Les temps du texte académique","conj",{
  idea:"En el texto académico predominan el presente de verdad general y de comentario (L'auteur montre que…), el passé composé para resultados de estudios (Les chercheurs ont observé…) y el condicional de prudencia. El futuro anuncia el plan (Nous verrons…). El passé simple se reserva a la narración histórica formal.",
  para:"Para elegir tiempos coherentes en resúmenes, síntesis y ensayos.",
  regla:["<b>Presente</b>: comentar un texto o afirmar un hecho general: <i>L'auteur souligne…</i>","<b>Passé composé</b>: resultados, hechos pasados vinculados al presente.","<b>Futuro / futuro próximo</b>: anunciar el plan: <i>Nous examinerons…</i>","<b>Condicional</b>: prudencia, información no confirmada.","Coherencia: no cambiar de tiempo sin razón."],
- ej:[["Dans cet article, l'auteur défend l'idée que…","En este artículo, el autor defiende la idea de que…"],["Une étude récente a montré que…","Un estudio reciente ha mostrado que…"],["Nous verrons d'abord…, puis nous analyserons…","Veremos primero…, luego analizaremos…"]],
+ ej:[["Dans cet article, l'auteur défend l'idée que…","En este artículo, el autor defiende la idea de que…"],["Une étude récente a montré que…","Un estudio reciente ha mostrado que…"],["Nous verrons d'abord…, puis nous analyserons…","Veremos primero…, luego analizaremos…"],["L'auteure rappelle d'abord le contexte historique.", "La autora recuerda primero el contexto histórico."],["Plusieurs enquêtes ont confirmé cette hypothèse.", "Varias encuestas han confirmado esta hipótesis."],["Nous examinerons ensuite les limites de ce modèle.", "Examinaremos luego los límites de este modelo."]],
  ojo:["L'auteur montrait / montra que…","L'auteur montre que…","Comentario: <b>presente</b>."]},[
  C("Elige el tiempo para comentar un texto.","El autor afirma que…",["L'auteur affirme que…","L'auteur affirma que…","L'auteur affirmerait que (seguro)…"],0,"<b>Presente</b>."),
  C("Elige para anunciar el plan.","Anunciar",["Nous examinerons d'abord…","Nous examinâmes d'abord…","Nous examinions d'abord…"],0,"<b>Futuro</b>."),
@@ -131,6 +145,8 @@ L("prog-temps-academique","Les temps du texte académique","conj",{
  S("Clasifica.","¿Adecuado en un resumen académico?",["Adecuado","Inadecuado"],[["L'auteur montre que…",0],["Il souligne ensuite…",0],["Une étude a révélé…",0],["Nous verrons que…",0],["L'auteur montra hier…",1],["Il soulignait demain…",1],["Une étude révélait-elle…",1],["Nous vîmes que…",1]],"Tiempos académicos."),
  P("Encuentra la palabra incorrecta y corrígela.","Dans son article , l'auteur [défendit] une thèse originale .","défend","Comentario: presente <b>défend</b>."),
  O("Ordena: «El autor subraya que…».",["L'auteur","souligne","que…"],"<i>L'auteur souligne que…</i>"),
+ C("Elige.","El autor muestra que…",["L'auteur montre que…","L'auteur montra que…","L'auteur montrerait sûrement que…"],0,"<b>Presente</b>."),
+ F("Completa en futuro.","Nous ___ d'abord le contexte. (presentar, nous)",["présenterons"],"<b>présenterons</b>."),
  D("Dans cet article, l'auteure montre que les réseaux sociaux transforment l'information.")])
 ]),
 U("Léxico y estilo cultos",[
@@ -138,7 +154,7 @@ L("prog-negations-litteraires","Négations soutenues : ne… guère, ne… point
  idea:"El registro culto usa negaciones especiales: ne… guère (apenas), ne… point (no, literario), nul(le) (ningún), aucunement / nullement (en absoluto), ne… que trop (demasiado bien), ni… ni… ne. También ne sin pas con cesser, oser, pouvoir, savoir: Il ne cesse de pleuvoir.",
  para:"Para comprender textos cultos y dar variedad a tu escritura.",
  regla:["<b>ne… guère</b> = apenas, casi no: <i>Il ne sort guère.</i>","<b>ne… point</b> = ne… pas (literario).","<b>nul(le)</b> determinante: <i>Nul doute que…, sans nul doute</i>.","<b>aucunement / nullement</b> = de ningún modo.","<b>ne</b> solo con <i>cesser, oser, pouvoir, savoir</i>: <i>Je ne saurais dire. Il n'ose parler.</i>"],
- ej:[["Il ne reste guère de temps.","Apenas queda tiempo."],["Nul n'est censé ignorer la loi.","Nadie puede alegar ignorancia de la ley."],["Je ne suis nullement convaincu.","No estoy en absoluto convencido."]],
+ ej:[["Il ne reste guère de temps.","Apenas queda tiempo."],["Nul n'est censé ignorer la loi.","Nadie puede alegar ignorancia de la ley."],["Je ne suis nullement convaincu.","No estoy en absoluto convencido."],["Il n'avait guère le temps de se reposer.", "Apenas tenía tiempo para descansar."],["Nul ne peut prévoir l'avenir avec certitude.", "Nadie puede prever el futuro con certeza."],["Elle n'ose avouer son erreur.", "No se atreve a confesar su error."]],
  ojo:["Il ne cesse pas de pleuvoir (correcto) / Il ne cesse de pleuvoir (culto)","Ambas existen","Sin <i>pas</i> es más culto."]},[
  C("¿Qué significa «ne… guère»?","Il ne mange guère.",["apenas come","no come nunca","come mucho"],0,"<b>apenas</b>."),
  C("¿Qué significa?","Nul n'est parfait.",["Nadie es perfecto.","Lo nulo es perfecto.","Nada es imperfecto."],0,"<b>Nul</b> = nadie."),
@@ -149,12 +165,14 @@ L("prog-negations-litteraires","Négations soutenues : ne… guère, ne… point
  S("Clasifica.","Registro",["Culto / literario","Corriente"],[["ne… point",0],["ne… guère",0],["nul n'ignore",0],["il n'ose parler",0],["ne… pas",1],["presque pas",1],["personne n'ignore",1],["il n'ose pas parler",1]],"Equivalentes."),
  P("Encuentra la palabra incorrecta y corrígela.","[Nulle] n'est censé ignorer la loi .","Nul","Pronombre masculino genérico: <b>Nul</b>."),
  O("Ordena: «Apenas queda tiempo».",["Il","ne reste","guère","de temps"],"<i>Il ne reste guère de temps.</i>"),
+ C("¿Qué significa?","Il ne dort guère.",["Apenas duerme.","No duerme nunca.","Duerme mucho."],0,"<b>ne… guère</b>."),
+ F("Completa.","___ n'est censé ignorer la loi.",["Nul"],"<b>Nul</b>."),
  D("Nul ne saurait nier l'importance de cette découverte.")]),
 L("prog-verbes-academiques","Les verbes de l'analyse : souligner, mettre en évidence, nuancer","registre",{
  idea:"Para describir lo que hace un autor o un documento se usan verbos precisos: analyser, examiner, mettre en évidence (poner de relieve), souligner, nuancer, remettre en question, s'interroger sur, aborder, étayer (apoyar con pruebas), réfuter, illustrer.",
  para:"Para resumir, sintetizar y comentar documentos en el DALF.",
  regla:["Presentar: <i>aborder, traiter de, porter sur, s'intéresser à</i>.","Mostrar: <i>mettre en évidence, mettre en lumière, révéler, démontrer</i>.","Destacar: <i>souligner, insister sur, mettre l'accent sur</i>.","Discutir: <i>nuancer, remettre en question / en cause, s'interroger sur, réfuter</i>.","Apoyar: <i>étayer, illustrer, justifier, appuyer</i>."],
- ej:[["Cette étude met en évidence un lien entre sommeil et réussite.","Este estudio pone de relieve un vínculo entre sueño y éxito."],["L'auteur étaye sa thèse par des exemples historiques.","El autor apoya su tesis con ejemplos históricos."],["Le second document nuance ce constat.","El segundo documento matiza esta constatación."]],
+ ej:[["Cette étude met en évidence un lien entre sommeil et réussite.","Este estudio pone de relieve un vínculo entre sueño y éxito."],["L'auteur étaye sa thèse par des exemples historiques.","El autor apoya su tesis con ejemplos históricos."],["Le second document nuance ce constat.","El segundo documento matiza esta constatación."],["Cet article porte sur la mobilité étudiante.", "Este artículo trata de la movilidad estudiantil."],["L'auteur étaye son propos par des statistiques.", "El autor apoya su argumento con estadísticas."],["Le second texte remet en cause cette analyse.", "El segundo texto cuestiona este análisis."]],
  ojo:["L'auteur dit que… (repetido)","L'auteur souligne / affirme / rappelle que…","Variar el verbo."]},[
  C("¿Qué significa «étayer»?","Il étaye son argument.",["apoyar con pruebas","debilitar","ocultar"],0,"<b>étayer</b> = fundamentar."),
  C("Elige.","Pone de relieve un problema.",["Il met en évidence un problème.","Il met en relief de un problème.","Il met évident un problème."],0,"<b>mettre en évidence</b>."),
@@ -165,12 +183,14 @@ L("prog-verbes-academiques","Les verbes de l'analyse : souligner, mettre en évi
  S("Clasifica.","Actitud del autor",["Acepta / apoya","Discute / rechaza"],[["confirmer",0],["étayer",0],["corroborer",0],["appuyer",0],["réfuter",1],["remettre en cause",1],["contester",1],["nuancer",1]],"Posición frente a una idea."),
  P("Encuentra la palabra incorrecta y corrígela.","Cette enquête met en [évidente] les inégalités d'accès aux soins .","évidence","<b>mettre en évidence</b>."),
  O("Ordena: «El autor matiza esta idea».",["L'auteur","nuance","cette","idée"],"<i>L'auteur nuance cette idée.</i>"),
+ C("Elige.","El texto pone de relieve…",["Le texte met en évidence…","Le texte met évident…","Le texte évidence…"],0,"<b>mettre en évidence</b>."),
+ F("Completa.","L'auteur ___ son argument par des exemples. (apoya)",["étaye","appuie","illustre"],"<b>étaye</b>."),
  D("Le premier document met en lumière le problème ; le second en nuance la portée.")]),
 L("prog-connecteurs-soutenus","Connecteurs soutenus : dès lors, a fortiori, en l'occurrence, à cet égard","coh",{
  idea:"El texto C1 usa conectores cultos y precisos: dès lors (por consiguiente / desde ese momento), a fortiori (con mayor razón), en l'occurrence (en este caso concreto), à cet égard (a este respecto), de surcroît (además), partant (por tanto, muy culto), qui plus est (y lo que es más), certes… il n'en demeure pas moins que (no es menos cierto que).",
  para:"Para dar precisión lógica y registro a la síntesis y al ensayo.",
  regla:["Consecuencia: <i>dès lors, par conséquent, partant, de ce fait</i>.","Refuerzo: <i>a fortiori, qui plus est, de surcroît</i>.","Precisión: <i>en l'occurrence, à cet égard, en la matière</i>.","Concesión fuerte: <i>il n'en demeure pas moins que, toujours est-il que</i> (+ ind.).","Evitar repetir <i>donc, mais, aussi</i>."],
- ej:[["Les ressources sont limitées ; dès lors, il faut établir des priorités.","Los recursos son limitados; por consiguiente, hay que fijar prioridades."],["Si les adultes peinent, a fortiori les enfants.","Si los adultos tienen dificultades, con mayor razón los niños."],["Certes, le coût est élevé ; il n'en demeure pas moins que le projet est utile.","Es cierto que el coste es alto; no es menos cierto que el proyecto es útil."]],
+ ej:[["Les ressources sont limitées ; dès lors, il faut établir des priorités.","Los recursos son limitados; por consiguiente, hay que fijar prioridades."],["Si les adultes peinent, a fortiori les enfants.","Si los adultos tienen dificultades, con mayor razón los niños."],["Certes, le coût est élevé ; il n'en demeure pas moins que le projet est utile.","Es cierto que el coste es alto; no es menos cierto que el proyecto es útil."],["Le projet est coûteux ; de surcroît, il est risqué.", "El proyecto es costoso; además, es arriesgado."],["À cet égard, les chiffres sont éloquents.", "A este respecto, las cifras son elocuentes."],["Toujours est-il que le problème demeure.", "Lo cierto es que el problema persiste."]],
  ojo:["à fortiori (con acento)","a fortiori","Latinismo sin acento (se tolera <i>à</i>)."]},[
  C("¿Qué significa «a fortiori»?","a fortiori",["con mayor razón","por la fuerza","al principio"],0,"<b>con mayor razón</b>."),
  C("¿Qué significa «en l'occurrence»?","en l'occurrence",["en este caso concreto","por casualidad","en cambio"],0,"<b>en este caso</b>."),
@@ -181,6 +201,8 @@ L("prog-connecteurs-soutenus","Connecteurs soutenus : dès lors, a fortiori, en 
  S("Clasifica.","Función",["Consecuencia","Adición"],[["dès lors",0],["de ce fait",0],["partant",0],["par conséquent",0],["de surcroît",1],["qui plus est",1],["en outre",1],["par ailleurs",1]],"Dos familias."),
  P("Encuentra la palabra incorrecta y corrígela.","Les adultes ont du mal ; [à] fortiori les enfants , qui débutent .","a","Latinismo: <b>a fortiori</b> (sin acento)."),
  O("Ordena: «A este respecto, el informe es claro».",["À cet égard,","le rapport","est","clair"],"<i>À cet égard, le rapport est clair.</i>"),
+ C("¿Qué significa «dès lors»?","dès lors",["por consiguiente","sin embargo","por ejemplo"],0,"<b>Consecuencia</b>."),
+ F("Completa.","C'est cher et, qui plus ___ , peu efficace.",["est"],"<b>qui plus est</b>."),
  D("Les ressources sont limitées ; dès lors, il convient d'établir des priorités.")])
 ])
 ]);
@@ -191,7 +213,7 @@ L("prog-article-scientifique","Lire un article scientifique","co",{
  idea:"Un artículo científico sigue una estructura fija (IMRaD en francés: introduction, méthodes, résultats, discussion) con resumen (résumé / abstract) y palabras clave. Leerlo bien es ir primero al resumen, la introducción y la conclusión, y luego a los resultados.",
  para:"Para aprovechar la bibliografía universitaria en francés.",
  regla:["Partes: <i>résumé, mots-clés, introduction, méthodologie, résultats, discussion, conclusion, bibliographie</i>.","Lectura estratégica: resumen → introducción (problema) → conclusión → resultados.","Marcadores: <i>Cette étude vise à…, Nos résultats montrent que…, Ces données suggèrent que…, Une limite de cette étude…</i>","Vocabulario: <i>un échantillon (muestra), une variable, un corpus, une enquête, significatif</i>."],
- ej:[["Cette étude vise à évaluer l'effet du sommeil sur la mémoire.","Este estudio pretende evaluar el efecto del sueño en la memoria."],["L'échantillon comprend 500 étudiants.","La muestra comprende 500 estudiantes."],["Une limite de cette étude tient à la taille du corpus.","Una limitación de este estudio se debe al tamaño del corpus."]],
+ ej:[["Cette étude vise à évaluer l'effet du sommeil sur la mémoire.","Este estudio pretende evaluar el efecto del sueño en la memoria."],["L'échantillon comprend 500 étudiants.","La muestra comprende 500 estudiantes."],["Une limite de cette étude tient à la taille du corpus.","Una limitación de este estudio se debe al tamaño del corpus."],["Les participants ont été répartis en deux groupes.", "Los participantes fueron repartidos en dos grupos."],["Ces données confirment notre hypothèse de départ.", "Estos datos confirman nuestra hipótesis de partida."],["D'autres recherches seront nécessaires.", "Serán necesarias otras investigaciones."]],
  ojo:["un échantillon = un escaparate","un échantillon = una muestra","Término metodológico."]},[
  C("¿Qué es «un échantillon»?","l'échantillon de l'enquête",["la muestra","el escalón","el resultado"],0,"<b>muestra</b>."),
  C("¿Qué leer primero?","Lectura estratégica",["el resumen","la bibliografía","los anexos"],0,"<b>Résumé</b>."),
@@ -202,12 +224,14 @@ L("prog-article-scientifique","Lire un article scientifique","co",{
  S("Clasifica.","¿En qué parte aparece?",["Introducción","Discusión"],[["Cette étude vise à…",0],["La question de recherche est…",0],["Peu de travaux ont étudié…",0],["Nous faisons l'hypothèse que…",0],["Ces résultats suggèrent que…",1],["Une limite de cette étude…",1],["Des recherches futures devraient…",1],["Contrairement à X, nous observons…",1]],"Partes del artículo."),
  P("Encuentra la palabra incorrecta y corrígela.","L'[échantillion] comprend deux cents participants .","échantillon","<b>échantillon</b>."),
  O("Ordena: «Nuestros resultados sugieren que…».",["Nos","résultats","suggèrent","que…"],"<i>Nos résultats suggèrent que…</i>"),
+ C("¿Qué sección interpreta los resultados?","Sección",["la discussion","le résumé","la bibliographie"],0,"<b>Discussion</b>."),
+ F("Completa.","L'___ comprend trois cents étudiants. (muestra)",["échantillon"],"<b>échantillon</b>."),
  D("Cette étude vise à mesurer l'impact des écrans sur le sommeil des adolescents.")]),
 L("prog-problematiser","Problématiser un sujet au niveau C1","struct",{
  idea:"Problematizar es transformar un tema en una pregunta que revela una tensión o paradoja: El teletrabajo → ¿Libera al trabajador o difumina la frontera entre vida privada y profesional? Se parte de una constatación, se señala la contradicción y se formula la pregunta.",
  para:"Para dar sentido y dirección a la síntesis y al ensayo DALF.",
  regla:["1. Constatación: <i>On observe depuis dix ans…</i>","2. Tensión: <i>Or, / Pourtant, / Mais cette évolution soulève…</i>","3. Pregunta: <i>Dès lors, on peut se demander dans quelle mesure…</i>","Formas: <i>Dans quelle mesure… ? En quoi… ? Faut-il… ? Peut-on… sans… ?</i>","Evitar preguntas cerradas o múltiples."],
- ej:[["Le numérique facilite l'accès au savoir ; pourtant, il fragilise l'attention.","Lo digital facilita el acceso al saber; sin embargo, debilita la atención."],["Dès lors, on peut se demander en quoi l'école doit s'adapter.","Por tanto, cabe preguntarse en qué debe adaptarse la escuela."],["Peut-on protéger l'environnement sans freiner l'économie ?","¿Se puede proteger el medio ambiente sin frenar la economía?"]],
+ ej:[["Le numérique facilite l'accès au savoir ; pourtant, il fragilise l'attention.","Lo digital facilita el acceso al saber; sin embargo, debilita la atención."],["Dès lors, on peut se demander en quoi l'école doit s'adapter.","Por tanto, cabe preguntarse en qué debe adaptarse la escuela."],["Peut-on protéger l'environnement sans freiner l'économie ?","¿Se puede proteger el medio ambiente sin frenar la economía?"],["Peut-on concilier croissance économique et sobriété ?", "¿Se pueden conciliar crecimiento económico y sobriedad?"],["En quoi la ville moderne isole-t-elle ses habitants ?", "¿En qué aísla la ciudad moderna a sus habitantes?"],["Faut-il interdire la publicité destinée aux enfants ?", "¿Hay que prohibir la publicidad dirigida a los niños?"]],
  ojo:["Qu'est-ce que le télétravail ?","Le télétravail libère-t-il vraiment les salariés ?","Una problemática plantea una <b>tensión</b>."]},[
  C("Elige la mejor problemática.","Tema: la IA en la universidad",["L'IA menace-t-elle l'apprentissage ou le transforme-t-elle ?","Qu'est-ce que l'IA ?","L'IA existe-t-elle ?"],0,"<b>Tensión</b>."),
  C("¿Qué conector introduce la tensión?","Constatación → tensión",["Or,","Ainsi,","Par exemple,"],0,"<b>Or</b>."),
@@ -218,12 +242,14 @@ L("prog-problematiser","Problématiser un sujet au niveau C1","struct",{
  S("Clasifica.","¿Problemática C1?",["Sí","No"],[["Dans quelle mesure l'école réduit-elle les inégalités ?",0],["En quoi le sport est-il politique ?",0],["Peut-on être libre sans règles ?",0],["Faut-il limiter la liberté d'expression en ligne ?",0],["Quand l'école a-t-elle été créée ?",1],["Aimez-vous le sport ?",1],["Qu'est-ce qu'une règle ?",1],["Internet existe-t-il ?",1]],"Abierta y tensa."),
  P("Encuentra la palabra incorrecta y corrígela.","On peut se demander [dans] quoi cette réforme est nécessaire .","en","<b>en quoi</b>."),
  O("Ordena la pregunta.",["Dans quelle mesure","le numérique","transforme-t-il","l'école ?"],"<i>Dans quelle mesure le numérique transforme-t-il l'école ?</i>"),
+ C("Elige la problemática.","Tema: las redes sociales",["Les réseaux sociaux rapprochent-ils vraiment les individus ?","Qu'est-ce qu'un réseau social ?","J'aime les réseaux."],0,"<b>Tensión</b>."),
+ F("Completa.","___ quoi le numérique transforme-t-il l'école ?",["En"],"<b>En quoi</b>."),
  D("Dès lors, on peut se demander dans quelle mesure le progrès rend l'humanité plus libre.")]),
 L("prog-introduction","Rédiger une introduction académique","struct",{
  idea:"La introducción académica sigue un embudo: accroche (entrada: dato, cita, hecho), présentation du sujet (contexto y definición de términos), problématique y annonce du plan. Debe ocupar un 10-15 % del texto y no dar todavía los argumentos.",
  para:"Para empezar síntesis y ensayos con método.",
  regla:["<b>Accroche</b>: <i>Selon l'INSEE, … / « … », écrivait Camus. / En 2020, …</i>","<b>Sujet</b>: presentar y definir: <i>Par « X », on entend…</i>","<b>Problématique</b>: <i>Dès lors, on peut se demander…</i>","<b>Plan</b>: <i>Nous verrons dans un premier temps…, puis…</i>","Sin opinión personal todavía; sin ejemplos desarrollados."],
- ej:[["Par « mobilité douce », on entend les déplacements non motorisés.","Por «movilidad suave» se entiende los desplazamientos no motorizados."],["En 2023, plus de la moitié des actifs télétravaillaient au moins un jour.","En 2023, más de la mitad de los activos teletrabajaban al menos un día."],["Nous verrons d'abord…, avant d'examiner…","Veremos primero…, antes de examinar…"]],
+ ej:[["Par « mobilité douce », on entend les déplacements non motorisés.","Por «movilidad suave» se entiende los desplazamientos no motorizados."],["En 2023, plus de la moitié des actifs télétravaillaient au moins un jour.","En 2023, más de la mitad de los activos teletrabajaban al menos un día."],["Nous verrons d'abord…, avant d'examiner…","Veremos primero…, antes de examinar…"],["Selon une enquête récente, un jeune sur trois se sent seul.", "Según una encuesta reciente, uno de cada tres jóvenes se siente solo."],["Par « solitude », on entend l'absence de liens choisis.", "Por «soledad» se entiende la ausencia de vínculos elegidos."],["Nous étudierons d'abord les causes de ce phénomène.", "Estudiaremos primero las causas de este fenómeno."]],
  ojo:["Dans cette introduction je vais dire mon avis.","Nous nous interrogerons sur…","Sin opinión en la introducción."]},[
  C("¿Qué va primero?","Orden",["la accroche","el plan","la conclusión"],0,"<b>Accroche</b>."),
  C("Elige la definición de término.","Definir",["Par « mobilité », on entend…","Mobilité, c'est quoi ?","La mobilité, bon…"],0,"<b>on entend</b>."),
@@ -234,12 +260,14 @@ L("prog-introduction","Rédiger une introduction académique","struct",{
  S("Clasifica.","¿Accroche adecuada?",["Adecuada","Inadecuada"],[["Une statistique récente",0],["Une citation pertinente",0],["Un fait d'actualité",0],["Une question provocatrice",0],["Depuis toujours, l'homme…",1],["Je vais parler de…",1],["Dans ce texte, blablabla",1],["Bonjour, voici mon essai",1]],"Evitar tópicos."),
  P("Encuentra la palabra incorrecta y corrígela.","Par « inclusion » , on [comprendre] l'accueil de tous les élèves .","entend","<b>on entend</b>."),
  O("Ordena el anuncio del plan.",["Nous verrons","d'abord","les causes,","puis les solutions"],"<i>Nous verrons d'abord les causes, puis les solutions.</i>"),
+ C("¿Qué NO va en la introducción?","Introducción",["los argumentos desarrollados","la problemática","el anuncio del plan"],0,"<b>Argumentos</b>."),
+ F("Completa.","Par « mobilité », on ___ la capacité à se déplacer.",["entend"],"<b>on entend</b>."),
  D("Par « transition écologique », on entend le passage à un modèle économique durable.")]),
 L("prog-conclusion","Rédiger une conclusion académique","struct",{
  idea:"La conclusión responde a la problemática, resume el recorrido (sin repetir frases) y abre una perspectiva (ouverture) hacia una cuestión vecina. No introduce argumentos nuevos.",
  para:"Para cerrar con fuerza la síntesis o el ensayo.",
  regla:["<b>Bilan</b>: <i>Au terme de cette analyse, il apparaît que…</i>","<b>Réponse</b>: <i>Ainsi, … permet certes…, mais…</i>","<b>Ouverture</b>: <i>Reste à savoir si…; On peut dès lors se demander si…</i>","Extensión: 10 % del texto.","Prohibido: argumentos nuevos, «En conclusión, como he dicho…»."],
- ej:[["Au terme de cette réflexion, il apparaît que le télétravail est une chance sous conditions.","Al término de esta reflexión, parece que el teletrabajo es una oportunidad bajo condiciones."],["Reste à savoir si les entreprises sauront s'adapter.","Queda por saber si las empresas sabrán adaptarse."],["En définitive, la question n'est pas tant… que…","En definitiva, la cuestión no es tanto… como…"]],
+ ej:[["Au terme de cette réflexion, il apparaît que le télétravail est une chance sous conditions.","Al término de esta reflexión, parece que el teletrabajo es una oportunidad bajo condiciones."],["Reste à savoir si les entreprises sauront s'adapter.","Queda por saber si las empresas sabrán adaptarse."],["En définitive, la question n'est pas tant… que…","En definitiva, la cuestión no es tanto… como…"],["Au terme de cette étude, une conclusion s'impose.", "Al término de este estudio, se impone una conclusión."],["Ainsi, le numérique n'est ni un remède ni un poison.", "Así, lo digital no es ni un remedio ni un veneno."],["Reste à savoir si les pouvoirs publics s'en saisiront.", "Queda por saber si los poderes públicos se ocuparán de ello."]],
  ojo:["Un nuevo argumento en la conclusión","Solo balance, respuesta y apertura","No añadir ideas nuevas."]},[
  C("¿Qué NO va en la conclusión?","Prohibido",["un argumento nuevo","la respuesta","la apertura"],0,"<b>Nada nuevo</b>."),
  C("Elige el balance.","Balance",["Au terme de cette analyse, il apparaît que…","Pour commencer…","Premièrement…"],0,"Fórmula de cierre."),
@@ -250,6 +278,8 @@ L("prog-conclusion","Rédiger une conclusion académique","struct",{
  S("Clasifica.","¿Introducción o conclusión?",["Introducción","Conclusión"],[["accroche",0],["annonce du plan",0],["définition des termes",0],["problématique",0],["bilan",1],["réponse",1],["ouverture",1],["Reste à savoir si…",1]],"Principio y final."),
  P("Encuentra la palabra incorrecta y corrígela.","Reste [de] savoir si cette solution sera durable .","à","<b>Reste à savoir</b>."),
  O("Ordena: «Queda por saber si…».",["Reste","à","savoir","si…"],"<i>Reste à savoir si…</i>"),
+ C("Elige la apertura.","Conclusión",["Reste à savoir si…","Tout d'abord,","Premièrement,"],0,"<b>Ouverture</b>."),
+ F("Completa.","Au ___ de cette analyse, il apparaît que…",["terme"],"<b>Au terme de</b>."),
  D("Au terme de cette analyse, il apparaît que la réforme est nécessaire mais insuffisante.")])
 ]),
 U("Argumentar con rigor",[
@@ -257,7 +287,7 @@ L("prog-transitions","Les transitions entre les parties","coh",{
  idea:"La transición cierra una parte y anuncia la siguiente: Si X présente des avantages indéniables, il comporte aussi des limites qu'il convient d'examiner. Asegura la continuidad lógica del texto y muestra al corrector que sigues un plan.",
  para:"Para que tu desarrollo avance con fluidez.",
  regla:["Estructura: <b>balance de la parte anterior + anuncio de la siguiente</b>.","<i>Si… , il n'en reste pas moins que…</i>","<i>Après avoir examiné…, il convient à présent de…</i>","<i>Au-delà de…, se pose la question de…</i>","Colocar al final de la parte o al inicio de la siguiente."],
- ej:[["Après avoir analysé les causes, il convient à présent d'envisager les solutions.","Tras analizar las causas, conviene ahora considerar las soluciones."],["Si le numérique facilite l'accès au savoir, il soulève aussi des inquiétudes.","Si lo digital facilita el acceso al saber, también suscita inquietudes."],["Au-delà de l'aspect économique, se pose la question éthique.","Más allá del aspecto económico, se plantea la cuestión ética."]],
+ ej:[["Après avoir analysé les causes, il convient à présent d'envisager les solutions.","Tras analizar las causas, conviene ahora considerar las soluciones."],["Si le numérique facilite l'accès au savoir, il soulève aussi des inquiétudes.","Si lo digital facilita el acceso al saber, también suscita inquietudes."],["Au-delà de l'aspect économique, se pose la question éthique.","Más allá del aspecto económico, se plantea la cuestión ética."],["Ce constat établi, il reste à proposer des solutions.", "Establecida esta constatación, queda proponer soluciones."],["Après avoir étudié les causes, voyons les conséquences.", "Tras estudiar las causas, veamos las consecuencias."],["Au-delà du coût, se pose la question de l'équité.", "Más allá del coste, se plantea la cuestión de la equidad."]],
  ojo:["Deuxième partie : …","Après avoir examiné…, il convient de…","En el texto no se titulan las partes: se enlazan."]},[
  C("Elige la transición.","Pasar de causas a soluciones",["Après avoir analysé les causes, il convient d'envisager les solutions.","Deuxième partie : les solutions.","Bon, maintenant les solutions."],0,"Balance + anuncio."),
  C("Elige.","Más allá de…",["Au-delà de…","Au-dessus de…","En delà de…"],0,"<b>Au-delà de</b>."),
@@ -268,12 +298,14 @@ L("prog-transitions","Les transitions entre les parties","coh",{
  S("Clasifica.","¿Transición o conclusión final?",["Transición","Conclusión"],[["Il convient à présent de…",0],["Après avoir examiné…",0],["Voyons maintenant…",0],["Au-delà de cet aspect…",0],["Au terme de cette analyse…",1],["En définitive…",1],["Reste à savoir si…",1],["Pour conclure…",1]],"Entre partes o al final."),
  P("Encuentra la palabra incorrecta y corrígela.","Après avoir [analyser] les causes , examinons les conséquences .","analysé","Infinitivo pasado: <b>avoir analysé</b>."),
  O("Ordena la transición.",["Après avoir vu","les avantages,","examinons","les limites"],"<i>Après avoir vu les avantages, examinons les limites.</i>"),
+ C("Elige la transición.","Pasar a las consecuencias",["Après avoir vu les causes, examinons les conséquences.","Deuxième partie : conséquences.","Et maintenant les conséquences, bon."],0,"Balance + anuncio."),
+ F("Completa.","Au-___ de l'aspect financier, se pose la question morale.",["delà"],"<b>Au-delà</b>."),
  D("Après avoir analysé les causes du phénomène, il convient à présent d'en examiner les conséquences.")]),
 L("prog-types-arguments","Les types d'arguments : autorité, exemple, analogie, chiffres","struct",{
  idea:"Un argumento puede apoyarse en distintos tipos de pruebas: el argumento de autoridad (un experto, una institución), el ejemplo, los datos (cifras, estudios), la analogía (comparación), la lógica causal (si… entonces) y el argumento ético (valores). Variar los tipos convence más.",
  para:"Para construir una argumentación sólida y variada.",
  regla:["<b>Autoridad</b>: <i>Comme le souligne l'OMS, …</i>","<b>Datos</b>: <i>Selon une étude de 2023, 60 % des…</i>","<b>Ejemplo</b>: <i>Ainsi, en Finlande, …</i>","<b>Analogía</b>: <i>De même que…, de même…</i>","<b>Causal</b>: <i>Si…, alors…; Puisque…, …</i>","<b>Ético</b>: <i>Au nom de l'égalité, …</i>"],
- ej:[["Comme le rappelle l'UNESCO, l'éducation est un droit.","Como recuerda la UNESCO, la educación es un derecho."],["De même qu'on apprend à lire, on doit apprendre à s'informer.","Así como se aprende a leer, hay que aprender a informarse."],["Ainsi, en Finlande, les élèves ont peu de devoirs.","Así, en Finlandia, los alumnos tienen pocos deberes."]],
+ ej:[["Comme le rappelle l'UNESCO, l'éducation est un droit.","Como recuerda la UNESCO, la educación es un derecho."],["De même qu'on apprend à lire, on doit apprendre à s'informer.","Así como se aprende a leer, hay que aprender a informarse."],["Ainsi, en Finlande, les élèves ont peu de devoirs.","Así, en Finlandia, los alumnos tienen pocos deberes."],["Comme le montre l'INSEE, le chômage des jeunes baisse.", "Como muestra el INSEE, el paro juvenil baja."],["Ainsi, au Danemark, le vélo est roi.", "Así, en Dinamarca, la bicicleta es reina."],["De même qu'un muscle, la mémoire s'entraîne.", "Al igual que un músculo, la memoria se entrena."]],
  ojo:["Un solo tipo de argumento repetido","Variar autoridad, datos, ejemplos…","La variedad convence."]},[
  C("¿Qué tipo de argumento es?","Selon l'OMS, …",["autoridad","analogía","ético"],0,"<b>Autoridad</b>."),
  C("¿Qué tipo es?","De même qu'un jardin s'entretient, une langue se pratique.",["analogía","datos","autoridad"],0,"<b>Analogía</b>."),
@@ -284,12 +316,14 @@ L("prog-types-arguments","Les types d'arguments : autorité, exemple, analogie, 
  S("Clasifica.","¿Prueba objetiva o valor?",["Prueba (hechos)","Valor (ética)"],[["une statistique",0],["une étude scientifique",0],["un exemple historique",0],["un rapport officiel",0],["au nom de la justice",1],["par respect de la dignité",1],["pour l'égalité",1],["au nom de la liberté",1]],"Hechos y valores."),
  P("Encuentra la palabra incorrecta y corrígela.","Comme le [souligna] l'OMS dans son dernier rapport , le sucre est dangereux .","souligne","Comentario de fuente: presente <b>souligne</b>."),
  O("Ordena: «Como recuerda la UNESCO…».",["Comme","le rappelle","l'UNESCO,","…"],"<i>Comme le rappelle l'UNESCO, …</i>"),
+ C("¿Qué tipo de argumento es?","Selon l'OCDE, 40 % des jeunes…",["datos / autoridad","analogía","argumento ético"],0,"<b>Cifras</b> de una institución."),
+ F("Completa.","Au ___ de l'égalité, cette mesure est juste.",["nom"],"<b>au nom de</b>."),
  D("Comme le souligne un rapport récent, l'accès aux soins reste inégal selon les régions.")]),
 L("prog-bibliographie","Citer une bibliographie selon les normes","ponct",{
  idea:"La bibliografía francesa suele seguir este orden: NOM, Prénom, Titre en italique, Lieu, Éditeur, année, pages. Para artículos: NOM, Prénom, « Titre de l'article », Revue, vol., n°, année, p. x-y. En el texto: (Bourdieu, 1979, p. 12).",
  para:"Para presentar trabajos universitarios en Francia.",
  regla:["Libro: <i>BOURDIEU, Pierre, <i>La Distinction</i>, Paris, Minuit, 1979.</i>","Artículo: <i>DUPONT, Marie, « Titre », <i>Revue</i>, n° 12, 2020, p. 45-60.</i>","Web: <i>… [en ligne], URL, consulté le 3 mai 2024.</i>","En el texto: (Autor, año, página).","<i>Op. cit.</i> (obra citada), <i>ibid.</i> (misma obra), <i>et al.</i> (y otros)."],
- ej:[["(Bourdieu, 1979, p. 45)","(Bourdieu, 1979, p. 45)"],["Ibid., p. 50.","Ibid., p. 50."],["MARTIN, Luc et al., Sociologie de l'école, Paris, PUF, 2018.","MARTIN, Luc et al., …"]],
+ ej:[["(Bourdieu, 1979, p. 45)","(Bourdieu, 1979, p. 45)"],["Ibid., p. 50.","Ibid., p. 50."],["MARTIN, Luc et al., Sociologie de l'école, Paris, PUF, 2018.","MARTIN, Luc et al., …"],["Toutes les sources doivent figurer dans la bibliographie.", "Todas las fuentes deben figurar en la bibliografía."],["Les titres d'ouvrages s'écrivent en italique.", "Los títulos de obras se escriben en cursiva."],["Indiquez la date de consultation des sites web.", "Indique la fecha de consulta de los sitios web."]],
  ojo:["Titre du livre entre comillas","Titre du livre en italique; artículo entre « »","Libro en cursiva, artículo entre comillas."]},[
  C("¿Qué significa «ibid.»?","Ibid., p. 12.",["misma obra que la cita anterior","obra diferente","bibliografía completa"],0,"<b>ibidem</b>."),
  C("¿Cómo se escribe el título de un libro?","Libro",["en cursiva","entre comillas","en mayúsculas"],0,"<b>Cursiva</b>."),
@@ -300,12 +334,14 @@ L("prog-bibliographie","Citer une bibliographie selon les normes","ponct",{
  S("Clasifica.","¿Cursiva o comillas?",["Cursiva","Comillas « »"],[["un livre",0],["une revue",0],["un journal (título)",0],["un film",0],["un article",1],["un chapitre",1],["un poème dans un recueil",1],["une citation",1]],"Tipografía."),
  P("Encuentra la palabra incorrecta y corrígela.","Voir DUPONT , op. cit. , [pagina] 45 .","p.","Abreviatura francesa: <b>p.</b>"),
  O("Ordena la referencia.",["BOURDIEU, Pierre,","La Distinction,","Paris, Minuit,","1979"],"Nombre, título, lugar y editorial, año."),
+ C("¿Cómo se escribe el título de un artículo?","Artículo",["entre « »","en cursiva","en negrita"],0,"<b>Comillas</b>."),
+ F("Completa la abreviatura (misma obra).","___ , p. 42.",["Ibid.","ibid."],"<b>Ibid.</b>"),
  D("Comme l'écrit Bourdieu dans La Distinction, les goûts sont socialement construits.")]),
 L("prog-plagiat","Paraphrase, citation et plagiat","ponct",{
  idea:"En la universidad francesa el plagio (plagiat) se sanciona duramente. Hay tres formas legítimas de usar una fuente: la cita literal entre comillas con referencia, la paráfrasis (reformular con tus palabras + referencia) y el resumen. Copiar sin comillas ni fuente, aunque cambies algunas palabras, es plagio.",
  para:"Para usar fuentes con honestidad académica.",
  regla:["<b>Cita</b>: texto exacto entre « » + (Autor, año, p.).","<b>Paráfrasis</b>: otra estructura y vocabulario + referencia.","<b>Plagio</b>: copiar o casi copiar sin citar.","Integrar: <i>Selon X, … ; Comme l'affirme X, « … »</i>.","Citas largas (+ 3 líneas): en bloque con sangría."],
- ej:[["Comme l'écrit Camus, « il faut imaginer Sisyphe heureux ».","Como escribe Camus, «hay que imaginar a Sísifo feliz»."],["Selon Camus, l'homme peut trouver le bonheur dans l'effort même (1942).","Según Camus, el hombre puede encontrar la felicidad en el esfuerzo mismo."],["Le plagiat peut entraîner l'exclusion de l'université.","El plagio puede conllevar la expulsión de la universidad."]],
+ ej:[["Comme l'écrit Camus, « il faut imaginer Sisyphe heureux ».","Como escribe Camus, «hay que imaginar a Sísifo feliz»."],["Selon Camus, l'homme peut trouver le bonheur dans l'effort même (1942).","Según Camus, el hombre puede encontrar la felicidad en el esfuerzo mismo."],["Le plagiat peut entraîner l'exclusion de l'université.","El plagio puede conllevar la expulsión de la universidad."],["Chaque emprunt doit être signalé par une référence.", "Cada préstamo debe señalarse con una referencia."],["Reformuler ne dispense pas de citer l'auteur.", "Reformular no exime de citar al autor."],["L'université utilise un logiciel anti-plagiat.", "La universidad usa un programa antiplagio."]],
  ojo:["Cambiar dos palabras y no citar","Reformular de verdad + citar la fuente","Si no hay fuente, es plagio."]},[
  C("¿Qué es plagio?","Plagio",["copiar sin comillas ni referencia","citar con comillas y fuente","parafrasear citando"],0,"<b>Sin fuente</b>."),
  C("¿Qué necesita una paráfrasis?","Paráfrasis",["otras palabras + referencia","las mismas palabras sin comillas","nada"],0,"<b>Reformular + citar</b>."),
@@ -316,6 +352,8 @@ L("prog-plagiat","Paraphrase, citation et plagiat","ponct",{
  S("Clasifica.","¿Legítimo o plagio?",["Legítimo","Plagio"],[["citer entre guillemets",0],["reformuler et citer la source",0],["résumer en citant l'auteur",0],["mettre la référence en note",0],["copier-coller sans source",1],["changer deux mots sans citer",1],["traduire un texte sans le dire",1],["réutiliser le devoir d'un ami",1]],"Honestidad académica."),
  P("Encuentra la palabra incorrecta y corrígela.","Copier un texte sans citer sa source , c'est du [plagio] .","plagiat","<b>plagiat</b>."),
  O("Ordena: «Según el autor…».",["Selon","l'auteur,","la liberté","est un choix"],"<i>Selon l'auteur, la liberté est un choix.</i>"),
+ C("¿Qué es plagio?","Plagio",["copiar sin citar la fuente","citar entre comillas","parafrasear citando"],0,"<b>Sin fuente</b>."),
+ F("Completa.","Toute citation doit être placée entre ___ .",["guillemets"],"<b>guillemets</b>."),
  D("Toute citation doit être placée entre guillemets et accompagnée de sa référence.")])
 ]),
 U("Trabajar con varios documentos",[
@@ -323,7 +361,7 @@ L("prog-definir","Définir un concept avec précision","struct",{
  idea:"Definir un concepto es esencial en la introducción y el desarrollo: se da la categoría general y el rasgo específico (La laïcité est un principe qui…), su origen o etimología si es útil, y se distingue de conceptos vecinos (À ne pas confondre avec…).",
  para:"Para evitar ambigüedades en tus textos académicos.",
  regla:["Estructura: <b>X est un / une + categoría + qui / dont…</b>","<i>Par X, on entend… / X désigne… / X renvoie à…</i>","Etimología: <i>Du latin « … », le terme signifie…</i>","Distinguir: <i>À la différence de Y, X…; Il ne faut pas confondre X et Y.</i>","Ejemplo que ilustra: <i>C'est le cas de…</i>"],
- ej:[["La laïcité désigne la séparation de l'État et des religions.","La laicidad designa la separación entre Estado y religiones."],["Du latin « educere », éduquer signifie « conduire hors de ».","Del latín «educere», educar significa «conducir fuera de»."],["À la différence de l'égalité, l'équité tient compte des besoins de chacun.","A diferencia de la igualdad, la equidad tiene en cuenta las necesidades de cada uno."]],
+ ej:[["La laïcité désigne la séparation de l'État et des religions.","La laicidad designa la separación entre Estado y religiones."],["Du latin « educere », éduquer signifie « conduire hors de ».","Del latín «educere», educar significa «conducir fuera de»."],["À la différence de l'égalité, l'équité tient compte des besoins de chacun.","A diferencia de la igualdad, la equidad tiene en cuenta las necesidades de cada uno."],["L'équité consiste à donner à chacun selon ses besoins.", "La equidad consiste en dar a cada uno según sus necesidades."],["Ce concept renvoie à l'idée de responsabilité collective.", "Este concepto remite a la idea de responsabilidad colectiva."],["À la différence du climat, la météo varie chaque jour.", "A diferencia del clima, el tiempo varía cada día."]],
  ojo:["La démocratie c'est quand le peuple…","La démocratie est un régime politique dans lequel…","Categoría + rasgo específico."]},[
  C("Elige la definición académica.","Definir «démocratie»",["La démocratie est un régime politique dans lequel le peuple exerce le pouvoir.","La démocratie, c'est quand les gens votent.","La démocratie, c'est bien."],0,"<b>Categoría + rasgo</b>."),
  C("Elige.","X designa…",["X désigne…","X dessine…","X signe…"],0,"<b>désigner</b>."),
@@ -334,12 +372,14 @@ L("prog-definir","Définir un concept avec précision","struct",{
  S("Clasifica.","¿Definición precisa?",["Precisa","Vaga"],[["un régime politique dans lequel…",0],["un principe juridique qui…",0],["un processus par lequel…",0],["un ensemble de pratiques qui…",0],["un truc qui…",1],["c'est quand…",1],["une chose un peu…",1],["un machin pour…",1]],"Rigor."),
  P("Encuentra la palabra incorrecta y corrígela.","La démocratie est un régime politique [dont] lequel le peuple exerce le pouvoir .","dans","<b>dans lequel</b>."),
  O("Ordena la definición.",["La laïcité","désigne","la séparation","de l'État et des religions"],"<i>La laïcité désigne la séparation de l'État et des religions.</i>"),
+ C("Elige la definición precisa.","Definir «laïcité»",["La laïcité est un principe qui sépare l'État et les religions.","La laïcité, c'est quand il n'y a pas de religion.","La laïcité, c'est un truc français."],0,"Categoría + rasgo."),
+ F("Completa.","Ce terme ___ à l'idée de justice. (remite)",["renvoie"],"<b>renvoyer à</b>."),
  D("Par « développement durable », on entend un développement qui répond aux besoins du présent.")]),
 L("prog-confronter","Confronter des documents pour la synthèse","struct",{
  idea:"La síntesis del DALF confronta varios documentos: hay que identificar lo que dicen en común, en qué se oponen o se complementan, y organizarlo por ideas (no documento por documento). Herramienta clave: el tableau de confrontation (cuadro ideas × documentos).",
  para:"Para preparar la síntesis del DALF C1.",
  regla:["1. Leer y anotar la idea principal de cada documento.","2. Cuadro: <b>ideas en filas, documentos en columnas</b>.","3. Agrupar: convergencias, divergencias, complementos.","4. Plan temático: cada parte trata una idea con varios documentos.","Conectores: <i>de même, à l'instar de, contrairement à, tandis que, quant à</i>."],
- ej:[["À l'instar du document 1, le document 3 souligne…","Al igual que el documento 1, el documento 3 subraya…"],["Contrairement à l'auteur du premier texte, la journaliste estime que…","A diferencia del autor del primer texto, la periodista considera que…"],["Quant au document 2, il nuance ce constat.","En cuanto al documento 2, matiza esta constatación."]],
+ ej:[["À l'instar du document 1, le document 3 souligne…","Al igual que el documento 1, el documento 3 subraya…"],["Contrairement à l'auteur du premier texte, la journaliste estime que…","A diferencia del autor del primer texto, la periodista considera que…"],["Quant au document 2, il nuance ce constat.","En cuanto al documento 2, matiza esta constatación."],["Les trois documents s'accordent sur un point essentiel.", "Los tres documentos coinciden en un punto esencial."],["Le document 2, en revanche, adopte un ton plus critique.", "El documento 2, en cambio, adopta un tono más crítico."],["Ces deux textes se complètent plus qu'ils ne s'opposent.", "Estos dos textos se complementan más de lo que se oponen."]],
  ojo:["Doc 1 dice… Doc 2 dice… Doc 3 dice…","Idea A (doc 1 + 3) / Idea B (doc 2 vs doc 3)","Plan <b>por ideas</b>, no por documentos."]},[
  C("¿Cómo se organiza la síntesis?","Plan",["por ideas","documento por documento","al azar"],0,"<b>Por ideas</b>."),
  C("Elige.","Al igual que…",["À l'instar de…","À l'instant de…","En instar de…"],0,"<b>À l'instar de</b>."),
@@ -350,12 +390,14 @@ L("prog-confronter","Confronter des documents pour la synthèse","struct",{
  S("Clasifica.","Relación",["Convergencia","Divergencia"],[["de même",0],["à l'instar de",0],["comme le souligne aussi",0],["dans le même sens",0],["contrairement à",1],["à l'inverse",1],["tandis que",1],["en revanche",1]],"Acuerdo o desacuerdo entre fuentes."),
  P("Encuentra la palabra incorrecta y corrígela.","[Quand] au troisième document , il apporte des chiffres récents .","Quant","<b>Quant à</b>."),
  O("Ordena: «Al igual que el documento 1…».",["À l'instar","du","document 1,","…"],"<i>À l'instar du document 1, …</i>"),
+ C("¿Cómo se organiza la síntesis?","Plan",["por ideas","documento por documento","por orden alfabético"],0,"<b>Por ideas</b>."),
+ F("Completa.","À l'___ du document 1, le document 3 souligne ce risque.",["instar"],"<b>À l'instar de</b>."),
  D("À l'instar du premier document, le troisième souligne les risques du télétravail.")]),
 L("prog-titrer","Titrer et intituler : titres et intertitres","struct",{
  idea:"En la síntesis del DALF se pide un título; en informes y memorias, títulos de partes. Un buen título es breve, informativo y a menudo nominal: «Le télétravail : liberté ou nouvelle contrainte ?». Se puede usar dos puntos, pregunta o fórmula con juego de palabras moderado.",
  para:"Para dar título a síntesis, informes y artículos.",
  regla:["Nominal: <i>La mobilité douce en ville</i>.","Con dos puntos: <i>L'IA à l'université : menace ou outil ?</i>","Pregunta: <i>Faut-il interdire les écrans à l'école ?</i>","Breve: 4-10 palabras.","Mayúscula solo inicial (y nombres propios)."],
- ej:[["Le télétravail : entre liberté et isolement","El teletrabajo: entre libertad y aislamiento"],["Vers une école sans notes ?","¿Hacia una escuela sin notas?"],["La ville de demain : verte et solidaire ?","La ciudad del mañana: ¿verde y solidaria?"]],
+ ej:[["Le télétravail : entre liberté et isolement","El teletrabajo: entre libertad y aislamiento"],["Vers une école sans notes ?","¿Hacia una escuela sin notas?"],["La ville de demain : verte et solidaire ?","La ciudad del mañana: ¿verde y solidaria?"],["Le titre doit annoncer clairement le sujet.", "El título debe anunciar claramente el tema."],["Un bon intertitre facilite la lecture.", "Un buen subtítulo facilita la lectura."],["Évitez les titres trop longs.", "Evite los títulos demasiado largos."]],
  ojo:["Le Télétravail : Entre Liberté Et Isolement","Le télétravail : entre liberté et isolement","Mayúsculas solo al inicio (≠ inglés)."]},[
  C("Elige el mejor título.","Síntesis sobre el teletrabajo",["Le télétravail : liberté ou contrainte ?","Mon texte sur le travail à la maison que j'ai écrit","TÉLÉTRAVAIL"],0,"Breve e informativo."),
  C("¿Cómo van las mayúsculas en un título francés?","Mayúsculas",["solo la primera palabra y nombres propios","todas las palabras","ninguna"],0,"<b>Inicial</b>."),
@@ -366,6 +408,8 @@ L("prog-titrer","Titrer et intituler : titres et intertitres","struct",{
  S("Clasifica.","¿Buen título?",["Sí","No"],[["La ville face au climat",0],["Écrans et enfance : quels risques ?",0],["Vers la fin du papier ?",0],["L'eau, un bien commun",0],["Synthèse",1],["Mon devoir",1],["Texte sur plein de choses",1],["Titre",1]],"Informativo."),
  P("Encuentra la palabra incorrecta y corrígela.","Le Télétravail : Entre [Liberté] et contrainte","liberté","Minúscula: <b>liberté</b>."),
  O("Ordena el título.",["Le télétravail :","entre liberté","et","isolement"],"<i>Le télétravail : entre liberté et isolement</i>."),
+ C("Elige el mejor título.","Síntesis sobre el sueño",["Le sommeil : un luxe ou une nécessité ?","Texte numéro 1","Sommeil sommeil sommeil"],0,"Breve e informativo."),
+ F("Completa.","___ une école sans écrans ? (hacia)",["Vers"],"<b>Vers</b>."),
  D("L'intelligence artificielle à l'université : menace ou opportunité ?")])
 ])
 ]);
@@ -376,7 +420,7 @@ L("prog-co-longue","Comprendre un document oral long","co",{
  idea:"En el DALF C1 se escucha un documento largo (conferencia, debate radiofónico) dos veces. Hay que anticipar con las preguntas, tomar notas estructuradas (ideas principales, ejemplos, opiniones de cada participante) y distinguir hechos, opiniones y matices.",
  para:"Para la prueba de comprensión oral del DALF C1.",
  regla:["Antes: leer todas las preguntas y subrayar palabras clave.","1.ª escucha: estructura general, número de participantes, tesis.","2.ª escucha: detalles, cifras, matices, ejemplos.","Notas: columnas por participante o por parte; símbolos y abreviaturas.","Atención a los marcadores del orador: <i>premièrement, en revanche, j'insiste sur, pour résumer</i>."],
- ej:[["Premièrement, je voudrais rappeler le contexte.","En primer lugar, quisiera recordar el contexto."],["J'insiste sur ce point, car il est souvent négligé.","Insisto en este punto, porque a menudo se descuida."],["Pour résumer, trois idées se dégagent.","Para resumir, se desprenden tres ideas."]],
+ ej:[["Premièrement, je voudrais rappeler le contexte.","En primer lugar, quisiera recordar el contexto."],["J'insiste sur ce point, car il est souvent négligé.","Insisto en este punto, porque a menudo se descuida."],["Pour résumer, trois idées se dégagent.","Para resumir, se desprenden tres ideas."],["J'ai noté les idées principales de chaque intervenant.", "Anoté las ideas principales de cada participante."],["Lors de la seconde écoute, je vérifie les chiffres.", "Durante la segunda escucha, compruebo las cifras."],["L'orateur a conclu en rappelant trois propositions.", "El orador concluyó recordando tres propuestas."]],
  ojo:["Intentar escribir todo","Notas por ideas y participantes","Estructura antes que detalle."]},[
  C("¿Qué hacer antes de escuchar?","Preparación",["leer todas las preguntas","cerrar los ojos","escribir la respuesta"],0,"<b>Anticipar</b>."),
  C("¿Para qué sirve la 1.ª escucha?","1.ª escucha",["captar la estructura general","anotar todas las cifras","corregir la ortografía"],0,"<b>Visión global</b>."),
@@ -387,12 +431,14 @@ L("prog-co-longue","Comprendre un document oral long","co",{
  S("Clasifica.","¿Hecho u opinión del orador?",["Hecho","Opinión"],[["Le taux a doublé en dix ans.",0],["La loi date de 2019.",0],["L'étude porte sur 3 000 personnes.",0],["Le projet coûte 2 millions.",0],["À mon sens, c'est une erreur.",1],["Je reste sceptique.",1],["Il me paraît essentiel de…",1],["Cette mesure est, selon moi, injuste.",1]],"Distinguir."),
  P("Encuentra la palabra incorrecta y corrígela.","Pour [résumé] , cette conférence défend trois idées .","résumer","<b>Pour résumer</b> (infinitivo)."),
  O("Ordena: «Insisto en este punto».",["J'insiste","sur","ce","point"],"<i>J'insiste sur ce point.</i>"),
+ C("¿Qué hacer en la segunda escucha?","2.ª escucha",["verificar detalles y cifras","leer las preguntas por primera vez","dormir"],0,"<b>Detalles</b>."),
+ F("Completa.","Pour ___ , trois idées se dégagent. (resumir)",["résumer"],"<b>Pour résumer</b>."),
  D("Pour résumer, trois idées principales se dégagent de cette intervention.")]),
 L("prog-ce-c1","La compréhension écrite du DALF C1","co",{
  idea:"La comprensión escrita C1 usa un texto largo (1 500-2 000 palabras) con preguntas de opción múltiple, verdadero/falso justificado con una cita, y preguntas abiertas que piden reformular. Justificar exige copiar la frase exacta; reformular exige no copiar.",
  para:"Para responder bien a cada tipo de pregunta.",
  regla:["<b>Vrai / Faux + justification</b>: copiar la frase exacta del texto entre comillas.","<b>QCM</b>: eliminar opciones que deforman el texto.","<b>Question ouverte</b>: responder con tus palabras, frase completa.","Identificar la tesis del autor y su tono (irónico, crítico, neutro).","Buscar el sentido de palabras por el contexto."],
- ej:[["Vrai : « Le télétravail a progressé de 30 % » (l. 12).","Verdadero: «…» (línea 12)."],["L'auteur adopte un ton critique à l'égard des réseaux.","El autor adopta un tono crítico respecto a las redes."],["Selon le texte, la mesure est jugée insuffisante.","Según el texto, la medida se considera insuficiente."]],
+ ej:[["Vrai : « Le télétravail a progressé de 30 % » (l. 12).","Verdadero: «…» (línea 12)."],["L'auteur adopte un ton critique à l'égard des réseaux.","El autor adopta un tono crítico respecto a las redes."],["Selon le texte, la mesure est jugée insuffisante.","Según el texto, la medida se considera insuficiente."],["Relevez la phrase qui justifie votre réponse.", "Localice la frase que justifica su respuesta."],["Le ton de l'article est volontairement polémique.", "El tono del artículo es deliberadamente polémico."],["Reformulez l'idée principale avec vos propres mots.", "Reformule la idea principal con sus propias palabras."]],
  ojo:["Justificar con tus palabras","Justificar con la cita exacta","En V/F se <b>cita</b>; en abiertas se <b>reformula</b>."]},[
  C("¿Cómo se justifica un Vrai / Faux?","Justificar",["con la cita exacta","con tus palabras","sin justificar"],0,"<b>Cita</b>."),
  C("¿Cómo se responde a una pregunta abierta?","Pregunta abierta",["reformulando con tus palabras","copiando un párrafo","con una palabra"],0,"<b>Reformular</b>."),
@@ -403,6 +449,8 @@ L("prog-ce-c1","La compréhension écrite du DALF C1","co",{
  S("Clasifica.","Tono",["Crítico","Favorable"],[["dénoncer",0],["déplorer",0],["s'inquiéter de",0],["fustiger",0],["saluer",1],["se réjouir de",1],["louer",1],["défendre",1]],"Verbos que revelan el tono."),
  P("Encuentra la palabra incorrecta y corrígela.","L'auteur [salue] les dérives des réseaux sociaux et les condamne .","dénonce","Coherencia con <i>condamne</i>: <b>dénonce</b>."),
  O("Ordena: «El autor adopta un tono irónico».",["L'auteur","adopte","un ton","ironique"],"<i>L'auteur adopte un ton ironique.</i>"),
+ C("¿Cómo se justifica un Vrai/Faux?","Justificación",["con la cita exacta","con tus palabras","sin justificar"],0,"<b>Cita</b>."),
+ F("Completa.","L'auteur adopte un ton critique à l'___ du gouvernement.",["égard"],"<b>à l'égard de</b>."),
  D("Dans ce texte, l'auteur déplore la place croissante des écrans dans nos vies.")])
 ]),
 U("Producción escrita",[
@@ -410,7 +458,7 @@ L("prog-synthese-etapes","La synthèse pas à pas","consigne",{
  idea:"La síntesis DALF (unas 220 palabras) exige: leer, confrontar en un cuadro, construir una problemática común, un plan temático en 2-3 partes, redactar sin opinión personal ni ejemplos externos, con título, citando los documentos de forma neutra y respetando el número de palabras.",
  para:"Para aprobar la prueba más técnica del DALF C1.",
  regla:["1. Lectura activa (15 min): idea principal de cada documento.","2. Cuadro de confrontación (15 min).","3. Problemática + plan temático (10 min).","4. Redacción (30 min): introducción breve, 2-3 partes, conclusión corta.","5. Relectura + conteo (10 min).","Prohibido: opinión personal, ideas ajenas a los documentos, citas largas."],
- ej:[["Les documents proposés abordent la question du télétravail.","Los documentos propuestos abordan la cuestión del teletrabajo."],["Si le document 1 insiste sur…, le document 2 souligne…","Si el documento 1 insiste en…, el documento 2 subraya…"],["Au total, les documents s'accordent sur…","En total, los documentos coinciden en…"]],
+ ej:[["Les documents proposés abordent la question du télétravail.","Los documentos propuestos abordan la cuestión del teletrabajo."],["Si le document 1 insiste sur…, le document 2 souligne…","Si el documento 1 insiste en…, el documento 2 subraya…"],["Au total, les documents s'accordent sur…","En total, los documentos coinciden en…"],["Je commence par lire attentivement chaque document.", "Empiezo leyendo atentamente cada documento."],["Le tableau de confrontation m'aide à construire le plan.", "El cuadro de confrontación me ayuda a construir el plan."],["La synthèse ne contient aucune opinion personnelle.", "La síntesis no contiene ninguna opinión personal."]],
  ojo:["Je pense que le télétravail est génial.","Les documents s'accordent à reconnaître que…","Sin <b>opinión</b> en la síntesis."]},[
  C("¿Qué está prohibido en la síntesis?","Prohibido",["dar tu opinión","usar conectores","poner título"],0,"<b>Opinión</b>."),
  C("¿Cuántas palabras aprox.?","Extensión",["unas 220","unas 60","unas 1 000"],0,"<b>~220</b>."),
@@ -421,12 +469,14 @@ L("prog-synthese-etapes","La synthèse pas à pas","consigne",{
  S("Clasifica.","¿Permitido en la síntesis?",["Permitido","Prohibido"],[["un titre",0],["des connecteurs",0],["mentionner les documents",0],["une problématique",0],["« Je pense que »",1],["un exemple personnel",1],["une idée absente des documents",1],["une longue citation",1]],"Reglas de la síntesis."),
  P("Encuentra la palabra incorrecta y corrígela.","Les trois documents s'[accorde] à reconnaître l'importance du sommeil .","accordent","Sujeto plural: <b>s'accordent</b>."),
  O("Ordena: «Los documentos abordan la cuestión de la vivienda».",["Les documents","abordent","la question","du logement"],"<i>Les documents abordent la question du logement.</i>"),
+ C("¿Qué está prohibido en la síntesis?","Prohibido",["la opinión personal","el título","los conectores"],0,"<b>Opinión</b>."),
+ F("Completa.","Les documents ___ la question du travail. (abordan)",["abordent"],"<b>abordent</b>."),
  D("Si le premier document insiste sur les avantages, le second en souligne les limites.")]),
 L("prog-essai-dalf","L'essai argumenté du DALF C1","consigne",{
  idea:"Tras la síntesis, el DALF C1 pide un texto argumentado (unas 250 palabras) sobre el mismo tema: artículo, carta, ensayo… Aquí sí se da opinión, con un registro adaptado al destinatario, argumentos propios, ejemplos y refutación.",
  para:"Para la segunda parte de la producción escrita del DALF C1.",
  regla:["Leer la consigna: <b>género, destinatario, posición</b>.","Opinión clara desde la introducción o anunciada.","2-3 argumentos + ejemplos concretos (cultura, actualidad).","Refutar un contraargumento (<i>Certes… il n'en demeure pas moins que…</i>).","Adaptar el registro (carta al director, artículo para una revista…).","Firmar según el género si se pide."],
- ej:[["Contrairement à une idée répandue, le télétravail n'isole pas nécessairement.","Contrariamente a una idea extendida, el teletrabajo no aísla necesariamente."],["Certes, le coût est élevé ; il n'en demeure pas moins que l'investissement est rentable.","Es cierto que el coste es alto; no obstante, la inversión es rentable."],["C'est pourquoi j'appelle les décideurs à agir.","Por eso llamo a los responsables a actuar."]],
+ ej:[["Contrairement à une idée répandue, le télétravail n'isole pas nécessairement.","Contrariamente a una idea extendida, el teletrabajo no aísla necesariamente."],["Certes, le coût est élevé ; il n'en demeure pas moins que l'investissement est rentable.","Es cierto que el coste es alto; no obstante, la inversión es rentable."],["C'est pourquoi j'appelle les décideurs à agir.","Por eso llamo a los responsables a actuar."],["Je défendrai l'idée que l'école doit s'adapter.", "Defenderé la idea de que la escuela debe adaptarse."],["Prenons l'exemple des pays scandinaves.", "Tomemos el ejemplo de los países escandinavos."],["Il est donc urgent de repenser notre modèle.", "Es, por tanto, urgente repensar nuestro modelo."]],
  ojo:["Repetir la síntesis","Aportar tus propios argumentos y ejemplos","El ensayo es <b>personal</b>."]},[
  C("¿Qué diferencia el ensayo de la síntesis?","Diferencia",["el ensayo incluye tu opinión","el ensayo no tiene plan","la síntesis tiene opinión"],0,"<b>Opinión</b>."),
  C("Elige la refutación culta.","Refutar",["Certes…, il n'en demeure pas moins que…","Mais non, c'est faux.","Bof."],0,"Concesión + refutación."),
@@ -437,6 +487,8 @@ L("prog-essai-dalf","L'essai argumenté du DALF C1","consigne",{
  S("Clasifica.","¿Síntesis o ensayo?",["Síntesis","Ensayo"],[["sans opinion",0],["plan à partir des documents",0],["titre obligatoire",0],["mention des documents",0],["opinion personnelle",1],["exemples personnels",1],["réfutation",1],["appel à l'action",1]],"Dos pruebas distintas."),
  P("Encuentra la palabra incorrecta y corrígela.","Contrairement [de] une idée répandue , les jeunes lisent beaucoup .","à","<b>Contrairement à</b>."),
  O("Ordena: «Contrariamente a una idea extendida…».",["Contrairement","à une idée","répandue,","…"],"<i>Contrairement à une idée répandue, …</i>"),
+ C("Elige la refutación culta.","Refutar",["Certes…, il n'en demeure pas moins que…","Non, c'est faux.","Bof, pas d'accord."],0,"Concesión + refutación."),
+ F("Completa.","Contrairement ___ une idée répandue, …",["à"],"<b>Contrairement à</b>."),
  D("Contrairement à une idée répandue, les jeunes n'ont jamais autant lu qu'aujourd'hui.")])
 ]),
 U("El oral C1",[
@@ -444,7 +496,7 @@ L("prog-oral-preparation","Préparer l'exposé oral du DALF C1","struct",{
  idea:"En el oral del DALF C1 tienes una hora para preparar, a partir de un dossier de documentos, una exposición de unos 10 minutos con problemática y plan, seguida de un debate de 20 minutos. No se lee: se habla a partir de notas esquemáticas.",
  para:"Para organizar la hora de preparación y la exposición.",
  regla:["Preparación (60 min): leer el dossier, problemática, plan en 2-3 partes, ejemplos, introducción y conclusión escritas en palabras clave.","Exposición (≈ 10 min): anunciar el plan, transiciones claras, mirar al jurado.","No leer: notas con palabras clave y conectores.","Tiempo: introducción 1-2 min, partes 3 min, conclusión 1 min.","Integrar los documentos y ejemplos propios."],
- ej:[["Le dossier que j'ai eu à étudier porte sur…","El dossier que tuve que estudiar trata de…"],["Je m'attacherai d'abord à montrer que…","Me dedicaré primero a mostrar que…"],["J'en viens à présent à ma deuxième partie.","Paso ahora a mi segunda parte."]],
+ ej:[["Le dossier que j'ai eu à étudier porte sur…","El dossier que tuve que estudiar trata de…"],["Je m'attacherai d'abord à montrer que…","Me dedicaré primero a mostrar que…"],["J'en viens à présent à ma deuxième partie.","Paso ahora a mi segunda parte."],["Je note seulement des mots-clés sur ma feuille.", "Anoto solo palabras clave en mi hoja."],["Mon exposé comportera deux parties.", "Mi exposición tendrá dos partes."],["Je termine par une ouverture sur l'avenir.", "Termino con una apertura hacia el futuro."]],
  ojo:["Leer un texto redactado","Hablar desde notas esquemáticas","El jurado evalúa la <b>interacción</b>."]},[
  C("¿Cuánto dura la preparación?","Preparación",["1 hora","10 minutos","2 horas"],0,"<b>60 min</b>."),
  C("¿Qué NO hacer en la exposición?","Evitar",["leer un texto redactado","mirar al jurado","anunciar el plan"],0,"<b>No leer</b>."),
@@ -455,12 +507,14 @@ L("prog-oral-preparation","Préparer l'exposé oral du DALF C1","struct",{
  S("Clasifica.","¿Buena práctica?",["Sí","No"],[["noter des mots-clés",0],["annoncer le plan",0],["regarder le jury",0],["faire des transitions",0],["tout rédiger et lire",1],["parler trop vite",1],["ignorer les documents",1],["dépasser 20 minutes",1]],"Exposición eficaz."),
  P("Encuentra la palabra incorrecta y corrígela.","Je m'[attacherais] d'abord à définir les termes du sujet .","attacherai","Anuncio del plan: futuro <b>attacherai</b>."),
  O("Ordena: «Paso ahora a mi segunda parte».",["J'en viens","à présent","à ma","deuxième partie"],"<i>J'en viens à présent à ma deuxième partie.</i>"),
+ C("¿Qué NO hacer en la exposición?","Evitar",["leer un texto redactado","anunciar el plan","mirar al jurado"],0,"<b>No leer</b>."),
+ F("Completa.","J'en viens à ___ à ma seconde partie. (ahora)",["présent"],"<b>à présent</b>."),
  D("Je m'attacherai d'abord à définir les enjeux, puis j'examinerai les solutions possibles.")]),
 L("prog-oral-debat","Débattre avec le jury au DALF C1","struct",{
  idea:"En el debate el jurado cuestiona tu postura, pide precisiones o ejemplos y a veces defiende lo contrario. Se valora que escuches, reformules, matices, defiendas tu posición con argumentos y aceptes objeciones pertinentes.",
  para:"Para la parte de interacción del oral C1.",
  regla:["Reformular la pregunta: <i>Si je vous comprends bien, vous me demandez si…</i>","Conceder: <i>Vous soulevez là un point important.</i>","Matizar: <i>Je nuancerais toutefois en disant que…</i>","Defender: <i>Il me semble néanmoins que…</i>","Pedir tiempo: <i>C'est une question complexe ; permettez-moi d'y réfléchir.</i>"],
- ej:[["Vous soulevez là un point essentiel.","Plantea usted un punto esencial."],["Je nuancerais toutefois ce propos.","Matizaría sin embargo esta afirmación."],["Permettez-moi de préciser ma pensée.","Permítame precisar mi pensamiento."]],
+ ej:[["Vous soulevez là un point essentiel.","Plantea usted un punto esencial."],["Je nuancerais toutefois ce propos.","Matizaría sin embargo esta afirmación."],["Permettez-moi de préciser ma pensée.","Permítame precisar mi pensamiento."],["Je comprends votre objection, mais je la nuancerais.", "Entiendo su objeción, pero la matizaría."],["Pourriez-vous préciser votre question ?", "¿Podría precisar su pregunta?"],["Sur ce point, je vous rejoins entièrement.", "En este punto, coincido totalmente con usted."]],
  ojo:["Vous avez tort.","Je vois les choses un peu différemment.","Firmeza cortés."]},[
  C("Elige para conceder.","Conceder",["Vous soulevez là un point important.","Vous avez tort.","Je ne sais pas."],0,"Reconocer el punto."),
  C("Elige para matizar.","Matizar",["Je nuancerais toutefois…","Je refuse de répondre.","C'est faux, point."],0,"<b>nuancer</b>."),
@@ -471,12 +525,14 @@ L("prog-oral-debat","Débattre avec le jury au DALF C1","struct",{
  S("Clasifica.","¿Adecuado con el jurado?",["Adecuado","Inadecuado"],[["C'est une question complexe.",0],["Permettez-moi de nuancer.",0],["Je comprends votre objection.",0],["Vous avez raison sur ce point.",0],["N'importe quoi.",1],["Je ne veux pas répondre.",1],["Tu te trompes.",1],["Passons, c'est nul.",1]],"Registro."),
  P("Encuentra la palabra incorrecta y corrígela.","Vous [levez] là un point essentiel , je vous remercie .","soulevez","<b>soulever un point</b>."),
  O("Ordena: «Matizaría esta idea».",["Je","nuancerais","cette","idée"],"<i>Je nuancerais cette idée.</i>"),
+ C("Elige para matizar.","Matizar",["Je nuancerais toutefois…","Vous avez tort.","Je refuse."],0,"<b>nuancer</b>."),
+ F("Completa.","Vous ___ là un point essentiel. (plantea)",["soulevez"],"<b>soulever</b>."),
  D("Vous soulevez là un point essentiel ; permettez-moi toutefois de nuancer.")]),
 L("prog-gestion-temps","Gérer son temps le jour de l'examen","struct",{
  idea:"El DALF C1 dura casi 5 horas en total: comprensión oral (40 min), comprensión escrita (50 min), producción escrita (2 h 30), producción oral (1 h de preparación + 30 min). Gestionar el tiempo y la energía es parte del éxito.",
  para:"Para llegar al final con tiempo para releer.",
  regla:["Escrita: 1 h 15 síntesis + 1 h ensayo + 15 min relectura (orientativo).","Contar palabras al final (± 10 % tolerado).","No bloquearse en una pregunta de comprensión: volver después.","Oral: reservar 10 min para introducción y conclusión.","Llevar reloj; hidratarse; leer todas las consignas."],
- ej:[["Je consacre une heure et quart à la synthèse.","Dedico una hora y cuarto a la síntesis."],["Il me reste dix minutes pour me relire.","Me quedan diez minutos para releerme."],["J'ai compté 230 mots.","He contado 230 palabras."]],
+ ej:[["Je consacre une heure et quart à la synthèse.","Dedico una hora y cuarto a la síntesis."],["Il me reste dix minutes pour me relire.","Me quedan diez minutos para releerme."],["J'ai compté 230 mots.","He contado 230 palabras."],["Je vérifie l'heure toutes les trente minutes.", "Compruebo la hora cada treinta minutos."],["Je ne perds pas de temps sur une question difficile.", "No pierdo tiempo en una pregunta difícil."],["Il me faut dix minutes pour relire ma copie.", "Necesito diez minutos para releer mi examen."]],
  ojo:["Dedicar 2 h a la síntesis","Repartir el tiempo entre las dos tareas","Sin relectura se pierden puntos."]},[
  C("¿Cuánto dura la producción escrita del DALF C1?","Producción escrita",["2 h 30","1 h","4 h"],0,"<b>2 h 30</b>."),
  C("¿Qué tolerancia suele haber en el número de palabras?","Tolerancia",["± 10 %","± 50 %","ninguna"],0,"<b>± 10 %</b>."),
@@ -487,6 +543,8 @@ L("prog-gestion-temps","Gérer son temps le jour de l'examen","struct",{
  S("Clasifica.","¿Buena gestión?",["Buena","Mala"],[["lire toutes les consignes",0],["compter les mots",0],["garder du temps pour relire",0],["porter une montre",0],["commencer sans lire la consigne",1],["passer 2 h sur la synthèse",1],["ne pas relire",1],["bloquer sur une question",1]],"Estrategia."),
  P("Encuentra la palabra incorrecta y corrígela.","Il me [restent] cinq minutes pour relire ma copie .","reste","Impersonal: <b>il me reste</b>."),
  O("Ordena: «Me quedan diez minutos».",["Il","me reste","dix","minutes"],"<i>Il me reste dix minutes.</i>"),
+ C("¿Qué tolerancia hay en el número de palabras?","Tolerancia",["± 10 %","± 50 %","ninguna"],0,"<b>± 10 %</b>."),
+ F("Completa.","Il me ___ dix minutes pour relire. (queda)",["reste"],"<b>il me reste</b>."),
  D("Je garde toujours un quart d'heure pour relire ma synthèse et mon essai.")])
 ]),
 U("Afinar el nivel C1",[
@@ -494,7 +552,7 @@ L("prog-erreurs-c1","Les erreurs qui coûtent le C1","ortho",{
  idea:"Los correctores del C1 penalizan errores que ya no se esperan: calcos del español (*assister = ayudar), registro mezclado, repeticiones, conectores mal usados (en effet para oponer), subjuntivo omitido, concordancia del participio, anglicismos y frases demasiado largas.",
  para:"Para no perder puntos por errores evitables.",
  regla:["Conectores: <i>en effet</i> justifica (no opone); <i>or</i> introduce un dato contrario; <i>par contre</i> es oral.","Subjuntivo tras <i>bien que, il faut que, avant que</i>.","Participio con <i>avoir</i> y COD antepuesto: <i>les lettres que j'ai écrites</i>.","Registro homogéneo: evitar <i>du coup, genre, ça</i> en escrito formal.","Frases de máximo 3 líneas; una idea por frase."],
- ej:[["Bien que la mesure soit coûteuse, elle est nécessaire.","Aunque la medida es costosa, es necesaria."],["Les décisions qu'il a prises ont surpris.","Las decisiones que tomó sorprendieron."],["Cependant, cette solution présente des limites.","Sin embargo, esta solución presenta límites."]],
+ ej:[["Bien que la mesure soit coûteuse, elle est nécessaire.","Aunque la medida es costosa, es necesaria."],["Les décisions qu'il a prises ont surpris.","Las decisiones que tomó sorprendieron."],["Cependant, cette solution présente des limites.","Sin embargo, esta solución presenta límites."],["Bien qu'il ait raison, il manque de nuance.", "Aunque tiene razón, le falta matiz."],["Les erreurs que j'ai commises sont corrigées.", "Los errores que cometí están corregidos."],["En revanche, la conclusion est trop courte.", "En cambio, la conclusión es demasiado corta."]],
  ojo:["Bien que la mesure est coûteuse…","Bien que la mesure soit coûteuse…","<b>bien que + subjuntivo</b>."]},[
  C("¿Qué conector opone en registro escrito?","Oposición formal",["cependant","en effet","du coup"],0,"<b>cependant</b>."),
  C("Elige.","Las cartas que escribió…",["les lettres qu'il a écrites","les lettres qu'il a écrit","les lettres qu'il a écrits"],0,"COD antepuesto fem. pl.: <b>écrites</b>."),
@@ -505,12 +563,14 @@ L("prog-erreurs-c1","Les erreurs qui coûtent le C1","ortho",{
  S("Clasifica.","¿Correcto en un texto C1?",["Correcto","Error"],[["Bien qu'il soit tard,",0],["En revanche,",0],["Les idées que j'ai exposées",0],["Il convient de souligner",0],["Bien qu'il est tard,",1],["Par contre, du coup,",1],["Les idées que j'ai exposé",1],["Ça, c'est super important",1]],"Detectar."),
  P("Encuentra la palabra incorrecta y corrígela.","Les solutions que nous avons [proposé] sont réalistes .","proposées","COD antepuesto: <b>proposées</b>."),
  O("Ordena: «Aunque la medida sea costosa…».",["Bien que","la mesure","soit","coûteuse"],"<i>Bien que la mesure soit coûteuse…</i>"),
+ C("Elige.","Aunque sea tarde…",["Bien qu'il soit tard…","Bien qu'il est tard…","Bien qu'il sera tard…"],0,"<b>+ subjuntivo</b>."),
+ F("Corrige.","Les idées que j'ai ___ sont claires. (exposer)",["exposées"],"COD antepuesto: <b>exposées</b>."),
  D("Bien que les solutions proposées soient coûteuses, elles demeurent indispensables.")]),
 L("prog-lexique-abstrait","Le lexique abstrait : enjeu, défi, levier, dérive","voc",{
  idea:"El discurso C1 usa sustantivos abstractos precisos: un enjeu (lo que está en juego), un défi (reto), un levier (palanca), une dérive (desviación negativa), un frein (freno), un atout (baza, ventaja), une piste (vía, idea), un constat (constatación), une démarche (enfoque, gestión).",
  para:"Para enriquecer el vocabulario de síntesis y ensayos.",
  regla:["<b>enjeu</b>: <i>L'enjeu est de taille.</i>","<b>défi</b>: <i>relever un défi</i>.","<b>levier / frein</b>: <i>un levier de croissance, un frein à l'innovation</i>.","<b>atout</b>: <i>La jeunesse est un atout.</i>","<b>dérive</b>: <i>les dérives des réseaux sociaux</i>.","<b>piste</b>: <i>explorer plusieurs pistes</i>; <b>constat</b>: <i>dresser un constat</i>."],
- ej:[["L'éducation constitue un levier essentiel contre les inégalités.","La educación constituye una palanca esencial contra las desigualdades."],["Le manque de formation est un frein à l'emploi.","La falta de formación es un freno para el empleo."],["Plusieurs pistes sont à explorer.","Hay varias vías que explorar."]],
+ ej:[["L'éducation constitue un levier essentiel contre les inégalités.","La educación constituye una palanca esencial contra las desigualdades."],["Le manque de formation est un frein à l'emploi.","La falta de formación es un freno para el empleo."],["Plusieurs pistes sont à explorer.","Hay varias vías que explorar."],["La formation constitue un atout majeur.", "La formación constituye una baza importante."],["Plusieurs pistes de réflexion se dessinent.", "Se perfilan varias vías de reflexión."],["Il faut éviter les dérives de ce système.", "Hay que evitar las desviaciones de este sistema."]],
  ojo:["un enjeu = un juego","un enjeu = lo que está en juego","Término clave del C1."]},[
  C("¿Qué es «un enjeu»?","L'enjeu est considérable.",["lo que está en juego","un juego","un premio"],0,"<b>enjeu</b>."),
  C("¿Qué es «un atout»?","Le bilinguisme est un atout.",["una ventaja","un obstáculo","un riesgo"],0,"<b>atout</b>."),
@@ -521,12 +581,14 @@ L("prog-lexique-abstrait","Le lexique abstrait : enjeu, défi, levier, dérive",
  S("Clasifica.","¿Positivo o negativo?",["Positivo","Negativo"],[["un atout",0],["un levier",0],["une opportunité",0],["une avancée",0],["un frein",1],["une dérive",1],["un écueil",1],["une menace",1]],"Connotación."),
  P("Encuentra la palabra incorrecta y corrígela.","Maîtriser plusieurs langues est un véritable [frein] sur le marché du travail .","atout","Ventaja: <b>atout</b>."),
  O("Ordena: «Lo que está en juego es enorme».",["L'enjeu","est","de","taille"],"<i>L'enjeu est de taille.</i>"),
+ C("¿Qué es «un frein»?","un frein à l'emploi",["un obstáculo","una ventaja","una vía"],0,"<b>Freno</b>."),
+ F("Completa.","Le bilinguisme est un ___ professionnel. (baza)",["atout"],"<b>atout</b>."),
  D("L'éducation constitue un levier essentiel pour relever le défi de l'égalité.")]),
 L("prog-verbes-logiques","Verbes de relation logique : découler de, relever de, reposer sur","voc",{
  idea:"En lugar de conectores, el C1 usa verbos que expresan relaciones lógicas: découler de / résulter de (resultar de), entraîner / engendrer / susciter (provocar), reposer sur (basarse en), relever de (ser competencia de, pertenecer a), s'inscrire dans (inscribirse en), tenir à (deberse a), aller de pair avec (ir de la mano).",
  para:"Para variar la expresión de la causa y la relación entre ideas.",
  regla:["Causa → efecto: <i>entraîner, provoquer, engendrer, susciter, favoriser</i>.","Efecto ← causa: <i>découler de, résulter de, provenir de, tenir à</i>.","Base: <i>reposer sur, s'appuyer sur, se fonder sur</i>.","Pertenencia: <i>relever de, s'inscrire dans</i>.","Correlación: <i>aller de pair avec, être lié à</i>."],
- ej:[["Cette crise découle de choix politiques anciens.","Esta crisis se deriva de decisiones políticas antiguas."],["Le succès du projet repose sur la confiance.","El éxito del proyecto se basa en la confianza."],["Cette question relève de la compétence de l'État.","Esta cuestión es competencia del Estado."]],
+ ej:[["Cette crise découle de choix politiques anciens.","Esta crisis se deriva de decisiones políticas antiguas."],["Le succès du projet repose sur la confiance.","El éxito del proyecto se basa en la confianza."],["Cette question relève de la compétence de l'État.","Esta cuestión es competencia del Estado."],["Cette inégalité tient à des causes historiques.", "Esta desigualdad se debe a causas históricas."],["La pollution entraîne de graves maladies.", "La contaminación provoca enfermedades graves."],["Le progrès social va de pair avec l'éducation.", "El progreso social va de la mano de la educación."]],
  ojo:["Ce problème découle à…","Ce problème découle de…","<b>découler de</b>."]},[
  C("Elige.","Se deriva de…",["découler de","découler à","découler sur"],0,"<b>découler de</b>."),
  C("Elige.","Se basa en…",["reposer sur","reposer de","reposer à"],0,"<b>reposer sur</b>."),
@@ -537,12 +599,14 @@ L("prog-verbes-logiques","Verbes de relation logique : découler de, relever de,
  S("Clasifica.","Dirección de la relación",["Causa → efecto","Efecto ← causa"],[["entraîner",0],["provoquer",0],["engendrer",0],["favoriser",0],["découler de",1],["résulter de",1],["provenir de",1],["tenir à",1]],"Orientación del verbo."),
  P("Encuentra la palabra incorrecta y corrígela.","Le succès de l'entreprise repose [de] la qualité de ses produits .","sur","<b>reposer sur</b>."),
  O("Ordena: «Esta crisis se deriva de malas decisiones».",["Cette crise","découle","de","mauvais choix"],"<i>Cette crise découle de mauvais choix.</i>"),
+ C("Elige.","Esto se deriva de…",["Cela découle de…","Cela découle à…","Cela découle sur…"],0,"<b>découler de</b>."),
+ F("Completa.","Le projet repose ___ la confiance.",["sur"],"<b>reposer sur</b>."),
  D("La réussite de cette réforme repose sur l'adhésion des citoyens.")]),
 L("prog-references-culturelles","Mobiliser des références culturelles dans l'essai","struct",{
  idea:"En el ensayo C1 los ejemplos culturales dan peso: citar un autor (Montesquieu, Camus, Simone de Beauvoir), un hecho histórico (la loi de 1905, Mai 68), un dato de actualidad o una obra (film, novela). Deben ser pertinentes, breves y bien integrados, no una lista de nombres.",
  para:"Para enriquecer tus argumentos con cultura francófona y general.",
  regla:["Integrar: <i>Comme le montrait déjà Tocqueville, …; À l'image de…</i>","Contextualizar en una frase: quién, cuándo, qué.","Relacionar con el argumento: <i>Cet exemple illustre bien…</i>","Variedad: historia, literatura, ciencia, actualidad, experiencia de tu país.","Evitar: inventar citas, fechas dudosas, listas sin análisis."],
- ej:[["Comme l'écrivait Simone de Beauvoir, « on ne naît pas femme, on le devient ».","Como escribía Simone de Beauvoir, «no se nace mujer, se llega a serlo»."],["La loi de 1905 illustre bien l'attachement français à la laïcité.","La ley de 1905 ilustra bien el apego francés a la laicidad."],["À l'image de la Finlande, plusieurs pays ont réformé leur école.","A imagen de Finlandia, varios países reformaron su escuela."]],
+ ej:[["Comme l'écrivait Simone de Beauvoir, « on ne naît pas femme, on le devient ».","Como escribía Simone de Beauvoir, «no se nace mujer, se llega a serlo»."],["La loi de 1905 illustre bien l'attachement français à la laïcité.","La ley de 1905 ilustra bien el apego francés a la laicidad."],["À l'image de la Finlande, plusieurs pays ont réformé leur école.","A imagen de Finlandia, varios países reformaron su escuela."],["Comme l'écrivait Victor Hugo, ouvrir une école, c'est fermer une prison.", "Como escribía Victor Hugo, abrir una escuela es cerrar una cárcel."],["La loi Veil de 1975 illustre ce combat.", "La ley Veil de 1975 ilustra esta lucha."],["Cet exemple montre que le débat n'est pas nouveau.", "Este ejemplo muestra que el debate no es nuevo."]],
  ojo:["Citar diez nombres sin explicar","Un ejemplo bien elegido y analizado","Calidad antes que cantidad."]},[
  C("Elige la integración correcta.","Referencia",["Comme le montrait déjà Tocqueville, la démocratie peut produire du conformisme.","Tocqueville. Hugo. Zola. Voilà.","Un auteur a dit un truc là-dessus."],0,"Integrada y relacionada."),
  C("¿Qué hacer tras el ejemplo?","Después del ejemplo",["relacionarlo con el argumento","pasar a otro sin comentar","repetirlo"],0,"<b>Analizarlo</b>."),
@@ -553,12 +617,14 @@ L("prog-references-culturelles","Mobiliser des références culturelles dans l'e
  S("Clasifica.","¿Buen uso de la referencia?",["Bueno","Malo"],[["un exemple précis et daté",0],["une citation exacte",0],["un lien clair avec l'argument",0],["une référence de ton pays expliquée",0],["une liste de noms",1],["une citation inventée",1],["une date approximative",1],["un exemple hors sujet",1]],"Pertinencia."),
  P("Encuentra la palabra incorrecta y corrígela.","Cet exemple [ilustre] parfaitement les limites du modèle .","illustre","Ortografía: <b>illustre</b> (dos l)."),
  O("Ordena: «Este ejemplo ilustra bien el problema».",["Cet exemple","illustre","bien","le problème"],"<i>Cet exemple illustre bien le problème.</i>"),
+ C("¿Qué hacer tras citar un ejemplo?","Análisis",["relacionarlo con el argumento","pasar al siguiente","repetirlo"],0,"<b>Analizar</b>."),
+ F("Completa.","Cet exemple ___ bien notre propos. (ilustra)",["illustre"],"<b>illustre</b>."),
  D("Comme le montrait déjà Montesquieu, tout pouvoir a besoin d'un contre-pouvoir.")]),
 L("prog-autoevaluation","S'autoévaluer avec les grilles du DALF","struct",{
  idea:"Las pruebas productivas del DALF se corrigen con grillas: respeto de la consigna, coherencia y cohesión, argumentación, riqueza léxica, corrección gramatical y registro. Usarlas para autoevaluarte te dice exactamente qué mejorar.",
  para:"Para entrenar con criterio y medir tu progreso.",
  regla:["<b>Consigne</b>: género, destinatario, extensión.","<b>Cohérence</b>: plan claro, conectores variados, transiciones.","<b>Argumentation</b>: tesis clara, argumentos + ejemplos, refutación.","<b>Lexique</b>: precisión, variedad, registro adaptado.","<b>Morphosyntaxe</b>: concordancias, tiempos, subjuntivo, estructuras complejas."],
- ej:[["J'ai respecté le nombre de mots.","He respetado el número de palabras."],["Mes connecteurs sont variés.","Mis conectores son variados."],["Je dois enrichir mon lexique.","Debo enriquecer mi léxico."]],
+ ej:[["J'ai respecté le nombre de mots.","He respetado el número de palabras."],["Mes connecteurs sont variés.","Mis conectores son variados."],["Je dois enrichir mon lexique.","Debo enriquecer mi léxico."],["J'ai varié mes connecteurs logiques.", "He variado mis conectores lógicos."],["Je dois vérifier l'accord des participes.", "Debo comprobar la concordancia de los participios."],["Mon plan répond bien à la problématique.", "Mi plan responde bien a la problemática."]],
  ojo:["Solo contar faltas","Evaluar consigna, coherencia, léxico y gramática","La nota tiene varios criterios."]},[
  C("¿Qué criterio evalúa el uso de conectores?","Criterio",["cohérence et cohésion","respect de la consigne","phonétique"],0,"<b>Cohérence</b>."),
  C("¿Qué incluye «respect de la consigne»?","Consigna",["género, destinatario, extensión","ortografía","acento"],0,"Lo pedido."),
@@ -569,6 +635,8 @@ L("prog-autoevaluation","S'autoévaluer avec les grilles du DALF","struct",{
  S("Clasifica.","¿Qué criterio?",["Cohérence","Morphosyntaxe"],[["connecteurs variés",0],["plan annoncé",0],["transitions",0],["paragraphes",0],["accord du participe",1],["subjonctif",1],["concordance des temps",1],["accord sujet-verbe",1]],"Criterios."),
  P("Encuentra la palabra incorrecta y corrígela.","Mes connecteurs sont [variées] et mes transitions sont claires .","variés","<i>Connecteurs</i> masc.: <b>variés</b>."),
  O("Ordena: «Debo enriquecer mi léxico».",["Je dois","enrichir","mon","lexique"],"<i>Je dois enrichir mon lexique.</i>"),
+ C("¿Qué criterio evalúa los conectores?","Criterio",["cohérence et cohésion","lexique","phonétique"],0,"<b>Cohérence</b>."),
+ F("Completa.","Je dois ___ mon vocabulaire. (enriquecer)",["enrichir"],"<b>enrichir</b>."),
  D("Après chaque essai, je relis ma copie avec la grille d'évaluation du DALF.")])
 ])
 ]);

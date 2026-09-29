@@ -82,6 +82,8 @@
       }); });
     });
     LESSONS.splice.apply(LESSONS, [pos, 0].concat(nuevas));
+    /* 2.9.1: extra generados (explicación y vocabulario) también para las lecciones nuevas */
+    try { if (window.PLXG && PLXG.extraLecciones) PLXG.extraLecciones(tid); } catch (e) {}
     pinta();
   };
 

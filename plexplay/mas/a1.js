@@ -7,7 +7,7 @@ L("a1-nombres-70-100","Les nombres de 70 à 100","voc",{
  para:"Para dar tu número de teléfono, un precio o una dirección necesitas los números altos. Son los que más confunden a los hispanohablantes porque se construyen con sumas y multiplicaciones.",
  regla:["<b>70 a 79</b>: <i>soixante</i> + 10 a 19 → <i>soixante-dix, soixante et onze, soixante-douze…</i>","<b>80</b>: <i>quatre-vingts</i> (con <b>s</b>). Pero <b>81 a 99</b> pierden la s: <i>quatre-vingt-un, quatre-vingt-deux…</i>","<b>90 a 99</b>: <i>quatre-vingt</i> + 10 a 19 → <i>quatre-vingt-dix, quatre-vingt-onze…</i>","<b>71</b> lleva <i>et</i> (<i>soixante et onze</i>), pero <b>81</b> y <b>91</b> no (<i>quatre-vingt-un, quatre-vingt-onze</i>)."],
  tabla:[["Número","En francés","Cómo se piensa"],[["70","soixante-dix","60 + 10"],["75","soixante-quinze","60 + 15"],["80","quatre-vingts","4 × 20"],["88","quatre-vingt-huit","4 × 20 + 8"],["90","quatre-vingt-dix","4 × 20 + 10"],["99","quatre-vingt-dix-neuf","4 × 20 + 19"]]],
- ej:[["Mon grand-père a quatre-vingt-deux ans.","Mi abuelo tiene 82 años."],["Ça coûte soixante-dix euros.","Cuesta 70 euros."],["J'habite au 91, rue Victor-Hugo.","Vivo en el número 91 de la calle Victor-Hugo."]],
+ ej:[["Mon grand-père a quatre-vingt-deux ans.","Mi abuelo tiene 82 años."],["Ça coûte soixante-dix euros.","Cuesta 70 euros."],["J'habite au 91, rue Victor-Hugo.","Vivo en el número 91 de la calle Victor-Hugo."],["Mon grand-père a quatre-vingt-deux ans.", "Mi abuelo tiene ochenta y dos años."],["Il y a soixante-quinze élèves.", "Hay setenta y cinco alumnos."],["Ça coûte quatre-vingt-dix euros.", "Cuesta noventa euros."]],
  ojo:["quatre-vingts-deux","quatre-vingt-deux","La s de quatre-vingts desaparece cuando sigue otro número."]},[
  C("Elige el número correcto.","soixante-dix-sept = ?",["77","67","87"],0,"<i>Soixante-dix-sept</i> = 60 + 17 = <b>77</b>."),
  C("Elige cómo se escribe.","93 = ?",["quatre-vingt-treize","quatre-vingts-treize","nonante-treize"],0,"93 = 4 × 20 + 13: <b>quatre-vingt-treize</b>, sin s porque sigue otro número. <i>Nonante</i> se usa en Bélgica y Suiza, no en Francia."),
@@ -18,13 +18,15 @@ L("a1-nombres-70-100","Les nombres de 70 à 100","voc",{
  A("Escucha y elige el número.","quatre-vingt-quatre","¿Qué número oyes?",["84","64","94"],0,"<i>Quatre-vingt-quatre</i> = 4 × 20 + 4 = <b>84</b>."),
  P("Encuentra la palabra incorrecta y corrígela.","Mon oncle a [quatre-vingts-cinq] ans .","quatre-vingt-cinq","Cuando sigue otro número, <i>quatre-vingt</i> pierde la s: <b>quatre-vingt-cinq</b>."),
  O("Ordena: «Mi número es el 06 72 81 90 15».",["Mon numéro,","c'est le","zéro six,","soixante-douze,","quatre-vingt-un,","quatre-vingt-dix,","quinze"],"En Francia el teléfono se dice de dos en dos cifras: <i>zéro six, soixante-douze, quatre-vingt-un…</i>"),
+ C("Elige el número.","92",["quatre-vingt-douze","soixante-douze","quatre-vingt-deux"],0,"80 + 12: <b>quatre-vingt-douze</b>."),
+ F("Escribe el número en letras.","71 = soixante et ___",["onze"],"<b>soixante et onze</b>."),
  D("J'ai quatre-vingt-dix euros dans mon sac.")]),
 L("a1-grands-nombres","Cent, mille : les grands nombres et les prix","voc",{
  idea:"Cent y mille funcionan casi como en español: deux cents, trois mille. Cent lleva s solo cuando es redondo (deux cents), mille nunca.",
  para:"Para hablar de precios, años, distancias o del número de estudiantes de tu universidad.",
  regla:["<b>Cent</b> = 100, sin <i>un</i> delante: <i>cent euros</i> (no «un cent»).","<b>Deux cents, trois cents…</b> llevan s si son redondos; si sigue un número, sin s: <i>deux cent cinquante</i>.","<b>Mille</b> es invariable: <i>deux mille, trois mille</i>. Y tampoco lleva <i>un</i>: <i>mille personnes</i>.","Los precios: <i>12,50 €</i> = <i>douze euros cinquante</i>."],
  tabla:[["Cifra","En francés"],[["100","cent"],["101","cent un"],["200","deux cents"],["250","deux cent cinquante"],["1 000","mille"],["2 026","deux mille vingt-six"]]],
- ej:[["Il y a trois cents étudiants dans la faculté.","Hay 300 estudiantes en la facultad."],["Le billet coûte mille deux cents pesos.","El billete cuesta 1.200 pesos."],["Nous sommes en deux mille vingt-six.","Estamos en 2026."]],
+ ej:[["Il y a trois cents étudiants dans la faculté.","Hay 300 estudiantes en la facultad."],["Le billet coûte mille deux cents pesos.","El billete cuesta 1.200 pesos."],["Nous sommes en deux mille vingt-six.","Estamos en 2026."],["Ce vélo coûte trois cents euros.", "Esta bici cuesta trescientos euros."],["La ville a cinq mille habitants.", "La ciudad tiene cinco mil habitantes."],["Il y a cent personnes dans la salle.", "Hay cien personas en la sala."]],
  ojo:["un cent euros","cent euros","Delante de cent y mille no se pone «un»."]},[
  C("Elige la forma correcta.","300 = ?",["trois cents","trois cent","trois centes"],0,"<i>Cent</i> lleva s cuando está multiplicado y es redondo: <b>trois cents</b>."),
  C("Elige la forma correcta.","2 000 = ?",["deux mille","deux milles","deux mils"],0,"<i>Mille</i> no cambia nunca: <b>deux mille</b>."),
@@ -35,12 +37,14 @@ L("a1-grands-nombres","Cent, mille : les grands nombres et les prix","voc",{
  A("Escucha y elige la cifra.","mille neuf cent quatre-vingt-dix-huit","¿Qué año oyes?",["1998","1988","1978"],0,"<i>Mille neuf cent quatre-vingt-dix-huit</i> = 1000 + 900 + 98 = <b>1998</b>."),
  P("Encuentra la palabra incorrecta y corrígela.","Il y a [milles] livres dans la bibliothèque .","mille","<i>Mille</i> es invariable: <b>mille</b> livres."),
  O("Ordena el precio: «Son 35 euros con 90».",["Ça fait","trente-cinq","euros","quatre-vingt-dix"],"En francés se dice primero el entero y luego los céntimos: <i>trente-cinq euros quatre-vingt-dix</i>."),
+ C("Elige el número.","1 500",["mille cinq cents","un mille cinq cents","mille cinquante"],0,"<b>mille cinq cents</b>."),
+ F("Escribe el número en letras.","200 = deux ___",["cents"],"<b>deux cents</b>."),
  D("Le vélo coûte deux cent soixante euros.")]),
 L("a1-date","Dire la date : le premier mai","voc",{
  idea:"La fecha se dice con el artículo le + número + mes: le 14 juillet. Para el día 1 se usa premier: le premier janvier.",
  para:"Para citas, cumpleaños, exámenes y formularios. En francés la fecha se ordena como en español (día, mes, año), pero con artículo.",
  regla:["<b>le + número + mes</b>: <i>le 3 mars, le 25 décembre</i>.","El día 1 es <b>le premier</b> (1er): <i>le premier mai</i>. Los demás, número normal: <i>le deux mai</i>.","Los meses y los días van en <b>minúscula</b>: <i>lundi 4 septembre</i>.","Para preguntar: <i>On est le combien ? / Quelle est la date aujourd'hui ?</i> Respuesta: <i>On est le 10 octobre.</i>","Mes o año: <i>en mai, en 2026</i>; pero <i>au mois de mai</i>."],
- ej:[["Mon anniversaire, c'est le premier avril.","Mi cumpleaños es el 1 de abril."],["L'examen est le mardi 12 juin.","El examen es el martes 12 de junio."],["Je pars en août.","Me voy en agosto."]],
+ ej:[["Mon anniversaire, c'est le premier avril.","Mi cumpleaños es el 1 de abril."],["L'examen est le mardi 12 juin.","El examen es el martes 12 de junio."],["Je pars en août.","Me voy en agosto."],["Aujourd'hui, c'est le trois mars.", "Hoy es tres de marzo."],["Mon anniversaire est le vingt juillet.", "Mi cumpleaños es el veinte de julio."],["Nous partons le premier août.", "Nos vamos el uno de agosto."]],
  ojo:["le un mai","le premier mai","El día 1 se dice «premier», los demás con el número normal."]},[
  C("Elige cómo se dice.","1 de enero",["le premier janvier","le un janvier","le primer janvier"],0,"El primer día del mes es <b>le premier</b>: <i>le premier janvier</i>."),
  C("Elige la forma correcta.","El 2 de febrero",["le deux février","le deuxième février","le second février"],0,"Solo el 1 usa ordinal; los demás, número cardinal: <b>le deux février</b>."),
@@ -51,13 +55,15 @@ L("a1-date","Dire la date : le premier mai","voc",{
  Mt("Une cada mes con su traducción.","Mes → español",[["janvier","enero"],["avril","abril"],["août","agosto"],["octobre","octubre"],["décembre","diciembre"]],"Los meses en francés van en minúscula: <i>janvier, avril, août…</i> <i>Août</i> se pronuncia [u] o [ut]."),
  P("Encuentra la palabra incorrecta y corrígela.","Mon anniversaire est le [un] juin .","premier","El día 1 es <b>premier</b>: <i>le premier juin</i>."),
  O("Ordena: «Hoy es lunes 3 de marzo».",["Aujourd'hui,","on est","lundi","3","mars"],"<i>Aujourd'hui, on est lundi 3 mars.</i> El día de la semana va delante del número y todo en minúscula."),
+ C("Elige.","El 1 de enero",["le premier janvier","le un janvier","le première janvier"],0,"El día 1: <b>le premier</b>."),
+ F("Completa.","Nous sommes le quatorze ___ , c'est la fête nationale.",["juillet"],"<b>juillet</b>."),
  D("Mon examen de français est le premier juin.")]),
 L("a1-heure-officielle","Quelle heure est-il ? L'heure officielle et courante","voc",{
  idea:"En la vida diaria se dice «il est trois heures et quart»; en horarios oficiales (trenes, clases) se cuenta hasta 24: «quinze heures quinze».",
  para:"Para quedar con alguien, entender un horario de tren o decir a qué hora empieza tu clase.",
  regla:["Se pregunta <i>Quelle heure est-il ?</i> y se responde <b>Il est</b> + hora + <b>heure(s)</b>.","Hora corriente: <i>et quart</i> (y cuarto), <i>et demie</i> (y media), <i>moins le quart</i> (menos cuarto), <i>midi / minuit</i>.","Hora oficial: de 0 a 24 y los minutos tal cual: <i>seize heures trente</i>.","Para decir a qué hora: <b>à</b> + hora: <i>Le cours commence à huit heures.</i>"],
  tabla:[["Hora","Corriente","Oficial"],[["8:15","huit heures et quart","huit heures quinze"],["12:30","midi et demi","douze heures trente"],["14:45","trois heures moins le quart","quatorze heures quarante-cinq"],["00:00","minuit","zéro heure"]]],
- ej:[["Il est sept heures et demie.","Son las siete y media."],["Le train part à dix-huit heures vingt.","El tren sale a las 18:20."],["On se voit à midi ?","¿Nos vemos a mediodía?"]],
+ ej:[["Il est sept heures et demie.","Son las siete y media."],["Le train part à dix-huit heures vingt.","El tren sale a las 18:20."],["On se voit à midi ?","¿Nos vemos a mediodía?"],["Il est huit heures et quart.", "Son las ocho y cuarto."],["Le train part à dix-huit heures.", "El tren sale a las dieciocho horas."],["Il est midi et demi.", "Son las doce y media."]],
  ojo:["C'est trois heures.","Il est trois heures.","La hora se dice con «il est», nunca con «c'est»."]},[
  C("Elige la hora corriente.","10:15",["dix heures et quart","dix heures et demie","dix heures moins le quart"],0,"<i>Et quart</i> = y cuarto: <b>dix heures et quart</b>."),
  C("Elige la hora corriente.","4:45",["cinq heures moins le quart","quatre heures moins le quart","quatre heures et quart"],0,"4:45 = faltan 15 para las 5: <b>cinq heures moins le quart</b>."),
@@ -68,6 +74,8 @@ L("a1-heure-officielle","Quelle heure est-il ? L'heure officielle et courante","
  A("Escucha y elige la hora.","Il est onze heures vingt.","¿Qué hora es?",["11:20","12:20","11:02"],0,"<i>Onze heures vingt</i> = <b>11:20</b>."),
  P("Encuentra la palabra incorrecta y corrígela.","Excusez-moi , [c'est] quelle heure ?","il","La hora se pregunta con <i>il est</i>: <b>Il est quelle heure ?</b> (o <i>Quelle heure est-il ?</i>)."),
  O("Ordena: «La película empieza a las ocho y media».",["Le film","commence","à","huit heures","et demie"],"<i>Le film commence à huit heures et demie.</i> La preposición <i>à</i> introduce la hora."),
+ C("Elige.","Son las 3:45.",["Il est quatre heures moins le quart.","Il est trois heures moins le quart.","Il est quatre heures et quart."],0,"<b>quatre heures moins le quart</b>."),
+ F("Completa.","Il est midi et ___ . (media)",["demi"],"<b>midi et demi</b>."),
  D("Il est midi et demi, on va manger ?")])
 ]),
 U("Tu rutina con los verbos",[
@@ -76,7 +84,7 @@ L("a1-routine","Ma journée : se lever, se préparer, se coucher","conj",{
  para:"Para contar un día normal: a qué hora te levantas, qué haces por la mañana y cuándo te acuestas.",
  regla:["Los verbos pronominales llevan un pronombre que concuerda con el sujeto: <i>je <b>me</b>, tu <b>te</b>, il/elle <b>se</b>, nous <b>nous</b>, vous <b>vous</b>, ils <b>se</b></i>.","Delante de vocal, <i>me, te, se</i> se apostrofan: <i>je m'habille, il s'appelle</i>.","<i>Se lever</i> cambia la e: <i>je me l<b>è</b>ve, nous nous levons</i>.","Negación: el <i>ne</i> va antes del pronombre: <i>je <b>ne</b> me lève <b>pas</b> tôt</i>."],
  tabla:[["Persona","se lever","s'habiller"],[["je","me lève","m'habille"],["tu","te lèves","t'habilles"],["il / elle","se lève","s'habille"],["nous","nous levons","nous habillons"],["vous","vous levez","vous habillez"],["ils / elles","se lèvent","s'habillent"]]],
- ej:[["Je me réveille à six heures.","Me despierto a las seis."],["Tu te douches le matin ou le soir ?","¿Te duchas por la mañana o por la noche?"],["Le dimanche, on ne se lève pas tôt.","Los domingos no nos levantamos temprano."]],
+ ej:[["Je me réveille à six heures.","Me despierto a las seis."],["Tu te douches le matin ou le soir ?","¿Te duchas por la mañana o por la noche?"],["Le dimanche, on ne se lève pas tôt.","Los domingos no nos levantamos temprano."],["Je me lève à sept heures.", "Me levanto a las siete."],["Elle se douche le matin.", "Ella se ducha por la mañana."],["Nous nous couchons tard le samedi.", "Nos acostamos tarde los sábados."]],
  ojo:["Je lève à sept heures.","Je me lève à sept heures.","Sin el pronombre, «lever» significa levantar algo."]},[
  C("Elige el pronombre.","Nous ___ couchons à onze heures.",["nous","se","vous"],0,"Con <i>nous</i> el pronombre es <b>nous</b>: <i>nous nous couchons</i>."),
  C("Elige la forma correcta.","Elle ___ à sept heures.",["se lève","se leve","lève"],0,"<i>Se lever</i> lleva acento grave en las formas cortas: <b>elle se lève</b>. Sin <i>se</i> significaría «levanta (algo)»."),
@@ -87,12 +95,14 @@ L("a1-routine","Ma journée : se lever, se préparer, se coucher","conj",{
  Mt("Une cada verbo con su significado.","Verbo → español",[["se réveiller","despertarse"],["se lever","levantarse"],["se laver","lavarse"],["s'habiller","vestirse"],["se coucher","acostarse"]],"Los cinco verbos básicos de la rutina son pronominales, como en español."),
  P("Encuentra la palabra incorrecta y corrígela.","Le dimanche , nous [se] levons à dix heures .","nous","Con <i>nous</i> el pronombre también es <b>nous</b>: <i>nous nous levons</i>."),
  O("Ordena: «Me visto y tomo el desayuno».",["Je","m'habille","et","je prends","le petit-déjeuner"],"<i>Je m'habille et je prends le petit-déjeuner.</i> En francés se repite el sujeto <i>je</i>."),
+ C("Elige.","Me ducho.",["Je me douche.","Je douche.","Je me douches."],0,"Pronominal: <b>je me douche</b>."),
+ F("Completa.","Tu te ___ à quelle heure ? (levantarse)",["lèves"],"<b>tu te lèves</b>."),
  D("Le matin, je me lève à six heures et demie.")]),
 L("a1-frequence","Toujours, souvent, parfois, jamais","gram",{
  idea:"Los adverbios de frecuencia van normalmente después del verbo conjugado: je mange souvent au restaurant. Jamais funciona con ne: je ne fume jamais.",
  para:"Para decir con qué frecuencia haces algo: siempre, a menudo, a veces, nunca.",
  regla:["Escala: <i>toujours</i> (siempre) > <i>souvent</i> (a menudo) > <i>parfois / quelquefois</i> (a veces) > <i>rarement</i> (rara vez) > <i>ne… jamais</i> (nunca).","El adverbio va <b>después del verbo</b>: <i>Il arrive <b>toujours</b> en retard.</i>","<b>Jamais</b> necesita <i>ne</i> antes del verbo: <i>Je <b>ne</b> bois <b>jamais</b> de café.</i>","Expresiones: <i>tous les jours</i> (todos los días), <i>une fois par semaine</i> (una vez por semana), <i>le lundi</i> (los lunes)."],
- ej:[["Je vais souvent à la bibliothèque.","Voy a menudo a la biblioteca."],["Elle ne regarde jamais la télé.","Ella nunca ve la tele."],["On fait du sport deux fois par semaine.","Hacemos deporte dos veces por semana."]],
+ ej:[["Je vais souvent à la bibliothèque.","Voy a menudo a la biblioteca."],["Elle ne regarde jamais la télé.","Ella nunca ve la tele."],["On fait du sport deux fois par semaine.","Hacemos deporte dos veces por semana."],["Je vais souvent au cinéma.", "Voy a menudo al cine."],["Il ne mange jamais de viande.", "Nunca come carne."],["Parfois, nous dînons au restaurant.", "A veces cenamos en el restaurante."]],
  ojo:["Je jamais mange de viande.","Je ne mange jamais de viande.","«Jamais» va después del verbo y con «ne» delante."]},[
  C("Elige el lugar del adverbio.","¿Cuál es correcta?",["Il travaille souvent le soir.","Il souvent travaille le soir.","Souvent il travaille le soir pas."],0,"El adverbio de frecuencia va después del verbo conjugado: <b>il travaille souvent</b>."),
  C("Elige la negación.","Nunca bebo café.",["Je ne bois jamais de café.","Je bois jamais du café.","Je ne jamais bois de café."],0,"<b>Ne</b> antes del verbo y <b>jamais</b> después. Tras la negación, <i>du</i> pasa a <i>de</i>."),
@@ -103,13 +113,15 @@ L("a1-frequence","Toujours, souvent, parfois, jamais","gram",{
  Mt("Une cada expresión con su significado.","Francés → español",[["parfois","a veces"],["souvent","a menudo"],["tous les jours","todos los días"],["le week-end","los fines de semana"],["deux fois par semaine","dos veces por semana"]],"<i>Parfois</i> y <i>quelquefois</i> significan lo mismo: a veces."),
  P("Encuentra la palabra incorrecta y corrígela.","Il ne travaille [toujours] le dimanche .","jamais","Con <i>ne</i> para decir «nunca» se usa <b>jamais</b>: <i>Il ne travaille jamais le dimanche.</i>"),
  O("Ordena: «A veces como en la cafetería».",["Je","mange","parfois","à la cafétéria"],"<i>Je mange parfois à la cafétéria.</i> <i>Parfois</i> también puede ir al principio: <i>Parfois, je mange…</i>"),
+ C("Elige.","Nunca bebo café.",["Je ne bois jamais de café.","Je bois jamais café.","Je ne jamais bois café."],0,"<b>ne… jamais</b>."),
+ F("Completa.","Je vais ___ à la piscine, deux fois par semaine. (a menudo)",["souvent"],"<b>souvent</b>."),
  D("Je fais du sport trois fois par semaine.")]),
 L("a1-verbes-ir","Les verbes en -ir : finir, choisir, réussir","conj",{
  idea:"Los verbos regulares en -ir (finir, choisir) añaden -iss- en plural: nous finissons, vous finissez, ils finissent.",
  para:"Con estos verbos dices cuándo terminas, qué eliges o si apruebas: <i>je finis à cinq heures, je choisis ce cours, je réussis l'examen</i>.",
  regla:["Singular: raíz + <b>-is, -is, -it</b>: <i>je finis, tu finis, il finit</i> (las tres suenan igual).","Plural: raíz + <b>-issons, -issez, -issent</b>: <i>nous finissons, vous finissez, ils finissent</i>.","Así se conjugan: <i>choisir, réussir, grandir, grossir, maigrir, remplir, obéir, réfléchir</i>.","Ojo: <i>partir, sortir, dormir</i> también terminan en -ir, pero no llevan -iss- (son de otro grupo)."],
  tabla:[["Persona","finir","choisir"],[["je","finis","choisis"],["tu","finis","choisis"],["il / elle","finit","choisit"],["nous","finissons","choisissons"],["vous","finissez","choisissez"],["ils / elles","finissent","choisissent"]]],
- ej:[["Je finis mes devoirs avant le dîner.","Termino mis tareas antes de la cena."],["Vous choisissez quel menu ?","¿Qué menú eligen?"],["Ils réussissent toujours leurs examens.","Siempre aprueban sus exámenes."]],
+ ej:[["Je finis mes devoirs avant le dîner.","Termino mis tareas antes de la cena."],["Vous choisissez quel menu ?","¿Qué menú eligen?"],["Ils réussissent toujours leurs examens.","Siempre aprueban sus exámenes."],["Le film finit à dix heures.", "La película termina a las diez."],["Je choisis le menu du jour.", "Elijo el menú del día."],["Nous réussissons l'examen.", "Aprobamos el examen."]],
  ojo:["nous finons","nous finissons","En plural aparece -iss-."]},[
  C("Elige la forma correcta.","Nous ___ le cours à midi. (finir)",["finissons","finons","finisons"],0,"Plural de <i>finir</i>: <b>nous finissons</b>, con doble s."),
  C("Elige la forma correcta.","Elle ___ une robe rouge. (choisir)",["choisit","choisis","choisisse"],0,"Tercera persona singular: <b>elle choisit</b> (termina en t)."),
@@ -120,13 +132,15 @@ L("a1-verbes-ir","Les verbes en -ir : finir, choisir, réussir","conj",{
  Mt("Une cada verbo con su significado.","Verbo → español",[["finir","terminar"],["choisir","elegir"],["réussir","aprobar, lograr"],["grandir","crecer"],["réfléchir","reflexionar"]],"Todos se conjugan con -iss- en plural."),
  P("Encuentra la palabra incorrecta y corrígela.","Les enfants [grandent] très vite .","grandissent","<i>Grandir</i> es como <i>finir</i>: <b>ils grandissent</b>."),
  O("Ordena: «Elegimos el curso de francés».",["Nous","choisissons","le cours","de français"],"<i>Nous choisissons le cours de français.</i>"),
+ C("Elige.","Nosotros terminamos.",["Nous finissons.","Nous finons.","Nous finirons ahora."],0,"<b>nous finissons</b>."),
+ F("Completa.","Ils ___ un dessert. (choisir)",["choisissent"],"<b>choisissent</b>."),
  D("Nous finissons le travail à dix-sept heures.")]),
 L("a1-verbes-re","Les verbes en -re : prendre, attendre, comprendre","conj",{
  idea:"Attendre, vendre, répondre pierden la -re y añaden -s, -s, nada, -ons, -ez, -ent. Prendre es irregular en plural: nous prenons, ils prennent.",
  para:"Para decir que tomas el autobús, que esperas a alguien, que respondes o que entiendes.",
  regla:["Modelo <i>attendre</i>: <i>j'attends, tu attends, il attend</i> (sin terminación), <i>nous attendons, vous attendez, ils attendent</i>.","Igual: <i>vendre, répondre, entendre, descendre, perdre</i>.","<i>Prendre</i>: <i>je prends, tu prends, il prend, nous <b>prenons</b>, vous <b>prenez</b>, ils <b>prennent</b></i> (doble n).","Como <i>prendre</i>: <i>apprendre</i> (aprender) y <i>comprendre</i> (entender)."],
  tabla:[["Persona","attendre","prendre"],[["je","attends","prends"],["tu","attends","prends"],["il / elle","attend","prend"],["nous","attendons","prenons"],["vous","attendez","prenez"],["ils / elles","attendent","prennent"]]],
- ej:[["Je prends le bus tous les matins.","Tomo el bus todas las mañanas."],["Nous attendons le professeur.","Esperamos al profesor."],["Tu comprends la question ?","¿Entiendes la pregunta?"]],
+ ej:[["Je prends le bus tous les matins.","Tomo el bus todas las mañanas."],["Nous attendons le professeur.","Esperamos al profesor."],["Tu comprends la question ?","¿Entiendes la pregunta?"],["J'attends le bus.", "Espero el autobús."],["Tu comprends la question ?", "¿Entiendes la pregunta?"],["Ils prennent le métro.", "Toman el metro."]],
  ojo:["ils prendent","ils prennent","Prendre, apprendre y comprendre llevan doble n en «ils»."]},[
  C("Elige la forma correcta.","Ils ___ le métro. (prendre)",["prennent","prendent","prenent"],0,"<i>Prendre</i> es irregular: <b>ils prennent</b>, con doble n."),
  C("Elige la forma correcta.","Il ___ sa sœur devant l'école. (attendre)",["attend","attends","attendt"],0,"En tercera persona singular, <i>attendre</i> no añade nada: <b>il attend</b>."),
@@ -137,6 +151,8 @@ L("a1-verbes-re","Les verbes en -re : prendre, attendre, comprendre","conj",{
  Mt("Une cada verbo con su significado.","Verbo → español",[["attendre","esperar"],["vendre","vender"],["perdre","perder"],["entendre","oír"],["descendre","bajar"]],"Ojo: <i>entendre</i> es «oír», no «entender» (que es <i>comprendre</i>)."),
  P("Encuentra la palabra incorrecta y corrígela.","Est-ce que tu [entends] le texte en français ? Oui , je le comprends .","comprends","Para «entender» se usa <i>comprendre</i>: <b>tu comprends</b>. <i>Entendre</i> es «oír»."),
  O("Ordena: «Esperamos el tren en la estación».",["Nous","attendons","le train","à la gare"],"<i>Nous attendons le train à la gare.</i> Ojo: <i>attendre</i> no lleva preposición (esperar <b>a</b> alguien = <i>attendre quelqu'un</i>)."),
+ C("Elige.","Ellos toman el tren.",["Ils prennent le train.","Ils prendent le train.","Ils prenent le train."],0,"<b>prennent</b>."),
+ F("Completa.","Vous ___ le français ? (comprendre)",["comprenez"],"<b>comprenez</b>."),
  D("Mes amis prennent le train pour Paris.")])
 ]),
 U("Personas y oficios",[
@@ -145,7 +161,7 @@ L("a1-pays-nationalites","Pays et nationalités : je viens du Mexique","prep",{
  para:"Para presentarte, hablar de viajes y de compañeros de intercambio.",
  regla:["Países femeninos (casi todos los terminados en -e): <b>en</b> / <b>de</b>: <i>en Colombie, de Colombie</i>.","Países masculinos: <b>au</b> / <b>du</b>: <i>au Brésil, du Pérou</i>.","Países en plural: <b>aux</b> / <b>des</b>: <i>aux États-Unis, des Pays-Bas</i>.","Ciudades: <b>à</b> / <b>de</b>: <i>à Bogotá, de Lyon</i>.","La nacionalidad va en minúscula y concuerda: <i>il est mexicain, elle est mexicaine</i>."],
  tabla:[["País","Vivir en…","Venir de…"],[["la France","en France","de France"],["le Mexique","au Mexique","du Mexique"],["les États-Unis","aux États-Unis","des États-Unis"],["l'Espagne","en Espagne","d'Espagne"]]],
- ej:[["Je viens de Colombie, j'habite à Cúcuta.","Vengo de Colombia, vivo en Cúcuta."],["Mon correspondant vit au Canada.","Mi amigo por correspondencia vive en Canadá."],["Elle est brésilienne.","Ella es brasileña."]],
+ ej:[["Je viens de Colombie, j'habite à Cúcuta.","Vengo de Colombia, vivo en Cúcuta."],["Mon correspondant vit au Canada.","Mi amigo por correspondencia vive en Canadá."],["Elle est brésilienne.","Ella es brasileña."],["Elle est colombienne.", "Ella es colombiana."],["Nous venons du Pérou.", "Venimos de Perú."],["Il habite au Canada.", "Vive en Canadá."]],
  ojo:["Je viens de le Pérou.","Je viens du Pérou.","de + le = du."]},[
  C("Elige la preposición.","J'habite ___ Brésil.",["au","en","à"],0,"<i>Le Brésil</i> es masculino: <b>au</b> Brésil."),
  C("Elige la preposición.","Nous allons ___ Italie cet été.",["en","au","à la"],0,"<i>L'Italie</i> es femenino: <b>en</b> Italie."),
@@ -156,13 +172,15 @@ L("a1-pays-nationalites","Pays et nationalités : je viens du Mexique","prep",{
  Mt("Une cada país con su nacionalidad.","País → nacionalidad",[["Allemagne","allemand"],["Angleterre","anglais"],["Chine","chinois"],["Mexique","mexicain"],["Belgique","belge"]],"Las nacionalidades van en minúscula cuando son adjetivos: <i>il est allemand</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Mon cousin travaille [en] Canada .","au","<i>Le Canada</i> es masculino: <b>au</b> Canada."),
  O("Ordena: «Soy peruana y vivo en Francia».",["Je suis","péruvienne","et","j'habite","en France"],"<i>Je suis péruvienne et j'habite en France.</i>"),
+ C("Elige.","Vive en Estados Unidos.",["Il habite aux États-Unis.","Il habite en États-Unis.","Il habite à États-Unis."],0,"Plural: <b>aux</b>."),
+ F("Completa.","Elle est ___ , elle vient d'Espagne.",["espagnole"],"<b>espagnole</b>."),
  D("Ma meilleure amie vient du Chili.")]),
 L("a1-professions","Les professions au masculin et au féminin","accord",{
  idea:"Para decir tu profesión no se usa artículo: je suis étudiant, elle est médecin. El femenino se forma como los adjetivos: -eur → -euse, -teur → -trice, -ien → -ienne.",
  para:"Para presentarte, hablar de tu familia o de tus planes profesionales.",
  regla:["<b>Sin artículo</b> después de <i>être</i>: <i>Je suis professeur.</i> (no «un professeur»). Pero con <i>c'est</i>: <i>C'est un bon professeur.</i>","Femeninos: <i>étudiant → étudiante</i>, <i>serveur → serveuse</i>, <i>acteur → actrice</i>, <i>informaticien → informaticienne</i>, <i>infirmier → infirmière</i>.","Algunos no cambian: <i>journaliste, secrétaire, architecte, médecin</i>.","Hoy también se usan formas como <i>une professeure, une auteure / autrice</i>."],
  tabla:[["Masculino","Femenino","Terminación"],[["vendeur","vendeuse","-eur → -euse"],["directeur","directrice","-teur → -trice"],["pharmacien","pharmacienne","-ien → -ienne"],["boulanger","boulangère","-er → -ère"],["journaliste","journaliste","igual"]]],
- ej:[["Ma mère est infirmière.","Mi madre es enfermera."],["Je voudrais être traducteur.","Quisiera ser traductor."],["C'est une avocate très connue.","Es una abogada muy conocida."]],
+ ej:[["Ma mère est infirmière.","Mi madre es enfermera."],["Je voudrais être traducteur.","Quisiera ser traductor."],["C'est une avocate très connue.","Es una abogada muy conocida."],["Ma mère est infirmière.", "Mi madre es enfermera."],["Il est boulanger.", "Es panadero."],["Elle travaille comme avocate.", "Trabaja como abogada."]],
  ojo:["Elle est une médecin.","Elle est médecin.","Después de être, la profesión va sin artículo."]},[
  C("Elige la forma correcta.","Mi hermana es actriz.",["Ma sœur est actrice.","Ma sœur est une actrice.","Ma sœur est acteuse."],0,"Sin artículo tras <i>être</i> y femenino en <i>-trice</i>: <b>elle est actrice</b>."),
  C("Elige el femenino.","un serveur → une ___",["serveuse","servatrice","serveure"],0,"<i>-eur → -euse</i>: <b>serveuse</b>."),
@@ -173,12 +191,14 @@ L("a1-professions","Les professions au masculin et au féminin","accord",{
  Mt("Une cada profesión con su traducción.","Francés → español",[["avocat","abogado"],["ingénieur","ingeniero"],["boulanger","panadero"],["agriculteur","agricultor"],["informaticien","informático"]],"Recuerda: sin artículo tras <i>être</i>: <i>il est ingénieur</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Ma tante est [vendeur] dans un magasin de vêtements .","vendeuse","Femenino de <i>vendeur</i>: <b>vendeuse</b>."),
  O("Ordena: «Mi madre es profesora de inglés».",["Ma mère","est","professeure","d'anglais"],"<i>Ma mère est professeure d'anglais.</i> Sin artículo delante de la profesión."),
+ C("Elige.","Ella es actriz.",["Elle est actrice.","Elle est une actrice célèbre de.","Elle est acteur."],0,"<b>actrice</b>."),
+ F("Completa (femenino).","un vendeur → une ___",["vendeuse"],"<b>vendeuse</b>."),
  D("Plus tard, je voudrais être traductrice.")]),
 L("a1-physique","Décrire le physique : grand, brun, les yeux bleus","voc",{
  idea:"Se describe a alguien con être + adjetivo (il est grand) y con avoir + partes del cuerpo (il a les yeux verts, elle a les cheveux longs).",
  para:"Para describir a un amigo, a un familiar o a un personaje.",
  regla:["<b>Être</b> + adjetivo: <i>Elle est petite, mince et brune.</i>","<b>Avoir</b> + <i>les yeux / les cheveux</i> + adjetivo: <i>Il a les yeux marron et les cheveux courts.</i>","Los adjetivos concuerdan: <i>grand → grande</i>, <i>blond → blonde</i>, <i>roux → rousse</i>.","<i>Marron</i> y <i>orange</i> no cambian: <i>des yeux marron</i>."],
- ej:[["Mon frère est grand et il a les cheveux noirs.","Mi hermano es alto y tiene el pelo negro."],["Elle a les yeux verts.","Tiene los ojos verdes."],["Il porte des lunettes et une barbe.","Lleva gafas y barba."]],
+ ej:[["Mon frère est grand et il a les cheveux noirs.","Mi hermano es alto y tiene el pelo negro."],["Elle a les yeux verts.","Tiene los ojos verdes."],["Il porte des lunettes et une barbe.","Lleva gafas y barba."],["Il est grand et mince.", "Es alto y delgado."],["Elle a les cheveux courts.", "Tiene el pelo corto."],["Mon frère a les yeux verts.", "Mi hermano tiene los ojos verdes."]],
  ojo:["Il est les yeux bleus.","Il a les yeux bleus.","Ojos y pelo van con «avoir»."]},[
  C("Elige el verbo.","Elle ___ les cheveux longs.",["a","est","fait"],0,"Con partes del cuerpo se usa <b>avoir</b>: <i>elle a les cheveux longs</i>."),
  C("Elige el adjetivo.","Ma cousine est ___. (alta)",["grande","grand","grands"],0,"Femenino singular: <b>grande</b>."),
@@ -189,12 +209,14 @@ L("a1-physique","Décrire le physique : grand, brun, les yeux bleus","voc",{
  Mt("Une cada palabra con su significado.","Francés → español",[["mince","delgado"],["gros","gordo"],["frisé","rizado"],["raide","liso"],["chauve","calvo"]],"<i>Il a les cheveux raides</i> = tiene el pelo liso."),
  P("Encuentra la palabra incorrecta y corrígela.","Ma sœur [est] les cheveux blonds .","a","Con el pelo se usa <i>avoir</i>: <b>elle a</b> les cheveux blonds."),
  O("Ordena: «Es bajo y tiene los ojos negros».",["Il est","petit","et","il a","les yeux noirs"],"<i>Il est petit et il a les yeux noirs.</i>"),
+ C("Elige.","Tiene los ojos azules.",["Il a les yeux bleus.","Il est les yeux bleus.","Il a des yeux bleu."],0,"<b>avoir les yeux</b>."),
+ F("Completa.","Elle a les cheveux ___ . (rubios)",["blonds"],"<b>blonds</b>."),
  D("Mon meilleur ami est grand et il a les cheveux courts.")]),
 L("a1-caractere","Le caractère : sympa, timide, bavard","voc",{
  idea:"Para el carácter se usa être + adjetivo, y muchos adjetivos cambian en femenino: sérieux → sérieuse, gentil → gentille, travailleur → travailleuse.",
  para:"Para hablar de cómo es la gente que conoces: tus compañeros, tus profesores, tu familia.",
  regla:["<i>-eux → -euse</i>: <i>paresseux → paresseuse</i>.","<i>-if → -ive</i>: <i>sportif → sportive</i>.","<i>-il → -ille</i>: <i>gentil → gentille</i>.","Los que terminan en -e no cambian: <i>sympathique, timide, calme, drôle</i>.","Para matizar: <i>très, assez, un peu, trop</i>: <i>il est un peu timide</i>."],
- ej:[["Ma colocataire est très gentille.","Mi compañera de piso es muy amable."],["Il est drôle mais un peu paresseux.","Es gracioso pero un poco perezoso."],["Mes professeurs sont patients.","Mis profesores son pacientes."]],
+ ej:[["Ma colocataire est très gentille.","Mi compañera de piso es muy amable."],["Il est drôle mais un peu paresseux.","Es gracioso pero un poco perezoso."],["Mes professeurs sont patients.","Mis profesores son pacientes."],["Mon ami est très drôle.", "Mi amigo es muy gracioso."],["Elle est un peu timide.", "Es un poco tímida."],["Ils sont gentils et calmes.", "Son amables y tranquilos."]],
  ojo:["Elle est très gentil.","Elle est très gentille.","El adjetivo concuerda con la persona."]},[
  C("Elige el femenino.","Il est sérieux ; elle est ___.",["sérieuse","sérieux","sérieuxe"],0,"<i>-eux → -euse</i>: <b>sérieuse</b>."),
  C("Elige el femenino.","Il est sportif ; elle est ___.",["sportive","sportife","sportif"],0,"<i>-if → -ive</i>: <b>sportive</b>."),
@@ -205,12 +227,14 @@ L("a1-caractere","Le caractère : sympa, timide, bavard","voc",{
  Mt("Une cada adjetivo con su significado.","Francés → español",[["bavard","hablador"],["drôle","gracioso"],["timide","tímido"],["têtu","terco"],["curieux","curioso"]],"<i>Bavard</i> viene de <i>bavarder</i>, charlar."),
  P("Encuentra la palabra incorrecta y corrígela.","Mes deux sœurs sont très [curieux] .","curieuses","Femenino plural: <b>curieuses</b>."),
  O("Ordena: «Mi profesor es paciente y un poco serio».",["Mon professeur","est","patient","et","un peu","sérieux"],"<i>Mon professeur est patient et un peu sérieux.</i>"),
+ C("Elige.","Ella es habladora.",["Elle est bavarde.","Elle est bavard.","Elle a bavarde."],0,"Femenino: <b>bavarde</b>."),
+ F("Completa (femenino).","Il est gentil ; elle est ___ .",["gentille"],"<b>gentille</b>."),
  D("Ma meilleure amie est drôle et très généreuse.")]),
 L("a1-cest-il-est","C'est ou il est ? Il y a ?","gram",{
  idea:"C'est va con un nombre con artículo (c'est un ami) o con un nombre propio; il/elle est va con un adjetivo o una profesión sin artículo (il est grand, elle est médecin). Il y a presenta lo que existe en un lugar.",
  para:"Para presentar personas y cosas y describir lugares sin mezclar estructuras.",
  regla:["<b>C'est</b> + artículo + nombre: <i>C'est un livre. C'est ma sœur.</i> Y con nombres propios: <i>C'est Marie.</i>","<b>Il / Elle est</b> + adjetivo o profesión: <i>Il est intéressant. Elle est ingénieure.</i>","Plural: <b>ce sont</b> / <b>ils sont</b>: <i>Ce sont mes amis. Ils sont sympas.</i>","<b>Il y a</b> = hay: <i>Il y a une pharmacie dans la rue.</i> Negación: <i>Il n'y a pas de pharmacie.</i>"],
- ej:[["C'est Paul. Il est étudiant.","Es Paul. Es estudiante."],["C'est un film génial.","Es una película genial."],["Il y a trois chambres dans l'appartement.","Hay tres habitaciones en el apartamento."]],
+ ej:[["C'est Paul. Il est étudiant.","Es Paul. Es estudiante."],["C'est un film génial.","Es una película genial."],["Il y a trois chambres dans l'appartement.","Hay tres habitaciones en el apartamento."],["C'est mon voisin, il est italien.", "Es mi vecino, es italiano."],["Il y a un parc près d'ici.", "Hay un parque cerca de aquí."],["C'est une belle maison.", "Es una casa bonita."]],
  ojo:["Il est un bon ami.","C'est un bon ami.","Con artículo + nombre se usa c'est."]},[
  C("Elige.","Voici Léa. ___ ma voisine.",["C'est","Elle est","Il y a"],0,"Artículo/posesivo + nombre: <b>c'est</b> ma voisine."),
  C("Elige.","Regarde ce tableau : ___ magnifique !",["il est","il y a","ce sont"],0,"Adjetivo solo: <b>il est</b> magnifique. (También se oye <i>c'est magnifique</i> para una opinión general.)"),
@@ -221,6 +245,8 @@ L("a1-cest-il-est","C'est ou il est ? Il y a ?","gram",{
  Mt("Une cada principio con su final.","Frase",[["C'est","un bon restaurant."],["Il est","ouvert le dimanche."],["Il y a","une terrasse."],["Ce sont","des plats typiques."]],"Cada estructura pide un tipo de palabra detrás."),
  P("Encuentra la palabra incorrecta y corrígela.","Il n'y a pas [du] pain dans la cuisine .","de","Tras <i>il n'y a pas</i>, <i>du</i> pasa a <b>de</b>: <i>il n'y a pas de pain</i>."),
  O("Ordena: «Hay un parque cerca de mi casa».",["Il y a","un parc","près de","chez moi"],"<i>Il y a un parc près de chez moi.</i>"),
+ C("Elige.","Es profesor.",["Il est professeur.","C'est professeur.","Il est un professeur."],0,"Profesión: <b>il est</b>."),
+ F("Completa.","___ une belle journée ! (c'est / il est)",["C'est"],"<b>C'est</b> + artículo."),
  D("C'est ma cousine, elle est infirmière à Lyon.")])
 ])
 ]);
@@ -232,7 +258,7 @@ L("a1-transports","Les transports : en bus, à pied, à vélo","prep",{
  para:"Para decir cómo vas a la universidad, al trabajo o de viaje.",
  regla:["<b>En</b> + transporte cerrado: <i>en bus, en métro, en voiture, en train, en avion, en taxi</i>.","<b>À</b> + transporte abierto o sin vehículo: <i>à pied, à vélo, à moto, à cheval</i>.","Verbo <i>prendre</i> + artículo: <i>je prends le bus, elle prend le train</i>.","Pregunta: <i>Comment tu vas à la fac ? — J'y vais en bus.</i>"],
  tabla:[["en","à"],[["en bus","à pied"],["en voiture","à vélo"],["en métro","à moto"],["en avion","à trottinette"]]],
- ej:[["Je vais à l'université à pied.","Voy a la universidad a pie."],["Ils partent en vacances en avion.","Se van de vacaciones en avión."],["Tu prends le métro ou le bus ?","¿Tomas el metro o el bus?"]],
+ ej:[["Je vais à l'université à pied.","Voy a la universidad a pie."],["Ils partent en vacances en avion.","Se van de vacaciones en avión."],["Tu prends le métro ou le bus ?","¿Tomas el metro o el bus?"],["Je vais au travail en métro.", "Voy al trabajo en metro."],["Elle rentre à pied.", "Ella vuelve a pie."],["Nous voyageons en train.", "Viajamos en tren."]],
  ojo:["Je vais en pied.","Je vais à pied.","A pie siempre es «à pied»."]},[
  C("Elige la preposición.","Je vais au travail ___ vélo.",["à","en","par"],0,"Bicicleta (vas encima): <b>à</b> vélo."),
  C("Elige la preposición.","Nous allons à Paris ___ train.",["en","à","au"],0,"Tren (vas dentro): <b>en</b> train."),
@@ -243,12 +269,14 @@ L("a1-transports","Les transports : en bus, à pied, à vélo","prep",{
  Mt("Une cada palabra con su significado.","Francés → español",[["la gare","la estación de tren"],["l'arrêt de bus","la parada de bus"],["le billet","el billete"],["le quai","el andén"],["la voiture","el carro"]],"En la estación: <i>le billet</i> (billete) y <i>le quai</i> (andén)."),
  P("Encuentra la palabra incorrecta y corrígela.","Tous les matins , je vais à la fac [en] vélo .","à","Con bicicleta se usa <b>à</b>: <i>à vélo</i>."),
  O("Ordena: «¿Cómo vas a la universidad?».",["Comment","tu vas","à","l'université","?"],"<i>Comment tu vas à l'université ?</i> En registro formal: <i>Comment allez-vous à l'université ?</i>"),
+ C("Elige.","Voy en coche.",["Je vais en voiture.","Je vais à voiture.","Je vais par voiture."],0,"<b>en voiture</b>."),
+ F("Completa.","Je vais à l'école ___ pied.",["à"],"<b>à pied</b>."),
  D("Le week-end, je vais au marché à vélo.")]),
 L("a1-chemin","Demander et indiquer le chemin","prep",{
  idea:"Para preguntar el camino: Pardon, où est la gare ? Pour aller à la poste, s'il vous plaît ? Para indicar: allez tout droit, tournez à gauche, prenez la deuxième rue à droite.",
  para:"Para orientarte en una ciudad francesa o ayudar a un turista en la tuya.",
  regla:["Preguntar: <i>Excusez-moi, où est… ? / Pour aller à…, s'il vous plaît ? / Il y a une banque près d'ici ?</i>","Indicar con el imperativo de <i>vous</i>: <i>Allez tout droit. Tournez à droite. Prenez la première rue à gauche. Traversez la place.</i>","Situar: <i>C'est à cinq minutes. C'est au bout de la rue. C'est au coin.</i>","<i>À droite</i> (a la derecha) ≠ <i>tout droit</i> (todo recto)."],
- ej:[["Excusez-moi, où est la bibliothèque ?","Disculpe, ¿dónde está la biblioteca?"],["Continuez tout droit jusqu'au feu.","Siga todo recto hasta el semáforo."],["Tournez à gauche après la pharmacie.","Gire a la izquierda después de la farmacia."]],
+ ej:[["Excusez-moi, où est la bibliothèque ?","Disculpe, ¿dónde está la biblioteca?"],["Continuez tout droit jusqu'au feu.","Siga todo recto hasta el semáforo."],["Tournez à gauche après la pharmacie.","Gire a la izquierda después de la farmacia."],["Excusez-moi, où est la gare ?", "Perdone, ¿dónde está la estación?"],["Allez tout droit.", "Siga todo recto."],["C'est la deuxième rue à gauche.", "Es la segunda calle a la izquierda."]],
  ojo:["Tournez à droit.","Tournez à droite.","«À droite» lleva e; «tout droit» es «todo recto»."]},[
  C("Elige el significado.","Allez tout droit.",["Siga todo recto.","Gire a la derecha.","Vaya a la derecha."],0,"<b>Tout droit</b> = todo recto. No confundir con <i>à droite</i>."),
  C("Elige la pregunta cortés.","Quieres ir a la estación.",["Pour aller à la gare, s'il vous plaît ?","Où la gare ?","Tu vas la gare ?"],0,"<b>Pour aller à…, s'il vous plaît ?</b> es la fórmula típica."),
@@ -259,12 +287,14 @@ L("a1-chemin","Demander et indiquer le chemin","prep",{
  A("Escucha y elige la dirección.","Tournez à droite, puis continuez tout droit.","¿Qué te dicen?",["Derecha y luego recto","Izquierda y luego recto","Recto y luego derecha"],0,"<i>Tournez à droite, puis continuez tout droit</i>: primero a la derecha, luego recto."),
  P("Encuentra la palabra incorrecta y corrígela.","La pharmacie ? Tournez à [droit] au feu .","droite","<i>A la derecha</i> = <b>à droite</b>."),
  O("Ordena: «La biblioteca está al final de la calle».",["La bibliothèque","est","au bout","de la rue"],"<i>La bibliothèque est au bout de la rue.</i>"),
+ C("Elige.","Gire a la izquierda.",["Tournez à gauche.","Tournez à droite.","Tournez au gauche."],0,"<b>à gauche</b>."),
+ F("Completa.","Continuez tout ___ .",["droit"],"<b>tout droit</b>."),
  D("Excusez-moi, il y a une pharmacie près d'ici ?")]),
 L("a1-prepositions-lieu","Sur, sous, devant, derrière, à côté de","prep",{
  idea:"Las preposiciones de lugar sitúan una cosa respecto a otra. Las que terminan en de se contraen: à côté du lit, près des magasins.",
  para:"Para decir dónde están las cosas en tu cuarto, en el salón de clase o en la ciudad.",
  regla:["Sin <i>de</i>: <i>sur</i> (sobre), <i>sous</i> (debajo), <i>devant</i> (delante), <i>derrière</i> (detrás), <i>dans</i> (dentro), <i>entre</i> (entre).","Con <i>de</i>: <i>à côté de</i> (al lado), <i>en face de</i> (enfrente), <i>près de</i> (cerca), <i>loin de</i> (lejos), <i>à gauche / à droite de</i>.","<i>de + le = du</i>, <i>de + les = des</i>: <i>à côté du cinéma, près des arbres</i>.","<i>Sur</i> ≠ <i>sous</i>: fíjate en la vocal."],
- ej:[["Le chat est sous la table.","El gato está debajo de la mesa."],["La banque est en face de la mairie.","El banco está enfrente del ayuntamiento."],["J'habite près du centre.","Vivo cerca del centro."]],
+ ej:[["Le chat est sous la table.","El gato está debajo de la mesa."],["La banque est en face de la mairie.","El banco está enfrente del ayuntamiento."],["J'habite près du centre.","Vivo cerca del centro."],["Le chat est sous la table.", "El gato está debajo de la mesa."],["La banque est à côté de la poste.", "El banco está al lado de correos."],["Le livre est sur le lit.", "El libro está sobre la cama."]],
  ojo:["à côté de le lit","à côté du lit","de + le se contrae en du."]},[
  C("Elige la preposición.","Los libros están sobre la mesa: les livres sont ___ la table.",["sur","sous","dans"],0,"Sobre = <b>sur</b>."),
  C("Elige la contracción.","Le café est à côté ___ cinéma.",["du","de le","des"],0,"<i>de + le = <b>du</b></i>."),
@@ -275,13 +305,15 @@ L("a1-prepositions-lieu","Sur, sous, devant, derrière, à côté de","prep",{
  Mt("Une cada preposición con su significado.","Francés → español",[["sous","debajo de"],["devant","delante de"],["loin de","lejos de"],["en face de","enfrente de"],["dans","dentro de"]],"Ojo con <i>sur</i> (sobre) y <i>sous</i> (debajo)."),
  P("Encuentra la palabra incorrecta y corrígela.","La poste est en face [de] le parc .","du","<i>de + le</i> se contrae: <i>en face <b>du</b> parc</i>."),
  O("Ordena: «Mi móvil está debajo del cojín».",["Mon portable","est","sous","le coussin"],"<i>Mon portable est sous le coussin.</i>"),
+ C("Elige.","El perro está detrás de la puerta.",["Le chien est derrière la porte.","Le chien est devant la porte.","Le chien est sous la porte."],0,"<b>derrière</b>."),
+ F("Completa.","La lampe est ___ la table. (encima de)",["sur"],"<b>sur</b>."),
  D("La pharmacie est à côté de la boulangerie.")]),
 L("a1-au-du","À et de avec l'article : au, aux, du, des","prep",{
  idea:"À y de se unen con le y les: à + le = au, à + les = aux, de + le = du, de + les = des. Con la y l' no cambian.",
  para:"Para decir adónde vas (je vais au cinéma) y de dónde vienes (je rentre du travail).",
  regla:["<i>à + le = <b>au</b></i>: <i>au marché</i>. <i>à + les = <b>aux</b></i>: <i>aux toilettes</i>.","<i>à + la</i> y <i>à + l'</i> no cambian: <i>à la plage, à l'école</i>.","<i>de + le = <b>du</b></i>: <i>je viens du bureau</i>. <i>de + les = <b>des</b></i>: <i>des cours</i>.","<i>de + la, de + l'</i> no cambian: <i>de la gare, de l'hôpital</i>."],
  tabla:[["","le","la","l'","les"],[["à","au","à la","à l'","aux"],["de","du","de la","de l'","des"]]],
- ej:[["Ce soir, on va au restaurant.","Esta noche vamos al restaurante."],["Elle rentre de l'université à six heures.","Vuelve de la universidad a las seis."],["Je parle aux étudiants.","Hablo a los estudiantes."]],
+ ej:[["Ce soir, on va au restaurant.","Esta noche vamos al restaurante."],["Elle rentre de l'université à six heures.","Vuelve de la universidad a las seis."],["Je parle aux étudiants.","Hablo a los estudiantes."],["Je vais au marché.", "Voy al mercado."],["Elle revient du bureau.", "Ella vuelve de la oficina."],["Nous parlons aux enfants.", "Hablamos con los niños."]],
  ojo:["Je vais à le cinéma.","Je vais au cinéma.","à + le siempre se contrae en au."]},[
  C("Elige.","Je vais ___ supermarché.",["au","à le","à la"],0,"<i>Le supermarché</i>: <i>à + le = <b>au</b></i>."),
  C("Elige.","Nous allons ___ plage.",["à la","au","aux"],0,"<i>La plage</i> no se contrae: <b>à la</b> plage."),
@@ -292,12 +324,14 @@ L("a1-au-du","À et de avec l'article : au, aux, du, des","prep",{
  Mt("Une cada forma con su origen.","Contracción",[["au","à + le"],["aux","à + les"],["du","de + le"],["des","de + les"]],"Solo <i>le</i> y <i>les</i> se contraen con <i>à</i> y <i>de</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Le dimanche , je vais [à] parc avec mon chien .","au","<i>Le parc</i>: <i>à + le = <b>au</b></i> parc."),
  O("Ordena: «Vuelvo del trabajo a las siete».",["Je rentre","du","travail","à","sept heures"],"<i>Je rentre du travail à sept heures.</i>"),
+ C("Elige.","Voy al cine.",["Je vais au cinéma.","Je vais à le cinéma.","Je vais du cinéma."],0,"à + le = <b>au</b>."),
+ F("Completa.","Il sort ___ supermarché. (de + le)",["du"],"<b>du</b>."),
  D("Ce matin, je vais à la banque et au marché.")]),
 L("a1-lieux-ville","Les lieux de la ville","voc",{
  idea:"El vocabulario de la ciudad te sirve para orientarte y decir qué hay en tu barrio: la mairie, la gare, le marché, la pharmacie.",
  para:"Para describir tu barrio, preguntar dónde está algo o explicar adónde vas.",
  regla:["Masculinos frecuentes: <i>le marché, le musée, le parc, le cinéma, le stade, l'hôpital, le commissariat</i>.","Femeninos frecuentes: <i>la mairie, la gare, la poste, la pharmacie, la banque, la bibliothèque, l'église</i>.","Para hablar del barrio: <i>Dans mon quartier, il y a…</i> / <i>Il n'y a pas de…</i>","<i>La librairie</i> es una librería; <i>la bibliothèque</i>, una biblioteca."],
- ej:[["Dans mon quartier, il y a un grand parc.","En mi barrio hay un gran parque."],["La mairie est sur la place principale.","El ayuntamiento está en la plaza principal."],["J'achète des livres à la librairie.","Compro libros en la librería."]],
+ ej:[["Dans mon quartier, il y a un grand parc.","En mi barrio hay un gran parque."],["La mairie est sur la place principale.","El ayuntamiento está en la plaza principal."],["J'achète des livres à la librairie.","Compro libros en la librería."],["La mairie est sur la place.", "El ayuntamiento está en la plaza."],["Il y a une pharmacie ici.", "Hay una farmacia aquí."],["Le musée est fermé le lundi.", "El museo cierra los lunes."]],
  ojo:["Je vais à la librairie pour étudier.","Je vais à la bibliothèque pour étudier.","La librairie vende libros; en la bibliothèque se estudia."]},[
  C("Elige el lugar.","Para tomar el tren vas a…",["la gare","la mairie","la poste"],0,"<b>La gare</b> = la estación de tren."),
  C("Elige el lugar.","Para comprar medicamentos vas a…",["la pharmacie","la librairie","la boulangerie"],0,"<b>La pharmacie</b> = la farmacia."),
@@ -308,13 +342,15 @@ L("a1-lieux-ville","Les lieux de la ville","voc",{
  Mt("Une cada lugar con lo que haces allí.","Lugar → acción",[["la boulangerie","comprar pan"],["la poste","enviar un paquete"],["le stade","ver un partido"],["le musée","ver cuadros"],["la banque","sacar dinero"]],"Vocabulario básico de la ciudad."),
  P("Encuentra la palabra incorrecta y corrígela.","J'achète du pain à la [librairie] du coin .","boulangerie","El pan se compra en la <b>boulangerie</b>; la <i>librairie</i> vende libros."),
  O("Ordena: «En mi barrio hay un mercado y dos farmacias».",["Dans mon quartier,","il y a","un marché","et","deux pharmacies"],"<i>Dans mon quartier, il y a un marché et deux pharmacies.</i>"),
+ C("¿Dónde se compran medicamentos?","Medicamentos",["à la pharmacie","à la boulangerie","à la mairie"],0,"<b>pharmacie</b>."),
+ F("Completa.","On prend le train à la ___ .",["gare"],"<b>gare</b>."),
  D("La poste est en face de la mairie.")]),
 L("a1-aller-venir","Aller et venir : où vas-tu ? d'où viens-tu ?","conj",{
  idea:"Aller (ir) y venir (venir) son irregulares. Con aller va à (je vais à la fac); con venir, de (je viens de la fac).",
  para:"Para decir adónde vas, de dónde vienes y para hacer planes.",
  regla:["<i>Aller</i>: <i>je vais, tu vas, il va, nous allons, vous allez, ils vont</i>.","<i>Venir</i>: <i>je viens, tu viens, il vient, nous venons, vous venez, ils viennent</i>.","<i>Aller <b>à</b></i> + lugar; <i>venir <b>de</b></i> + lugar, con sus contracciones (au, du…).","Casa de alguien: <i>aller <b>chez</b> Paul, venir de <b>chez</b> moi</i>."],
  tabla:[["Persona","aller","venir"],[["je","vais","viens"],["tu","vas","viens"],["il / elle","va","vient"],["nous","allons","venons"],["vous","allez","venez"],["ils / elles","vont","viennent"]]],
- ej:[["Où vas-tu ce soir ? — Je vais chez Marie.","¿Adónde vas esta noche? — Voy a casa de Marie."],["Ils viennent du Brésil.","Vienen de Brasil."],["Vous venez avec nous ?","¿Vienen con nosotros?"]],
+ ej:[["Où vas-tu ce soir ? — Je vais chez Marie.","¿Adónde vas esta noche? — Voy a casa de Marie."],["Ils viennent du Brésil.","Vienen de Brasil."],["Vous venez avec nous ?","¿Vienen con nosotros?"],["Où vas-tu ce soir ?", "¿Adónde vas esta noche?"],["Je viens de Madrid.", "Vengo de Madrid."],["Nous allons à la plage.", "Vamos a la playa."]],
  ojo:["Je vais à la maison de Paul.","Je vais chez Paul.","A casa de alguien = chez + persona."]},[
  C("Elige la forma.","Ils ___ au concert ce soir.",["vont","allent","vas"],0,"<i>Aller</i> con <i>ils</i>: <b>vont</b>."),
  C("Elige la forma.","Nous ___ de Bogotá.",["venons","viennons","venez"],0,"<i>Venir</i> con <i>nous</i>: <b>venons</b>."),
@@ -325,12 +361,14 @@ L("a1-aller-venir","Aller et venir : où vas-tu ? d'où viens-tu ?","conj",{
  S("Clasifica: ¿aller o venir?","Formas",["aller","venir"],[["vais",0],["va",0],["allons",0],["vont",0],["viens",1],["vient",1],["venons",1],["viennent",1]],"<i>Aller</i> tiene raíces muy distintas (v-, all-); <i>venir</i> alterna vien- / ven-."),
  P("Encuentra la palabra incorrecta y corrígela.","Mes voisins [venent] de Lima .","viennent","<i>Venir</i> con <i>ils</i>: <b>viennent</b>, con doble n."),
  O("Ordena: «¿De dónde vienes?».",["D'où","viens","-tu","?"],"<i>D'où viens-tu ?</i> Con inversión se pone guion."),
+ C("Elige.","Vamos a París.",["Nous allons à Paris.","Nous venons à Paris.","Nous allons en Paris."],0,"<b>aller à</b> + ciudad."),
+ F("Completa.","Tu ___ d'où ? (venir)",["viens"],"<b>tu viens</b>."),
  D("Nous allons au marché et nous venons chez toi après.")]),
 L("a1-imperatif-indications","L'impératif : tournez, prenez, allez","conj",{
  idea:"El imperativo da instrucciones sin sujeto: prends (tú), prenons (nosotros), prenez (usted/ustedes). En los verbos en -er, la forma de tu pierde la s: regarde, tourne.",
  para:"Para dar indicaciones, instrucciones de clase o consejos.",
  regla:["Se forma con el presente sin pronombre: <i>tu prends → <b>prends</b>, vous prenez → <b>prenez</b>, nous prenons → <b>prenons</b></i>.","Verbos en -er: la forma de <i>tu</i> pierde la -s: <i>tu tournes → <b>tourne</b></i>, <i>tu vas → <b>va</b></i>.","Negativo: <i>Ne tourne pas ! Ne parlez pas !</i>","Irregulares: <i>être → sois, soyez</i>; <i>avoir → aie, ayez</i>."],
- ej:[["Tournez à gauche et prenez la rue Pasteur.","Gire a la izquierda y tome la calle Pasteur."],["Écoute bien !","¡Escucha bien!"],["Allons au parc !","¡Vamos al parque!"]],
+ ej:[["Tournez à gauche et prenez la rue Pasteur.","Gire a la izquierda y tome la calle Pasteur."],["Écoute bien !","¡Escucha bien!"],["Allons au parc !","¡Vamos al parque!"],["Tournez à droite.", "Gire a la derecha."],["Prenez la première rue.", "Tome la primera calle."],["Traversez le pont.", "Cruce el puente."]],
  ojo:["Tournes à droite !","Tourne à droite !","En -er, el imperativo de tu no lleva s."]},[
  C("Elige el imperativo de tu.","(regarder) ___ le tableau !",["Regarde","Regardes","Regardez-tu"],0,"Verbo en -er: <i>tu regardes → <b>regarde</b></i> (sin s)."),
  C("Elige el imperativo de vous.","(prendre) ___ la deuxième rue.",["Prenez","Prendez","Prends-vous"],0,"<i>Vous prenez → <b>prenez</b></i>."),
@@ -341,6 +379,8 @@ L("a1-imperatif-indications","L'impératif : tournez, prenez, allez","conj",{
  Mt("Une cada instrucción con su significado.","Francés → español",[["Traversez !","¡Crucen!"],["Continue !","¡Sigue!"],["Attendez ici !","¡Esperen aquí!"],["Écris ton nom !","¡Escribe tu nombre!"]],"El imperativo no lleva sujeto."),
  P("Encuentra la palabra incorrecta y corrígela.","[Vas] tout droit et tourne à gauche .","Va","Imperativo de <i>aller</i> con <i>tu</i>: <b>va</b>, sin s."),
  O("Ordena: «No cierres la ventana».",["Ne","ferme","pas","la fenêtre"],"<i>Ne ferme pas la fenêtre.</i>"),
+ C("Elige.","¡Tome el autobús 5!",["Prenez le bus 5 !","Prendez le bus 5 !","Prends-vous le bus 5 !"],0,"<b>Prenez</b>."),
+ F("Completa (imperativo, vous).","___ la rue et tournez à droite. (traverser)",["Traversez"],"<b>Traversez</b>."),
  D("Prenez la première rue à droite, s'il vous plaît.")])
 ]),
 U("Compras y servicios",[
@@ -348,7 +388,7 @@ L("a1-commerces","Les commerces : chez le boulanger, à la boucherie","prep",{
  idea:"Las tiendas se nombran de dos maneras: el lugar (à la boulangerie) o la persona (chez le boulanger). Con personas se usa chez.",
  para:"Para hacer compras en Francia y decir dónde compras cada cosa.",
  regla:["Lugar: <b>à la</b> + tienda: <i>à la boulangerie, à la pharmacie, au supermarché</i>.","Persona: <b>chez</b> + comerciante: <i>chez le boulanger, chez le boucher, chez le coiffeur</i>.","<i>La boulangerie</i> vende pan; <i>la pâtisserie</i>, pasteles; <i>la boucherie</i>, carne; <i>la poissonnerie</i>, pescado; <i>l'épicerie</i>, de todo un poco.","Fórmulas: <i>Je voudrais une baguette, s'il vous plaît. C'est combien ? Ça fait 1,20 €.</i>"],
- ej:[["Je vais chez le boucher pour acheter du poulet.","Voy a la carnicería a comprar pollo."],["À la boulangerie, j'achète deux croissants.","En la panadería compro dos cruasanes."],["Elle va chez le coiffeur samedi.","Va a la peluquería el sábado."]],
+ ej:[["Je vais chez le boucher pour acheter du poulet.","Voy a la carnicería a comprar pollo."],["À la boulangerie, j'achète deux croissants.","En la panadería compro dos cruasanes."],["Elle va chez le coiffeur samedi.","Va a la peluquería el sábado."],["J'achète du pain à la boulangerie.", "Compro pan en la panadería."],["Elle va chez le boucher.", "Va a la carnicería."],["La librairie est ouverte.", "La librería está abierta."]],
  ojo:["Je vais au boulanger.","Je vais chez le boulanger.","Con la persona se usa «chez»."]},[
  C("Elige.","Je vais ___ boucher.",["chez le","à le","au"],0,"Con la persona: <b>chez le</b> boucher."),
  C("Elige.","Je vais ___ pharmacie.",["à la","chez la","au"],0,"Con el lugar: <b>à la</b> pharmacie."),
@@ -359,12 +399,14 @@ L("a1-commerces","Les commerces : chez le boulanger, à la boucherie","prep",{
  S("Clasifica: ¿lugar o persona?","Palabras",["Lugar (à la…)","Persona (chez le…)"],[["boulangerie",0],["boucherie",0],["pharmacie",0],["poissonnerie",0],["boulanger",1],["boucher",1],["pharmacien",1],["coiffeur",1]],"El lugar termina a menudo en <i>-erie</i>; la persona, en <i>-er, -ier, -ien, -eur</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Demain , je vais [au] coiffeur .","chez","Con personas (el peluquero) se usa <b>chez</b>: <i>chez le coiffeur</i>."),
  O("Ordena: «Quisiera un cruasán, por favor».",["Je voudrais","un croissant,","s'il vous plaît"],"<i>Je voudrais un croissant, s'il vous plaît.</i>"),
+ C("¿Dónde se compra carne?","Carne",["à la boucherie","à la librairie","à la poste"],0,"<b>boucherie</b>."),
+ F("Completa.","J'achète des gâteaux à la ___ .",["pâtisserie"],"<b>pâtisserie</b>."),
  D("Je voudrais une baguette et deux pains au chocolat.")]),
 L("a1-courses-quantites","Faire les courses : un kilo de, une bouteille de","voc",{
  idea:"Tras una cantidad se usa siempre de (d'), sin artículo: un kilo de pommes, une bouteille d'eau, beaucoup de sucre.",
  para:"Para hacer la lista de la compra y pedir cantidades en el mercado.",
  regla:["Cantidad + <b>de</b> + nombre (sin artículo): <i>un kilo de tomates, un litre de lait, un paquet de pâtes</i>.","Delante de vocal: <b>d'</b>: <i>une bouteille d'eau, un pot d'huile</i>.","Adverbios de cantidad: <i>beaucoup de, un peu de, assez de, trop de</i>.","Envases: <i>une boîte de, un pot de, une tranche de, une douzaine d'œufs</i>."],
- ej:[["Je voudrais un kilo de pommes.","Quisiera un kilo de manzanas."],["Il y a beaucoup de monde au marché.","Hay mucha gente en el mercado."],["Achète une douzaine d'œufs, s'il te plaît.","Compra una docena de huevos, por favor."]],
+ ej:[["Je voudrais un kilo de pommes.","Quisiera un kilo de manzanas."],["Il y a beaucoup de monde au marché.","Hay mucha gente en el mercado."],["Achète une douzaine d'œufs, s'il te plaît.","Compra una docena de huevos, por favor."],["Je voudrais un kilo de tomates.", "Quisiera un kilo de tomates."],["Achète une bouteille d'eau.", "Compra una botella de agua."],["Il faut deux paquets de pâtes.", "Hacen falta dos paquetes de pasta."]],
  ojo:["un kilo des pommes","un kilo de pommes","Tras una cantidad, solo «de»."]},[
  C("Elige.","Je voudrais un litre ___ lait.",["de","du","des"],0,"Tras una cantidad, solo <b>de</b>: <i>un litre de lait</i>."),
  C("Elige.","Achète une bouteille ___ eau.",["d'","de l'","de la"],0,"Delante de vocal: <b>d'</b>: <i>une bouteille d'eau</i>."),
@@ -375,12 +417,14 @@ L("a1-courses-quantites","Faire les courses : un kilo de, une bouteille de","voc
  S("Clasifica: ¿mucho o poco?","Cantidades",["Mucho","Poco"],[["beaucoup de",0],["trop de",0],["plein de",0],["énormément de",0],["un peu de",1],["peu de",1],["pas beaucoup de",1],["un tout petit peu de",1]],"<i>Peu de</i> = poco; <i>un peu de</i> = un poco; <i>trop de</i> = demasiado."),
  P("Encuentra la palabra incorrecta y corrígela.","Je voudrais un kilo [des] carottes .","de","Tras <i>un kilo</i> va <b>de</b>: <i>un kilo de carottes</i>."),
  O("Ordena: «Quisiera medio kilo de fresas».",["Je voudrais","un demi-kilo","de","fraises"],"<i>Je voudrais un demi-kilo de fraises.</i>"),
+ C("Elige.","Un poco de azúcar",["un peu de sucre","un peu du sucre","un peu sucre"],0,"<b>un peu de</b>."),
+ F("Completa.","Je voudrais une ___ de lait. (botella)",["bouteille"],"<b>bouteille</b>."),
  D("J'achète un paquet de riz et une bouteille d'huile.")]),
 L("a1-poste-banque","À la poste et à la banque","voc",{
  idea:"En la oficina de correos se envía (envoyer) una carta o un paquete; en el banco se abre una cuenta (ouvrir un compte) o se retira dinero (retirer de l'argent).",
  para:"Para resolver trámites básicos si estudias en un país francófono.",
  regla:["Correos: <i>envoyer une lettre / un colis, un timbre, une enveloppe, l'adresse, le code postal</i>.","Banco: <i>ouvrir un compte, retirer de l'argent, la carte bancaire, le distributeur (cajero), payer en espèces / par carte</i>.","Pedir: <i>Je voudrais envoyer ce colis en Colombie.</i> / <i>Je voudrais ouvrir un compte.</i>","Preguntar el precio: <i>Combien ça coûte pour envoyer une lettre ?</i>"],
- ej:[["Je voudrais trois timbres pour l'Europe.","Quisiera tres sellos para Europa."],["Il y a un distributeur près d'ici ?","¿Hay un cajero cerca?"],["Vous payez en espèces ou par carte ?","¿Paga en efectivo o con tarjeta?"]],
+ ej:[["Je voudrais trois timbres pour l'Europe.","Quisiera tres sellos para Europa."],["Il y a un distributeur près d'ici ?","¿Hay un cajero cerca?"],["Vous payez en espèces ou par carte ?","¿Paga en efectivo o con tarjeta?"],["Je voudrais envoyer ce colis.", "Quisiera enviar este paquete."],["Il faut un timbre pour la lettre.", "Hace falta un sello para la carta."],["Je retire de l'argent.", "Saco dinero."]],
  ojo:["payer avec carte","payer par carte","Se dice «par carte» y «en espèces»."]},[
  C("Elige.","Para retirar dinero usas…",["le distributeur","le timbre","le colis"],0,"<b>Le distributeur</b> (de billets) = el cajero automático."),
  C("Elige.","¿Cómo se paga con tarjeta?",["par carte","avec la carte","en carte"],0,"Se dice <b>payer par carte</b>."),
@@ -391,12 +435,14 @@ L("a1-poste-banque","À la poste et à la banque","voc",{
  Mt("Une cada palabra con su significado.","Francés → español",[["le timbre","el sello"],["l'enveloppe","el sobre"],["le guichet","la ventanilla"],["le reçu","el recibo"],["la monnaie","el cambio, las monedas"]],"<i>La monnaie</i> es el cambio (las monedas que te devuelven)."),
  P("Encuentra la palabra incorrecta y corrígela.","Je voudrais [envoier] ce paquet en Colombie .","envoyer","El verbo se escribe <b>envoyer</b>, con y."),
  O("Ordena: «¿Cuánto cuesta enviar esta carta?».",["Combien","ça coûte","pour envoyer","cette lettre","?"],"<i>Combien ça coûte pour envoyer cette lettre ?</i>"),
+ C("Elige.","Quisiera enviar una carta.",["Je voudrais envoyer une lettre.","Je voudrais envoyé une lettre.","Je voudrais envoie une lettre."],0,"Infinitivo: <b>envoyer</b>."),
+ F("Completa.","Il faut un ___ pour envoyer la carte. (sello)",["timbre"],"<b>timbre</b>."),
  D("Je voudrais retirer de l'argent au distributeur.")]),
 L("a1-hotel","Réserver une chambre d'hôtel","registre",{
  idea:"Para reservar se usa el registro formal (vous) y fórmulas fijas: Je voudrais réserver une chambre pour deux nuits. Le petit-déjeuner est compris ?",
  para:"Para reservar alojamiento por teléfono o en la recepción de un hotel.",
  regla:["Pedir: <i>Je voudrais réserver une chambre simple / double pour trois nuits, du 5 au 8 mai.</i>","Preguntar: <i>Quel est le prix de la chambre ? Le petit-déjeuner est compris ? Il y a le wifi ?</i>","Datos: <i>à quel nom ? — Au nom de Gómez.</i>","Llegar y salir: <i>l'arrivée, le départ, la clé, la réception</i>."],
- ej:[["Bonjour, je voudrais réserver une chambre double.","Buenos días, quisiera reservar una habitación doble."],["C'est à quel nom ?","¿A nombre de quién?"],["Le petit-déjeuner est servi de 7 h à 10 h.","El desayuno se sirve de 7 a 10."]],
+ ej:[["Bonjour, je voudrais réserver une chambre double.","Buenos días, quisiera reservar una habitación doble."],["C'est à quel nom ?","¿A nombre de quién?"],["Le petit-déjeuner est servi de 7 h à 10 h.","El desayuno se sirve de 7 a 10."],["Je voudrais une chambre pour deux nuits.", "Quisiera una habitación para dos noches."],["Le petit-déjeuner est compris ?", "¿Está incluido el desayuno?"],["La chambre est au troisième étage.", "La habitación está en el tercer piso."]],
  ojo:["Je veux une chambre.","Je voudrais une chambre.","«Je voudrais» es más cortés que «je veux»."]},[
  C("Elige la frase más cortés.","En la recepción…",["Je voudrais une chambre pour deux nuits.","Je veux une chambre, deux nuits.","Donne-moi une chambre."],0,"<b>Je voudrais</b> es la fórmula de cortesía."),
  C("Elige el significado.","Le petit-déjeuner est compris ?",["¿El desayuno está incluido?","¿Entiende el desayuno?","¿El desayuno es pequeño?"],0,"<i>Compris</i> = incluido."),
@@ -407,12 +453,14 @@ L("a1-hotel","Réserver une chambre d'hôtel","registre",{
  S("Clasifica: ¿lo dice el cliente o el recepcionista?","Frases",["Cliente","Recepcionista"],[["Je voudrais réserver.",0],["Le wifi est gratuit ?",0],["Il y a un parking ?",0],["C'est combien la nuit ?",0],["C'est à quel nom ?",1],["Voici votre clé.",1],["Vous restez combien de nuits ?",1],["Votre chambre est au troisième étage.",1]],"Diálogo típico de reserva."),
  P("Encuentra la palabra incorrecta y corrígela.","Je voudrais une chambre [double] pour une personne .","simple","Para una persona: <b>chambre simple</b>."),
  O("Ordena: «¿Cuál es el precio de la habitación?».",["Quel","est","le prix","de la chambre","?"],"<i>Quel est le prix de la chambre ?</i>"),
+ C("Elige.","¿Tiene una habitación libre?",["Vous avez une chambre libre ?","Vous avez une habitation libre ?","Vous êtes une chambre libre ?"],0,"<b>chambre</b>."),
+ F("Completa.","Je voudrais ___ une chambre pour ce soir. (reservar)",["réserver"],"<b>réserver</b>."),
  D("Je voudrais réserver une chambre du dix au douze mai.")]),
 L("a1-telephone","Au téléphone : allô, c'est de la part de qui ?","registre",{
  idea:"Al teléfono se usan fórmulas fijas: Allô ? — C'est Marie. Je voudrais parler à M. Durand. — C'est de la part de qui ? — Ne quittez pas.",
  para:"Para llamar a una empresa, a la universidad o a un amigo en francés.",
  regla:["Saludar: <i>Allô ?</i> (solo al teléfono). Presentarse: <i>C'est Julien. / Ici Julien.</i>","Pedir hablar con alguien: <i>Je voudrais parler à Madame Leroy, s'il vous plaît.</i>","Recepción: <i>C'est de la part de qui ?</i> (¿de parte de quién?) — <i>Ne quittez pas</i> (no cuelgue).","Si no está: <i>Elle est absente. Vous voulez laisser un message ?</i>"],
- ej:[["Allô, bonjour, c'est Carolina.","Aló, buenos días, habla Carolina."],["Un instant, ne quittez pas.","Un momento, no cuelgue."],["Je rappelle plus tard.","Vuelvo a llamar más tarde."]],
+ ej:[["Allô, bonjour, c'est Carolina.","Aló, buenos días, habla Carolina."],["Un instant, ne quittez pas.","Un momento, no cuelgue."],["Je rappelle plus tard.","Vuelvo a llamar más tarde."],["Allô, bonjour, c'est Marie.", "Diga, buenos días, soy Marie."],["Je peux laisser un message ?", "¿Puedo dejar un mensaje?"],["Je vous rappelle plus tard.", "Le vuelvo a llamar más tarde."]],
  ojo:["Je voudrais parler avec Monsieur Martin.","Je voudrais parler à Monsieur Martin.","Al teléfono: parler à quelqu'un."]},[
  C("Elige el significado.","C'est de la part de qui ?",["¿De parte de quién?","¿Quién es usted?","¿Para quién es?"],0,"<b>C'est de la part de qui ?</b> = ¿de parte de quién?"),
  C("Elige el significado.","Ne quittez pas.",["No cuelgue.","No se vaya.","No salga."],0,"Al teléfono, <b>ne quittez pas</b> = no cuelgue, espere."),
@@ -423,12 +471,14 @@ L("a1-telephone","Au téléphone : allô, c'est de la part de qui ?","registre",
  Mt("Une cada frase con su significado.","Francés → español",[["Allô ?","¿Aló?"],["Ici Paul.","Habla Paul."],["Il n'est pas là.","No está."],["Je me suis trompé de numéro.","Me equivoqué de número."]],"Fórmulas típicas del teléfono."),
  P("Encuentra la palabra incorrecta y corrígela.","Bonjour , je voudrais parler [avec] Madame Roux .","à","Al teléfono se dice <i>parler <b>à</b> quelqu'un</i>."),
  S("Clasifica: ¿formal o informal?","Frases",["Formal","Informal"],[["Je voudrais parler à Monsieur Blanc.",0],["Ne quittez pas.",0],["Vous voulez laisser un message ?",0],["Pourriez-vous rappeler ?",0],["Salut, c'est moi !",1],["T'es où ?",1],["Je te rappelle.",1],["Bisous, à plus !",1]],"Con desconocidos se usa <i>vous</i>; con amigos, <i>tu</i> y fórmulas cortas."),
+ C("Elige.","¿De parte de quién?",["C'est de la part de qui ?","C'est de qui la part ?","C'est pour qui ?"],0,"<b>de la part de qui</b>."),
+ F("Completa.","___ , bonjour, c'est Paul. (al teléfono)",["Allô"],"<b>Allô</b>."),
  D("Bonjour, je voudrais parler à Madame Dupont, s'il vous plaît.")]),
 L("a1-ordinaux","Premier, deuxième, troisième : les ordinaux","voc",{
  idea:"Los ordinales se forman con -ième: deux → deuxième, trois → troisième. Solo primero es irregular: premier / première.",
  para:"Para decir el piso, el orden en una fila, un siglo o la calle que hay que tomar.",
  regla:["Número + <b>-ième</b>: <i>deuxième, troisième, dixième, vingtième</i>.","Si el número termina en -e, se quita: <i>quatre → quatrième, onze → onzième</i>.","Cambios: <i>cinq → cinquième</i> (u), <i>neuf → neuvième</i> (v).","<i>Premier</i> (masc.) / <i>première</i> (fem.). <i>Second(e)</i> se usa cuando solo hay dos.","Pisos: <i>au rez-de-chaussée</i> (planta baja), <i>au premier étage</i>."],
- ej:[["J'habite au troisième étage.","Vivo en el tercer piso."],["C'est la première fois que je viens à Paris.","Es la primera vez que vengo a París."],["Prenez la cinquième rue à droite.","Tome la quinta calle a la derecha."]],
+ ej:[["J'habite au troisième étage.","Vivo en el tercer piso."],["C'est la première fois que je viens à Paris.","Es la primera vez que vengo a París."],["Prenez la cinquième rue à droite.","Tome la quinta calle a la derecha."],["C'est la première fois.", "Es la primera vez."],["J'habite au cinquième étage.", "Vivo en el quinto piso."],["Il est arrivé deuxième.", "Llegó segundo."]],
  ojo:["le cinqième","le cinquième","Cinq añade u: cinquième."]},[
  C("Elige.","5.º = ?",["cinquième","cinqième","cinqueme"],0,"<i>Cinq</i> añade u: <b>cinquième</b>."),
  C("Elige.","9.º = ?",["neuvième","neufième","nouvième"],0,"<i>Neuf</i> cambia f por v: <b>neuvième</b>."),
@@ -439,6 +489,8 @@ L("a1-ordinaux","Premier, deuxième, troisième : les ordinaux","voc",{
  A("Escucha y elige.","Mon bureau est au sixième étage.","¿En qué piso está la oficina?",["6.º","16.º","7.º"],0,"<i>Sixième</i> = sexto."),
  P("Encuentra la palabra incorrecta y corrígela.","C'est la [premier] fois que je prends l'avion .","première","<i>Fois</i> es femenino: <b>la première fois</b>."),
  O("Ordena: «La biblioteca está en la planta baja».",["La bibliothèque","est","au","rez-de-chaussée"],"Planta baja = <i>le rez-de-chaussée</i>."),
+ C("Elige.","el tercer piso",["le troisième étage","le trois étage","le troisième étages"],0,"<b>troisième</b>."),
+ F("Completa.","C'est la ___ fois que je viens. (primera)",["première"],"<b>première</b>."),
  D("La salle de cours est au deuxième étage.")])
 ])
 ]);
@@ -449,7 +501,7 @@ L("a1-aliments","Les aliments et les boissons","voc",{
  idea:"El vocabulario de la comida es básico para el día a día: le pain, le fromage, la viande, les légumes, l'eau, le jus d'orange.",
  para:"Para hacer la compra, pedir en un restaurante o hablar de lo que te gusta comer.",
  regla:["Aprende cada palabra con su artículo, porque el género no siempre coincide con el español: <i>le lait</i> (la leche), <i>la viande</i> (la carne), <i>le sel</i> (la sal).","Frutas: <i>la pomme, la banane, l'orange, la fraise, le raisin</i>.","Verduras: <i>la tomate, la carotte, la pomme de terre, la salade, les haricots</i>.","Bebidas: <i>l'eau, le café, le thé, le jus de fruits, le vin</i>."],
- ej:[["Je mange une pomme tous les matins.","Como una manzana todas las mañanas."],["Le lait est dans le frigo.","La leche está en la nevera."],["Tu veux du thé ou du café ?","¿Quieres té o café?"]],
+ ej:[["Je mange une pomme tous les matins.","Como una manzana todas las mañanas."],["Le lait est dans le frigo.","La leche está en la nevera."],["Tu veux du thé ou du café ?","¿Quieres té o café?"],["J'aime les fruits et les légumes.", "Me gustan las frutas y las verduras."],["Elle boit du jus d'orange.", "Bebe zumo de naranja."],["Le fromage est délicieux.", "El queso está delicioso."]],
  ojo:["la lait","le lait","Leche es masculino en francés."]},[
  C("Elige el artículo.","___ lait",["le","la","l'"],0,"<b>Le lait</b> es masculino, al contrario que en español."),
  C("Elige el significado.","la pomme de terre",["la papa","la manzana","la pera"],0,"<b>La pomme de terre</b> = la papa (literalmente «manzana de tierra»)."),
@@ -460,13 +512,15 @@ L("a1-aliments","Les aliments et les boissons","voc",{
  Mt("Une cada alimento con su traducción.","Francés → español",[["le fromage","el queso"],["le poulet","el pollo"],["le beurre","la mantequilla"],["le sucre","el azúcar"],["le riz","el arroz"]],"Ojo al género: <i>le sucre</i>, <i>le riz</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Il y a du [poison] au menu : du saumon grillé .","poisson","Pescado = <b>poisson</b>, con doble s. <i>Poison</i> es veneno."),
  O("Ordena: «Me gusta el queso francés».",["J'aime","le","fromage","français"],"<i>J'aime le fromage français.</i> Con <i>aimer</i> se usa el artículo definido."),
+ C("Elige la bebida.","Bebida",["le jus d'orange","le poulet","le fromage"],0,"<b>jus d'orange</b>."),
+ F("Completa.","Les pommes et les fraises sont des ___ .",["fruits"],"<b>fruits</b>."),
  D("Au marché, j'achète des tomates et des pommes.")]),
 L("a1-partitifs-intro","Du pain, de la confiture, de l'eau : les partitifs","gram",{
  idea:"Para una cantidad indeterminada de algo que no se cuenta se usan du, de la, de l': je mange du pain, je bois de l'eau. En español a menudo no se pone nada: «como pan».",
  para:"Para decir lo que comes o bebes sin precisar la cantidad.",
  regla:["<b>du</b> + masculino: <i>du fromage, du riz</i>.","<b>de la</b> + femenino: <i>de la viande, de la soupe</i>.","<b>de l'</b> + vocal o h muda: <i>de l'eau, de l'huile</i>.","<b>des</b> + plural: <i>des frites, des légumes</i>.","Con los verbos de gusto (<i>aimer, adorer, détester</i>) se usa el artículo definido: <i>j'aime <b>le</b> fromage</i>."],
  tabla:[["Género","Partitivo","Ejemplo"],[["masculino","du","du café"],["femenino","de la","de la salade"],["vocal","de l'","de l'eau"],["plural","des","des œufs"]]],
- ej:[["Le matin, je bois du café.","Por la mañana bebo café."],["Tu veux de la tarte ?","¿Quieres tarta?"],["On mange des pâtes ce soir.","Esta noche comemos pasta."]],
+ ej:[["Le matin, je bois du café.","Por la mañana bebo café."],["Tu veux de la tarte ?","¿Quieres tarta?"],["On mange des pâtes ce soir.","Esta noche comemos pasta."],["Je mange du riz.", "Como arroz."],["Tu veux de la soupe ?", "¿Quieres sopa?"],["Il boit de l'eau.", "Bebe agua."]],
  ojo:["Je mange pain.","Je mange du pain.","En francés el nombre no va solo: necesita el partitivo."]},[
  C("Elige.","Je mange ___ riz.",["du","de la","des"],0,"<i>Le riz</i> es masculino: <b>du</b> riz."),
  C("Elige.","Elle boit ___ eau.",["de l'","du","de la"],0,"Delante de vocal: <b>de l'</b>eau."),
@@ -477,12 +531,14 @@ L("a1-partitifs-intro","Du pain, de la confiture, de l'eau : les partitifs","gra
  Mt("Une cada alimento con su partitivo.","Alimento → partitivo",[["huile","de l'"],["sucre","du"],["tarte","de la"],["pâtes","des"]],"<i>L'huile</i> empieza por h muda: <i>de l'huile</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Le matin , je bois [de] lait chaud .","du","<i>Le lait</i> es masculino: el partitivo es <b>du</b> lait."),
  O("Ordena: «Comemos pollo con arroz».",["On mange","du poulet","avec","du riz"],"<i>On mange du poulet avec du riz.</i>"),
+ C("Elige.","Como pasta.",["Je mange des pâtes.","Je mange les pâtes (cantidad).","Je mange pâtes."],0,"Plural indeterminado: <b>des</b>."),
+ F("Completa.","Tu veux ___ lait ?",["du"],"<b>du</b> lait."),
  D("Je voudrais du pain, du fromage et de l'eau.")]),
 L("a1-pas-de","La négation avec les quantités : pas de, pas d'","gram",{
  idea:"En negación, un, une, des, du, de la y de l' se convierten en de (d'): je n'ai pas de voiture, il ne boit pas d'alcool.",
  para:"Para decir lo que no tienes, no comes o no hay.",
  regla:["<i>un / une / des</i> → <b>de</b>: <i>J'ai un chien → Je n'ai pas <b>de</b> chien.</i>","<i>du / de la / de l'</i> → <b>de (d')</b>: <i>Je bois du café → Je ne bois pas <b>de</b> café.</i>","Delante de vocal: <b>d'</b>: <i>Il n'y a pas d'eau.</i>","<b>Excepción</b>: con <i>être</i> no cambia: <i>Ce n'est pas <b>un</b> problème.</i> Y con <i>le, la, les</i> tampoco: <i>Je n'aime pas <b>le</b> café.</i>"],
- ej:[["Je n'ai pas de frères.","No tengo hermanos."],["Il n'y a pas de pain.","No hay pan."],["Ce n'est pas un livre, c'est un cahier.","No es un libro, es un cuaderno."]],
+ ej:[["Je n'ai pas de frères.","No tengo hermanos."],["Il n'y a pas de pain.","No hay pan."],["Ce n'est pas un livre, c'est un cahier.","No es un libro, es un cuaderno."],["Je ne bois pas de café.", "No bebo café."],["Il n'y a pas de pain.", "No hay pan."],["Nous n'avons pas d'enfants.", "No tenemos hijos."]],
  ojo:["Je n'ai pas des amis ici.","Je n'ai pas d'amis ici.","En negación, «des» pasa a «de / d'»."]},[
  C("Elige.","Je n'ai pas ___ voiture.",["de","une","la"],0,"<i>Une</i> pasa a <b>de</b> en la negación."),
  C("Elige.","Il ne mange pas ___ viande.",["de","de la","la"],0,"<i>De la</i> pasa a <b>de</b>."),
@@ -493,12 +549,14 @@ L("a1-pas-de","La négation avec les quantités : pas de, pas d'","gram",{
  Mt("Une cada frase afirmativa con su negación.","Afirmativa → negativa",[["J'ai un vélo.","Je n'ai pas de vélo."],["Il boit du café.","Il ne boit pas de café."],["Elle a des cousins.","Elle n'a pas de cousins."],["C'est un sac.","Ce n'est pas un sac."]],"Fíjate en la última: con <i>être</i> se mantiene <i>un</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Désolé , nous n'avons pas [du] pain aujourd'hui .","de","En negación, <i>du</i> pasa a <b>de</b>."),
  O("Ordena: «No tengo tiempo».",["Je","n'ai","pas","de","temps"],"<i>Je n'ai pas de temps.</i>"),
+ C("Elige.","No tengo coche.",["Je n'ai pas de voiture.","Je n'ai pas une voiture.","Je n'ai pas la voiture (en general)."],0,"<b>pas de</b>."),
+ F("Completa.","Il n'y a pas ___ eau.",["d'"],"<b>pas d'eau</b>."),
  D("Il n'y a pas de lait dans le frigo.")]),
 L("a1-repas","Les repas de la journée","voc",{
  idea:"En Francia se come le petit-déjeuner (mañana), le déjeuner (mediodía), le goûter (merienda de los niños) y le dîner (noche). Los verbos: déjeuner, dîner, prendre le petit-déjeuner.",
  para:"Para hablar de tus hábitos de comida y de los horarios franceses.",
  regla:["<i>le petit-déjeuner</i> = desayuno; <i>le déjeuner</i> = almuerzo; <i>le dîner</i> = cena.","Verbos: <i>je déjeune à midi, je dîne à 20 h, je prends le petit-déjeuner à 7 h</i>.","Un menú: <i>l'entrée</i> (entrante), <i>le plat principal</i>, <i>le dessert</i>.","Ojo: <i>l'entrée</i> es el primer plato, no el plato principal."],
- ej:[["En France, on dîne vers vingt heures.","En Francia se cena hacia las ocho."],["Je déjeune au restaurant universitaire.","Almuerzo en el restaurante universitario."],["Comme dessert, je prends une mousse au chocolat.","De postre tomo una mousse de chocolate."]],
+ ej:[["En France, on dîne vers vingt heures.","En Francia se cena hacia las ocho."],["Je déjeune au restaurant universitaire.","Almuerzo en el restaurante universitario."],["Comme dessert, je prends une mousse au chocolat.","De postre tomo una mousse de chocolate."],["Je prends le petit-déjeuner à huit heures.", "Desayuno a las ocho."],["Nous déjeunons à midi.", "Comemos a mediodía."],["Le dîner est prêt.", "La cena está lista."]],
  ojo:["Je prends le déjeuner à 7 h.","Je prends le petit-déjeuner à 7 h.","Le déjeuner es el almuerzo; el desayuno es le petit-déjeuner."]},[
  C("Elige.","El desayuno",["le petit-déjeuner","le déjeuner","le goûter"],0,"Desayuno = <b>le petit-déjeuner</b>."),
  C("Elige.","La cena",["le dîner","le déjeuner","le souper"],0,"En Francia, la cena es <b>le dîner</b>. (En Quebec y Bélgica se dice <i>le souper</i>.)"),
@@ -509,12 +567,14 @@ L("a1-repas","Les repas de la journée","voc",{
  Mt("Une cada comida con su hora habitual en Francia.","Comida → hora",[["le petit-déjeuner","7 h"],["le déjeuner","12 h 30"],["le goûter","16 h 30"],["le dîner","20 h"]],"<i>Le goûter</i> es la merienda de la tarde."),
  P("Encuentra la palabra incorrecta y corrígela.","Après le plat principal , on prend le [désert] .","dessert","Postre = <b>dessert</b>, con doble s."),
  O("Ordena: «Ceno con mi familia a las ocho».",["Je","dîne","avec ma famille","à","vingt heures"],"<i>Je dîne avec ma famille à vingt heures.</i>"),
+ C("¿Qué comida es a mediodía en Francia?","Mediodía",["le déjeuner","le petit-déjeuner","le dîner"],0,"<b>déjeuner</b>."),
+ F("Completa.","Le soir, nous prenons le ___ .",["dîner"],"<b>dîner</b>."),
  D("Le dimanche, nous déjeunons chez mes grands-parents.")]),
 L("a1-restaurant-avis","Donner son avis sur un plat : c'est bon, c'est trop salé","voc",{
  idea:"Para opinar sobre la comida: c'est bon / délicieux, c'est trop salé / sucré / épicé, ce n'est pas assez cuit. Y para pedir: l'addition, s'il vous plaît.",
  para:"Para comentar lo que comes y resolver situaciones en un restaurante.",
  regla:["Positivo: <i>C'est bon ! C'est délicieux ! C'est excellent !</i>","Negativo: <i>C'est trop salé</i> (salado), <i>trop sucré</i> (dulce), <i>trop épicé</i> (picante), <i>c'est froid</i>.","<i>Bon</i> es adjetivo (sabor): <i>c'est bon</i>. <i>Bien</i> es adverbio: <i>on mange bien ici</i>.","Al final: <i>L'addition, s'il vous plaît.</i> (la cuenta)"],
- ej:[["Ce gâteau est délicieux !","¡Este pastel está delicioso!"],["La soupe est un peu trop salée.","La sopa está un poco demasiado salada."],["On mange très bien dans ce restaurant.","Se come muy bien en este restaurante."]],
+ ej:[["Ce gâteau est délicieux !","¡Este pastel está delicioso!"],["La soupe est un peu trop salée.","La sopa está un poco demasiado salada."],["On mange très bien dans ce restaurant.","Se come muy bien en este restaurante."],["C'est très bon !", "¡Está muy bueno!"],["La soupe est trop froide.", "La sopa está demasiado fría."],["Le dessert est délicieux.", "El postre está delicioso."]],
  ojo:["C'est très bien, ce gâteau !","C'est très bon, ce gâteau !","Para el sabor se usa «bon»."]},[
  C("Elige.","Pruebas un plato y te gusta.",["C'est bon !","C'est bien !","C'est bonne !"],0,"Para el sabor: <b>c'est bon</b>."),
  C("Elige el significado.","C'est trop épicé.",["Está demasiado picante.","Está demasiado caro.","Está demasiado frío."],0,"<b>Épicé</b> = picante, con especias."),
@@ -525,6 +585,8 @@ L("a1-restaurant-avis","Donner son avis sur un plat : c'est bon, c'est trop sal�
  Mt("Une cada sabor con su significado.","Francés → español",[["salé","salado"],["sucré","dulce"],["amer","amargo"],["acide","ácido"],["épicé","picante"]],"<i>Sucré</i> viene de <i>sucre</i> (azúcar)."),
  P("Encuentra la palabra incorrecta y corrígela.","Merci , la soupe est très [bien] !","bonne","Sabor + femenino: <b>bonne</b>."),
  O("Ordena: «La carne no está bastante cocida».",["La viande","n'est pas","assez","cuite"],"<i>La viande n'est pas assez cuite.</i>"),
+ C("Elige.","Está demasiado salado.",["C'est trop salé.","C'est très sucré.","C'est trop sale."],0,"<b>trop salé</b>."),
+ F("Completa.","Ce gâteau est ___ ! (delicioso)",["délicieux"],"<b>délicieux</b>."),
  D("Ce plat est délicieux, mais un peu trop salé.")])
 ]),
 U("Ropa y gustos",[
@@ -532,7 +594,7 @@ L("a1-vetements-couleurs","Les vêtements et les couleurs : l'accord","accord",{
  idea:"Los colores son adjetivos y concuerdan con la prenda: une robe verte, des chaussures noires. Algunos no cambian: marron, orange.",
  para:"Para describir lo que llevas, comprar ropa o describir a alguien.",
  regla:["El color va <b>después</b> del nombre: <i>un pull bleu</i>.","Concordancia: <i>vert → verte, verts, vertes</i>; <i>blanc → blanche</i>; <i>violet → violette</i>.","Los que terminan en -e no cambian en femenino: <i>rouge, jaune, rose</i> (pero sí en plural: <i>rouges</i>).","Invariables: <i>marron, orange</i> y los compuestos: <i>bleu clair, vert foncé</i>.","Verbo: <i>porter</i> (llevar puesto): <i>Elle porte un jean.</i>"],
- ej:[["Il porte une chemise blanche.","Lleva una camisa blanca."],["J'aime tes chaussures marron.","Me gustan tus zapatos marrones."],["Elle a une jupe bleu foncé.","Tiene una falda azul oscuro."]],
+ ej:[["Il porte une chemise blanche.","Lleva una camisa blanca."],["J'aime tes chaussures marron.","Me gustan tus zapatos marrones."],["Elle a une jupe bleu foncé.","Tiene una falda azul oscuro."],["Elle porte une robe rouge.", "Lleva un vestido rojo."],["J'achète des chaussures noires.", "Compro unos zapatos negros."],["Il a une chemise blanche.", "Tiene una camisa blanca."]],
  ojo:["une robe vert","une robe verte","El color concuerda con la prenda."]},[
  C("Elige.","une veste ___ (blanco)",["blanche","blanc","blance"],0,"<i>Blanc → <b>blanche</b></i>."),
  C("Elige.","des chaussettes ___ (marrón)",["marron","marrons","marronnes"],0,"<i>Marron</i> es invariable."),
@@ -543,12 +605,14 @@ L("a1-vetements-couleurs","Les vêtements et les couleurs : l'accord","accord",{
  Mt("Une cada prenda con su traducción.","Francés → español",[["la chemise","la camisa"],["le pull","el suéter"],["la jupe","la falda"],["les chaussures","los zapatos"],["le manteau","el abrigo"]],"Recuerda: <i>la chemise</i> es la camisa (no «camiseta», que es <i>le tee-shirt</i>)."),
  P("Encuentra la palabra incorrecta y corrígela.","Pour la fête , elle porte une jupe [blanc] .","blanche","<i>Jupe</i> es femenino: <b>blanche</b>."),
  O("Ordena: «Lleva un abrigo negro y un gorro rojo».",["Il porte","un manteau noir","et","un bonnet rouge"],"<i>Il porte un manteau noir et un bonnet rouge.</i>"),
+ C("Elige.","una falda verde",["une jupe verte","une jupe vert","une verte jupe"],0,"Femenino: <b>verte</b>."),
+ F("Completa.","Il porte un pantalon ___ . (negro)",["noir"],"<b>noir</b>."),
  D("Aujourd'hui, je porte un jean et un pull vert.")]),
 L("a1-gouts-infinitif","Aimer, adorer, préférer, détester","gram",{
  idea:"Tras los verbos de gusto va el artículo definido (j'aime le chocolat) o un infinitivo (j'adore danser). Préférer cambia la tilde: je préfère, nous préférons.",
  para:"Para hablar de lo que te gusta y lo que no, de tus aficiones y preferencias.",
  regla:["Escala: <i>adorer</i> > <i>aimer beaucoup</i> > <i>aimer bien</i> > <i>ne pas aimer</i> > <i>détester</i>.","+ artículo definido: <i>J'aime <b>les</b> films d'action. Je déteste <b>la</b> pluie.</i>","+ infinitivo: <i>J'aime <b>lire</b>. Elle adore <b>voyager</b>.</i>","<i>Préférer</i>: <i>je préf<b>è</b>re, tu préfères, il préfère, nous préférons, vous préférez, ils préfèrent</i>."],
- ej:[["J'adore la musique colombienne.","Me encanta la música colombiana."],["Il préfère le thé au café.","Prefiere el té al café."],["Nous n'aimons pas attendre.","No nos gusta esperar."]],
+ ej:[["J'adore la musique colombienne.","Me encanta la música colombiana."],["Il préfère le thé au café.","Prefiere el té al café."],["Nous n'aimons pas attendre.","No nos gusta esperar."],["J'adore danser.", "Me encanta bailar."],["Il déteste attendre.", "Odia esperar."],["Nous préférons lire.", "Preferimos leer."]],
  ojo:["J'aime du chocolat.","J'aime le chocolat.","Con los verbos de gusto, artículo definido."]},[
  C("Elige.","J'aime ___ cinéma français.",["le","du","de"],0,"Verbo de gusto + artículo definido: <b>le</b> cinéma."),
  C("Elige.","Ella prefiere el té: elle ___ le thé.",["préfère","préfére","préfer"],0,"<i>Elle <b>préfère</b></i>, con acento grave en la segunda e."),
@@ -559,12 +623,14 @@ L("a1-gouts-infinitif","Aimer, adorer, préférer, détester","gram",{
  Mt("Une cada frase con su significado.","Francés → español",[["J'aime bien","me gusta"],["J'adore","me encanta"],["Je préfère","prefiero"],["Je déteste","detesto"]],"<i>Aimer bien</i> es un poco menos que <i>aimer</i> cuando se habla de personas."),
  P("Encuentra la palabra incorrecta y corrígela.","Mon frère aime [du] football et le basket .","le","Con <i>aimer</i>: artículo definido <b>le</b> football."),
  O("Ordena: «Prefiero leer que ver la tele».",["Je préfère","lire","plutôt que","regarder la télé"],"<i>Je préfère lire plutôt que regarder la télé.</i>"),
+ C("Elige.","Me encanta viajar.",["J'adore voyager.","J'adore de voyager.","J'adore voyage."],0,"<b>adorer + infinitivo</b>."),
+ F("Completa.","Je ___ le froid. (odio)",["déteste"],"<b>déteste</b>."),
  D("J'aime beaucoup lire, mais je déteste faire la cuisine.")]),
 L("a1-sorties","Sortir : cinéma, concert, musée, exposition","voc",{
  idea:"Para proponer salidas: On va au cinéma ? Tu veux aller à un concert ? Y para reaccionar: Bonne idée ! / Je ne peux pas, désolé.",
  para:"Para organizar el fin de semana con amigos y hablar de cultura.",
  regla:["Lugares: <i>le cinéma, le théâtre, le musée, la salle de concert, la galerie, l'exposition</i>.","Proponer: <i>On va… ? / Ça te dit de… ? / Tu es libre samedi ?</i>","Aceptar: <i>D'accord ! Bonne idée ! Avec plaisir !</i> Rechazar: <i>Désolé, je ne peux pas. Une autre fois ?</i>","Entradas: <i>un billet / une place, le tarif étudiant, c'est gratuit</i>."],
- ej:[["On va voir le nouveau film de Céline Sciamma ?","¿Vamos a ver la nueva película de Céline Sciamma?"],["Le musée est gratuit le premier dimanche du mois.","El museo es gratis el primer domingo del mes."],["Ça te dit d'aller à un concert ce soir ?","¿Te apetece ir a un concierto esta noche?"]],
+ ej:[["On va voir le nouveau film de Céline Sciamma ?","¿Vamos a ver la nueva película de Céline Sciamma?"],["Le musée est gratuit le premier dimanche du mois.","El museo es gratis el primer domingo del mes."],["Ça te dit d'aller à un concert ce soir ?","¿Te apetece ir a un concierto esta noche?"],["On va au cinéma ce soir ?", "¿Vamos al cine esta noche?"],["Le concert commence à vingt heures.", "El concierto empieza a las veinte horas."],["J'aime visiter les musées.", "Me gusta visitar los museos."]],
  ojo:["On va à le théâtre ?","On va au théâtre ?","à + le = au."]},[
  C("Elige el significado.","Ça te dit ?",["¿Te apetece?","¿Qué te dice?","¿Te lo dije?"],0,"<b>Ça te dit ?</b> = ¿te apetece?, ¿te animas?"),
  C("Elige la respuesta negativa.","— On va au musée samedi ?",["Désolé, je ne peux pas.","Avec plaisir !","Bonne idée !"],0,"Para rechazar con cortesía: <b>Désolé, je ne peux pas</b>."),
@@ -575,12 +641,14 @@ L("a1-sorties","Sortir : cinéma, concert, musée, exposition","voc",{
  Mt("Une cada lugar con la actividad.","Lugar → actividad",[["le cinéma","voir un film"],["le musée","voir une exposition"],["le théâtre","voir une pièce"],["la salle de concert","écouter un groupe"]],"<i>Une pièce</i> = una obra de teatro."),
  P("Encuentra la palabra incorrecta y corrígela.","L'entrée du musée est [gratuit] pour les étudiants .","gratuite","<i>L'entrée</i> es femenino: <b>gratuite</b>."),
  O("Ordena: «¿Estás libre el sábado por la noche?».",["Tu","es","libre","samedi soir","?"],"<i>Tu es libre samedi soir ?</i>"),
+ C("Elige.","¿Vamos al concierto?",["On va au concert ?","On va à le concert ?","On va en concert ?"],0,"<b>au concert</b>."),
+ F("Completa.","Le film ___ à vingt heures. (empieza)",["commence"],"<b>commence</b>."),
  D("Ça te dit d'aller au cinéma samedi soir ?")]),
 L("a1-carte-postale","Écrire une carte postale","registre",{
  idea:"Una postal lleva saludo, lugar, qué haces, el tiempo y una despedida: Chère Ana, je suis à Nice, il fait beau… Bisous, Laura.",
  para:"Para escribir un mensaje corto de vacaciones o un texto del examen DELF A1.",
  regla:["Saludo: <i>Cher Paul, / Chère Julie, / Salut les amis !</i>","Dónde estás y con quién: <i>Je suis à Nice avec ma famille.</i>","Qué haces y qué tiempo hace: <i>Je visite la ville, je vais à la plage. Il fait beau et chaud.</i>","Despedida: <i>Bisous, / Je t'embrasse, / À bientôt, / Grosses bises</i>."],
- ej:[["Chère Mamie, je suis à Lyon pour une semaine.","Querida abuelita, estoy en Lyon por una semana."],["Il fait très chaud et je vais à la piscine tous les jours.","Hace mucho calor y voy a la piscina todos los días."],["Je t'embrasse très fort. Camila","Un abrazo muy fuerte. Camila"]],
+ ej:[["Chère Mamie, je suis à Lyon pour une semaine.","Querida abuelita, estoy en Lyon por una semana."],["Il fait très chaud et je vais à la piscine tous les jours.","Hace mucho calor y voy a la piscina todos los días."],["Je t'embrasse très fort. Camila","Un abrazo muy fuerte. Camila"],["Il fait beau et la mer est chaude.", "Hace buen tiempo y el mar está caliente."],["Je pense à toi.", "Pienso en ti."],["Grosses bises de Nice !", "¡Muchos besos desde Niza!"]],
  ojo:["Cher Julie,","Chère Julie,","El saludo concuerda: cher (masc.), chère (fem.)."]},[
  C("Elige el saludo.","A tu amiga Sophie",["Chère Sophie,","Cher Sophie,","Querida Sophie,"],0,"Femenino: <b>Chère</b> Sophie."),
  C("Elige la despedida informal.","A un amigo",["Bisous !","Veuillez agréer mes salutations.","Cordialement,"],0,"<b>Bisous</b> es cariñoso e informal."),
@@ -591,6 +659,8 @@ L("a1-carte-postale","Écrire une carte postale","registre",{
  S("Clasifica.","Partes de la postal",["Saludo","Despedida"],[["Cher Marc,",0],["Salut Julie !",0],["Chers parents,",0],["Coucou !",0],["Grosses bises,",1],["À bientôt !",1],["Je t'embrasse,",1],["Bisous,",1]],"Saludos y despedidas informales."),
  Mt("Une cada expresión con su significado.","Francés → español",[["Je t'embrasse","te mando un abrazo"],["À bientôt","hasta pronto"],["Grosses bises","besos grandes"],["Bonnes vacances","buenas vacaciones"]],"Despedidas cariñosas típicas."),
  P("Encuentra la palabra incorrecta y corrígela.","[Cher] Claire , je suis en vacances en Bretagne .","Chère","Claire es mujer: <b>Chère</b> Claire."),
+ C("Elige el cierre de una postal.","Despedida",["Grosses bises","Veuillez agréer","Cordialement"],0,"Informal: <b>Grosses bises</b>."),
+ F("Completa.","Il fait très ___ ici. (buen tiempo)",["beau"],"<b>il fait beau</b>."),
  D("Chère Julie, je suis à Nice et il fait très beau.")])
 ]),
 U("Celebrar y la naturaleza",[
@@ -598,7 +668,7 @@ L("a1-fetes","Les fêtes et les vœux : bon anniversaire !","voc",{
  idea:"Para felicitar se usa bon / bonne + ocasión: Bon anniversaire ! Bonne année ! Joyeux Noël ! Y para desear: Bonne chance ! Bon courage !",
  para:"Para felicitar a tus amigos y conocer las fiestas francesas.",
  regla:["<i>Bon anniversaire !</i> (feliz cumpleaños) — <i>Joyeux anniversaire !</i> también se dice.","<i>Joyeux Noël ! Bonne année ! Bonnes fêtes !</i>","Deseos: <i>Bonne chance !</i> (suerte), <i>Bon courage !</i> (ánimo), <i>Bon appétit !</i>, <i>Bon voyage !</i>, <i>Félicitations !</i>","Fiestas francesas: <i>le 14 juillet</i> (fiesta nacional), <i>la Fête de la musique</i> (21 de junio), <i>la Chandeleur</i> (crepes, 2 de febrero)."],
- ej:[["Bon anniversaire, Marie ! Tu as quel âge ?","¡Feliz cumpleaños, Marie! ¿Cuántos años cumples?"],["Félicitations pour ton diplôme !","¡Felicitaciones por tu título!"],["Le 21 juin, c'est la Fête de la musique.","El 21 de junio es la Fiesta de la Música."]],
+ ej:[["Bon anniversaire, Marie ! Tu as quel âge ?","¡Feliz cumpleaños, Marie! ¿Cuántos años cumples?"],["Félicitations pour ton diplôme !","¡Felicitaciones por tu título!"],["Le 21 juin, c'est la Fête de la musique.","El 21 de junio es la Fiesta de la Música."],["Joyeux anniversaire !", "¡Feliz cumpleaños!"],["Bonne année à tous !", "¡Feliz año a todos!"],["Joyeux Noël, les amis !", "¡Feliz Navidad, amigos!"]],
  ojo:["Bon année !","Bonne année !","Année es femenino: bonne."]},[
  C("Elige.","¡Feliz año nuevo!",["Bonne année !","Bon an !","Joyeuse année !"],0,"<b>Bonne année !</b> (<i>année</i> es femenino)."),
  C("Elige.","A alguien que tiene un examen",["Bonne chance !","Bon appétit !","Joyeux Noël !"],0,"<b>Bonne chance</b> = buena suerte."),
@@ -609,12 +679,14 @@ L("a1-fetes","Les fêtes et les vœux : bon anniversaire !","voc",{
  S("Clasifica: ¿bon o bonne?","Deseos",["bon…","bonne…"],[["anniversaire",0],["appétit",0],["courage",0],["voyage",0],["année",1],["chance",1],["journée",1],["soirée",1]],"Depende del género del nombre."),
  P("Encuentra la palabra incorrecta y corrígela.","Bon [journée] et à demain !","Bonne","<i>Journée</i> es femenino: <b>Bonne</b> journée."),
  O("Ordena: «Feliz cumpleaños, querido amigo».",["Joyeux","anniversaire,","mon cher","ami"],"<i>Joyeux anniversaire, mon cher ami !</i>"),
+ C("Elige.","¡Feliz cumpleaños!",["Joyeux anniversaire !","Bonne anniversaire !","Joyeux anniversaires !"],0,"<b>Joyeux anniversaire</b>."),
+ F("Completa.","Bonne ___ ! (año, 1 de enero)",["année"],"<b>Bonne année</b>."),
  D("Bon anniversaire ! Je te souhaite une très belle journée.")]),
 L("a1-animaux","Les animaux","voc",{
  idea:"Los animales domésticos (le chien, le chat) y los de granja o salvajes (la vache, le lion) se aprenden con su artículo, porque el género no siempre coincide con el español.",
  para:"Para hablar de tus mascotas y describir animales.",
  regla:["Mascotas: <i>le chien, le chat, le lapin, le poisson rouge, l'oiseau</i>.","Granja: <i>la vache, le cheval, le cochon, le mouton, la poule</i>.","Salvajes: <i>le lion, l'éléphant, le singe, l'ours, le serpent</i>.","Plurales especiales: <i>un cheval → des chevaux</i>, <i>un oiseau → des oiseaux</i>."],
- ej:[["J'ai un chat qui s'appelle Manzana.","Tengo un gato que se llama Manzana."],["Il y a des vaches dans le champ.","Hay vacas en el campo."],["Les singes mangent des bananes.","Los monos comen bananas."]],
+ ej:[["J'ai un chat qui s'appelle Manzana.","Tengo un gato que se llama Manzana."],["Il y a des vaches dans le champ.","Hay vacas en el campo."],["Les singes mangent des bananes.","Los monos comen bananas."],["J'ai un chien et deux chats.", "Tengo un perro y dos gatos."],["Le cheval est dans le pré.", "El caballo está en el prado."],["Les oiseaux chantent le matin.", "Los pájaros cantan por la mañana."]],
  ojo:["des chevals","des chevaux","-al → -aux en plural."]},[
  C("Elige el plural.","un cheval → des ___",["chevaux","chevals","chevales"],0,"<i>-al → -aux</i>: <b>chevaux</b>."),
  C("Elige el significado.","le singe",["el mono","el cisne","el cerdo"],0,"<b>Le singe</b> = el mono."),
@@ -625,12 +697,14 @@ L("a1-animaux","Les animaux","voc",{
  Mt("Une cada animal con su traducción.","Francés → español",[["le cochon","el cerdo"],["la souris","el ratón"],["le serpent","la serpiente"],["la tortue","la tortuga"],["le canard","el pato"]],"Ojo: <i>le serpent</i> es masculino."),
  P("Encuentra la palabra incorrecta y corrígela.","Dans la ferme , il y a des [chevals] et des vaches .","chevaux","Plural de <i>cheval</i>: <b>chevaux</b>."),
  O("Ordena: «Mi gato duerme todo el día».",["Mon chat","dort","toute","la journée"],"<i>Mon chat dort toute la journée.</i>"),
+ C("Elige.","el pájaro",["l'oiseau","le poisson","le lapin"],0,"<b>oiseau</b>."),
+ F("Completa (plural).","un cheval → des ___",["chevaux"],"<b>chevaux</b>."),
  D("Mon voisin a deux chiens et un chat noir.")]),
 L("a1-nature","La nature et les paysages","voc",{
  idea:"Para describir paisajes: la montagne, la mer, la plage, la forêt, le lac, la rivière, le fleuve. Con il y a y c'est: il y a des montagnes, c'est magnifique.",
  para:"Para describir tu región, hablar de vacaciones o de fotos.",
  regla:["<i>La mer</i> = el mar (femenino); <i>la montagne, la forêt, la plage, la campagne</i> (el campo).","<i>Le fleuve</i> desemboca en el mar (le Rhône); <i>la rivière</i> desemboca en otro río.","Preposiciones: <i>à la montagne, à la mer, à la campagne, en forêt</i>.","Adjetivos: <i>magnifique, calme, sauvage, vert, haut</i>."],
- ej:[["Cet été, je vais à la mer.","Este verano voy al mar."],["Dans ma région, il y a beaucoup de montagnes.","En mi región hay muchas montañas."],["La Loire est le plus long fleuve de France.","El Loira es el río más largo de Francia."]],
+ ej:[["Cet été, je vais à la mer.","Este verano voy al mar."],["Dans ma région, il y a beaucoup de montagnes.","En mi región hay muchas montañas."],["La Loire est le plus long fleuve de France.","El Loira es el río más largo de Francia."],["La montagne est très belle.", "La montaña es muy bonita."],["Nous marchons dans la forêt.", "Caminamos por el bosque."],["Il y a un lac près du village.", "Hay un lago cerca del pueblo."]],
  ojo:["le mer","la mer","El mar es femenino en francés."]},[
  C("Elige el artículo.","___ mer",["la","le","l'"],0,"<b>La mer</b> es femenino."),
  C("Elige la preposición.","Nous passons le week-end ___ campagne.",["à la","en","au"],0,"<b>À la campagne</b> = en el campo."),
@@ -641,12 +715,14 @@ L("a1-nature","La nature et les paysages","voc",{
  Mt("Une cada palabra con su traducción.","Francés → español",[["la plage","la playa"],["l'île","la isla"],["le champ","el campo (de cultivo)"],["la cascade","la cascada"],["le sommet","la cima"]],"<i>Le champ</i> es un terreno cultivado; <i>la campagne</i>, el campo en general."),
  P("Encuentra la palabra incorrecta y corrígela.","J'adore nager dans [le] mer .","la","<i>Mer</i> es femenino: <b>la</b> mer."),
  O("Ordena: «En mi región hay un gran lago».",["Dans ma région,","il y a","un grand","lac"],"<i>Dans ma région, il y a un grand lac.</i>"),
+ C("Elige.","el mar",["la mer","la mère","le maire"],0,"<b>la mer</b>."),
+ F("Completa.","Il y a beaucoup d'arbres dans la ___ .",["forêt"],"<b>forêt</b>."),
  D("Le paysage est magnifique, il y a des montagnes et un lac.")]),
 L("a1-taches","Les tâches ménagères : faire la vaisselle, passer l'aspirateur","voc",{
  idea:"Las tareas de la casa se dicen sobre todo con faire: faire la vaisselle, faire le ménage, faire la lessive, faire les courses. Otras: passer l'aspirateur, ranger sa chambre.",
  para:"Para organizar un piso compartido o hablar de la vida en casa.",
  regla:["Con <b>faire</b>: <i>faire la vaisselle</i> (lavar los platos), <i>faire le ménage</i> (limpiar), <i>faire la lessive</i> (lavar la ropa), <i>faire la cuisine</i>, <i>faire les courses</i>, <i>faire son lit</i>.","Otros: <i>passer l'aspirateur, ranger, sortir la poubelle, mettre la table</i>.","Frecuencia: <i>C'est moi qui fais la vaisselle tous les soirs.</i>","Obligación: <i>il faut + infinitivo</i>: <i>Il faut ranger ta chambre.</i>"],
- ej:[["Chez moi, mon frère fait la vaisselle.","En mi casa, mi hermano lava los platos."],["Je passe l'aspirateur le samedi.","Paso la aspiradora los sábados."],["Qui sort la poubelle ce soir ?","¿Quién saca la basura esta noche?"]],
+ ej:[["Chez moi, mon frère fait la vaisselle.","En mi casa, mi hermano lava los platos."],["Je passe l'aspirateur le samedi.","Paso la aspiradora los sábados."],["Qui sort la poubelle ce soir ?","¿Quién saca la basura esta noche?"],["Je fais la vaisselle après le dîner.", "Friego los platos después de la cena."],["Il passe l'aspirateur le samedi.", "Pasa la aspiradora los sábados."],["Nous faisons le ménage ensemble.", "Hacemos la limpieza juntos."]],
  ojo:["Je fais le lavage des plats.","Je fais la vaisselle.","Lavar los platos = faire la vaisselle."]},[
  C("Elige.","Lavar los platos",["faire la vaisselle","laver les plats","faire les assiettes"],0,"<b>Faire la vaisselle</b>."),
  C("Elige.","Lavar la ropa",["faire la lessive","faire la vaisselle","faire le lit"],0,"<b>Faire la lessive</b>."),
@@ -657,6 +733,8 @@ L("a1-taches","Les tâches ménagères : faire la vaisselle, passer l'aspirateur
  Mt("Une cada tarea con su traducción.","Francés → español",[["faire le ménage","limpiar la casa"],["ranger sa chambre","ordenar su cuarto"],["sortir la poubelle","sacar la basura"],["faire son lit","hacer la cama"]],"Tareas diarias de la casa."),
  P("Encuentra la palabra incorrecta y corrígela.","Ce soir , c'est toi qui [fait] la vaisselle !","fais","Con <i>toi / tu</i>: <b>fais</b>."),
  O("Ordena: «Hay que ordenar la cocina».",["Il faut","ranger","la","cuisine"],"<i>Il faut ranger la cuisine.</i>"),
+ C("Elige.","Friego los platos.",["Je fais la vaisselle.","Je fais le ménage des plats.","Je lave vaisselle."],0,"<b>faire la vaisselle</b>."),
+ F("Completa.","Il ___ l'aspirateur. (pasa)",["passe"],"<b>passer l'aspirateur</b>."),
  D("Le samedi, je fais le ménage et la lessive.")])
 ])
 ]);
@@ -668,7 +746,7 @@ L("a1-quel","Quel, quelle, quels, quelles","gram",{
  para:"Para preguntar la edad, la hora, la dirección, la nacionalidad o las preferencias.",
  regla:["<b>quel</b> + masculino singular: <i>Quel est ton nom ? Quel âge as-tu ?</i>","<b>quelle</b> + femenino singular: <i>Quelle heure est-il ? Quelle est ton adresse ?</i>","<b>quels / quelles</b> + plural: <i>Quels sports tu fais ? Quelles langues tu parles ?</i>","Con <i>être</i> concuerda con el sujeto que viene detrás: <i>Quelle est ta couleur préférée ?</i>"],
  tabla:[["","Singular","Plural"],[["Masculino","quel","quels"],["Femenino","quelle","quelles"]]],
- ej:[["Quelle est ta nationalité ?","¿Cuál es tu nacionalidad?"],["Tu habites dans quel quartier ?","¿En qué barrio vives?"],["Quels films tu aimes ?","¿Qué películas te gustan?"]],
+ ej:[["Quelle est ta nationalité ?","¿Cuál es tu nacionalidad?"],["Tu habites dans quel quartier ?","¿En qué barrio vives?"],["Quels films tu aimes ?","¿Qué películas te gustan?"],["Quel âge as-tu ?", "¿Cuántos años tienes?"],["Quelle heure est-il ?", "¿Qué hora es?"],["Quels films aimes-tu ?", "¿Qué películas te gustan?"]],
  ojo:["Quel est ton adresse ?","Quelle est ton adresse ?","Adresse es femenino: quelle."]},[
  C("Elige.","___ âge as-tu ?",["Quel","Quelle","Quels"],0,"<i>L'âge</i> es masculino: <b>quel</b>."),
  C("Elige.","___ heure est-il ?",["Quelle","Quel","Quelles"],0,"<i>L'heure</i> es femenino: <b>quelle</b>."),
@@ -679,12 +757,14 @@ L("a1-quel","Quel, quelle, quels, quelles","gram",{
  Mt("Une cada pregunta con su respuesta.","Pregunta → respuesta",[["Quel âge as-tu ?","J'ai vingt ans."],["Quelle heure est-il ?","Il est midi."],["Quel jour sommes-nous ?","Nous sommes lundi."],["Quelle est ta nationalité ?","Je suis colombienne."]],"Preguntas básicas con <i>quel</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","[Quel] est ta couleur préférée ?","Quelle","<i>Couleur</i> es femenino: <b>Quelle</b>."),
  O("Ordena: «¿Qué música escuchas?».",["Quelle","musique","tu","écoutes","?"],"<i>Quelle musique tu écoutes ?</i>"),
+ C("Elige.","¿Qué película?",["Quel film ?","Quelle film ?","Quels film ?"],0,"<i>Film</i> masc.: <b>quel</b>."),
+ F("Completa.","___ couleurs préfères-tu ? (fem. pl.)",["Quelles"],"<b>Quelles</b>."),
  D("Quelle est ton adresse à Pamplona ?")]),
 L("a1-interrogatifs","Où, quand, comment, combien, pourquoi","gram",{
  idea:"Las palabras interrogativas van al principio o al final (en lenguaje oral): Où tu habites ? / Tu habites où ? A pourquoi se responde con parce que.",
  para:"Para hacer preguntas completas sobre lugar, tiempo, modo, cantidad y causa.",
  regla:["<i>où</i> (dónde), <i>quand</i> (cuándo), <i>comment</i> (cómo), <i>combien</i> (cuánto), <i>pourquoi</i> (por qué), <i>qui</i> (quién), <i>que / quoi</i> (qué).","Tres registros: <i>Tu vas où ?</i> (oral) / <i>Où est-ce que tu vas ?</i> (neutro) / <i>Où vas-tu ?</i> (formal).","<b>Combien de</b> + nombre: <i>Combien de frères as-tu ?</i>","Respuesta a <i>pourquoi</i>: <b>parce que</b>: <i>Parce que j'aime la France.</i>"],
- ej:[["Quand est-ce que tu pars ?","¿Cuándo te vas?"],["Combien coûte ce livre ?","¿Cuánto cuesta este libro?"],["Pourquoi tu apprends le français ? — Parce que je veux étudier à Lyon.","¿Por qué aprendes francés? — Porque quiero estudiar en Lyon."]],
+ ej:[["Quand est-ce que tu pars ?","¿Cuándo te vas?"],["Combien coûte ce livre ?","¿Cuánto cuesta este libro?"],["Pourquoi tu apprends le français ? — Parce que je veux étudier à Lyon.","¿Por qué aprendes francés? — Porque quiero estudiar en Lyon."],["Où habites-tu ?", "¿Dónde vives?"],["Combien coûte ce livre ?", "¿Cuánto cuesta este libro?"],["Pourquoi tu pleures ?", "¿Por qué lloras?"]],
  ojo:["Combien des frères ?","Combien de frères ?","Tras combien va «de»."]},[
  C("Elige.","___ tu habites ? — À Cúcuta.",["Où","Quand","Comment"],0,"Lugar: <b>où</b>."),
  C("Elige.","___ tu pars en vacances ? — En juillet.",["Quand","Où","Pourquoi"],0,"Tiempo: <b>quand</b>."),
@@ -695,12 +775,14 @@ L("a1-interrogatifs","Où, quand, comment, combien, pourquoi","gram",{
  S("Clasifica por registro.","Preguntas",["Oral informal","Formal"],[["Tu vas où ?",0],["Tu t'appelles comment ?",0],["C'est combien ?",0],["Tu pars quand ?",0],["Où allez-vous ?",1],["Comment vous appelez-vous ?",1],["Combien cela coûte-t-il ?",1],["Quand partez-vous ?",1]],"La inversión (verbo-sujeto) es propia del registro formal."),
  P("Encuentra la palabra incorrecta y corrígela.","Combien [des] étudiants il y a dans la classe ?","d'","Tras <i>combien</i> va <b>de / d'</b>: <i>combien d'étudiants</i>."),
  O("Ordena: «¿Por qué estudias francés?».",["Pourquoi","est-ce que","tu étudies","le français","?"],"<i>Pourquoi est-ce que tu étudies le français ?</i>"),
+ C("Elige.","¿Cuándo llegas?",["Quand arrives-tu ?","Où arrives-tu ?","Comment arrives-tu ?"],0,"<b>Quand</b>."),
+ F("Completa.","___ vas-tu ? — Très bien, merci. (cómo)",["Comment"],"<b>Comment</b>."),
  D("Où est-ce que tu habites et quand est-ce que tu arrives ?")]),
 L("a1-politesse","Demander poliment : je voudrais, pourriez-vous","polit",{
  idea:"Para pedir algo con cortesía se usa el condicional: je voudrais (quisiera), pourriez-vous… ? (¿podría…?). Y siempre s'il vous plaît y merci.",
  para:"Para hablar con profesores, en tiendas, en la administración o con desconocidos.",
  regla:["<i>Je voudrais</i> + nombre o infinitivo: <i>Je voudrais un café. Je voudrais parler au directeur.</i>","<i>Pourriez-vous</i> + infinitivo: <i>Pourriez-vous répéter, s'il vous plaît ?</i>","Otras fórmulas: <i>Excusez-moi… / Est-ce que je peux… ? / Vous pouvez parler plus lentement ?</i>","Agradecer: <i>Merci beaucoup. — Je vous en prie. / De rien.</i>"],
- ej:[["Pourriez-vous parler plus lentement, s'il vous plaît ?","¿Podría hablar más despacio, por favor?"],["Je voudrais une information.","Quisiera una información."],["Merci beaucoup ! — Je vous en prie.","¡Muchas gracias! — De nada."]],
+ ej:[["Pourriez-vous parler plus lentement, s'il vous plaît ?","¿Podría hablar más despacio, por favor?"],["Je voudrais une information.","Quisiera una información."],["Merci beaucoup ! — Je vous en prie.","¡Muchas gracias! — De nada."],["Je voudrais un café, s'il vous plaît.", "Quisiera un café, por favor."],["Pourriez-vous répéter ?", "¿Podría repetir?"],["Merci beaucoup, madame.", "Muchas gracias, señora."]],
  ojo:["Je veux un café.","Je voudrais un café.","«Je veux» suena brusco a desconocidos."]},[
  C("Elige la forma más cortés.","En una cafetería…",["Je voudrais un thé, s'il vous plaît.","Je veux un thé.","Donnez un thé."],0,"<b>Je voudrais</b> + <i>s'il vous plaît</i>."),
  C("Elige.","No entiendes al profesor.",["Pourriez-vous répéter, s'il vous plaît ?","Répète !","Quoi ?"],0,"<b>Pourriez-vous répéter ?</b> es la fórmula cortés."),
@@ -711,6 +793,8 @@ L("a1-politesse","Demander poliment : je voudrais, pourriez-vous","polit",{
  Mt("Une cada fórmula con su uso.","Fórmula → uso",[["Excusez-moi","llamar la atención"],["Pardon ?","pedir que repitan"],["Je vous en prie","responder a un gracias"],["Je suis désolé","disculparse"]],"Fórmulas de cortesía básicas."),
  P("Encuentra la palabra incorrecta y corrígela.","Madame , [peux] -tu m'aider , s'il vous plaît ?","pouvez","Con <i>Madame</i> y <i>s'il vous plaît</i> se usa <i>vous</i>: <b>pouvez</b>-vous m'aider ?"),
  O("Ordena: «¿Podría ayudarme, por favor?».",["Pourriez-vous","m'aider,","s'il vous plaît","?"],"<i>Pourriez-vous m'aider, s'il vous plaît ?</i>"),
+ C("Elige la forma cortés.","Quisiera…",["Je voudrais…","Je veux…","Donne-moi…"],0,"<b>Je voudrais</b>."),
+ F("Completa.","Merci ! — De ___ .",["rien"],"<b>De rien</b>."),
  D("Excusez-moi, pourriez-vous répéter la question ?")])
 ]),
 U("Pronombres y verbos clave",[
@@ -719,7 +803,7 @@ L("a1-pronoms-toniques","Moi, toi, lui, elle, nous, vous, eux, elles","gram",{
  para:"Para responder rápido, hablar de con quién haces algo y para dar énfasis.",
  regla:["Formas: <i>moi, toi, lui, elle, nous, vous, eux, elles</i>.","Solos: <i>— Qui veut du café ? — Moi !</i> / <i>Et toi ?</i>","Tras preposición: <i>avec moi, pour toi, chez lui, sans elle, à côté d'eux</i>.","Énfasis: <i>Moi, j'adore le cinéma.</i> Con <i>c'est</i>: <i>C'est lui.</i>"],
  tabla:[["Sujeto","Tónico"],[["je","moi"],["tu","toi"],["il","lui"],["elle","elle"],["nous","nous"],["vous","vous"],["ils","eux"],["elles","elles"]]],
- ej:[["Tu viens avec moi ?","¿Vienes conmigo?"],["Moi, je m'appelle Andrés. Et toi ?","Yo me llamo Andrés. ¿Y tú?"],["Ce cadeau est pour eux.","Este regalo es para ellos."]],
+ ej:[["Tu viens avec moi ?","¿Vienes conmigo?"],["Moi, je m'appelle Andrés. Et toi ?","Yo me llamo Andrés. ¿Y tú?"],["Ce cadeau est pour eux.","Este regalo es para ellos."],["Moi, j'aime le thé.", "A mí me gusta el té."],["Tu viens avec nous ?", "¿Vienes con nosotros?"],["C'est pour elle.", "Es para ella."]],
  ojo:["avec je","avec moi","Tras preposición, pronombre tónico."]},[
  C("Elige.","Tu viens chez ___ ce soir ? (yo)",["moi","je","me"],0,"Tras <i>chez</i>: <b>moi</b>."),
  C("Elige.","Je m'appelle Laura. Et ___ ?",["toi","tu","te"],0,"Solo: <b>toi</b>."),
@@ -730,12 +814,14 @@ L("a1-pronoms-toniques","Moi, toi, lui, elle, nous, vous, eux, elles","gram",{
  S("Clasifica.","Pronombres",["Sujeto","Tónico"],[["je",0],["tu",0],["il",0],["ils",0],["moi",1],["toi",1],["lui",1],["eux",1]],"Cada sujeto tiene su forma tónica."),
  P("Encuentra la palabra incorrecta y corrígela.","Tu veux venir au cinéma avec [ils] ?","eux","Tras <i>avec</i>: <b>eux</b>, no <i>ils</i>."),
  O("Ordena: «Es él quien tiene las llaves».",["C'est","lui","qui","a","les clés"],"<i>C'est lui qui a les clés.</i>"),
+ C("Elige.","Voy con él.",["Je vais avec lui.","Je vais avec il.","Je vais avec le."],0,"<b>avec lui</b>."),
+ F("Completa.","C'est pour ___ , ce cadeau ? (tú)",["toi"],"<b>toi</b>."),
  D("Moi, j'habite chez mes parents. Et toi ?")]),
 L("a1-on","Le pronom on : on va au cinéma ?","gram",{
  idea:"On es muy frecuente en francés hablado: significa «nosotros» (on va au parc) o «la gente, se» (en France, on mange du fromage). El verbo va en tercera persona singular.",
  para:"Para hablar de ti y de tu grupo de forma natural, y para hablar en general.",
  regla:["<i>On</i> + verbo en 3.ª persona singular: <i>on va, on mange, on est</i>.","Sentido 1: <b>nosotros</b> (oral): <i>On se voit demain ?</i> = ¿Nos vemos mañana?","Sentido 2: <b>la gente, se</b>: <i>Ici, on parle français.</i> = Aquí se habla francés.","Liaison: <i>on_a, on_est</i> [ɔ̃n]."],
- ej:[["On va au cinéma ce soir ?","¿Vamos al cine esta noche?"],["En Colombie, on boit beaucoup de café.","En Colombia se toma mucho café."],["On est en retard !","¡Llegamos tarde!"]],
+ ej:[["On va au cinéma ce soir ?","¿Vamos al cine esta noche?"],["En Colombie, on boit beaucoup de café.","En Colombia se toma mucho café."],["On est en retard !","¡Llegamos tarde!"],["On va au parc ?", "¿Vamos al parque?"],["On mange ensemble ce soir.", "Comemos juntos esta noche."],["En France, on dit bonjour.", "En Francia se dice bonjour."]],
  ojo:["On allons au parc.","On va au parc.","Con on, el verbo va en singular."]},[
  C("Elige.","On ___ à la plage demain ?",["va","allons","vont"],0,"<i>On</i> + 3.ª singular: <b>va</b>."),
  C("Elige el sentido.","Au Québec, on parle français.",["Se habla francés.","Nosotros hablamos francés.","Él habla francés."],0,"Aquí <i>on</i> es general: <b>se habla</b>."),
@@ -746,13 +832,15 @@ L("a1-on","Le pronom on : on va au cinéma ?","gram",{
  Mt("Une cada frase con su traducción.","Francés → español",[["On y va !","¡Vamos!"],["On verra.","Ya veremos."],["On ne sait jamais.","Nunca se sabe."],["On se tutoie ?","¿Nos tuteamos?"]],"Expresiones muy frecuentes con <i>on</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Demain , on [partons] tôt pour Lyon .","part","Con <i>on</i>: <b>part</b>, 3.ª singular."),
  O("Ordena: «¿Nos vemos mañana en la biblioteca?».",["On","se voit","demain","à la bibliothèque","?"],"<i>On se voit demain à la bibliothèque ?</i>"),
+ C("Elige.","Vamos al mercado (oral).",["On va au marché.","On allons au marché.","On vont au marché."],0,"<b>on va</b>."),
+ F("Completa.","On ___ ensemble ? (comer, presente)",["mange"],"<b>on mange</b>."),
  D("Ce week-end, on va chez mes grands-parents.")]),
 L("a1-savoir-connaitre","Savoir ou connaître ?","conj",{
  idea:"Savoir es saber algo o saber hacer algo (je sais nager, je sais où il habite). Connaître es conocer personas, lugares u obras (je connais Paris, je connais Marie).",
  para:"Para no confundir los dos «saber/conocer», un error muy común.",
  regla:["<b>Savoir</b> + infinitivo: <i>Je sais conduire.</i> + <i>que, où, si, comment…</i>: <i>Tu sais où est la gare ?</i>","<b>Connaître</b> + nombre (persona, lugar, cosa): <i>Tu connais ce restaurant ? Je connais bien ton frère.</i>","<i>Savoir</i>: <i>je sais, tu sais, il sait, nous savons, vous savez, ils savent</i>.","<i>Connaître</i>: <i>je connais, tu connais, il connaît, nous connaissons, vous connaissez, ils connaissent</i>."],
  tabla:[["savoir","connaître"],[["savoir nager","connaître Paris"],["savoir que…","connaître une personne"],["savoir où / si…","connaître un livre"]]],
- ej:[["Je sais parler trois langues.","Sé hablar tres idiomas."],["Vous connaissez mon professeur ?","¿Conoce a mi profesor?"],["Je ne sais pas à quelle heure commence le film.","No sé a qué hora empieza la película."]],
+ ej:[["Je sais parler trois langues.","Sé hablar tres idiomas."],["Vous connaissez mon professeur ?","¿Conoce a mi profesor?"],["Je ne sais pas à quelle heure commence le film.","No sé a qué hora empieza la película."],["Je sais nager.", "Sé nadar."],["Tu connais Lyon ?", "¿Conoces Lyon?"],["Elle ne sait pas la réponse.", "No sabe la respuesta."]],
  ojo:["Je sais Paris.","Je connais Paris.","Un lugar se «connaît»."]},[
  C("Elige.","Je ___ nager.",["sais","connais","sait"],0,"Saber hacer algo: <b>savoir</b> + infinitivo."),
  C("Elige.","Tu ___ Marie ?",["connais","sais","connait"],0,"Persona: <b>connaître</b>."),
@@ -763,13 +851,15 @@ L("a1-savoir-connaitre","Savoir ou connaître ?","conj",{
  Mt("Une cada sujeto con savoir.","Sujeto → savoir",[["je","sais"],["il","sait"],["nous","savons"],["vous","savez"],["elles","savent"]],"Presente de <i>savoir</i>."),
  P("Encuentra la palabra incorrecta y corrígela.","Tu [sais] le nouveau professeur de français ?","connais","Una persona se <b>connaît</b>: <i>tu connais…</i>"),
  O("Ordena: «No sé si viene esta noche».",["Je","ne sais pas","s'il","vient","ce soir"],"<i>Je ne sais pas s'il vient ce soir.</i>"),
+ C("Elige.","Conozco a tu hermano.",["Je connais ton frère.","Je sais ton frère.","Je connais à ton frère."],0,"Personas: <b>connaître</b>."),
+ F("Completa.","Tu ___ conduire ? (sabes)",["sais"],"<b>sais</b>."),
  D("Je connais un bon café, mais je ne sais pas s'il est ouvert.")]),
 L("a1-partir-sortir-dormir","Partir, sortir, dormir : les verbes en -ir sans -iss-","conj",{
  idea:"Partir, sortir, dormir, sentir y servir pierden la consonante final de la raíz en singular: je pars, je sors, je dors; y la recuperan en plural: nous partons, nous sortons, nous dormons.",
  para:"Para hablar de salidas, viajes y horas de sueño.",
  regla:["Singular: <i>je pars, tu pars, il part</i> / <i>je dors, tu dors, il dort</i>.","Plural: <i>nous partons, vous partez, ils partent</i> / <i>nous dormons, vous dormez, ils dorment</i>.","<i>Partir</i> = irse (<i>partir de / pour</i>); <i>sortir</i> = salir (<i>sortir avec des amis</i>).","No llevan -iss-: <i>nous partons</i>, no «partissons»."],
  tabla:[["Persona","partir","dormir"],[["je","pars","dors"],["tu","pars","dors"],["il / elle","part","dort"],["nous","partons","dormons"],["vous","partez","dormez"],["ils / elles","partent","dorment"]]],
- ej:[["Je pars pour Montréal demain.","Me voy a Montreal mañana."],["Le samedi, nous sortons avec nos amis.","Los sábados salimos con nuestros amigos."],["Tu dors combien d'heures ?","¿Cuántas horas duermes?"]],
+ ej:[["Je pars pour Montréal demain.","Me voy a Montreal mañana."],["Le samedi, nous sortons avec nos amis.","Los sábados salimos con nuestros amigos."],["Tu dors combien d'heures ?","¿Cuántas horas duermes?"],["Je pars en vacances demain.", "Me voy de vacaciones mañana."],["Tu sors ce soir ?", "¿Sales esta noche?"],["Les enfants dorment bien.", "Los niños duermen bien."]],
  ojo:["nous dorissons","nous dormons","Estos verbos no llevan -iss-."]},[
  C("Elige.","Le train ___ à dix heures. (partir)",["part","pars","partit"],0,"<i>Il <b>part</b></i>."),
  C("Elige.","Nous ___ huit heures par nuit. (dormir)",["dormons","dormissons","dorons"],0,"<i>Nous <b>dormons</b></i>, sin -iss-."),
@@ -780,12 +870,14 @@ L("a1-partir-sortir-dormir","Partir, sortir, dormir : les verbes en -ir sans -is
  Mt("Une cada verbo con su significado.","Verbo → español",[["partir","irse"],["sortir","salir"],["dormir","dormir"],["sentir","sentir, oler"],["servir","servir"]],"Verbos en -ir sin -iss-."),
  P("Encuentra la palabra incorrecta y corrígela.","Mes amis [sortissent] tous les vendredis .","sortent","<i>Sortir</i> no lleva -iss-: <b>sortent</b>."),
  O("Ordena: «Salimos del cine a las diez».",["Nous","sortons","du cinéma","à","dix heures"],"<i>Nous sortons du cinéma à dix heures.</i>"),
+ C("Elige.","Duermo mucho.",["Je dors beaucoup.","Je dorme beaucoup.","Je dormis beaucoup."],0,"<b>je dors</b>."),
+ F("Completa.","Nous ___ ce soir. (salir)",["sortons"],"<b>sortons</b>."),
  D("Je pars à sept heures et je rentre le soir.")]),
 L("a1-il-faut","Il faut + infinitif : l'obligation","gram",{
  idea:"Il faut + infinitivo expresa una obligación general (hay que, es necesario): Il faut étudier. Es impersonal: siempre il, nunca cambia.",
  para:"Para dar instrucciones, consejos o explicar reglas.",
  regla:["<i>Il faut</i> + infinitivo: <i>Il faut réserver.</i> = Hay que reservar.","Negativo: <i>Il ne faut pas</i> + infinitivo = no hay que / está prohibido: <i>Il ne faut pas fumer ici.</i>","<i>Il faut</i> + nombre = se necesita: <i>Il faut deux heures pour aller à Lyon.</i>","Personal con <i>devoir</i>: <i>Je dois partir.</i> (tengo que irme)."],
- ej:[["Pour réussir, il faut travailler régulièrement.","Para aprobar hay que trabajar con regularidad."],["Il ne faut pas oublier ton passeport.","No hay que olvidar tu pasaporte."],["Il faut combien de temps ?","¿Cuánto tiempo se necesita?"]],
+ ej:[["Pour réussir, il faut travailler régulièrement.","Para aprobar hay que trabajar con regularidad."],["Il ne faut pas oublier ton passeport.","No hay que olvidar tu pasaporte."],["Il faut combien de temps ?","¿Cuánto tiempo se necesita?"],["Il faut boire de l'eau.", "Hay que beber agua."],["Il faut partir maintenant.", "Hay que irse ahora."],["Il faut réserver une table.", "Hay que reservar una mesa."]],
  ojo:["Il faut de étudier.","Il faut étudier.","Tras «il faut», el infinitivo va directo."]},[
  C("Elige.","Hay que llegar a tiempo.",["Il faut arriver à l'heure.","Il faut de arriver à l'heure.","Il faut arrive à l'heure."],0,"<b>Il faut</b> + infinitivo."),
  C("Elige el significado.","Il ne faut pas parler pendant le film.",["No hay que hablar durante la película.","No hace falta hablar.","No se puede oír."],0,"<i>Il ne faut pas</i> = no hay que / no se debe."),
@@ -796,6 +888,8 @@ L("a1-il-faut","Il faut + infinitif : l'obligation","gram",{
  Mt("Une cada situación con su consejo.","Situación → consejo",[["Tu es fatigué.","Il faut dormir."],["Tu as faim.","Il faut manger."],["Tu as un examen.","Il faut réviser."],["Tu es en retard.","Il faut te dépêcher."]],"<i>Réviser</i> = repasar para un examen."),
  P("Encuentra la palabra incorrecta y corrígela.","Pour apprendre une langue , il faut [parlez] tous les jours .","parler","Tras <i>il faut</i>, infinitivo: <b>parler</b>."),
  O("Ordena: «Hay que comprar pan».",["Il faut","acheter","du","pain"],"<i>Il faut acheter du pain.</i>"),
+ C("Elige.","Hay que estudiar.",["Il faut étudier.","Il faut étudie.","Il faut de étudier."],0,"<b>il faut + infinitivo</b>."),
+ F("Completa.","Il ___ partir tôt. (hay que)",["faut"],"<b>il faut</b>."),
  D("Pour réussir l'examen, il faut réviser tous les jours.")])
 ]),
 U("Expresiones y escritura",[
@@ -803,7 +897,7 @@ L("a1-avoir-expressions","Avoir faim, avoir froid, avoir besoin de","voc",{
  idea:"Muchas sensaciones que en español se dicen con «tener» también usan avoir en francés: avoir faim, soif, chaud, froid, peur, sommeil, raison, besoin de, envie de.",
  para:"Para decir cómo te sientes y qué necesitas o quieres.",
  regla:["<i>avoir faim</i> (hambre), <i>soif</i> (sed), <i>chaud / froid</i> (calor / frío), <i>sommeil</i> (sueño), <i>peur</i> (miedo).","<i>avoir raison / tort</i> = tener razón / estar equivocado.","<i>avoir besoin de</i> = necesitar; <i>avoir envie de</i> = tener ganas de.","Sin artículo: <i>j'ai faim</i> (no «j'ai la faim»)."],
- ej:[["J'ai très soif, tu as de l'eau ?","Tengo mucha sed, ¿tienes agua?"],["Tu as raison.","Tienes razón."],["J'ai besoin d'un dictionnaire.","Necesito un diccionario."]],
+ ej:[["J'ai très soif, tu as de l'eau ?","Tengo mucha sed, ¿tienes agua?"],["Tu as raison.","Tienes razón."],["J'ai besoin d'un dictionnaire.","Necesito un diccionario."],["J'ai faim, on mange ?", "Tengo hambre, ¿comemos?"],["Elle a froid.", "Tiene frío."],["Nous avons besoin d'aide.", "Necesitamos ayuda."]],
  ojo:["Je suis froid.","J'ai froid.","Frío y calor se dicen con avoir."]},[
  C("Elige.","Tengo frío.",["J'ai froid.","Je suis froid.","Il fait froid moi."],0,"<b>Avoir froid</b>. <i>Je suis froid</i> significaría «soy una persona fría»."),
  C("Elige el significado.","J'ai envie d'une glace.",["Tengo ganas de un helado.","Tengo envidia de un helado.","Necesito un helado."],0,"<i>Avoir envie de</i> = tener ganas de."),
@@ -814,13 +908,15 @@ L("a1-avoir-expressions","Avoir faim, avoir froid, avoir besoin de","voc",{
  S("Clasifica.","¿Qué necesitas?",["Comer o beber","Descansar"],[["J'ai faim.",0],["J'ai soif.",0],["J'ai envie d'un café.",0],["J'ai besoin de manger.",0],["J'ai sommeil.",1],["Je suis fatigué.",1],["J'ai besoin de dormir.",1],["J'ai envie de me reposer.",1]],"Expresiones de necesidad."),
  P("Encuentra la palabra incorrecta y corrígela.","Il fait 35 degrés : nous [sommes] très chaud .","avons","Calor corporal: <b>avoir chaud</b> → <i>nous avons chaud</i>."),
  O("Ordena: «¿Tienes ganas de ir al cine?».",["Tu","as envie","d'aller","au cinéma","?"],"<i>Tu as envie d'aller au cinéma ?</i>"),
+ C("Elige.","Tengo sed.",["J'ai soif.","Je suis soif.","J'ai sede."],0,"<b>avoir soif</b>."),
+ F("Completa.","Tu as ___ ? Mets un pull. (frío)",["froid"],"<b>avoir froid</b>."),
  D("J'ai faim et j'ai très envie d'une pizza.")]),
 L("a1-beau-nouveau-vieux","Beau, nouveau, vieux : bel, nouvel, vieil","accord",{
  idea:"Beau, nouveau y vieux van delante del nombre y tienen una forma especial delante de vocal: un bel homme, un nouvel ami, un vieil hôtel.",
  para:"Para describir personas, casas y ciudades con adjetivos muy frecuentes.",
  regla:["Masculino: <i>beau, nouveau, vieux</i>; delante de vocal o h muda: <b>bel, nouvel, vieil</b>.","Femenino: <i>belle, nouvelle, vieille</i>.","Plural: <i>beaux, nouveaux, vieux / belles, nouvelles, vieilles</i>.","Van delante del nombre, como <i>grand, petit, bon, jeune, joli</i>."],
  tabla:[["Masc.","Masc. + vocal","Fem.","Masc. pl.","Fem. pl."],[["beau","bel","belle","beaux","belles"],["nouveau","nouvel","nouvelle","nouveaux","nouvelles"],["vieux","vieil","vieille","vieux","vieilles"]]],
- ej:[["C'est un bel appartement.","Es un apartamento bonito."],["J'ai un nouvel ordinateur.","Tengo un computador nuevo."],["Elle habite dans une vieille maison.","Vive en una casa vieja."]],
+ ej:[["C'est un bel appartement.","Es un apartamento bonito."],["J'ai un nouvel ordinateur.","Tengo un computador nuevo."],["Elle habite dans une vieille maison.","Vive en una casa vieja."],["C'est un bel appartement.", "Es un piso bonito."],["J'ai un nouvel ami.", "Tengo un amigo nuevo."],["Il habite dans une vieille maison.", "Vive en una casa vieja."]],
  ojo:["un beau hôtel","un bel hôtel","Delante de vocal o h muda: bel."]},[
  C("Elige.","un ___ ami",["nouvel","nouveau","nouvelle"],0,"Delante de vocal: <b>nouvel</b>."),
  C("Elige.","une ___ ville",["belle","bel","beau"],0,"Femenino: <b>belle</b>."),
@@ -831,12 +927,14 @@ L("a1-beau-nouveau-vieux","Beau, nouveau, vieux : bel, nouvel, vieil","accord",{
  Mt("Une cada forma.","Masculino → femenino",[["beau","belle"],["nouveau","nouvelle"],["vieux","vieille"],["bon","bonne"]],"Adjetivos que van antes del nombre."),
  P("Encuentra la palabra incorrecta y corrígela.","Nous avons un [nouveau] étudiant dans la classe .","nouvel","Delante de vocal: <b>nouvel</b> étudiant."),
  O("Ordena: «Es una ciudad vieja y bonita».",["C'est","une","vieille","et belle","ville"],"<i>C'est une vieille et belle ville.</i>"),
+ C("Elige.","un hombre guapo",["un bel homme","un beau homme","un belle homme"],0,"Ante vocal/h muda: <b>bel</b>."),
+ F("Completa.","Ma grand-mère est une ___ dame. (vieja)",["vieille"],"<b>vieille</b>."),
  D("Mon oncle a acheté un bel appartement dans le vieux quartier.")]),
 L("a1-pluriel","Le pluriel des noms : -s, -x, -aux","accord",{
  idea:"La mayoría de los nombres forman el plural con -s (que no se pronuncia). Algunos añaden -x (-eau, -eu) y los terminados en -al cambian a -aux.",
  para:"Para escribir bien y entender el plural oral, que casi siempre se nota solo en el artículo.",
  regla:["Regla general: <b>+ s</b>: <i>un livre → des livres</i>. La s no suena: la diferencia se oye en <i>le / les</i>.","<i>-s, -x, -z</i> no cambian: <i>un pays → des pays, un prix → des prix</i>.","<i>-eau, -eu</i> → <b>+ x</b>: <i>un gâteau → des gâteaux, un jeu → des jeux</i>.","<i>-al</i> → <b>-aux</b>: <i>un journal → des journaux</i>. Excepciones: <i>des festivals, des bals</i>.","Irregulares: <i>un œil → des yeux, monsieur → messieurs</i>."],
- ej:[["J'ai acheté trois gâteaux.","Compré tres pasteles."],["Il lit deux journaux par jour.","Lee dos periódicos al día."],["Elle a les yeux bleus.","Tiene los ojos azules."]],
+ ej:[["J'ai acheté trois gâteaux.","Compré tres pasteles."],["Il lit deux journaux par jour.","Lee dos periódicos al día."],["Elle a les yeux bleus.","Tiene los ojos azules."],["J'ai deux chevaux.", "Tengo dos caballos."],["Les gâteaux sont bons.", "Los pasteles están buenos."],["Nous lisons les journaux.", "Leemos los periódicos."]],
  ojo:["des animals","des animaux","-al → -aux."]},[
  C("Elige el plural.","un journal → des ___",["journaux","journals","journeaux"],0,"<i>-al → -aux</i>: <b>journaux</b>."),
  C("Elige el plural.","un bateau → des ___",["bateaux","bateaus","bateaues"],0,"<i>-eau → -eaux</i>: <b>bateaux</b>."),
@@ -847,12 +945,14 @@ L("a1-pluriel","Le pluriel des noms : -s, -x, -aux","accord",{
  Mt("Une singular y plural.","Singular → plural",[["un cheval","des chevaux"],["un neveu","des neveux"],["un nez","des nez"],["un bijou","des bijoux"]],"<i>Bijou</i> (joya) es una de las siete palabras en -ou con plural en -x."),
  P("Encuentra la palabra incorrecta y corrígela.","Dans ce parc , il y a beaucoup d' [animals] .","animaux","<i>-al → -aux</i>: <b>animaux</b>."),
  O("Ordena: «Los castillos del Loira son bonitos».",["Les châteaux","de la Loire","sont","beaux"],"<i>Les châteaux de la Loire sont beaux.</i>"),
+ C("Elige el plural.","un journal →",["des journaux","des journals","des journauxs"],0,"<b>journaux</b>."),
+ F("Completa (plural).","un gâteau → des ___",["gâteaux"],"<b>gâteaux</b>."),
  D("Les enfants mangent des gâteaux et jouent à des jeux.")]),
 L("a1-courriel","Écrire un courriel pour se présenter","registre",{
  idea:"Un correo de presentación tiene saludo, quién eres, qué haces, tus gustos, una pregunta y una despedida. Con un desconocido se usa vous; con un compañero, tu.",
  para:"Para escribir a un amigo por correspondencia, a una familia de acogida o hacer la producción escrita del DELF A1.",
  regla:["Saludo: <i>Bonjour Madame, / Salut Léa,</i>","Presentación: <i>Je m'appelle…, j'ai… ans, je suis… Je fais des études de…</i>","Gustos y vida: <i>J'aime…, le week-end je…</i>","Pregunta y cierre: <i>Et toi, qu'est-ce que tu aimes ? / J'attends ta réponse.</i>","Despedida: <i>À bientôt, / Bien cordialement,</i> + nombre."],
- ej:[["Salut Hugo, je m'appelle Daniela et j'ai dix-neuf ans.","Hola Hugo, me llamo Daniela y tengo diecinueve años."],["J'étudie les langues étrangères à l'université de Pamplona.","Estudio lenguas extranjeras en la Universidad de Pamplona."],["Écris-moi vite ! À bientôt, Daniela","¡Escríbeme pronto! Hasta pronto, Daniela"]],
+ ej:[["Salut Hugo, je m'appelle Daniela et j'ai dix-neuf ans.","Hola Hugo, me llamo Daniela y tengo diecinueve años."],["J'étudie les langues étrangères à l'université de Pamplona.","Estudio lenguas extranjeras en la Universidad de Pamplona."],["Écris-moi vite ! À bientôt, Daniela","¡Escríbeme pronto! Hasta pronto, Daniela"],["Je m'appelle Laura et j'ai vingt ans.", "Me llamo Laura y tengo veinte años."],["J'habite à Bogotá avec ma famille.", "Vivo en Bogotá con mi familia."],["À bientôt !", "¡Hasta pronto!"]],
  ojo:["Je suis dix-neuf ans.","J'ai dix-neuf ans.","La edad se dice con avoir."]},[
  C("Elige el saludo formal.","A la madre de tu familia de acogida",["Bonjour Madame,","Salut !","Coucou Madame !"],0,"Formal: <b>Bonjour Madame,</b>"),
  C("Elige.","Presentarte",["Je m'appelle Andrés.","Je suis appelle Andrés.","Mon nom s'appelle Andrés."],0,"<b>Je m'appelle</b> + nombre."),
@@ -863,6 +963,8 @@ L("a1-courriel","Écrire un courriel pour se présenter","registre",{
  S("Clasifica.","Frases del correo",["Presentarse","Terminar"],[["Je m'appelle Laura.",0],["J'ai vingt et un ans.",0],["Je suis colombienne.",0],["J'habite à Cúcuta.",0],["J'attends ta réponse.",1],["À bientôt !",1],["Écris-moi vite.",1],["Bien cordialement,",1]],"Frases de inicio y de cierre."),
  Mt("Une cada frase con su función.","Frase → función",[["Bonjour Monsieur,","saludar"],["Je vous écris pour…","explicar el motivo"],["Merci d'avance.","agradecer"],["Cordialement,","despedirse"]],"Estructura de un correo formal."),
  P("Encuentra la palabra incorrecta y corrígela.","Ma sœur [est] seize ans et elle est au lycée .","a","Edad con <i>avoir</i>: <b>elle a</b> seize ans."),
+ C("Elige el saludo informal.","Saludo",["Salut Julie !","Madame, Monsieur,","Veuillez agréer"],0,"Informal: <b>Salut</b>."),
+ F("Completa.","Je m'___ Carlos. (llamo)",["appelle"],"<b>je m'appelle</b>."),
  D("Bonjour, je m'appelle Andrés et j'étudie le français à Pamplona.")])
 ])
 ]);
