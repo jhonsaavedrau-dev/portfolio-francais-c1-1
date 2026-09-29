@@ -40,7 +40,7 @@
     return h;
   };
   var explica = function(o){
-    return { idea: plano(o.idea || o.para), pasos: (o.regla || []).map(plano).slice(0, 4), ej: (o.ej || []).slice(0, 3).map(function(e){ return [plano(e[0]), plano(e[1])]; }),
+    return { idea: plano(o.idea || o.para), pasos: (o.regla || []).map(plano).slice(0, 4), ej: (o.ej || []).slice(0, 6).map(function(e){ return [plano(e[0]), plano(e[1])]; }),
       ojo: o.ojo ? [plano(o.ojo[0]), plano(o.ojo[1]), plano(o.ojo[2] || "")] : undefined };
   };
   M.L = function(id, title, t, T, items){
