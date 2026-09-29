@@ -704,13 +704,13 @@ L("c12-feminisation","Féminisation des noms et écriture inclusive","cult",{
  O("Ordena: «La ministra tomó la palabra».",["Madame","la ministre","a pris","la parole"],"<i>Madame la ministre a pris la parole.</i>"),
  D("Aujourd'hui, on dit une professeure, une autrice et une ingénieure.")]),
 L("c12-loi-toubon","La loi Toubon et l'enrichissement de la langue","cult",{
- idea:"La ley Toubon (1994) obliga a usar el francés en la publicidad, los contratos de trabajo, los productos vendidos, los servicios públicos y los congresos en Francia (con traducción si hay otra lengua). La Commission d'enrichissement propone equivalentes a los anglicismos: courriel (e-mail), logiciel (software), mot-dièse (hashtag), divulgâcher (spoiler).",
+ idea:"La ley Toubon (1994) obliga a usar el francés en la publicidad, los contratos de trabajo, los productos vendidos, los servicios públicos y los congresos en Francia (con traducción si hay otra lengua). La Commission d'enrichissement propone equivalentes a los anglicismos: courriel (e-mail), logiciel (software), mot-dièse (hashtag), infox (fake news); en Quebec se propuso además divulgâcher (spoiler).",
  para:"Para entender la política lingüística y sus neologismos.",
- regla:["<b>Loi Toubon</b> (1994): francés obligatorio en ciertos ámbitos, no en la vida privada.","Publicidad en inglés: se permite con <b>traducción</b>.","<b>FranceTerme</b>: base de términos recomendados.","Ejemplos: <i>courriel, logiciel, baladeur, mot-dièse, infox, divulgâcher, jeu décisif (tie-break)</i>.","Quebec: Ley 101 (1977), más estricta."],
+ regla:["<b>Loi Toubon</b> (1994): francés obligatorio en ciertos ámbitos, no en la vida privada.","Publicidad en inglés: se permite con <b>traducción</b>.","<b>FranceTerme</b>: base de términos recomendados.","Ejemplos: <i>courriel, logiciel, baladeur, mot-dièse, infox, jeu décisif (tie-break)</i>; en Quebec, <i>divulgâcher</i> (spoiler).","Quebec: Ley 101 (1977), más estricta."],
  ej:[["Un slogan en anglais doit être traduit en français.","Un eslogan en inglés debe traducirse al francés."],["Le mot « courriel » est recommandé à la place d'« e-mail ».","Se recomienda «courriel» en lugar de «e-mail»."],["Ne me divulgâche pas la fin du film !","¡No me hagas spoiler del final!"]],
  ojo:["La loi Toubon interdit l'anglais","Obliga a usar también el francés","No prohíbe otras lenguas."]},[
  C("¿De qué año es la ley Toubon?","Ley",["1994","1539","1977"],0,"<b>1994</b>."),
- C("¿Qué término sustituye a «spoiler»?","spoiler",["divulgâcher","gâchenouvelle","spoilier"],0,"<b>divulgâcher</b>."),
+ C("¿Qué término se propuso en Quebec para «spoiler»?","spoiler",["divulgâcher","gâchenouvelle","spoilier"],0,"<b>divulgâcher</b> (propuesto por la Oficina quebequense de la lengua francesa)."),
  C("¿La ley Toubon prohíbe el inglés?","Pregunta",["no, obliga a incluir el francés","sí, totalmente","solo en la calle"],0,"<b>Obliga al francés</b>."),
  F("Completa.","Le mot « ___ » remplace « software ».",["logiciel"],"<b>logiciel</b>."),
  F("Completa.","Au Québec, la loi ___ protège le français depuis 1977.",["101"],"<b>Loi 101</b>."),
