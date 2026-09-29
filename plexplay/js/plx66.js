@@ -88,10 +88,15 @@
   };
 
   /* carga en segundo plano: primero el curso que el estudiante tiene abierto */
-  var carga = function(tid){ return new Promise(function(res){ var s = document.createElement("script"); s.src = "mas/" + tid + ".js?v=" + (V[tid] || "1"); s.async = true; s.onload = s.onerror = function(){ res(); }; document.head.appendChild(s); }); };
+  var pedidos = {};
+  var carga = function(tid){ if (pedidos[tid]) return pedidos[tid]; return (pedidos[tid] = new Promise(function(res){ var s = document.createElement("script"); s.src = "mas/" + tid + ".js?v=" + (V[tid] || "1"); s.async = true; s.onload = s.onerror = function(){ res(); }; document.head.appendChild(s); })); };
+  /* 2.9.3: en móviles modestos o con datos limitados solo se descarga el curso abierto; los demás, al abrirlos */
+  var ligero = (function(){ try { var c = navigator.connection || {}; return !!(c.saveData || /(^|-)2g$|^3g$/.test(c.effectiveType || "") || (navigator.deviceMemory && navigator.deviceMemory <= 2)); } catch (e) { return false; } })();
+  M.ligero = ligero;
   var cola = function(){
     var ids = Object.keys(V); if (!ids.length) return;
     var actual = typeof track === "string" ? track : null;
+    if (ligero) { if (actual && V[actual]) carga(actual); return; }
     ids.sort(function(a, b){ return (b === actual) - (a === actual); });
     var sig = function(){ var t = ids.shift(); if (!t) return; carga(t).then(function(){ (window.requestIdleCallback || function(f){ setTimeout(f, 60); })(sig, { timeout: 1200 }); }); };
     sig();
@@ -99,4 +104,6 @@
   /* M.cargaYa(tid): para cuando hace falta ya (por ejemplo, al abrir un curso antes de que termine la carga) */
   M.cargaYa = function(tid){ return hechos[tid] || !V[tid] ? Promise.resolve() : carga(tid); };
   if ("requestIdleCallback" in window) requestIdleCallback(cola, { timeout: 2500 }); else setTimeout(cola, 1200);
+  /* al cambiar de curso, su contenido nuevo llega enseguida (en modo ligero es la única vía) */
+  if (typeof render === "function") { var _rd = render; render = function(){ var x = _rd.apply(this, arguments); try { if (typeof track === "string" && V[track] && !hechos[track]) carga(track); } catch (e) {} return x; }; }
 })();
